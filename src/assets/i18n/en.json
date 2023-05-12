@@ -1,0 +1,9 @@
+{
+  "HOME": {
+    "TITLE": "Hello Angular with ngx-translate!",
+    "SELECT": "Change language"
+  },
+  "VIEW": {
+    "TITLE": "Child module with ngx-translate!!!!!"
+  }
+}

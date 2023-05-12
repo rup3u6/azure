@@ -1,0 +1,112 @@
+<div class="container-inner login-default">
+  <div class="login-default-inner">
+    <!-- START: frame -->
+    <div class="frame-block">
+      <!-- START: logo -->
+      <div class="frame-compose logo-compose">
+        <div class="logo-component logo-image">
+          <img src="assets/image/logo.svg" alt="" />
+        </div>
+      </div>
+      <!-- END: logo -->
+    </div>
+    <!-- END: frame -->
+    <!-- START: frame -->
+    <div class="frame-block">
+      <!-- START: login -->
+      <div class="frame-compose login-compose">
+        <div class="login-compose-inner">
+          <!-- START: login-form -->
+          <div class="login-component login-form">
+            <div [formGroup]="loginForm">
+              <div [ngClass]="{ 'form-item': true, 'error-entry': false }">
+                <div class="form-item-inner">
+                  <div class="form-unit form-title-text">帳號</div>
+                  <div class="form-unit form-field-input">
+                    <input
+                      type="text"
+                      placeholder="請輸入帳號"
+                      formControlName="userAccount"
+                    />
+                  </div>
+                  <!-- <div class="form-unit form-field-text">
+                    <span>欄位填寫錯誤</span>
+                  </div> -->
+                </div>
+              </div>
+              <div class="form-item">
+                <div class="form-item-inner">
+                  <div class="form-unit form-title-text">密碼</div>
+                  <div class="form-unit">
+                    <div class="form-unit-inner unit-combine">
+                      <div class="form-part form-field-input">
+                        <input
+                          [type]="pwdVis ? 'text' : 'password'"
+                          placeholder="請輸入密碼"
+                          formControlName="userPassword"
+                        />
+                      </div>
+                      <div
+                        class="form-part form-field-link"
+                        (click)="pwdVis = !pwdVis"
+                      >
+                        <a href="javascript:void(0)" class="form-pw"
+                          ><span class="material-icons-outlined">{{
+                            pwdVis ? "visibility_off" : "visibility"
+                          }}</span></a
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-item">
+                <div class="form-item-inner">
+                  <div class="form-unit form-title-text">驗證碼</div>
+                  <div class="form-unit">
+                    <div class="form-unit-inner">
+                      <div class="form-part form-field-input">
+                        <input type="text" placeholder="請輸入驗證碼" />
+                      </div>
+                      <div class="form-part form-field-link">
+                        <a href="javascript:void(0)" class="form-verify"
+                          >1234</a
+                        >
+                      </div>
+                      <div class="form-part form-field-link">
+                        <a href="javascript:void(0)" class="form-refresh"
+                          ><span class="material-icons-outlined"
+                            >autorenew</span
+                          ></a
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- END: login-form -->
+          <!-- START: login-button -->
+          <div class="login-component login-button">
+            <button type="button" (click)="login()">登入</button>
+          </div>
+          <!-- END: login-button -->
+        </div>
+      </div>
+      <!-- END: login -->
+    </div>
+    <!-- END: frame -->
+    <!-- START: frame -->
+    <div class="frame-block">
+      <!-- START: footer -->
+      <div class="frame-compose footer-compose">
+        <div class="footer-component footer-text">
+          <p>Copyright © Wistron Inc.</p>
+        </div>
+      </div>
+      <!-- END: footer -->
+    </div>
+    <!-- END: frame -->
+  </div>
+</div>

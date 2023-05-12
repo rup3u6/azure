@@ -1,0 +1,57 @@
+<div class="container-inner index-default">
+  <!-- START: frame -->
+  <div class="frame-block">
+    <!-- START: header -->
+    <header class="frame-compose header-compose">
+      <button (click)="logout()">登出</button>
+    </header>
+    <!-- END: header -->
+  </div>
+  <!-- END: frame -->
+  <!-- START: frame -->
+  <div class="frame-block">
+    <div class="frame-block-inner">
+      <!-- START: nav -->
+      <nav class="frame-compose nav-compose">nav</nav>
+      <!-- END: nav -->
+      <!-- START: main -->
+      <nav class="frame-compose main-compose">
+        <!-- START: content -->
+        <div class="frame-component content-component">
+          <div class="query-row">
+            <div class="query-item">
+              <div class="query-title">區域名稱</div>
+              <div class="query-inner">
+                <input type="text" #name />
+              </div>
+            </div>
+            <div class="query-item">
+              <div class="query-title">狀態</div>
+              <div class="query-inner">
+                <select #status>
+                  <option value="true">啟用</option>
+                  <option value="">停用</option>
+                </select>
+              </div>
+            </div>
+            <div class="query-button">
+              <button (click)="test()">搜尋</button>
+            </div>
+          </div>
+
+          <app-tabulator-table
+            #tabulatorTable
+            [tableData]="arr"
+            [columnNames]="columnNames"
+          ></app-tabulator-table>
+        </div>
+        <!-- END: content -->
+        <!-- START: footer -->
+        <footer class="frame-component footer-component">footer</footer>
+        <!-- END: footer -->
+      </nav>
+      <!-- END: main -->
+    </div>
+  </div>
+  <!-- END: frame -->
+</div>

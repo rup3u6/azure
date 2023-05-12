@@ -1,0 +1,222 @@
+/*
+【COLOR】
+『主要色』
+『輔助色』
+『自然色』
+『表格』
+『按鈕』
+*/
+
+/*
+【FONT-SIZE】
+10px: 0.625rem
+12px: 0.75rem
+14px: 0.875rem
+16px: 1rem
+18px: 1.125rem
+21px: 1.3125rem
+24px: 1.5rem
+26px: 1.6125rem
+28px: 1.75rem
+30px: 1.875rem
+32px: 2rem 
+*/
+/* tabulator-table */
+/* @import  "tabulator-tables"; */
+
+/* material icon */
+@import 'material-icons/iconfont/material-icons.css';
+
+@font-face {
+    font-family: Microsoft JhengHei, sans-serif;
+}
+
+* {
+    font-family: Microsoft JhengHei, sans-serif;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+* img {
+    max-width: 100%;
+    -webkit-transition: all 0.1s ease;
+    -moz-transition: all 0.1s ease;
+    -ms-transition: all 0.1s ease;
+    -o-transition: all 0.1s ease;
+    transition: all 0.1s ease;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+a,
+button {
+    outline: none !important;
+    -webkit-transition: all 0.1s ease;
+    -moz-transition: all 0.1s ease;
+    -ms-transition: all 0.1s ease;
+    -o-transition: all 0.1s ease;
+    transition: all 0.1s ease;
+}
+
+button {
+    box-shadow: none;
+    border-style: none;
+    font-size: 0.875rem;
+}
+
+textarea {
+    width: 100%;
+    resize: none;
+    border: #aaa solid 1px;
+    border-radius: 3px;
+    padding: 2px 4px;
+}
+
+input {
+    outline-color: #018dcd;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="date"],
+input[type="month"],
+select {
+    width: 100%;
+    height: 25px;
+    border: #aaa solid 1px;
+    padding: 2px 4px;
+}
+
+input::placeholder,
+textarea::placeholder {
+    /* CSS 3 標準 */
+    color: #bbb;
+    text-align: left;
+}
+
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+    /* Chrome, Safari */
+    color: #bbb;
+    text-align: left;
+}
+
+input::-ms-input-placeholder,
+textarea::-ms-input-placeholder {
+    /* IE 10+ */
+    color: #bbb;
+    text-align: left;
+}
+
+input::-moz-placeholder,
+textarea::-moz-placeholder {
+    /* Firefox 19+ */
+    color: #bbb;
+    opacity: 1;
+    text-align: left;
+}
+
+input[disabled] {
+    background: #efefef;
+    color: #aaa;
+}
+
+input[attr="readonly"],
+select[attr="readonly"] {
+    background: #FFFEE1;
+    color: #333;
+}
+
+input[attr="money"] {
+    text-align: right;
+}
+
+input[attr="readonly-money"] {
+    background: #FFFEE1;
+    color: #333;
+    text-align: right;
+}
+
+input[attr="readonly-money-highlight"] {
+    color: #E60012;
+    background: #FFFEE1;
+    text-align: right;
+}
+
+input[attr="readonly-warning"] {
+    color: #E60012;
+    font-weight: bold;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    margin-left: 0;
+    padding: 0;
+}
+
+input[type="month"]::-webkit-calendar-picker-indicator {
+    margin-left: 0;
+    padding: 0;
+}
+
+select {
+    height: 30px;
+    border: #aaa solid 1px;
+    padding: 2px 4px;
+}
+
+p {
+    line-height: 1.5;
+}
+
+label {
+    margin-bottom: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin-bottom: 0;
+}
+
+hr.seperate-line {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    border-top: 1px solid rgba(0, 0, 0, .05);
+}
+
+hr.seperate-line-tiny {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-top: 1px solid rgba(0, 0, 0, .05);
+}
+
+@media only screen and (max-width: 1280px) {}
+
+@media only screen and (max-width: 1299px) {}
+
+@media only screen and (min-width: 1200px) {}
+
+@media only screen and (max-width: 1199px) {}
+
+@media only screen and (min-width: 992px) {}
+
+@media only screen and (max-width: 991px) {}
+
+@media only screen and (min-width: 768px) {}
+
+@media only screen and (max-width: 767px) {}
+
+@media only screen and (max-width: 576px) {}
+
+@media only screen and (max-width: 440px) {}
+
+@media only screen and (max-width: 420px) {}
