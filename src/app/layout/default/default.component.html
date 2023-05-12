@@ -1,0 +1,105 @@
+<div class="container-inner index-default">
+    <!-- START: frame -->
+    <div class="frame-block">
+      <!-- START: header -->
+      <header class="frame-compose header-compose">
+        <div class="header-compose-inner">
+          <!-- START: header-logo -->
+          <div class="header-component header-logo">
+            <a href="javascript:void(0)"><img src="assets/image/logo.svg" alt="" /></a>
+          </div>
+          <!-- END: header-logo -->
+          <!-- START: header-function -->
+          <div class="header-component header-function">
+            <div class="header-function-inner">
+              <div class="header-function-unit menu-button">
+                <a href="javascript:void(0)"><span class="material-icons">menu</span></a>
+              </div>
+              <div class="header-function-unit system-link">
+                <ul>
+                  <li><a href="javascript:void(0)" attr="" (click)="logout()">登出</a></li>
+                  <li><a href="javascript:void(0)" attr="home">首頁</a></li>
+                  <li><a href="javascript:void(0)" attr="setting">管理者設定</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!-- END: header-function -->
+          <!-- START: header-info -->
+          <div class="header-component header-info">
+            <div class="header-info-inner">
+              <div class="header-info-unit lang-selector">
+                <select name="" id="">
+                  <option value="繁體中文">繁體中文</option>
+                  <option value="简体中文">简体中文</option>
+                  <option value="English">English</option>
+                  <option value="Vietnamese">Vietnamese</option>
+                  <option value="擴充語言">擴充語言</option>
+                </select>
+              </div>
+              <div class="header-info-unit user-link">
+                <ul>
+                  <li>Allen Lin</li>
+                  <li>ABC13579</li>
+                </ul>
+              </div>
+              <div class="header-info-unit location-text">
+                <span>Taiwan</span>
+              </div>
+            </div>
+          </div>
+          <!-- END: header-info -->
+        </div>
+      </header>
+      <!-- END: header -->
+    </div>
+    <!-- END: frame -->
+    <!-- START: frame -->
+    <div class="frame-block">
+      <div class="frame-block-inner">
+        <!-- START: nav -->
+        <nav class="frame-compose nav-compose">
+          <div class="nav-component nav-list">
+            <div class="nav-list-inner">
+              <div class="nav-list-unit nav-text">
+                <h4>管理者維護</h4>
+              </div>
+              <div class="nav-list-unit nav-link">
+                <ul>
+                  <li><a href="javascript:void(0)">系統代碼檔</a></li>
+                  <li><a href="javascript:void(0)">選單分類</a></li>
+                  <li><a href="javascript:void(0)">選單作業</a></li>
+                  <li><a href="javascript:void(0)">公司別</a></li>
+                  <li><a href="javascript:void(0)">區域別</a></li>
+                  <li><a href="javascript:void(0)">語系別</a></li>
+                  <li><a href="javascript:void(0)">角色</a></li>
+                  <li><a href="javascript:void(0)">帳號</a></li>
+                  <li><a href="javascript:void(0)">秘書</a></li>
+                  <li><a href="javascript:void(0)">信用卡卡號格式</a></li>
+                  <li><a href="javascript:void(0)">IP連線</a></li>
+                  <li><a href="javascript:void(0)">操作議程檢視</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </nav>
+        <!-- END: nav -->
+        <!-- START: main -->
+        <div class="frame-compose main-compose">
+          <!-- START: content -->
+          <router-outlet></router-outlet>
+          <!-- END: content -->
+          <!-- START: footer -->
+          <footer class="footer-component footer-copyright">
+            <div class="copyright-text">
+              <p>Copyright © Wistron Inc.</p>
+            </div>
+          </footer>
+          <!-- END: footer -->
+        </div>
+        <!-- END: main -->
+      </div>
+    </div>
+    <!-- END: frame -->
+  </div>
+  

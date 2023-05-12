@@ -1,7 +1,6 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
-import { LoginService } from 'src/app/core/services/login.service';
 import { TabulatorTableComponent } from 'src/app/shared/components/tabulator-table/tabulator-table.component';
 
 @Component({
@@ -30,7 +29,7 @@ export class HomeComponent implements OnInit {
     { title: '異動日期', field: 'Location_EditDate' },
     { title: '異動者IP', field: 'Location_EditIp' },
   ];
-  constructor(private http: HttpClient, private loginService: LoginService) {}
+  constructor(private http: HttpClient) {}
   ngOnInit(): void {}
   async test() {
     const body = {
@@ -41,9 +40,5 @@ export class HomeComponent implements OnInit {
       this.http.post('/api/Base/WfLocation/Get', body)
     );
     this.tabulatorTableComponent.table.setData(res.data);
-  }
-
-  logout() {
-    this.loginService.logout();
   }
 }

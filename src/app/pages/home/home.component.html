@@ -1,57 +1,59 @@
-<div class="container-inner index-default">
-  <!-- START: frame -->
-  <div class="frame-block">
-    <!-- START: header -->
-    <header class="frame-compose header-compose">
-      <button (click)="logout()">登出</button>
-    </header>
-    <!-- END: header -->
-  </div>
-  <!-- END: frame -->
-  <!-- START: frame -->
-  <div class="frame-block">
-    <div class="frame-block-inner">
-      <!-- START: nav -->
-      <nav class="frame-compose nav-compose">nav</nav>
-      <!-- END: nav -->
-      <!-- START: main -->
-      <nav class="frame-compose main-compose">
-        <!-- START: content -->
-        <div class="frame-component content-component">
-          <div class="query-row">
-            <div class="query-item">
-              <div class="query-title">區域名稱</div>
-              <div class="query-inner">
-                <input type="text" #name />
-              </div>
-            </div>
-            <div class="query-item">
-              <div class="query-title">狀態</div>
-              <div class="query-inner">
-                <select #status>
-                  <option value="true">啟用</option>
-                  <option value="">停用</option>
-                </select>
-              </div>
-            </div>
-            <div class="query-button">
-              <button (click)="test()">搜尋</button>
-            </div>
+<main class="main-component main-content">
+  <div class="main-content-inner">
+    <!-- START: content-query -->
+    <div class="main-content-unit content-query">
+      <div class="content-query-inner">
+        <div class="content-query-unit query-field">
+          <div class="field-title">區域名稱</div>
+          <div class="field-entry"><input type="text" #name /></div>
+        </div>
+        <div class="content-query-unit query-field">
+          <div class="field-title">狀態</div>
+          <div class="field-entry">
+            <select #status>
+              <option value="true">啟用</option>
+              <option value="">停用</option>
+            </select>
           </div>
-
+        </div>
+        <div class="content-query-unit query-field">
+          <div class="field-title">field-title</div>
+          <div class="field-entry"><input type="text" /></div>
+        </div>
+        <div class="content-query-unit query-field">
+          <div class="field-title">field-title</div>
+          <div class="field-entry"><input type="text" /></div>
+        </div>
+        <div class="content-query-unit query-button">
+          <button type="button" (click)="test()">query-button</button>
+        </div>
+      </div>
+    </div>
+    <!-- END: content-query -->
+    <!-- START: content-result -->
+    <div class="main-content-unit content-result">
+      <div class="content-result-inner">
+        <!-- START: result-function -->
+        <div class="result-function">
+          <ul>
+            <li><a href="#" attr="add">新增</a></li>
+            <li><a href="#" attr="copy">複製</a></li>
+            <li><a href="#" attr="prohibit">停用</a></li>
+            <li><a href="#" attr="delete">刪除</a></li>
+          </ul>
+        </div>
+        <!-- END: result-function -->
+        <!-- START: result-table -->
+        <div class="result-table">
           <app-tabulator-table
             #tabulatorTable
             [tableData]="arr"
             [columnNames]="columnNames"
           ></app-tabulator-table>
         </div>
-        <!-- END: content -->
-        <!-- START: footer -->
-        <footer class="frame-component footer-component">footer</footer>
-        <!-- END: footer -->
-      </nav>
-      <!-- END: main -->
+        <!-- END: result-table -->
+      </div>
     </div>
+    <!-- END: content-result -->
   </div>
-  <!-- END: frame -->
-</div>
+</main>
