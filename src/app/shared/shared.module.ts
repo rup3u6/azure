@@ -5,9 +5,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { RouterModule } from '@angular/router';
+import { ErrorMessagePipe } from './pipes/error-message.pipe';
 
 @NgModule({
-  declarations: [TabulatorTableComponent],
+  declarations: [TabulatorTableComponent, ErrorMessagePipe],
   imports: [
     CommonModule,
     RouterModule,
@@ -23,6 +24,8 @@ import { RouterModule } from '@angular/router';
     ReactiveFormsModule,
     HttpClientModule,
     TabulatorTableComponent,
+    ErrorMessagePipe,
   ],
 })
-export class SharedModule {}
+export class SharedModule {
+}

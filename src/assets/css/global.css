@@ -22,7 +22,7 @@
 32px: 2rem 
 */
 /* tabulator-table */
-/* @import  "tabulator-tables"; */
+@import  "tabulator-tables";
 
 /* material icon */
 @import 'material-icons/iconfont/material-icons.css';

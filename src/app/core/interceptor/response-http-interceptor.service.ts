@@ -19,7 +19,17 @@ export class ResponseHttpInterceptorService {
     return next.handle(req).pipe(
       tap((res) => {
         if (res instanceof HttpResponse) {
+          console.log(req);
+          const { url } = req;
+          //  i18n不通知
+          if (/\/i18n\/.*\.json$/.test(url)) {
+            return;
+          }
+          const { status, data, message } = res.body;
           console.log(res);
+          if (status !== '999') {
+            alert(message);
+          }
         }
       })
     );

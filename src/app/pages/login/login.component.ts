@@ -1,5 +1,5 @@
-import { Component, HostListener, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CInLoginPageData } from 'src/app/core/models/login';
 import { LoginService } from 'src/app/core/services/login.service';
@@ -10,7 +10,7 @@ import { LoginService } from 'src/app/core/services/login.service';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  loginForm!: FormGroup;
+  loginFormGroup!: FormGroup;
   pwdVis: boolean = false;
 
   constructor(
@@ -20,18 +20,24 @@ export class LoginComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.loginForm = this.formBuilder.group({
-      userAccount: [''],
-      userPassword: [''],
-      verificatCode: [''],
+    this.loginFormGroup = this.formBuilder.group({
+      userAccount: ['', [Validators.required]],
+      userPassword: ['', [Validators.required]],
+      verificatCode: ['', [Validators.required]],
     });
   }
 
   login() {
-    const body: CInLoginPageData = this.loginForm.value;
-    this.loginService.login(body).subscribe((res) => {
-      const { status } = res;
-      status === '999' && this.router.navigate(['/home']);
-    });
+    // 觸發formGroup touch
+    this.loginFormGroup.markAllAsTouched();
+    if (!this.loginFormGroup.valid) {
+      return;
+    }
+    const body: CInLoginPageData = this.loginFormGroup.value;
+    this.loginService.login(body).subscribe();
+  }
+
+  get f() {
+    return this.loginFormGroup.controls;
   }
 }

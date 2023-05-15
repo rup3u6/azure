@@ -18,8 +18,14 @@
         <div class="login-compose-inner">
           <!-- START: login-form -->
           <div class="login-component login-form">
-            <div [formGroup]="loginForm">
-              <div [ngClass]="{ 'form-item': true, 'error-entry': false }">
+            <div [formGroup]="loginFormGroup">
+              <div
+                [ngClass]="{
+                  'form-item': true,
+                  'error-entry':
+                    f['userAccount'].errors && f['userAccount'].touched
+                }"
+              >
                 <div class="form-item-inner">
                   <div class="form-unit form-title-text">帳號</div>
                   <div class="form-unit form-field-input">
@@ -29,16 +35,27 @@
                       formControlName="userAccount"
                     />
                   </div>
-                  <!-- <div class="form-unit form-field-text">
-                    <span>欄位填寫錯誤</span>
-                  </div> -->
+                  <div
+                    class="form-unit form-field-text"
+                    *ngIf="f['userAccount'].errors && f['userAccount'].touched"
+                  >
+                    <span>{{
+                      f["userAccount"].errors | errorMessage | translate
+                    }}</span>
+                  </div>
                 </div>
               </div>
-              <div class="form-item">
+              <div
+                [ngClass]="{
+                  'form-item': true,
+                  'error-entry':
+                    f['userPassword'].errors && f['userPassword'].touched
+                }"
+              >
                 <div class="form-item-inner">
                   <div class="form-unit form-title-text">密碼</div>
                   <div class="form-unit">
-                    <div class="form-unit-inner unit-combine">
+                    <div class="form-unit-inner unit-combine form-field-input">
                       <div class="form-part form-field-input">
                         <input
                           [type]="pwdVis ? 'text' : 'password'"
@@ -50,17 +67,41 @@
                         class="form-part form-field-link"
                         (click)="pwdVis = !pwdVis"
                       >
-                        <a href="javascript:void(0)" class="form-pw"
+                        <a
+                          href="javascript:void(0)"
+                          class="form-pw"
+                          tabindex="-1"
                           ><span class="material-icons-outlined">{{
                             pwdVis ? "visibility_off" : "visibility"
                           }}</span></a
                         >
                       </div>
                     </div>
+
+                    <div
+                      class="form-unit form-field-text"
+                      *ngIf="
+                        f['userPassword'].errors && f['userPassword'].touched
+                      "
+                    >
+                      <span>{{
+                        f["userPassword"].errors
+                          | errorMessage | translate : {
+                            minLength: f['userPassword'].errors['minlength']?.requiredLength,
+                            inputLength: f['userPassword'].errors['minlength']?.actualLength,
+                          }
+                      }}</span>
+                    </div>
                   </div>
                 </div>
               </div>
-              <div class="form-item">
+              <div
+                [ngClass]="{
+                  'form-item': true,
+                  'error-entry':
+                    f['verificatCode'].errors && f['verificatCode'].touched
+                }"
+              >
                 <div class="form-item-inner">
                   <div class="form-unit form-title-text">驗證碼</div>
                   <div class="form-unit">
@@ -69,18 +110,38 @@
                         <input type="text" placeholder="請輸入驗證碼" />
                       </div>
                       <div class="form-part form-field-link">
-                        <a href="javascript:void(0)" class="form-verify"
+                        <a
+                          href="javascript:void(0)"
+                          class="form-verify"
+                          tabindex="-1"
                           >1234</a
                         >
                       </div>
                       <div class="form-part form-field-link">
-                        <a href="javascript:void(0)" class="form-refresh"
+                        <a
+                          href="javascript:void(0)"
+                          class="form-refresh"
+                          tabindex="-1"
                           ><span class="material-icons-outlined"
                             >autorenew</span
                           ></a
                         >
                       </div>
                     </div>
+                  </div>
+                  <div
+                    class="form-unit form-field-text"
+                    *ngIf="
+                      f['verificatCode'].errors && f['verificatCode'].touched
+                    "
+                  >
+                    <span>{{
+                    f["verificatCode"].errors
+                      | errorMessage | translate : {
+                        minLength: f['verificatCode'].errors['minlength']?.requiredLength,
+                        inputLength: f['verificatCode'].errors['minlength']?.actualLength,
+                      }
+                    }}</span>
                   </div>
                 </div>
               </div>

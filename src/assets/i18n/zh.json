@@ -4,6 +4,7 @@
     "SELECT": "選擇語系"
   },
   "VIEW": {
-    "TITLE": "測試用"
+    "TITLE": "測試用",
+    "ERROR": "輸入長度至少需{{minLength}}，只輸入了{{inputLength}}"
   }
 }
