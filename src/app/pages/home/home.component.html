@@ -47,8 +47,9 @@
         <div class="result-table">
           <app-tabulator-table
             #tabulatorTable
-            [tableData]="arr"
+            [initData]="arr"
             [columnNames]="columnNames"
+            i18nName="tabulator.test1"
           ></app-tabulator-table>
         </div>
         <!-- END: result-table -->

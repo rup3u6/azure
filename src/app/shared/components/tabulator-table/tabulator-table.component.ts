@@ -4,9 +4,11 @@ import {
   ElementRef,
   Input,
   OnChanges,
+  OnInit,
   SimpleChanges,
   ViewChild,
 } from '@angular/core';
+import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
 import { TabulatorFull as Tabulator } from 'tabulator-tables';
 
 @Component({
@@ -14,33 +16,67 @@ import { TabulatorFull as Tabulator } from 'tabulator-tables';
   templateUrl: './tabulator-table.component.html',
   styleUrls: ['./tabulator-table.component.scss'],
 })
-export class TabulatorTableComponent implements AfterViewInit, OnChanges {
+export class TabulatorTableComponent
+  implements OnInit, AfterViewInit, OnChanges
+{
   @ViewChild('tabulatorTable') tableElRef!: ElementRef;
 
-  @Input() tableData: Array<any> = [];
+  @Input() initData: Array<any> = [];
   @Input() columnNames: Array<any> = [];
+  @Input() i18nName: string = '';
 
   public table!: Tabulator;
+  private columns: Array<any> = [];
+  private i18nColumnTitle: { [x: string]: string } = {};
 
-  constructor() {}
+  constructor(private translationService: TranslateService) {
+    // 語言切換後取得新的欄位名稱
+    translationService.store.onLangChange.subscribe((lang: LangChangeEvent) => {
+      translationService.get(this.i18nName).subscribe((res) => {
+        this.i18nColumnTitle = res;
+        this.seti18nTitle();
+        this.table.setColumns(this.columns);
+      });
+    });
+  }
+  ngOnInit(): void {
+    //  初次建立依據當前語系取得欄位名稱
+    this.translationService.get(this.i18nName).subscribe((res) => {
+      this.i18nColumnTitle = res;
+    });
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (this.table && changes['tableData']) {
-      this.table.setData(this.tableData);
-    }
+    // if (this.table && changes['tableData']) {
+    //   this.table.setData(this.tableData);
+    // }
   }
 
   ngAfterViewInit() {
+    this.seti18nTitle();
     this.drawTable();
   }
+
+  private seti18nTitle() {
+    this.columns = this.columnNames.map((colCfg) => {
+      let newColCfg = Object.assign({}, colCfg);
+      const { i18n } = newColCfg;
+      if (i18n in this.i18nColumnTitle) {
+        newColCfg.title = this.i18nColumnTitle[i18n];
+      }
+      delete newColCfg.i18n;
+      return newColCfg;
+    });
+  }
+
   private drawTable(): void {
     this.table = new Tabulator(this.tableElRef.nativeElement, {
-      data: this.tableData,
-      reactiveData: true, //enable data reactivity
-      columns: this.columnNames,
-      layout: 'fitData',
+      data: this.initData,
+      reactiveData: true,
+      columns: this.columns,
+      layout: 'fitColumns',
       pagination: true,
-      paginationSize:2,
+      paginationSize: 10,
     });
   }
 }
