@@ -1,0 +1,102 @@
+<main class="main-component main-content">
+  <div class="main-content-inner">
+    <!-- START: content-title -->
+    <div class="main-content-unit content-title">
+      <div class="content-title-inner">
+        <h1>公司別</h1>
+      </div>
+    </div>
+    <!-- END: content-title -->
+    <!-- START: content-query -->
+    <div class="main-content-unit content-query" [formGroup]="companyFormGroup">
+      <div class="content-query-field">
+        <div class="content-query-unit query-field">
+          <div class="field-title">公司名稱</div>
+          <div class="field-entry">
+            <input
+              type="text"
+              placeholder="請輸入公司名稱"
+              formControlName="company_Name"
+            />
+          </div>
+        </div>
+        <div class="content-query-unit query-field">
+          <div class="field-title">狀態</div>
+          <div class="field-entry">
+            <select formControlName="company_State">
+              <option value="null">全部</option>
+              <option value="true">啟用</option>
+              <option value="false">停用</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="content-query-button">
+        <div class="content-query-unit query-button">
+          <ul>
+            <li><button class="cancel-btn">取消</button></li>
+            <li><button class="query-btn" (click)="search()">查詢</button></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- END: content-query -->
+    <hr class="seperate-line" />
+    <!-- START: content-result -->
+    <div class="main-content-unit content-result">
+      <div class="content-result-inner">
+        <!-- START: result-function -->
+        <div class="result-function">
+          <ul>
+            <li>
+              <a
+                href="javascript:void(0)"
+                attr="add"
+                (click)="popupAddVis = true"
+                >新增</a
+              >
+            </li>
+            <li><a href="javascript:void(0)" attr="prohibit">停用</a></li>
+          </ul>
+        </div>
+        <!-- END: result-function -->
+        <!-- START: result-counter -->
+        <div class="result-counter">共<span>0</span>筆</div>
+        <!-- END: result-counter -->
+        <!-- START: result-table -->
+        <div class="result-table">
+          <app-tabulator-table
+            #tabulatorTable
+            [columnNames]="columnNames"
+          ></app-tabulator-table>
+        </div>
+        <!-- END: result-table -->
+        <!-- START: result-page -->
+        <div class="result-page">
+          <ul>
+            <li><a href="javascript:void(0)" (click)="tabulatorTableComponent.table.previousPage()">上一頁</a></li>
+            <li><a href="javascript:void(0)" (click)="tabulatorTableComponent.table.nextPage()">下一頁</a></li>
+            <li>
+              <span
+                >前往</span
+              >
+              <select name="" id="">
+                <option value="">1</option>
+                <option value="">2</option>
+                <option value="">3</option>
+              </select>
+              <span>頁</span>
+            </li>
+          </ul>
+        </div>
+        <!-- END: result-page -->
+      </div>
+    </div>
+    <!-- END: content-result -->
+  </div>
+</main>
+
+<app-company-add
+  *ngIf="popupAddVis"
+  (close)="popupAddVis = false"
+></app-company-add>

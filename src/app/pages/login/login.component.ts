@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { finalize } from 'rxjs';
 import { CInLoginPageData } from 'src/app/core/models/authAPI/login';
 import { LoadingService } from 'src/app/core/services/loading.service';
-import { LoginService } from 'src/app/core/services/login.service';
+import { LoginService } from 'src/app/core/services/authAPI/login.service';
 
 @Component({
   selector: 'app-login',

@@ -21,13 +21,15 @@
             <div [formGroup]="loginFormGroup">
               <div
                 [ngClass]="{
-                  'form-item': true,
+                  'login-form-item': true,
                   'error-entry':
                     f['userAccount'].errors && f['userAccount'].touched
                 }"
               >
-                <div class="form-item-inner">
-                  <div class="form-unit form-title-text">帳號</div>
+                <div class="login-form-item-inner">
+                  <div class="form-unit form-title-text">
+                    帳號<span>ID</span>
+                  </div>
                   <div class="form-unit form-field-input">
                     <input
                       type="text"
@@ -47,13 +49,15 @@
               </div>
               <div
                 [ngClass]="{
-                  'form-item': true,
+                  'login-form-item': true,
                   'error-entry':
                     f['userPassword'].errors && f['userPassword'].touched
                 }"
               >
-                <div class="form-item-inner">
-                  <div class="form-unit form-title-text">密碼</div>
+                <div class="login-form-item-inner">
+                  <div class="form-unit form-title-text">
+                    密碼<span>Password</span>
+                  </div>
                   <div class="form-unit">
                     <div class="form-unit-inner unit-combine form-field-input">
                       <div class="form-part form-field-input">
@@ -97,13 +101,15 @@
               </div>
               <div
                 [ngClass]="{
-                  'form-item': true,
+                  'login-form-item': true,
                   'error-entry':
                     f['verificatCode'].errors && f['verificatCode'].touched
                 }"
               >
-                <div class="form-item-inner">
-                  <div class="form-unit form-title-text">驗證碼</div>
+                <div class="login-form-item-inner">
+                  <div class="form-unit form-title-text">
+                    驗證碼<span>Verification</span>
+                  </div>
                   <div class="form-unit">
                     <div class="form-unit-inner">
                       <div class="form-part form-field-input">

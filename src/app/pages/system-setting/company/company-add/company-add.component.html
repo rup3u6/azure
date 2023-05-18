@@ -1,0 +1,107 @@
+<div class="frame-block">
+  <div class="frame-compose popup-compose">
+    <div class="popup-composer-inner">
+      <!-- START: default-popup -->
+      <div class="popup-component large-size-popup" type="normal">
+        <div class="popup-header">
+          <div class="popup-header-inner">
+            <div class="popup-header-unit header-text">新增公司別</div>
+            <div class="popup-header-unit header-btn">
+              <a href="javascript:void(0)" (click)="close.emit()"
+                ><span class="material-icons-outlined"> close </span></a
+              >
+            </div>
+          </div>
+        </div>
+        <div class="popup-content">
+          <div class="popup-content-form" [formGroup]="companyAddFormGroup">
+            <div class="form-row">
+              <div class="form-item" type="required">
+                <div class="form-item-inner">
+                  <div class="form-item-title">公司名稱</div>
+                  <div class="form-item-entry">
+                    <input
+                      type="text"
+                      placeholder="請輸入公司名稱"
+                      formControlName="company_Name"
+                    />
+                  </div>
+                  <!-- <div class="form-item-text">
+                    <p>欄位填寫錯誤！（警示用）</p>
+                  </div> -->
+                </div>
+              </div>
+              <div class="form-item" type="required">
+                <div class="form-item-inner">
+                  <div class="form-item-title">
+                    公司代號<span>最多不得超過12個字元</span>
+                  </div>
+                  <div class="form-item-entry">
+                    <input
+                      type="text"
+                      placeholder="請輸入公司代號"
+                      maxlength="12"
+                      formControlName="company_Code"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-item" type="required">
+                <div class="form-item-inner">
+                  <div class="form-item-title">排序</div>
+                  <div class="form-item-entry">
+                    <input
+                      type="text"
+                      placeholder="請輸入排序"
+                      formControlName="company_Sort"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="form-item" type="required">
+                <div class="form-item-inner">
+                  <div class="form-item-title">狀態</div>
+                  <div class="form-item-entry">
+                    <ul>
+                      <li>
+                        <input
+                          type="radio"
+                          id="company_Sort1"
+                          formControlName="company_State"
+                          value="true"
+                        />
+                        <label for="company_Sort1">啟用</label>
+                      </li>
+                      <li>
+                        <input
+                          type="radio"
+                          id="company_Sort2"
+                          formControlName="company_State"
+                          value="false"
+                        />
+                        <label for="company_Sort2">停用</label>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="popup-footer">
+          <div class="popup-footer-inner">
+            <div class="popup-footer-unit footer-button" btn="cancel">
+              <button (click)="close.emit()">取消</button>
+            </div>
+            <div class="popup-footer-unit footer-button" btn="confirm">
+              <button (click)="submit()">確認</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- END: default-popup -->
+    </div>
+  </div>
+</div>

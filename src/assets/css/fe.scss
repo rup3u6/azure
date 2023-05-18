@@ -1,0 +1,15 @@
+.tabulator .tabulator-footer .tabulator-paginator {
+  display: none;
+}
+
+.tabulator .tabulator-footer .tabulator-footer-contents {
+  padding: 0;
+}
+
+.tabulator .tabulator-header .tabulator-col.tabulator-sortable:hover {
+  background: #006c91;
+}
+
+.result-table {
+  width: calc(100vw - 280px);
+}

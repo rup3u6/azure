@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { CInLoginPageData } from '../models/authAPI/login';
+import { CInLoginPageData } from '../../models/authAPI/login';
 import { tap } from 'rxjs';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';

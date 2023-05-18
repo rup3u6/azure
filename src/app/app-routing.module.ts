@@ -6,8 +6,8 @@ import { DefaultComponent } from './layout/default/default.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: "home",
-    pathMatch: "full", // 當路徑是空的時候轉址到 home
+    redirectTo: 'home',
+    pathMatch: 'full', // 當路徑是空的時候轉址到 home
   },
   {
     path: '',
@@ -21,7 +21,16 @@ const routes: Routes = [
     loadChildren: () =>
       import('./pages/home/home.module').then((mod) => mod.HomeModule),
   },
-  { path: '**', redirectTo: 'home', pathMatch: 'full' },
+  {
+    path: 'systemsetting',
+    component: DefaultComponent,
+    canActivateChild: [AuthGuard],
+    loadChildren: () =>
+      import('./pages/system-setting/system-setting.module').then(
+        (mod) => mod.SystemSettingModule
+      ),
+  },
+  { path: '**', redirectTo: '/home', pathMatch: 'full' },
 ];
 
 @NgModule({

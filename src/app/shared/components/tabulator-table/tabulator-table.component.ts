@@ -23,7 +23,6 @@ export class TabulatorTableComponent
 
   @Input() initData: Array<any> = [];
   @Input() columnNames: Array<any> = [];
-  @Input() i18nName: string = '';
 
   public table!: Tabulator;
   private columns: Array<any> = [];
@@ -48,17 +47,23 @@ export class TabulatorTableComponent
     this.columns = this.columnNames.map((colCfg) => {
       let newColCfg = Object.assign({}, colCfg);
       const { title } = newColCfg;
-      newColCfg.title = this.translationService.instant(title);
+      if (title) {
+        newColCfg.title = this.translationService.instant(title);
+      }
       return newColCfg;
     });
   }
 
   private drawTable(): void {
     this.table = new Tabulator(this.tableElRef.nativeElement, {
+      layout: 'fitColumns',
       data: this.initData,
-      reactiveData: true,
       columns: this.columns,
-      layout: 'fitDataStretch',
+      reactiveData: true,
+      rowHeight: 35,
+      movableColumns: true,
+      selectable: true,
+      // resizableRows: true,
       pagination: true,
       paginationSize: 10,
     });
