@@ -5,5 +5,21 @@
   },
   "VIEW": {
     "TITLE": "Child module with ngx-translate!!!!!"
+  },
+  "tabulator": {
+    "WfLocation": {
+      "Location_Id": "aaa",
+      "Cfk_Company_Id": "公司別主鍵",
+      "Location_State": "狀態",
+      "Location_Name": "區域名稱",
+      "Location_Code": "區域代號",
+      "Location_Sort": "排序",
+      "Location_CreateId": "建立者ID",
+      "Location_CreateDate": "建檔日期",
+      "Location_CreateIp": "建立者IP",
+      "Location_EditId": "異動者ID",
+      "Location_EditDate": "異動日期",
+      "Location_EditIp": "異動者IP"
+    }
   }
 }

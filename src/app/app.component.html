@@ -1,3 +1,4 @@
 <div class="container">
   <router-outlet></router-outlet>
+  <app-loading *ngIf="loadingService.isLoading$ | async"></app-loading>
 </div>

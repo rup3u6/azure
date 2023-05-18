@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { CInLoginPageData } from 'src/app/core/models/login';
+import { finalize } from 'rxjs';
+import { CInLoginPageData } from 'src/app/core/models/authAPI/login';
+import { LoadingService } from 'src/app/core/services/loading.service';
 import { LoginService } from 'src/app/core/services/login.service';
 
 @Component({
@@ -15,8 +16,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private router: Router,
-    private loginService: LoginService
+    private loginService: LoginService,
+    private loadingService: LoadingService
   ) {}
 
   ngOnInit(): void {
@@ -33,8 +34,16 @@ export class LoginComponent implements OnInit {
     if (!this.loginFormGroup.valid) {
       return;
     }
+    this.loadingService.startLoading();
     const body: CInLoginPageData = this.loginFormGroup.value;
-    this.loginService.login(body).subscribe();
+    this.loginService
+      .login(body)
+      .pipe(
+        finalize(() => {
+          this.loadingService.stopLoading();
+        })
+      )
+      .subscribe();
   }
 
   get f() {

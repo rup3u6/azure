@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
+import { LoadingService } from 'src/app/core/services/loading.service';
 import { TabulatorTableComponent } from 'src/app/shared/components/tabulator-table/tabulator-table.component';
 
 @Component({
@@ -13,49 +13,53 @@ export class HomeComponent implements OnInit {
   @ViewChild('tabulatorTable')
   tabulatorTableComponent!: TabulatorTableComponent;
 
-  @ViewChild('status') statusElRef!: ElementRef;
-  @ViewChild('name') nameElRef!: ElementRef;
   arr: Array<any> = [];
   columnNames: {}[] = [
-    { title: '主鍵', field: 'Location_Id', i18n: 'Location_Id' },
-    { title: '公司別主鍵', field: 'Cfk_Company_Id', i18n: 'Cfk_Company_Id' },
-    { title: '狀態', field: 'Location_State', i18n: 'Location_State' },
-    { title: '區域名稱', field: 'Location_Name', i18n: 'Location_Name' },
-    { title: '區域代號', field: 'Location_Code', i18n: 'Location_Code' },
-    { title: '排序', field: 'Location_Sort', i18n: 'Location_Sort' },
+    { title: 'tabulator.WfLocation.Location_Id', field: 'Location_Id' },
+    { title: 'tabulator.WfLocation.Cfk_Company_Id', field: 'Cfk_Company_Id' },
+    { title: 'tabulator.WfLocation.Location_State', field: 'Location_State' },
+    { title: 'tabulator.WfLocation.Location_Name', field: 'Location_Name' },
+    { title: 'tabulator.WfLocation.Location_Code', field: 'Location_Code' },
+    { title: 'tabulator.WfLocation.Location_Sort', field: 'Location_Sort' },
     {
-      title: '建立者ID',
+      title: 'tabulator.WfLocation.Location_CreateId',
       field: 'Location_CreateId',
-      i18n: 'Location_CreateId',
     },
     {
-      title: '建檔日期',
+      title: 'tabulator.WfLocation.Location_CreateDate',
       field: 'Location_CreateDate',
-      i18n: 'Location_CreateDate',
     },
     {
-      title: '建立者IP',
+      title: 'tabulator.WfLocation.Location_CreateIp',
       field: 'Location_CreateIp',
-      i18n: 'Location_CreateIp',
     },
-    { title: '異動者ID', field: 'Location_EditId', i18n: 'Location_EditId' },
+    { title: 'tabulator.WfLocation.Location_EditId', field: 'Location_EditId' },
     {
-      title: '異動日期',
+      title: 'tabulator.WfLocation.Location_EditDate',
       field: 'Location_EditDate',
-      i18n: 'Location_EditDate',
     },
-    { title: '異動者IP', field: 'Location_EditIp', i18n: 'Location_EditIp' },
+    { title: 'tabulator.WfLocation.Location_EditIp', field: 'Location_EditIp' },
   ];
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private loadingService: LoadingService
+  ) {}
   ngOnInit(): void {}
   async test() {
+    this.loadingService.startLoading();
     const body = {
-      location_State: !!this.statusElRef.nativeElement.value,
-      location_Name: this.nameElRef.nativeElement.value,
+      location_State: true,
+      location_Name: '',
     };
-    let res: any = await lastValueFrom(
-      this.http.post('/api/Base/WfLocation/Get', body)
-    );
-    this.tabulatorTableComponent.table.setData(res.data);
+    try {
+      let res: any = await lastValueFrom(
+        this.http.post('/wis_api/Base/WfLocation/Get', body)
+      );
+      this.tabulatorTableComponent.table.setData(res.data);
+    } catch (error) {
+      console.log(error)
+    } finally {
+      this.loadingService.stopLoading();
+    }
   }
 }

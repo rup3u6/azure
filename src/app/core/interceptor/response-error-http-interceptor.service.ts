@@ -25,9 +25,12 @@ export class ResponseErrorHttpInterceptorService implements HttpInterceptor {
         // console.log(error)
         console.log(`httpStatus: ${httpStatus}, status: ${status}`);
         console.log(`response: ${JSON.stringify(response)}`);
-        if(status!=="999"){
-          alert(message)
+        if (status) {
+          if (status !== '999') {
+            alert(message);
+          }
         }
+
         return throwError(() => error);
       })
     );

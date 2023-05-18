@@ -1,6 +1,11 @@
 {
-  "/wis_api": {
+  "/wis_api/Auth": {
     "target": "http://192.168.51.223:5050",
+    "secure": false,
+    "pathRewrite": { "^/wis_api": "" }
+  },
+  "/wis_api/Base": {
+    "target": "http://192.168.51.223:5051",
     "secure": false,
     "pathRewrite": { "^/wis_api": "" }
   }

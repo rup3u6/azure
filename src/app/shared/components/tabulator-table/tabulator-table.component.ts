@@ -27,30 +27,17 @@ export class TabulatorTableComponent
 
   public table!: Tabulator;
   private columns: Array<any> = [];
-  private i18nColumnTitle: { [x: string]: string } = {};
 
   constructor(private translationService: TranslateService) {
     // 語言切換後取得新的欄位名稱
     translationService.store.onLangChange.subscribe((lang: LangChangeEvent) => {
-      translationService.get(this.i18nName).subscribe((res) => {
-        this.i18nColumnTitle = res;
-        this.seti18nTitle();
-        this.table.setColumns(this.columns);
-      });
+      this.seti18nTitle();
+      this.table.setColumns(this.columns);
     });
   }
-  ngOnInit(): void {
-    //  初次建立依據當前語系取得欄位名稱
-    this.translationService.get(this.i18nName).subscribe((res) => {
-      this.i18nColumnTitle = res;
-    });
-  }
+  ngOnInit(): void {}
 
-  ngOnChanges(changes: SimpleChanges): void {
-    // if (this.table && changes['tableData']) {
-    //   this.table.setData(this.tableData);
-    // }
-  }
+  ngOnChanges(changes: SimpleChanges): void {}
 
   ngAfterViewInit() {
     this.seti18nTitle();
@@ -60,11 +47,8 @@ export class TabulatorTableComponent
   private seti18nTitle() {
     this.columns = this.columnNames.map((colCfg) => {
       let newColCfg = Object.assign({}, colCfg);
-      const { i18n } = newColCfg;
-      if (i18n in this.i18nColumnTitle) {
-        newColCfg.title = this.i18nColumnTitle[i18n];
-      }
-      delete newColCfg.i18n;
+      const { title } = newColCfg;
+      newColCfg.title = this.translationService.instant(title);
       return newColCfg;
     });
   }
@@ -74,7 +58,7 @@ export class TabulatorTableComponent
       data: this.initData,
       reactiveData: true,
       columns: this.columns,
-      layout: 'fitColumns',
+      layout: 'fitDataStretch',
       pagination: true,
       paginationSize: 10,
     });

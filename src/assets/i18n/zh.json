@@ -8,7 +8,7 @@
     "ERROR": "輸入長度至少需{{minLength}}，只輸入了{{inputLength}}"
   },
   "tabulator": {
-    "test1": {
+    "WfLocation": {
       "Location_Id": "主鍵",
       "Cfk_Company_Id": "公司別主鍵",
       "Location_State": "狀態",
