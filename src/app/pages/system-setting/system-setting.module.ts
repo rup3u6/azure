@@ -1,15 +1,19 @@
 import { NgModule } from '@angular/core';
 
 import { SystemSettingRoutingModule } from './system-setting-routing.module';
-import { CompanyComponent } from './company/company.component';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { CompanyAddComponent } from './company/company-add/company-add.component';
+import { LocationComponent } from './location/location.component';
+import { LocationSearchFormComponent } from './location/location-search-form/location-search-form.component';
+import { LocationTableComponent } from './location/location-table/location-table.component';
+import { LocationAddComponent } from './location/location-add/location-add.component';
 
 
 @NgModule({
   declarations: [
-    CompanyComponent,
-    CompanyAddComponent
+    LocationComponent,
+    LocationSearchFormComponent,
+    LocationTableComponent,
+    LocationAddComponent
   ],
   imports: [
     SharedModule,

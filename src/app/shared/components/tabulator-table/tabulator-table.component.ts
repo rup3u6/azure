@@ -2,9 +2,11 @@ import {
   AfterViewInit,
   Component,
   ElementRef,
+  EventEmitter,
   Input,
   OnChanges,
   OnInit,
+  Output,
   SimpleChanges,
   ViewChild,
 } from '@angular/core';
@@ -23,6 +25,8 @@ export class TabulatorTableComponent
 
   @Input() initData: Array<any> = [];
   @Input() columnNames: Array<any> = [];
+  @Input() tableConfig = {};
+  @Output() tableBuilded = new EventEmitter<any>();
 
   public table!: Tabulator;
   private columns: Array<any> = [];
@@ -61,11 +65,9 @@ export class TabulatorTableComponent
       columns: this.columns,
       reactiveData: true,
       rowHeight: 35,
-      movableColumns: true,
       selectable: true,
-      // resizableRows: true,
-      pagination: true,
-      paginationSize: 10,
+      ...this.tableConfig,
     });
+    this.tableBuilded.emit(this.table);
   }
 }

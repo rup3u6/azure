@@ -1,3 +1,4 @@
+<!-- START: popup -->
 <div class="frame-block">
   <div class="frame-compose popup-compose">
     <div class="popup-composer-inner">
@@ -5,7 +6,7 @@
       <div class="popup-component large-size-popup" type="normal">
         <div class="popup-header">
           <div class="popup-header-inner">
-            <div class="popup-header-unit header-text">新增公司別</div>
+            <div class="popup-header-unit header-text">新增區域維護</div>
             <div class="popup-header-unit header-btn">
               <a href="javascript:void(0)" (click)="close.emit()"
                 ><span class="material-icons-outlined"> close </span></a
@@ -14,16 +15,16 @@
           </div>
         </div>
         <div class="popup-content">
-          <div class="popup-content-form" [formGroup]="companyAddFormGroup">
+          <div class="popup-content-form" [formGroup]="loactionFormGroup">
             <div class="form-row">
-              <div class="form-item" type="required">
+              <div class="form-item" type="required" attr="">
                 <div class="form-item-inner">
-                  <div class="form-item-title">公司名稱</div>
+                  <div class="form-item-title">區域名稱</div>
                   <div class="form-item-entry">
                     <input
                       type="text"
-                      placeholder="請輸入公司名稱"
-                      formControlName="company_Name"
+                      placeholder="請輸入..."
+                      formControlName="location_Name"
                     />
                   </div>
                   <!-- <div class="form-item-text">
@@ -33,15 +34,12 @@
               </div>
               <div class="form-item" type="required">
                 <div class="form-item-inner">
-                  <div class="form-item-title">
-                    公司代號<span>最多不得超過12個字元</span>
-                  </div>
+                  <div class="form-item-title">區域代號</div>
                   <div class="form-item-entry">
                     <input
                       type="text"
-                      placeholder="請輸入公司代號"
-                      maxlength="12"
-                      formControlName="company_Code"
+                      placeholder="請輸入..."
+                      formControlName="location_Code"
                     />
                   </div>
                 </div>
@@ -50,12 +48,12 @@
             <div class="form-row">
               <div class="form-item" type="required">
                 <div class="form-item-inner">
-                  <div class="form-item-title">排序</div>
+                  <div class="form-item-title">排序（升冪）</div>
                   <div class="form-item-entry">
                     <input
                       type="text"
-                      placeholder="請輸入排序"
-                      formControlName="company_Sort"
+                      placeholder="請輸入..."
+                      formControlName="location_Sort"
                     />
                   </div>
                 </div>
@@ -68,20 +66,20 @@
                       <li>
                         <input
                           type="radio"
-                          id="company_Sort1"
-                          formControlName="company_State"
-                          value="true"
+                          id="rd01"
+                          value="1"
+                          formControlName="location_State"
                         />
-                        <label for="company_Sort1">啟用</label>
+                        <label for="rd01">啟用</label>
                       </li>
                       <li>
                         <input
                           type="radio"
-                          id="company_Sort2"
-                          formControlName="company_State"
-                          value="false"
+                          id="rd02"
+                          value="0"
+                          formControlName="location_State"
                         />
-                        <label for="company_Sort2">停用</label>
+                        <label for="rd02">停用</label>
                       </li>
                     </ul>
                   </div>
@@ -105,3 +103,4 @@
     </div>
   </div>
 </div>
+<!-- END: popup -->

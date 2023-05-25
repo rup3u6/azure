@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CompanyComponent } from './company/company.component';
+import { LocationComponent } from './location/location.component';
 
 const routes: Routes = [
   {
@@ -9,8 +9,8 @@ const routes: Routes = [
     pathMatch: 'full',
   },
   {
-    path: 'company',
-    component: CompanyComponent,
+    path: 'location',
+    component: LocationComponent,
   },
 ];
 

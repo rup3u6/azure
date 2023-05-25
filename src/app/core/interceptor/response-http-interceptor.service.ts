@@ -27,8 +27,19 @@ export class ResponseHttpInterceptorService {
           }
           const { status, data, message } = res.body;
           console.log(res);
+          switch (status) {
+            case '999':
+              if (/\/Get/.test(url)) {
+                break;
+              }
+              alert('成功');
+              break;
+
+            default:
+              alert(message);
+              break;
+          }
           if (status !== '999') {
-            alert(message);
           }
         }
       })

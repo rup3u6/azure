@@ -6,9 +6,11 @@ import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { RouterModule } from '@angular/router';
 import { ErrorMessagePipe } from './pipes/error-message.pipe';
+import { DeleteConfirmComponent } from './components/dialog/delete-confirm/delete-confirm.component';
+import { TabulatorTablePaginationComponent } from './components/tabulator-table-pagination/tabulator-table-pagination.component';
 
 @NgModule({
-  declarations: [TabulatorTableComponent, ErrorMessagePipe],
+  declarations: [TabulatorTableComponent, ErrorMessagePipe, DeleteConfirmComponent, TabulatorTablePaginationComponent],
   imports: [
     CommonModule,
     RouterModule,
@@ -25,6 +27,8 @@ import { ErrorMessagePipe } from './pipes/error-message.pipe';
     HttpClientModule,
     TabulatorTableComponent,
     ErrorMessagePipe,
+    DeleteConfirmComponent,
+    TabulatorTablePaginationComponent
   ],
 })
 export class SharedModule {

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CompanyAddComponent } from './company-add.component';
+import { LocationTableComponent } from './location-table.component';
 
-describe('CompanyAddComponent', () => {
-  let component: CompanyAddComponent;
-  let fixture: ComponentFixture<CompanyAddComponent>;
+describe('LocationTableComponent', () => {
+  let component: LocationTableComponent;
+  let fixture: ComponentFixture<LocationTableComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CompanyAddComponent ]
+      declarations: [ LocationTableComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(CompanyAddComponent);
+    fixture = TestBed.createComponent(LocationTableComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

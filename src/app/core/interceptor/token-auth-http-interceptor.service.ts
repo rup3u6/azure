@@ -1,20 +1,32 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Injector } from '@angular/core';
 import { LoginService } from '../services/authAPI/login.service';
 import { HttpEvent, HttpHandler, HttpRequest } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { TranslateService } from '@ngx-translate/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class TokenAuthHttpInterceptorService {
-
-  constructor(private loginService:LoginService) { }
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+  constructor(
+    private loginService: LoginService,
+    private readonly injector: Injector
+  ) {}
+  intercept(
+    req: HttpRequest<any>,
+    next: HttpHandler
+  ): Observable<HttpEvent<any>> {
     const token = this.loginService.getToken();
-    req = req.clone({
-      headers: req.headers
-        .set('Authorization', `Bearer ${token}`),
-    });
+    try {
+      const translateService = this.injector.get(TranslateService);
+      req = req.clone({
+        headers: req.headers
+          .set('Authorization', `Bearer ${token}`)
+          .set('i18n', 'zh'),
+      });
+    } catch (error) {
+      // console.log(error)
+    }
     return next.handle(req);
   }
 }

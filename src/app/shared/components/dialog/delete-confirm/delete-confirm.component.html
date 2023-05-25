@@ -1,0 +1,42 @@
+<!-- START: popup -->
+<div class="frame-block">
+  <div class="frame-compose popup-compose">
+    <div class="popup-composer-inner">
+      <!-- START: default-popup -->
+      <div class="popup-component default-size-popup" type="warning">
+        <div class="popup-header">
+          <div class="popup-header-inner">
+            <div class="popup-header-unit header-text">停用</div>
+            <div class="popup-header-unit header-btn">
+              <a href="javascript:void(0)" (click)="close.emit()"
+                ><span class="material-icons-outlined"> close </span></a
+              >
+            </div>
+          </div>
+        </div>
+        <ng-content></ng-content>
+        <!-- <div class="popup-content">
+          <p>【停用項目】</p>
+          <ul>
+            <li>公司別1</li>
+            <li>公司別2</li>
+            <li>公司別3</li>
+            <li>公司別4</li>
+          </ul>
+        </div> -->
+        <div class="popup-footer">
+          <div class="popup-footer-inner">
+            <div class="popup-footer-unit footer-button" btn="cancel">
+              <button (click)="close.emit()">取消</button>
+            </div>
+            <div class="popup-footer-unit footer-button" btn="confirm">
+              <button (click)="submit.emit()">確認</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- END: default-popup -->
+    </div>
+  </div>
+</div>
+<!-- END: popup -->
