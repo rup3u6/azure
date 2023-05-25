@@ -18,28 +18,27 @@ export class ResponseHttpInterceptorService {
   ): Observable<HttpEvent<any>> {
     return next.handle(req).pipe(
       tap((res) => {
+        console.log(res);
         if (res instanceof HttpResponse) {
-          console.log(req);
           const { url } = req;
           //  i18n不通知
           if (/\/i18n\/.*\.json$/.test(url)) {
             return;
           }
           const { status, data, message } = res.body;
-          console.log(res);
-          switch (status) {
-            case '999':
-              if (/\/Get/.test(url)) {
+          if (status) {
+            switch (status) {
+              case '999':
+                if (/\/Get/.test(url)) {
+                  break;
+                }
+                alert('成功');
                 break;
-              }
-              alert('成功');
-              break;
 
-            default:
-              alert(message);
-              break;
-          }
-          if (status !== '999') {
+              default:
+                alert(message);
+                break;
+            }
           }
         }
       })

@@ -13,7 +13,7 @@ export class LoginService {
   private apiUrl = environment.apiUrl;
 
   login(body: CInLoginPageData) {
-    return this.http.post<any>(this.apiUrl + '/Auth/Login', body).pipe(
+    return this.http.post<any>(`${this.apiUrl}/Auth/Login`, body).pipe(
       tap((res) => {
         sessionStorage.setItem('wis_cms_token', res.data);
         const { status } = res;
@@ -24,6 +24,16 @@ export class LoginService {
   logout() {
     sessionStorage.removeItem('wis_cms_token');
     this.router.navigate(['/login']);
+  }
+
+  getValidGrphics() {
+    return this.http.post<Blob>(
+      `${this.apiUrl}/Auth/Login/GetValidGrphics`,
+      null,
+      {
+        responseType: 'blob' as 'json',
+      }
+    );
   }
 
   getToken() {

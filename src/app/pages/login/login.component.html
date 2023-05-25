@@ -120,18 +120,20 @@
                         />
                       </div>
                       <div class="form-part form-field-link">
-                        <a
+                        <!-- <a
                           href="javascript:void(0)"
                           class="form-verify"
                           tabindex="-1"
                           >1234</a
-                        >
+                        > -->
+                        <img [src]="imgBase64" alt="captcha">
                       </div>
                       <div class="form-part form-field-link">
                         <a
                           href="javascript:void(0)"
                           class="form-refresh"
                           tabindex="-1"
+                          (click)="getValidGrphics()"
                           ><span class="material-icons-outlined"
                             >autorenew</span
                           ></a
