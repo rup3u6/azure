@@ -1,1 +1,54 @@
-<p>g-language works!</p>
+<main class="main-component main-content">
+  <div class="main-content-inner">
+    <div class="main-content-unit content-title">
+      <div class="content-title-inner">
+        <h1>語系設定</h1>
+      </div>
+    </div>
+    <!-- START: content-title -->
+    <div class="main-content-unit content-title">
+      <div class="content-title-inner">
+        <h1></h1>
+      </div>
+    </div>
+    <!-- END: content-title -->
+    <!-- START: content-query -->
+    <div g-language-search-form class="main-content-unit content-query"></div>
+    <!-- END: content-query -->
+    <hr class="seperate-line" />
+    <!-- START: content-result -->
+    <div
+      g-language-table
+      class="main-content-unit content-result"
+      (add)="addPopupHandler()"
+      (edit)="editPopupHandler($event)"
+      (deactivate)="deactivatePopupHandler()"
+    ></div>
+    <!-- END: content-result -->
+  </div>
+</main>
+
+<g-language-add
+  *ngIf="popup.component === 'add'"
+  [data]="popup.data"
+  (close)="popup.component = null"
+></g-language-add>
+
+<app-delete-confirm
+  *ngIf="popup.component === 'deactivate'"
+  (submit)="deactivateHandler()"
+  (close)="popup.component = null"
+>
+  <div class="popup-content">
+    <p>【停用項目】</p>
+    <ul>
+      <li
+        *ngFor="
+          let item of languageService.getTabulatorTable().getSelectedData()
+        "
+      >
+        {{ item.lang_Name }}
+      </li>
+    </ul>
+  </div>
+</app-delete-confirm>

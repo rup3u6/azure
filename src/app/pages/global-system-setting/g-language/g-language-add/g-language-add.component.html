@@ -1,0 +1,97 @@
+<!-- START: popup -->
+<div class="frame-block">
+  <div class="frame-compose popup-compose">
+    <div class="popup-composer-inner">
+      <!-- START: default-popup -->
+      <div class="popup-component large-size-popup" type="normal">
+        <div class="popup-header">
+          <div class="popup-header-inner">
+            <div class="popup-header-unit header-text">
+              {{ data.mode === "add" ? "新增" : "編輯" }}語系
+            </div>
+            <div class="popup-header-unit header-btn">
+              <a href="javascript:void(0)" (click)="close.emit()"
+                ><span class="material-icons-outlined"> close </span></a
+              >
+            </div>
+          </div>
+        </div>
+        <div class="popup-content">
+          <div class="popup-content-form" [formGroup]="languageFormGroup">
+            <div class="form-row">
+              <div class="form-item" type="required" attr="">
+                <div class="form-item-inner">
+                  <div class="form-item-title">語系名稱</div>
+                  <div class="form-item-entry">
+                    <input
+                      type="text"
+                      placeholder="請輸入語系名稱"
+                      formControlName="lang_Name"
+                    />
+                  </div>
+                  <!-- <div class="form-item-text">
+                    <p>欄位填寫錯誤！（警示用）</p>
+                  </div> -->
+                </div>
+              </div>
+              <div class="form-item" type="required">
+                <div class="form-item-inner">
+                  <div class="form-item-title">語系代號</div>
+                  <div class="form-item-entry">
+                    <input
+                      type="text"
+                      placeholder="請輸入語系代號"
+                      formControlName="lang_Code"
+                      [attr.attr]="data.mode === 'edit' && 'readonly'"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-item" type="required">
+                <div class="form-item-inner">
+                  <div class="form-item-title">狀態</div>
+                  <div class="form-item-entry">
+                    <ul>
+                      <li>
+                        <input
+                          type="radio"
+                          id="rd01"
+                          value="1"
+                          formControlName="lang_State"
+                        />
+                        <label for="rd01">啟用</label>
+                      </li>
+                      <li>
+                        <input
+                          type="radio"
+                          id="rd02"
+                          value="0"
+                          formControlName="lang_State"
+                        />
+                        <label for="rd02">停用</label>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="popup-footer">
+          <div class="popup-footer-inner">
+            <div class="popup-footer-unit footer-button" btn="cancel">
+              <button (click)="close.emit()">取消</button>
+            </div>
+            <div class="popup-footer-unit footer-button" btn="confirm">
+              <button (click)="submit()">確認</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- END: default-popup -->
+    </div>
+  </div>
+</div>
+<!-- END: popup -->

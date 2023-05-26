@@ -1,0 +1,41 @@
+<div class="content-query-field" [formGroup]="searchFormGroup">
+  <div class="content-query-unit query-field">
+    <div class="field-title">語系名稱</div>
+    <div class="field-entry">
+      <input
+        type="text"
+        placeholder="請輸入語系名稱"
+        formControlName="lang_Name"
+      />
+    </div>
+  </div>
+  <div class="content-query-unit query-field">
+    <div class="field-title">語系代號</div>
+    <div class="field-entry">
+      <input
+        type="text"
+        placeholder="請輸入語系代號"
+        formControlName="lang_Code"
+      />
+    </div>
+  </div>
+  <div class="content-query-unit query-field">
+    <div class="field-title">狀態</div>
+    <div class="field-entry">
+      <select
+      formControlName="lang_State">
+        <option value="2">全部</option>
+        <option value="1">啟用</option>
+        <option value="0">停用</option>
+      </select>
+    </div>
+  </div>
+</div>
+<div class="content-query-button">
+  <div class="content-query-unit query-button">
+    <ul>
+      <li><button class="cancel-btn" (click)="clear()">清除</button></li>
+      <li><button class="query-btn" (click)="search()">查詢</button></li>
+    </ul>
+  </div>
+</div>
