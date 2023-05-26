@@ -16,7 +16,7 @@ export class LocationAddComponent implements OnInit {
     initData: {},
   };
 
-  loactionFormGroup!: FormGroup;
+  locationFormGroup!: FormGroup;
   constructor(
     private formBuilder: FormBuilder,
     public locationService: LocationService,
@@ -24,24 +24,24 @@ export class LocationAddComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.loactionFormGroup = this.formBuilder.group({
+    this.locationFormGroup = this.formBuilder.group({
       location_Name: [''],
       location_Code: [''],
       location_Sort: [''],
       location_State: [''],
     });
     if (this.data.mode === 'add') {
-      this.setLoactionFormGroupInit();
+      this.setLocationFormGroupInit();
     } else {
       let location_State = this.data.initData.location_State ? '1' : '0';
-      this.loactionFormGroup.patchValue({
+      this.locationFormGroup.patchValue({
         ...this.data.initData,
         location_State,
       });
     }
   }
-  setLoactionFormGroupInit() {
-    this.loactionFormGroup.patchValue({
+  setLocationFormGroupInit() {
+    this.locationFormGroup.patchValue({
       location_Name: '',
       location_Code: '',
       location_State: '1',
@@ -49,9 +49,9 @@ export class LocationAddComponent implements OnInit {
   }
 
   async submit() {
-    let { location_State } = this.loactionFormGroup.value;
+    let { location_State } = this.locationFormGroup.value;
     let body: any = {
-      ...this.loactionFormGroup.value,
+      ...this.locationFormGroup.value,
       location_State: location_State === '1',
     };
 
