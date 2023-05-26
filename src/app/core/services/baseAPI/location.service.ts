@@ -49,10 +49,16 @@ export class LocationService {
   }
 
   getDetail(body: any) {
-    return this.http.post<any>(`${this.apiUrl}/Base/WfLocation/GetDetail`, body);
+    return this.http.post<any>(
+      `${this.apiUrl}/Base/WfLocation/GetDetail`,
+      body
+    );
   }
 
   convertState(body: any) {
-    return this.http.post<any>(`${this.apiUrl}/Base/WfLocation/ConvertState`, body);
+    return this.http.post<any>(
+      `${this.apiUrl}/Base/WfLocation/ConvertState`,
+      body
+    );
   }
 }

@@ -22,7 +22,7 @@ export class TokenAuthHttpInterceptorService {
       req = req.clone({
         headers: req.headers
           .set('Authorization', `Bearer ${token}`)
-          .set('i18n', 'zh'),
+          .set('i18n', translateService.currentLang),
       });
     } catch (error) {
       // console.log(error)
