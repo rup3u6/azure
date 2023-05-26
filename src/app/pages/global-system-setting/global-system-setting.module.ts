@@ -7,6 +7,10 @@ import { GLanguageComponent } from './g-language/g-language.component';
 import { GLanguageAddComponent } from './g-language/g-language-add/g-language-add.component';
 import { GLanguageSearchFormComponent } from './g-language/g-language-search-form/g-language-search-form.component';
 import { GLanguageTableComponent } from './g-language/g-language-table/g-language-table.component';
+import { ZoneComponent } from './zone/zone.component';
+import { ZoneAddComponent } from './zone/zone-add/zone-add.component';
+import { ZoneSearchFormComponent } from './zone/zone-search-form/zone-search-form.component';
+import { ZoneTableComponent } from './zone/zone-table/zone-table.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +18,10 @@ import { GLanguageTableComponent } from './g-language/g-language-table/g-languag
     GLanguageAddComponent,
     GLanguageSearchFormComponent,
     GLanguageTableComponent,
+    ZoneComponent,
+    ZoneAddComponent,
+    ZoneSearchFormComponent,
+    ZoneTableComponent,
   ],
   imports: [SharedModule, GlobalSystemSettingRoutingModule],
 })

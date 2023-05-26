@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
+// Component
 import { GLanguageComponent } from './g-language/g-language.component';
+import { ZoneComponent } from './zone/zone.component';
 
 const routes: Routes = [
   {
@@ -11,6 +14,10 @@ const routes: Routes = [
   {
     path: 'language',
     component: GLanguageComponent,
+  },
+  {
+    path: 'zone',
+    component: ZoneComponent,
   },
 ];
 
