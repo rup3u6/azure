@@ -30,6 +30,15 @@ const routes: Routes = [
         (mod) => mod.SystemSettingModule
       ),
   },
+  {
+    path: 'globalsetting',
+    component: DefaultComponent,
+    canActivateChild: [AuthGuard],
+    loadChildren: () =>
+      import('./pages/global-system-setting/global-system-setting.module').then(
+        (mod) => mod.GlobalSystemSettingModule
+      ),
+  },
   { path: '**', redirectTo: '/home', pathMatch: 'full' },
 ];
 
