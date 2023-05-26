@@ -37,8 +37,6 @@ export class GLanguageAddComponent {
       this.languageFormGroup.patchValue({
         ...this.data.initData,
       });
-
-      this.languageFormGroup.controls?.['lang_Code'].disable();
     }
   }
 

@@ -75,15 +75,20 @@ export class GLanguageComponent {
       .getTabulatorTable()
       .getSelectedData();
 
-    let body: any = {
-      lang_Code:selectedData[0].lang_Code,
-      bState: '1',
+      let body: any = {
+      lCIn_ConvertState_PageData: selectedData.map(item => {
+        return {
+          lPk: item.lang_Code,
+          sName: item.lang_Name
+        }
+      }),
+      sState: '0',
     };
 
     this.loadingService.startLoading();
 
     try {
-      let  res = await firstValueFrom(this.languageService.convertState(body));
+      let res = await firstValueFrom(this.languageService.convertState(body));
       const { status } = res;
       if (status === '999') {
         let searchRes = await firstValueFrom(this.languageService.search());
