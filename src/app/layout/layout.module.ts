@@ -5,8 +5,6 @@ import { HeaderComponent } from './default/header/header.component';
 import { NavComponent } from './default/nav/nav.component';
 import { FooterComponent } from './default/footer/footer.component';
 
-
-
 @NgModule({
   declarations: [
     DefaultComponent,

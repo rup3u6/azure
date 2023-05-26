@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-// Component
+// component
 import { GLanguageComponent } from './g-language/g-language.component';
 import { ZoneComponent } from './zone/zone.component';
 
