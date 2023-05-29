@@ -89,7 +89,7 @@ export class GZoneAddComponent implements OnInit {
         zone_State: '1',
         zone_Name: '',
         zone_Sort: 0,
-        fk_Lang_Code: '',
+        fk_Lang_Code: 'EN',
       },
       lCIn_Wf_Zone_Site_Pagedata: [
         {
