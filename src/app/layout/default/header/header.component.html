@@ -14,12 +14,24 @@
       </div>
       <div class="header-function-unit system-link">
         <ul>
-          <li><a routerLink="/home" routerLinkActive="active" attr="home">首頁</a></li>
           <li>
-            <a href="javascript:void(0)" attr="setting">管理者設定</a>
+            <a routerLink="/home" routerLinkActive="active" attr="home">首頁</a>
           </li>
           <li>
-            <a href="javascript:void(0)" routerLinkActive="active" attr="global"
+            <a
+              [ngClass]="{ active: router.url.startsWith('/systemsetting') }"
+              href="javascript:void(0)"
+              attr="setting"
+              (click)="menuControlService.setSideMenu('systemSetting', true)"
+              >管理者設定</a
+            >
+          </li>
+          <li>
+            <a
+              [ngClass]="{ active: router.url.startsWith('/globalsetting') }"
+              href="javascript:void(0)"
+              attr="global"
+              (click)="menuControlService.setSideMenu('globalSetting', true)"
               >全域管理者設定</a
             >
           </li>

@@ -1,0 +1,211 @@
+import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
+
+@Injectable({
+  providedIn: 'root',
+})
+export class MenuControlService {
+  public sideMenu$: BehaviorSubject<Array<any>> = new BehaviorSubject<
+    Array<any>
+  >([]);
+
+  private globalSysSettingMenu = [
+    {
+      mod_Name: '全域管理者維護',
+      children: [
+        {
+          mod_Name: '語系設定',
+          mod_Route: '/globalsetting/language',
+        },
+        {
+          mod_Name: '區域維護',
+          mod_Route: '/globalsetting/zone',
+        },
+        {
+          mod_Name: '全域帳號管理',
+          mod_Route: '',
+        },
+        {
+          mod_Name: '選單分類',
+          mod_Route: '',
+        },
+        {
+          mod_Name: '選單作業',
+          mod_Route: '',
+        },
+      ],
+    },
+  ];
+  private sysSettingMenu = [
+    {
+      mod_Name: '管理者維護',
+      children: [
+        {
+          mod_Name: '角色',
+          mod_Route: '',
+        },
+        {
+          mod_Name: '員工資料',
+          mod_Route: '',
+        },
+        {
+          mod_Name: '秘書',
+          mod_Route: '',
+        },
+        {
+          mod_Name: 'Location維護',
+          mod_Route: '',
+        },
+        {
+          mod_Name: '操作歷程檢視',
+          mod_Route: '',
+        },
+        {
+          mod_Name: '信用卡卡號格式',
+          mod_Route: '',
+        },
+      ],
+    },
+  ];
+  private normalSetting = [
+    {
+      mod_Name: '全站',
+      children: [
+        {
+          mod_Name: '首頁Banner維護',
+          mod_Route: '',
+          children: [],
+        },
+      ],
+    },
+    {
+      mod_Name: '活動',
+      children: [
+        {
+          mod_Name: '活動維護',
+          mod_Route: '',
+          children: [],
+        },
+        {
+          mod_Name: '報名維護',
+          mod_Route: '',
+          children: [],
+        },
+      ],
+    },
+    {
+      mod_Name: '福利',
+      children: [
+        {
+          mod_Name: '福利金',
+          mod_Route: '',
+          children: [],
+        },
+        {
+          mod_Name: '規章',
+          mod_Route: '',
+          children: [],
+        },
+        {
+          mod_Name: '特約商店',
+          mod_Route: '',
+          children: [],
+        },
+        {
+          mod_Name: '社團天地',
+          mod_Route: '',
+          children: [],
+        },
+        {
+          mod_Name: '申請維護',
+          mod_Route: '',
+          children: [],
+        },
+      ],
+    },
+    {
+      mod_Name: '訂單',
+      children: [
+        {
+          mod_Name: '查詢 / 取消',
+          mod_Route: '',
+          children: [],
+        },
+      ],
+    },
+    {
+      mod_Name: '秘書',
+      children: [
+        {
+          mod_Name: '秘書名單',
+          mod_Route: '',
+          children: [],
+        },
+        {
+          mod_Name: '物資統計｜發放',
+          mod_Route: '',
+          children: [],
+        },
+      ],
+    },
+    {
+      mod_Name: '報到',
+      children: [
+        {
+          mod_Name: '活動報到',
+          mod_Route: '',
+          children: [],
+        },
+      ],
+    },
+    {
+      mod_Name: '報表',
+      children: [
+        {
+          mod_Name: '活動報表',
+          mod_Route: '',
+          children: [],
+        },
+        {
+          mod_Name: '福利報表',
+          mod_Route: '',
+          children: [],
+        },
+        {
+          mod_Name: '報到報表',
+          mod_Route: '',
+          children: [],
+        },
+      ],
+    },
+  ];
+
+  constructor(private router: Router) {}
+  setSideMenu(menuType: string, turnPage: boolean = false) {
+    switch (menuType) {
+      case 'globalSetting':
+        this.sideMenu$.next(this.globalSysSettingMenu);
+        break;
+      case 'systemSetting':
+        this.sideMenu$.next(this.sysSettingMenu);
+        break;
+      case 'normalSetting':
+        this.sideMenu$.next(this.normalSetting);
+        return;
+    }
+    if (turnPage) {
+      let url;
+
+      for (let menuGroup of this.sideMenu$.value) {
+        for (let menuItem of menuGroup.children) {
+          if (menuItem.mod_Route) {
+            url = menuItem.mod_Route;
+            break;
+          }
+        }
+      }
+      url && this.router.navigate([url]);
+    }
+  }
+}
