@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 // component
 import { GLanguageComponent } from './g-language/g-language.component';
-import { ZoneComponent } from './zone/zone.component';
+import { GZoneComponent } from './g-zone/g-zone.component';
 
 const routes: Routes = [
   {
@@ -17,7 +17,7 @@ const routes: Routes = [
   },
   {
     path: 'zone',
-    component: ZoneComponent,
+    component: GZoneComponent,
   },
 ];
 

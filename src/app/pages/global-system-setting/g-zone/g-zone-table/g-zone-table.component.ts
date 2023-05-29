@@ -1,13 +1,13 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { GLanguageService } from 'src/app/core/services/baseAPI/g-language.service';
+import { GZoneService } from 'src/app/core/services/baseAPI/g-zone.service';
 import { Tabulator } from 'tabulator-tables';
 
 @Component({
-  selector: 'div[g-language-table]',
-  templateUrl: './g-language-table.component.html',
-  styleUrls: ['./g-language-table.component.scss']
+  selector: 'div[g-zone-table]',
+  templateUrl: './g-zone-table.component.html',
+  styleUrls: ['./g-zone-table.component.scss']
 })
-export class GLanguageTableComponent {
+export class GZoneTableComponent {
 
   @Output() add = new EventEmitter<any>();
   @Output() edit = new EventEmitter<any>();
@@ -24,22 +24,15 @@ export class GLanguageTableComponent {
       headerHozAlign: 'center',
     },
     {
-      title: '語系名稱',
-      field: 'lang_Name',
-      vertAlign: 'middle',
-      hozAlign: 'center',
-      headerHozAlign: 'center',
-    },
-    {
-      title: '語系代號',
-      field: 'lang_Code',
+      title: '區域名稱',
+      field: 'zone_Name',
       vertAlign: 'middle',
       hozAlign: 'center',
       headerHozAlign: 'center',
     },
     {
       title: '狀態',
-      field: 'lang_State',
+      field: 'zone_State',
       vertAlign: 'middle',
       hozAlign: 'center',
       headerHozAlign: 'center',
@@ -48,8 +41,15 @@ export class GLanguageTableComponent {
       },
     },
     {
+      title: '排序',
+      field: 'zone_Sort',
+      vertAlign: 'middle',
+      hozAlign: 'center',
+      headerHozAlign: 'center',
+    },
+    {
       title: '異動日期',
-      field: 'lang_EditDate',
+      field: 'zone_EditDate',
       vertAlign: 'middle',
       hozAlign: 'center',
       headerHozAlign: 'center',
@@ -60,14 +60,14 @@ export class GLanguageTableComponent {
     },
     {
       title: '異動IP',
-      field: 'lang_EditIp',
+      field: 'zone_EditIp',
       vertAlign: 'middle',
       hozAlign: 'center',
       headerHozAlign: 'center',
     },
     {
       title: '異動者',
-      field: 'lang_EditId',
+      field: 'zone_EditCode',
       vertAlign: 'middle',
       hozAlign: 'center',
       headerHozAlign: 'center',
@@ -94,9 +94,9 @@ export class GLanguageTableComponent {
     },
   ];
 
-  constructor(public gLanguageService: GLanguageService) {}
+  constructor(public gZoneService: GZoneService) {}
 
   tableBuilded(table: Tabulator) {
-    this.gLanguageService.tableBuilded(table);
+    this.gZoneService.tableBuilded(table);
   }
 }

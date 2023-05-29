@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { finalize, firstValueFrom } from 'rxjs';
-import { LanguageService } from 'src/app/core/services/baseAPI/language.service';
+import { GLanguageService } from 'src/app/core/services/baseAPI/g-language.service';
 import { LoadingService } from 'src/app/core/services/loading.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { LoadingService } from 'src/app/core/services/loading.service';
   templateUrl: './g-language-add.component.html',
   styleUrls: ['./g-language-add.component.scss']
 })
-export class GLanguageAddComponent {
+export class GLanguageAddComponent implements OnInit {
 
   @Output() close = new EventEmitter<any>();
   @Input() data: any = {
@@ -21,7 +21,7 @@ export class GLanguageAddComponent {
 
   constructor(
     private formBuilder: FormBuilder,
-    public languageService: LanguageService,
+    public gLanguageService: GLanguageService,
     private loadingService: LoadingService
   ) {}
 
@@ -59,16 +59,16 @@ export class GLanguageAddComponent {
       let res;
 
       if (this.data.mode === 'add') {
-        res = await firstValueFrom(this.languageService.add(body));
+        res = await firstValueFrom(this.gLanguageService.add(body));
       } else {
-        res = await firstValueFrom(this.languageService.edit(body));
+        res = await firstValueFrom(this.gLanguageService.edit(body));
       }
 
       const { status } = res;
 
       if (status === '999') {
-        let searchRes = await firstValueFrom(this.languageService.search());
-        this.languageService.getTabulatorTable().setData(searchRes.data ?? []);
+        let searchRes = await firstValueFrom(this.gLanguageService.search());
+        this.gLanguageService.getTabulatorTable().setData(searchRes.data ?? []);
         this.close.emit();
       }
     } catch (error) {

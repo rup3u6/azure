@@ -3,18 +3,18 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Tabulator } from 'tabulator-tables';
-import { CInLanguageSearch } from '../../models/baseAPI/language';
+import { CInZoneSearch } from '../../models/baseAPI/zone';
 
 @Injectable({
   providedIn: 'root',
 })
-export class LanguageService {
+export class GZoneService {
 
   private apiUrl = environment.apiUrl;
   private tabulatorTable!: Tabulator;
   private searchFormValue = new BehaviorSubject<any>({});
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   tableBuilded(table: Tabulator) {
     this.tabulatorTable = table;
@@ -32,35 +32,39 @@ export class LanguageService {
     return this.searchFormValue.asObservable();
   }
 
-  search() {
-    let { lang_State } = this.searchFormValue.value;
-    const status = ['0', '1', null];
-    let body: CInLanguageSearch = {
-      ...this.searchFormValue.value,
-      lang_State: status[lang_State],
-    };
+  search(init = false) {
+    let body = {};
 
-    return this.http.post<any>(`${this.apiUrl}/Base/WfLanguage/Get`, body);
+    if (!init) {
+      let { zone_State } = this.searchFormValue.value;
+      const status = ['0', '1', null];
+      body = {
+        ...this.searchFormValue.value,
+        zone_State: status[zone_State],
+      } as CInZoneSearch;
+    }
+
+    return this.http.post<any>(`${this.apiUrl}/Base/WfZone/Get`, body);
   }
 
   add(body: any) {
-    return this.http.post<any>(`${this.apiUrl}/Base/WfLanguage/Create`, body);
+    return this.http.post<any>(`${this.apiUrl}/Base/WfZone/Create`, body);
   }
 
   edit(body: any) {
-    return this.http.post<any>(`${this.apiUrl}/Base/WfLanguage/Update`, body);
+    return this.http.post<any>(`${this.apiUrl}/Base/WfZone/Update`, body);
   }
 
   getDetail(body: any) {
     return this.http.post<any>(
-      `${this.apiUrl}/Base/WfLanguage/GetDetail`,
+      `${this.apiUrl}/Base/WfZone/GetDetail`,
       body
     );
   }
 
   convertState(body: any) {
     return this.http.post<any>(
-      `${this.apiUrl}/Base/WfLanguage/ConvertState`,
+      `${this.apiUrl}/Base/WfZone/ConvertState`,
       body
     );
   }

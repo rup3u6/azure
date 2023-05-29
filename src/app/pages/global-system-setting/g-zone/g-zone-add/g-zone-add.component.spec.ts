@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ZoneAddComponent } from './zone-add.component';
+import { GZoneAddComponent } from './g-zone-add.component';
 
-describe('ZoneAddComponent', () => {
-  let component: ZoneAddComponent;
-  let fixture: ComponentFixture<ZoneAddComponent>;
+describe('GZoneAddComponent', () => {
+  let component: GZoneAddComponent;
+  let fixture: ComponentFixture<GZoneAddComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ZoneAddComponent ]
+      declarations: [ GZoneAddComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ZoneAddComponent);
+    fixture = TestBed.createComponent(GZoneAddComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -7,10 +7,10 @@ import { GLanguageComponent } from './g-language/g-language.component';
 import { GLanguageAddComponent } from './g-language/g-language-add/g-language-add.component';
 import { GLanguageSearchFormComponent } from './g-language/g-language-search-form/g-language-search-form.component';
 import { GLanguageTableComponent } from './g-language/g-language-table/g-language-table.component';
-import { ZoneComponent } from './zone/zone.component';
-import { ZoneAddComponent } from './zone/zone-add/zone-add.component';
-import { ZoneSearchFormComponent } from './zone/zone-search-form/zone-search-form.component';
-import { ZoneTableComponent } from './zone/zone-table/zone-table.component';
+import { GZoneComponent } from './g-zone/g-zone.component';
+import { GZoneAddComponent } from './g-zone/g-zone-add/g-zone-add.component';
+import { GZoneSearchFormComponent } from './g-zone/g-zone-search-form/g-zone-search-form.component';
+import { GZoneTableComponent } from './g-zone/g-zone-table/g-zone-table.component';
 
 @NgModule({
   declarations: [
@@ -18,10 +18,10 @@ import { ZoneTableComponent } from './zone/zone-table/zone-table.component';
     GLanguageAddComponent,
     GLanguageSearchFormComponent,
     GLanguageTableComponent,
-    ZoneComponent,
-    ZoneAddComponent,
-    ZoneSearchFormComponent,
-    ZoneTableComponent,
+    GZoneComponent,
+    GZoneAddComponent,
+    GZoneSearchFormComponent,
+    GZoneTableComponent,
   ],
   imports: [SharedModule, GlobalSystemSettingRoutingModule],
 })

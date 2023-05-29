@@ -1,15 +1,15 @@
 import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { firstValueFrom } from 'rxjs';
-import { GLanguageService } from 'src/app/core/services/baseAPI/g-language.service';
+import { GZoneService } from 'src/app/core/services/baseAPI/g-zone.service';
 import { LoadingService } from 'src/app/core/services/loading.service';
 
 @Component({
-  selector: 'app-g-language',
-  templateUrl: './g-language.component.html',
-  styleUrls: ['./g-language.component.scss']
+  selector: 'app-g-zone',
+  templateUrl: './g-zone.component.html',
+  styleUrls: ['./g-zone.component.scss']
 })
-export class GLanguageComponent {
+export class GZoneComponent {
 
   popup: any = {
     component: null,
@@ -18,9 +18,9 @@ export class GLanguageComponent {
 
   constructor(
     private formBuilder: FormBuilder,
-    public gLanguageService: GLanguageService,
+    public gZoneService: GZoneService,
     private loadingService: LoadingService
-  ) {}
+  ) { }
 
   addPopupHandler() {
     this.popup.data = {
@@ -32,24 +32,19 @@ export class GLanguageComponent {
 
   async editPopupHandler(rowData: any) {
     let body = {
-      lang_Code: rowData.lang_Code,
+      zone_Id: rowData.zone_Id,
     };
-
     this.loadingService.startLoading();
-
     try {
-      let res = await firstValueFrom(this.gLanguageService.getDetail(body));
+      let res = await firstValueFrom(this.gZoneService.getDetail(body));
       const { status } = res;
-
       if (status !== '999') {
         return;
       }
-
       this.popup.data = {
         mode: 'edit',
         initData: res.data,
       };
-
       this.popup.component = 'add';
     } catch (error) {
       console.log(error);
@@ -59,7 +54,7 @@ export class GLanguageComponent {
   }
 
   deactivatePopupHandler() {
-    let selectedData = this.gLanguageService
+    let selectedData = this.gZoneService
       .getTabulatorTable()
       .getSelectedData();
     if (selectedData.length === 0) {
@@ -71,29 +66,28 @@ export class GLanguageComponent {
   }
 
   async deactivateHandler() {
-    let selectedData = this.gLanguageService
+    let selectedData = this.gZoneService
       .getTabulatorTable()
       .getSelectedData();
 
-      let body: any = {
-      lCIn_ConvertState_PageData: selectedData.map(item => {
-        return {
-          lPk: item.lang_Code,
-          sName: item.lang_Name
+    let body: any = {
+      lCIn_ConvertState_PageData: [
+        {
+          lPk: selectedData[0].zone_Id,
+          sName: selectedData[0].zone_Name
         }
-      }),
-      sState: '0',
+      ],
+      sState: "0"
     };
 
     this.loadingService.startLoading();
-
     try {
-      let res = await firstValueFrom(this.gLanguageService.convertState(body));
+      let res = await firstValueFrom(this.gZoneService.convertState(body));
       const { status } = res;
       if (status === '999') {
-        let searchRes = await firstValueFrom(this.gLanguageService.search());
-        this.gLanguageService.getTabulatorTable().setData(searchRes.data ?? []);
-        this.popup.component = null;
+        let searchRes = await firstValueFrom(this.gZoneService.search());
+        this.gZoneService.getTabulatorTable().setData(searchRes.data ?? []);
+        this.popup.component = null
       }
     } catch (error) {
       console.log(error);

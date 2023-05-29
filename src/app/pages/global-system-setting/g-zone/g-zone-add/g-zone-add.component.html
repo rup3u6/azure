@@ -1,0 +1,156 @@
+<!-- START: popup -->
+<div class="frame-block">
+  <div class="frame-compose popup-compose">
+    <div class="popup-composer-inner">
+      <!-- START: default-popup -->
+      <div class="popup-component large-size-popup" type="normal">
+        <div class="popup-header">
+          <div class="popup-header-inner">
+            <div class="popup-header-unit header-text">
+              {{ data.mode === "add" ? "新增" : "編輯" }}區域維護
+            </div>
+            <div class="popup-header-unit header-btn">
+              <a href="javascript:void(0)" (click)="close.emit()"
+                ><span class="material-icons-outlined"> close </span></a
+              >
+            </div>
+          </div>
+        </div>
+        <div class="popup-content">
+          <div class="popup-content-form" [formGroup]="zoneFormGroup">
+            <div class="form-row" formGroupName="oCIn_WfZone_PageData">
+              <div class="form-item" type="required" attr="">
+                <div class="form-item-inner">
+                  <div class="form-item-title">區域名稱</div>
+                  <div class="form-item-entry">
+                    <input
+                      type="text"
+                      placeholder="請輸入..."
+                      formControlName="zone_Name"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="form-item" type="required">
+                <div class="form-item-inner">
+                  <div class="form-item-title">排序（升冪）</div>
+                  <div class="form-item-entry">
+                    <input
+                      type="text"
+                      placeholder="請輸入..."
+                      formControlName="zone_Sort"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-row" formGroupName="oCIn_WfZone_PageData">
+              <div class="form-item" type="required">
+                <div class="form-item-inner">
+                  <div class="form-item-title">狀態</div>
+                  <div class="form-item-entry">
+                    <ul>
+                      <li>
+                        <input
+                          type="radio"
+                          id="rd01"
+                          value="1"
+                          formControlName="zone_State"
+                        />
+                        <label for="rd01">啟用</label>
+                      </li>
+                      <li>
+                        <input
+                          type="radio"
+                          id="rd02"
+                          value="0"
+                          formControlName="zone_State"
+                        />
+                        <label for="rd02">停用</label>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr class="seperate-line">
+            <div class="form-row">
+              <div class="form-item" type="required" attr="">
+                <div class="form-item-inner">
+                  <div class="form-item-title">site設定</div>
+                  <div class="form-item-entry">
+                    <nz-select
+                      [nzMaxTagCount]="3"
+                      [nzMaxTagPlaceholder]="tagPlaceHolder"
+                      nzMode="multiple"
+                      nzPlaceHolder="Please select"
+                      [(ngModel)]="ckSiteSelectedValue"
+                      (ngModelChange)="setCkSite()"
+                      [ngModelOptions]="{standalone: true}"
+                    >
+                      <nz-option *ngFor="let item of ckSiteOption" [nzLabel]="item" [nzValue]="item"></nz-option>
+                    </nz-select>
+                    <ng-template #tagPlaceHolder let-selectedList>and {{ selectedList.length }} more selected</ng-template>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-item" type="required">
+                <div class="form-item-inner">
+                  <div class="form-item-title">區域語系</div>
+                  <div class="form-item-entry">
+                    <nz-select
+                      [nzMaxTagCount]="3"
+                      [nzMaxTagPlaceholder]="tagPlaceHolder2"
+                      nzMode="multiple"
+                      nzPlaceHolder="Please select"
+                      [(ngModel)]="cfkLangCodeSelectedValue"
+                      (ngModelChange)="setcfkLangCode()"
+                      [ngModelOptions]="{standalone: true}"
+                    >
+                      <nz-option *ngFor="let item of cfkLangCodeOption;" [nzLabel]="item" [nzValue]="item" [nzDisabled]="item === '英文'"></nz-option>
+                    </nz-select>
+                    <ng-template #tagPlaceHolder2 let-selectedList>and {{ selectedList.length }} more selected</ng-template>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-row" formGroupName="oCIn_WfZone_PageData">
+              <div class="form-item" type="required">
+                <div class="form-item-inner">
+                  <div class="form-item-title">預設語系</div>
+                  <div class="form-item-entry">
+                    <ul>
+                      <li *ngFor="let item of cfkLangCodeSelectedValueCode;let i = index">
+                        <input
+                          type="radio"
+                          id="fkLang-{{i+1}}"
+                          [value]="item"
+                          formControlName="fk_Lang_Code"
+                        />
+                        <label for="fkLang-{{i+1}}">{{item}}</label>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="popup-footer">
+          <div class="popup-footer-inner">
+            <div class="popup-footer-unit footer-button" btn="cancel">
+              <button (click)="close.emit()">取消</button>
+            </div>
+            <div class="popup-footer-unit footer-button" btn="confirm">
+              <button (click)="submit()">確認</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- END: default-popup -->
+    </div>
+  </div>
+</div>
+<!-- END: popup -->

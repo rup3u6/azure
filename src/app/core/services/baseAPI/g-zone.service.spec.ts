@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { LanguageService } from './language.service';
+import { GZoneService } from './g-zone.service';
 
-describe('LanguageService', () => {
-  let service: LanguageService;
+describe('GZoneService', () => {
+  let service: GZoneService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(LanguageService);
+    service = TestBed.inject(GZoneService);
   });
 
   it('should be created', () => {

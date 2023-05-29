@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ZoneSearchFormComponent } from './zone-search-form.component';
+import { GZoneComponent } from './g-zone.component';
 
-describe('ZoneSearchFormComponent', () => {
-  let component: ZoneSearchFormComponent;
-  let fixture: ComponentFixture<ZoneSearchFormComponent>;
+describe('GZoneComponent', () => {
+  let component: GZoneComponent;
+  let fixture: ComponentFixture<GZoneComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ZoneSearchFormComponent ]
+      declarations: [ GZoneComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ZoneSearchFormComponent);
+    fixture = TestBed.createComponent(GZoneComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
