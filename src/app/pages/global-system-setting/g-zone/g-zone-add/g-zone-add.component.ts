@@ -22,6 +22,7 @@ export class GZoneAddComponent implements OnInit {
 
   LanguagesearchRes: any;
 
+  isZoneFormGroup = false;
   zoneFormGroup!: FormGroup;
 
   ckSiteOption: any[] = ['台北', '新北'];
@@ -81,6 +82,8 @@ export class GZoneAddComponent implements OnInit {
 
       this.setcfkLangCode();
     }
+
+    this.isZoneFormGroup = true;
   }
 
   setZoneFormGroupInit() {
