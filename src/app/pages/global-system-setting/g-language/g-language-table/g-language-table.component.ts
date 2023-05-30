@@ -71,7 +71,7 @@ export class GLanguageTableComponent {
     },
     {
       title: '異動者',
-      field: 'lang_EditId',
+      field: 'lang_EditCode',
       vertAlign: 'middle',
       hozAlign: 'center',
       headerHozAlign: 'center',
