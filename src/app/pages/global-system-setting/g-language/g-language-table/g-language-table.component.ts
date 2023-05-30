@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { GLanguageService } from 'src/app/core/services/baseAPI/g-language.service';
 import { Tabulator } from 'tabulator-tables';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'div[g-language-table]',
@@ -55,7 +56,10 @@ export class GLanguageTableComponent {
       headerHozAlign: 'center',
       formatter: (cell: any) => {
         const timeStamp = cell.getValue();
-        return new Date(timeStamp * 1000).toLocaleDateString();
+
+        const date = new Date(timeStamp * 1000);
+
+        return this.datePipe.transform(date, "yyyy/MM/dd");
       },
     },
     {
@@ -94,7 +98,10 @@ export class GLanguageTableComponent {
     },
   ];
 
-  constructor(public gLanguageService: GLanguageService) {}
+  constructor(
+    private datePipe: DatePipe,
+    public gLanguageService: GLanguageService
+  ) { }
 
   tableBuilded(table: Tabulator) {
     this.gLanguageService.tableBuilded(table);

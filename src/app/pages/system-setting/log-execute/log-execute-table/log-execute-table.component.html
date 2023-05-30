@@ -1,0 +1,8 @@
+<div class="content-result-inner">
+  <div
+    app-tabulator-table-pagination
+    [columnNames]="columnNames"
+    [tableConfig]="{ selectable: 1 }"
+    (tableBuilded)="tableBuilded($event)"
+  ></div>
+</div>

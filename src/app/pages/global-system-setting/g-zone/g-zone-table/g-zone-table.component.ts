@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { GZoneService } from 'src/app/core/services/baseAPI/g-zone.service';
 import { Tabulator } from 'tabulator-tables';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'div[g-zone-table]',
@@ -55,7 +56,10 @@ export class GZoneTableComponent {
       headerHozAlign: 'center',
       formatter: (cell: any) => {
         const timeStamp = cell.getValue();
-        return new Date(timeStamp * 1000).toLocaleDateString();
+
+        const date = new Date(timeStamp * 1000);
+
+        return this.datePipe.transform(date, "yyyy/MM/dd");
       },
     },
     {
@@ -94,7 +98,10 @@ export class GZoneTableComponent {
     },
   ];
 
-  constructor(public gZoneService: GZoneService) {}
+  constructor(
+    private datePipe: DatePipe,
+    public gZoneService: GZoneService
+  ) { }
 
   tableBuilded(table: Tabulator) {
     this.gZoneService.tableBuilded(table);

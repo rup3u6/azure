@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { LocationService } from 'src/app/core/services/baseAPI/location.service';
 import { Tabulator } from 'tabulator-tables';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'div[sys-location-table]',
@@ -57,7 +58,10 @@ export class LocationTableComponent {
       headerHozAlign: 'center',
       formatter: (cell: any) => {
         const timeStamp = cell.getValue();
-        return new Date(timeStamp * 1000).toLocaleDateString();
+
+        const date = new Date(timeStamp * 1000);
+
+        return this.datePipe.transform(date, "yyyy/MM/dd");
       },
     },
     {
@@ -95,7 +99,10 @@ export class LocationTableComponent {
       },
     },
   ];
-  constructor(public locationService: LocationService) {}
+  constructor(
+    private datePipe: DatePipe,
+    public locationService: LocationService
+  ) { }
 
   tableBuilded(table: Tabulator) {
     this.locationService.tableBuilded(table);

@@ -6,6 +6,9 @@ import { TranslateModule } from '@ngx-translate/core';
 import { RouterModule } from '@angular/router';
 import { DemoNgZorroAntdModule } from 'src/app/shared/module/ng-zorro-antd.module';
 
+// pipe
+import { DatePipe } from '@angular/common';
+
 // ng-zorro
 import { NZ_ICONS } from 'ng-zorro-antd/icon';
 import { NZ_I18N, en_US } from 'ng-zorro-antd/i18n';
@@ -47,7 +50,11 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     TabulatorTablePaginationComponent,
     DemoNgZorroAntdModule,
   ],
-  providers: [ { provide: NZ_I18N, useValue: en_US }, { provide: NZ_ICONS, useValue: icons } ]
+  providers: [
+    DatePipe,
+    { provide: NZ_I18N, useValue: en_US },
+    { provide: NZ_ICONS, useValue: icons }
+  ]
 })
 export class SharedModule {
 }

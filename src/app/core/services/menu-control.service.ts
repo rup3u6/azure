@@ -59,7 +59,7 @@ export class MenuControlService {
         },
         {
           mod_Name: '操作歷程檢視',
-          mod_Route: '',
+          mod_Route: '/systemsetting/log-execute',
         },
         {
           mod_Name: '信用卡卡號格式',
