@@ -109,7 +109,7 @@
                       (ngModelChange)="setcfkLangCode()"
                       [ngModelOptions]="{standalone: true}"
                     >
-                      <nz-option *ngFor="let item of cfkLangCodeOption;" [nzLabel]="item" [nzValue]="item" [nzDisabled]="item === '英文-EN'"></nz-option>
+                      <nz-option *ngFor="let item of cfkLangCodeOption;" [nzLabel]="item.lang_Name" [nzValue]="item.lang_Code" [nzDisabled]="item === 'EN'"></nz-option>
                     </nz-select>
                     <ng-template #tagPlaceHolder2 let-selectedList>and {{ selectedList.length }} more selected</ng-template>
                   </div>
@@ -122,15 +122,19 @@
                   <div class="form-item-title">預設語系</div>
                   <div class="form-item-entry">
                     <ul>
-                      <li *ngFor="let item of cfkLangCodeSelectedValueCode;let i = index">
-                        <input
-                          type="radio"
-                          id="fkLang-{{i+1}}"
-                          [value]="item.lang_Code"
-                          formControlName="fk_Lang_Code"
-                        />
-                        <label for="fkLang-{{i+1}}">{{item.lang_Name}}-{{item.lang_Code}}</label>
-                      </li>
+                      <ng-container *ngFor="let item of cfkLangCodeOption;let i = index">
+                        <ng-container *ngFor="let item2 of cfkLangCodeSelectedValue">
+                          <li *ngIf="item.lang_Code === item2">
+                            <input
+                              type="radio"
+                              id="fkLang-{{i+1}}"
+                              [value]="item.lang_Code"
+                              formControlName="fk_Lang_Code"
+                            />
+                            <label for="fkLang-{{i+1}}">{{item.lang_Name}}</label>
+                          </li>
+                        </ng-container>
+                      </ng-container>
                     </ul>
                   </div>
                 </div>
