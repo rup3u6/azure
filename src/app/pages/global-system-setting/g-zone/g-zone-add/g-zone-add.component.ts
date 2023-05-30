@@ -139,12 +139,17 @@ export class GZoneAddComponent implements OnInit {
     };
 
     this.loadingService.startLoading();
-    const languagesearchRes = await firstValueFrom(this.gLanguageService.search(inLanguageSearch));
-    this.loadingService.stopLoading();
 
-    if (languagesearchRes.status === '999') {
-      this.LanguagesearchRes = languagesearchRes.data;
-      this.cfkLangCodeOption = this.LanguagesearchRes.map((item: any) => item.lang_Name + '-' + item.lang_Code) ?? [];
+    try {
+      const languagesearchRes = await firstValueFrom(this.gLanguageService.search(inLanguageSearch));
+      if (languagesearchRes.status === '999') {
+        this.LanguagesearchRes = languagesearchRes.data;
+        this.cfkLangCodeOption = this.LanguagesearchRes.map((item: any) => item.lang_Name + '-' + item.lang_Code) ?? [];
+      }
+    } catch (error) {
+      console.log(error)
+    } finally{
+      this.loadingService.stopLoading();
     }
   }
 
