@@ -269,14 +269,6 @@ body,
   font-weight: bold;
 }
 
-/* .user-link-nav li:nth-child(1) a {
-  padding: 0 10px 8px;
-}
-
-.user-link-nav li:nth-last-child(1) a {
-  padding: 8px 10px 0;
-} */
-
 .location-text {
   color: #006c91;
 }
@@ -357,7 +349,6 @@ body,
   -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
   -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
-  /* padding: 0 10px; */
 }
 
 .main-content-inner {
@@ -736,7 +727,6 @@ hr.seperate-line {
   font-size: 0.875rem;
   text-align: center;
 }
-
 /* END: main */
 
 /* START: footer */
@@ -897,6 +887,7 @@ hr.seperate-line {
   display: inline-flex;
   justify-content: flex-start;
   margin-right: 15px;
+  padding-top: 4px;
 }
 
 .form-item-entry input[type="radio"] {
@@ -1013,4 +1004,93 @@ hr.seperate-line {
 .popup-component[type="warning"] .popup-content li:nth-last-child(1)::after {
   content: "";
 }
+
+.detail-row {
+  padding: 0 15px 5px;
+}
+
+.detail-row:nth-last-child(1) {
+  padding: 0 15px 0;
+}
+
+.detail-item-inner {
+  display: flex;
+}
+
+.detail-item-unit {
+  flex: 1;
+}
+
+.detail-item-unit:nth-last-child(1) {
+  text-align: right;
+}
+
+.detail-title {
+  font-weight: bold;
+}
+
+.detail-time {
+  color: #777;
+}
+
+.detail-content {
+  padding: 0 15px;
+}
+
+.detail-content-inner {
+  padding: 10px 15px;
+  background: rgba(237, 247, 255, 1);
+  border: #d3e6ff solid 1px;
+  border-radius: 10px;
+}
+
+.detail-content .detail-item {
+  padding: 0 2px;
+}
+
+.detail-content .detail-item:nth-child(1) {
+  margin-bottom: 8px;
+  padding: 0 2px 8px;
+  color: #006c91;
+  font-weight: bold;
+  border-bottom: #006c91 dashed 1px;
+}
+
+.detail-content .detail-item:nth-child(1)::before {
+  font-family: "Material Icons Outlined", sans-serif;
+  content: "account_circle";
+  font-feature-settings: "liga";
+  margin-right: 4px;
+  font-size: 1.3125rem;
+  line-height: 1;
+  display: inline-block;
+  vertical-align: text-bottom;
+  color: #006c91;
+}
 /* END: popup */
+
+/* START: ant-design */
+.field-entry .ant-select {
+  width: 100%;
+}
+
+.field-entry .ant-select:not(.ant-select-customize-input) .ant-select-selector {
+  height: 35px;
+  border: none;
+  border-bottom: #ccc solid 1px;
+  border-radius: 0;
+  position: relative;
+}
+
+.field-entry
+  .ant-select-focused:not(.ant-select-disabled).ant-select:not(
+    .ant-select-customize-input
+  )
+  .ant-select-selector {
+  border: none;
+  border-bottom: #aaa solid 1px;
+  outline: none;
+  box-shadow: none;
+}
+
+/* END: ant-design */
