@@ -13,12 +13,12 @@ export class LoadingService {
     return this._isLoading$.asObservable();
   }
 
-  public startLoading(): void {
-    this._isLoading$.next(true);
+  public async startLoading(): Promise<void> {
+    await this._isLoading$.next(true);
   }
 
-  public stopLoading(): void {
-    this._isLoading$.next(false);
+  public async stopLoading(): Promise<void> {
+    await this._isLoading$.next(false);
   }
 
   public toggleLoading(): void {
