@@ -37,6 +37,7 @@ export class GLanguageAddComponent implements OnInit {
       this.languageFormGroup.patchValue({
         ...this.data.initData,
       });
+      this.languageFormGroup.controls?.['lang_Code'].disable();
     }
   }
 
@@ -50,7 +51,7 @@ export class GLanguageAddComponent implements OnInit {
 
   async submit() {
     let body: any = {
-      ...this.languageFormGroup.value,
+      ...this.languageFormGroup.getRawValue(),
     };
 
     this.loadingService.startLoading();
