@@ -32,10 +32,8 @@ export class GZoneService {
     return this.searchFormValue.asObservable();
   }
 
-  search(init = false) {
-    let body = {};
-
-    if (!init) {
+  search(body?: CInZoneSearch) {
+    if (!body) {
       let { zone_State } = this.searchFormValue.value;
       const status = ['0', '1', null];
       body = {

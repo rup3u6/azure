@@ -32,10 +32,8 @@ export class GLanguageService {
     return this.searchFormValue.asObservable();
   }
 
-  search(init = false) {
-    let body = {};
-
-    if (!init) {
+  search(body?: CInLanguageSearch) {
+    if (!body) {
       let { lang_State } = this.searchFormValue.value;
       const status = ['0', '1', null];
       body = {

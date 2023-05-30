@@ -33,10 +33,8 @@ export class LogExecuteService {
     return this.searchFormValue.asObservable();
   }
 
-  search(init = false) {
-    let body = {};
-
-    if (!init) {
+  search(body?: CInLogExecuteSearch) {
+    if (!body) {
       let { logExec_CreateCode } = this.searchFormValue.value;
       body = {
         ...this.searchFormValue.value,

@@ -2,6 +2,9 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { finalize, firstValueFrom } from 'rxjs';
 
+// models
+import { CInLanguageSearch } from '../../../../core/models/baseAPI/language';
+
 // service
 import { GZoneService } from 'src/app/core/services/baseAPI/g-zone.service';
 import { GLanguageService } from 'src/app/core/services/baseAPI/g-language.service';
@@ -59,7 +62,7 @@ export class GZoneAddComponent implements OnInit {
 
     if (this.data.mode === 'add') {
       this.setZoneFormGroupInit();
-      this.cfkLangCodeSelectedValue = await ['英文-EN'];
+      this.cfkLangCodeSelectedValue = ['英文-EN'];
       this.setcfkLangCode();
     } else {
       this.zoneFormGroup.setControl(
@@ -72,7 +75,7 @@ export class GZoneAddComponent implements OnInit {
       this.setCkSite();
 
       this.cfkLangCodeSelectedValue =
-        await this.data.initData.lCOut_Wf_Zone_Langue_GetDetail.map((item: any) => {
+        this.data.initData.lCOut_Wf_Zone_Langue_GetDetail.map((item: any) => {
           const lang = this.LanguagesearchRes.find((item2: any) => item2.lang_Code === item.cfk_Lang_Code)
 
           return lang.lang_Name + '-' + lang.lang_Code;
@@ -129,13 +132,19 @@ export class GZoneAddComponent implements OnInit {
   }
 
   async getLanguage() {
+    const inLanguageSearch: CInLanguageSearch = {
+      lang_State: '1',
+      lang_Name: '',
+      lang_Code: '',
+    };
+
     this.loadingService.startLoading();
-    const languagesearchRes = await firstValueFrom(this.gLanguageService.search(true));
+    const languagesearchRes = await firstValueFrom(this.gLanguageService.search(inLanguageSearch));
     this.loadingService.stopLoading();
 
     if (languagesearchRes.status === '999') {
       this.LanguagesearchRes = languagesearchRes.data;
-      this.cfkLangCodeOption = await this.LanguagesearchRes.map((item: any) => item.lang_Name + '-' + item.lang_Code) ?? [];
+      this.cfkLangCodeOption = this.LanguagesearchRes.map((item: any) => item.lang_Name + '-' + item.lang_Code) ?? [];
     }
   }
 

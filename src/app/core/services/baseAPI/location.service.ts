@@ -30,10 +30,8 @@ export class LocationService {
     return this.searchFormValue.asObservable();
   }
 
-  search(init = false) {
-    let body = {};
-
-    if (!init) {
+  search(body?: CInLocationSearch) {
+    if (!body) {
       let { location_State } = this.searchFormValue.value;
       const status = [false, true, null];
       body = {
