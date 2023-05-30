@@ -26,7 +26,7 @@ export class LogExecuteTableComponent {
     },
     {
       title: '操作類型',
-      field: 'logExec_ChangeItem',
+      field: 'logExec_Module',
       vertAlign: 'middle',
       hozAlign: 'center',
       headerHozAlign: 'center',
