@@ -109,7 +109,7 @@
                       (ngModelChange)="setcfkLangCode()"
                       [ngModelOptions]="{standalone: true}"
                     >
-                      <nz-option *ngFor="let item of cfkLangCodeOption;" [nzLabel]="item" [nzValue]="item" [nzDisabled]="item === '英文'"></nz-option>
+                      <nz-option *ngFor="let item of cfkLangCodeOption;" [nzLabel]="item" [nzValue]="item" [nzDisabled]="item === '英文-EN'"></nz-option>
                     </nz-select>
                     <ng-template #tagPlaceHolder2 let-selectedList>and {{ selectedList.length }} more selected</ng-template>
                   </div>
@@ -126,10 +126,10 @@
                         <input
                           type="radio"
                           id="fkLang-{{i+1}}"
-                          [value]="item"
+                          [value]="item.lang_Code"
                           formControlName="fk_Lang_Code"
                         />
-                        <label for="fkLang-{{i+1}}">{{item}}</label>
+                        <label for="fkLang-{{i+1}}">{{item.lang_Name}}-{{item.lang_Code}}</label>
                       </li>
                     </ul>
                   </div>

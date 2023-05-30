@@ -59,7 +59,7 @@ export class GZoneAddComponent implements OnInit {
 
     if (this.data.mode === 'add') {
       this.setZoneFormGroupInit();
-      this.cfkLangCodeSelectedValue = await ['英文'];
+      this.cfkLangCodeSelectedValue = await ['英文-EN'];
       this.setcfkLangCode();
     } else {
       this.zoneFormGroup.setControl(
@@ -72,12 +72,14 @@ export class GZoneAddComponent implements OnInit {
       this.setCkSite();
 
       this.cfkLangCodeSelectedValue =
-        await this.data.initData.lCOut_Wf_Zone_Langue_GetDetail.map((item: any) =>
-          this.LanguagesearchRes.find((item2: any) => item2.lang_Code === item.cfk_Lang_Code).lang_Name
-        );
+        await this.data.initData.lCOut_Wf_Zone_Langue_GetDetail.map((item: any) => {
+          const lang = this.LanguagesearchRes.find((item2: any) => item2.lang_Code === item.cfk_Lang_Code)
 
-      if (!this.cfkLangCodeSelectedValue.some((item) => item === '英文')) {
-        this.cfkLangCodeSelectedValue.push('英文');
+          return lang.lang_Name + '-' + lang.lang_Code;
+        });
+
+      if (!this.cfkLangCodeSelectedValue.some((item) => item === '英文-EN')) {
+        this.cfkLangCodeSelectedValue.push('英文-EN');
       }
 
       this.setcfkLangCode();
@@ -121,7 +123,9 @@ export class GZoneAddComponent implements OnInit {
       this.formBuilder.array(
         this.cfkLangCodeSelectedValue.map(r => this.formBuilder.group({ cfk_Lang_Code: r }))));
 
-    this.cfkLangCodeSelectedValueCode = this.cfkLangCodeSelectedValue.map((item: any) => this.LanguagesearchRes.find((item2: any) => item2.lang_Name === item).lang_Code);
+    this.cfkLangCodeSelectedValueCode = this.cfkLangCodeSelectedValue.map((item: any) => {
+      return { lang_Name: item.split('-')[0], lang_Code: item.split('-')[1] };
+    });
   }
 
   async getLanguage() {
@@ -129,9 +133,7 @@ export class GZoneAddComponent implements OnInit {
 
     if (languagesearchRes.status === '999') {
       this.LanguagesearchRes = languagesearchRes.data;
-      this.cfkLangCodeOption = await this.LanguagesearchRes.map((item: any) => item.lang_Name) ?? [];
-      console.log(123);
-
+      this.cfkLangCodeOption = await this.LanguagesearchRes.map((item: any) => item.lang_Name + '-' + item.lang_Code) ?? [];
     }
   }
 
@@ -145,14 +147,14 @@ export class GZoneAddComponent implements OnInit {
         let body: any = {
           ...this.zoneFormGroup.value,
           lCIn_Wf_Zone_Site_Pagedata: this.ckSiteSelectedValue.map((item) => { return { ck_Site: item } }),
-          lCIn_Wf_Zone_Langue_Pagedata: this.cfkLangCodeSelectedValueCode.map((item) => { return { cfk_Lang_Code: item } })
+          lCIn_Wf_Zone_Langue_Pagedata: this.cfkLangCodeSelectedValueCode.map((item) => { return { cfk_Lang_Code: item.lang_Code } })
         };
         res = await firstValueFrom(this.gZoneService.add(body));
       } else {
         let body: any = {
           oCIn_WfZone_PageData_Update: this.zoneFormGroup.value.oCIn_WfZone_PageData,
           lCIn_Wf_Zone_Site_Pagedata_Update: this.ckSiteSelectedValue.map((item) => { return { ck_Site: item } }),
-          lCIn_Wf_Zone_Langue_Pagedata_Update: this.cfkLangCodeSelectedValueCode.map((item) => { return { cfk_Lang_Code: item } })
+          lCIn_Wf_Zone_Langue_Pagedata_Update: this.cfkLangCodeSelectedValueCode.map((item) => { return { cfk_Lang_Code: item.lang_Code } })
         };
         res = await firstValueFrom(this.gZoneService.edit(body));
       }
