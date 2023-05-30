@@ -33,7 +33,7 @@ export class GZoneSearchFormComponent implements OnInit {
 
   setSearchFormGroupInit() {
     this.searchFormGroup.patchValue({
-      zone_State: '1',
+      zone_State: '2',
       zone_Name: '',
     });
   }
