@@ -129,7 +129,9 @@ export class GZoneAddComponent implements OnInit {
   }
 
   async getLanguage() {
+    this.loadingService.startLoading();
     const languagesearchRes = await firstValueFrom(this.gLanguageService.search(true));
+    this.loadingService.stopLoading();
 
     if (languagesearchRes.status === '999') {
       this.LanguagesearchRes = languagesearchRes.data;
