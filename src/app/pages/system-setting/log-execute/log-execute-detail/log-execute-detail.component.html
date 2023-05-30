@@ -1,0 +1,49 @@
+<!-- START: popup -->
+<div class="frame-block">
+  <div class="frame-compose popup-compose">
+    <div class="popup-composer-inner">
+      <!-- START: default-popup -->
+      <div class="popup-component large-size-popup" type="normal">
+        <div class="popup-header">
+          <div class="popup-header-inner">
+            <div class="popup-header-unit header-text">操作歷程：系統登入</div>
+            <div class="popup-header-unit header-btn">
+              <a href="javascript:void(0)" (click)="close.emit()"
+                ><span class="material-icons-outlined"> close </span></a
+              >
+            </div>
+          </div>
+        </div>
+        <div class="popup-content">
+          <div class="popup-content-detail">
+            <div class="detail-row">
+              <div class="detail-item">
+                <div class="detail-item-inner">
+                  <div class="detail-item-unit detail-title">修改資料</div>
+                  <div class="detail-item-unit detail-time">
+                    {{(data.initData.logExec_CreateDate * 1000) | date:'yyyy/MM/dd HH:mm:ss' }}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="detail-row detail-content">
+              <div class="detail-content-inner">
+                <div class="detail-item">{{data.initData.logExec_CreateCode}}</div>
+                <div class="detail-item">{{data.initData.logExec_Module}}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="popup-footer">
+          <div class="popup-footer-inner">
+            <div class="popup-footer-unit footer-button" btn="confirm">
+              <button (click)="close.emit()">關閉</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- END: default-popup -->
+    </div>
+  </div>
+</div>
+<!-- END: popup -->

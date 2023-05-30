@@ -20,7 +20,14 @@
     <div
       sys-log-execute-table
       class="main-content-unit content-result"
+      (detail)="detailPopupHandler($event)"
     ></div>
     <!-- END: content-result -->
   </div>
 </main>
+
+<sys-log-execute-detail
+  *ngIf="popup.component === 'detail'"
+  [data]="popup.data"
+  (close)="popup.component = null"
+></sys-log-execute-detail>

@@ -10,9 +10,7 @@ import { Tabulator } from 'tabulator-tables';
 })
 export class LogExecuteTableComponent {
 
-  @Output() add = new EventEmitter<any>();
-  @Output() edit = new EventEmitter<any>();
-  @Output() deactivate = new EventEmitter<any>();
+  @Output() detail = new EventEmitter<any>();
 
   columnNames: Array<any> = [
     {
@@ -30,12 +28,16 @@ export class LogExecuteTableComponent {
       vertAlign: 'middle',
       hozAlign: 'center',
       headerHozAlign: 'center',
-      cellClick: (e: any, cell: any) => {
-        e.preventDefault();
-        e.stopPropagation();
-
+      formatter: (cell: any) => {
         const rowData = cell.getData();
-        this.edit.emit(rowData);
+        let aTag = document.createElement('a');
+        aTag.innerText = rowData.logExec_Module;
+        aTag.addEventListener('click', (event) => {
+          event.stopPropagation();
+          const rowData = cell.getData();
+          this.detail.emit(rowData);
+        });
+        return aTag;
       },
     },
     {

@@ -10,6 +10,7 @@ import { LocationAddComponent } from './location/location-add/location-add.compo
 import { LogExecuteComponent } from './log-execute/log-execute.component';
 import { LogExecuteTableComponent } from './log-execute/log-execute-table/log-execute-table.component';
 import { LogExecuteSearchFormComponent } from './log-execute/log-execute-search-form/log-execute-search-form.component';
+import { LogExecuteDetailComponent } from './log-execute/log-execute-detail/log-execute-detail.component';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { LogExecuteSearchFormComponent } from './log-execute/log-execute-search-
     LogExecuteComponent,
     LogExecuteTableComponent,
     LogExecuteSearchFormComponent,
+    LogExecuteDetailComponent,
   ],
   imports: [
     SharedModule,
