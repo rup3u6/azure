@@ -23,7 +23,7 @@ export class GZoneAddComponent implements OnInit {
     initData: {},
   };
 
-  LanguagesearchRes: any;
+  languagesearchRes: any;
 
   isZoneFormGroup = false;
   zoneFormGroup!: FormGroup;
@@ -134,8 +134,8 @@ export class GZoneAddComponent implements OnInit {
     try {
       const languagesearchRes = await firstValueFrom(this.gLanguageService.search(inLanguageSearch));
       if (languagesearchRes.status === '999') {
-        this.LanguagesearchRes = languagesearchRes.data;
-        this.cfkLangCodeOption = this.LanguagesearchRes.map((item: any) => {
+        this.languagesearchRes = languagesearchRes.data;
+        this.cfkLangCodeOption = this.languagesearchRes.map((item: any) => {
           return {
             lang_Name: item.lang_Name + '-' + item.lang_Code,
             lang_Code: item.lang_Code

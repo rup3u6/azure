@@ -34,7 +34,7 @@ export class LogExecuteComponent {
         return;
       }
       this.popup.data = {
-        mode: 'edit',
+        mode: '',
         initData: res.data,
       };
       this.popup.component = 'detail';

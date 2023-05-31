@@ -57,7 +57,6 @@ export class GModuleClassAddComponent implements OnInit {
       ...this.moduleClassFormGroup.value,
       modClass_Order: +modClass_Order
     };
-
     this.loadingService.startLoading();
     try {
       let res;

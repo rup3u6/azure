@@ -1,0 +1,122 @@
+<!-- START: popup -->
+<div class="frame-block">
+  <div class="frame-compose popup-compose">
+    <div class="popup-composer-inner">
+      <!-- START: default-popup -->
+      <div class="popup-component large-size-popup" type="normal">
+        <div class="popup-header">
+          <div class="popup-header-inner">
+            <div class="popup-header-unit header-text">
+              {{ data.mode === "add" ? "新增" : "編輯" }}選單作業
+            </div>
+            <div class="popup-header-unit header-btn">
+              <a href="javascript:void(0)" (click)="close.emit()"
+                ><span class="material-icons-outlined"> close </span></a
+              >
+            </div>
+          </div>
+        </div>
+        <div class="popup-content" *ngIf="isModuleFormGroup">
+          <div class="popup-content-form" [formGroup]="moduleFormGroup">
+            <div class="form-row">
+              <div class="form-item" type="required" attr="">
+                <div class="form-item-inner">
+                  <div class="form-item-title">選單分類名稱</div>
+                  <div class="form-item-entry">
+                    <select
+                      placeholder="請輸入選單分類名稱"
+                      formControlName="fk_Modclass_Id"
+                    >
+                      <ng-container *ngFor="let item of moduleClasssearchRes">
+                        <option [value]="item.modClass_Id">{{item.modClass_Name}}</option>
+                      </ng-container>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="form-item" type="required">
+                <div class="form-item-inner">
+                  <div class="form-item-title">作業名稱</div>
+                  <div class="form-item-entry">
+                    <input
+                      type="text"
+                      placeholder="請輸入作業名稱"
+                      formControlName="mod_Name"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-item" type="required">
+                <div class="form-item-inner">
+                  <div class="form-item-title">作業路徑</div>
+                  <div class="form-item-entry">
+                    <input
+                      type="text"
+                      placeholder="請輸入作業路徑"
+                      formControlName="mod_Route"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="form-item" type="required">
+                <div class="form-item-inner">
+                  <div class="form-item-title">排序（升冪）</div>
+                  <div class="form-item-entry">
+                    <input
+                      type="text"
+                      placeholder="請輸入排序（升冪）"
+                      formControlName="mod_Order"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-item" type="required">
+                <div class="form-item-inner">
+                  <div class="form-item-title">狀態</div>
+                  <div class="form-item-entry">
+                    <ul>
+                      <li>
+                        <input
+                          type="radio"
+                          id="rd01"
+                          value="1"
+                          formControlName="mod_State"
+                        />
+                        <label for="rd01">啟用</label>
+                      </li>
+                      <li>
+                        <input
+                          type="radio"
+                          id="rd02"
+                          value="0"
+                          formControlName="mod_State"
+                        />
+                        <label for="rd02">停用</label>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="popup-footer">
+          <div class="popup-footer-inner">
+            <div class="popup-footer-unit footer-button" btn="cancel">
+              <button (click)="close.emit()">取消</button>
+            </div>
+            <div class="popup-footer-unit footer-button" btn="confirm">
+              <button (click)="submit()">確認</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- END: default-popup -->
+    </div>
+  </div>
+</div>
+<!-- END: popup -->

@@ -32,7 +32,7 @@ export class MenuControlService {
         },
         {
           mod_Name: '選單作業',
-          mod_Route: '',
+          mod_Route: '/globalsetting/module',
         },
       ],
     },

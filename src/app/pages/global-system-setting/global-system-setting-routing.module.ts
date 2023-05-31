@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { GLanguageComponent } from './g-language/g-language.component';
 import { GZoneComponent } from './g-zone/g-zone.component';
 import { GModuleClassComponent } from './g-module-class/g-module-class.component';
+import { GModuleComponent } from './g-modul/g-module.component';
 
 const routes: Routes = [
   {
@@ -23,6 +24,10 @@ const routes: Routes = [
   {
     path: 'module-class',
     component: GModuleClassComponent,
+  },
+  {
+    path: 'module',
+    component: GModuleComponent,
   },
 ];
 

@@ -1,0 +1,40 @@
+<div class="content-query-field" [formGroup]="searchFormGroup">
+  <div class="content-query-unit query-field">
+    <div class="field-title">選單分類名稱</div>
+    <div class="field-entry">
+      <input
+        type="text"
+        placeholder="請輸入選單分類名稱"
+        formControlName="modClass_Name"
+      />
+    </div>
+  </div><div class="content-query-unit query-field">
+    <div class="field-title">作業名稱</div>
+    <div class="field-entry">
+      <input
+        type="text"
+        placeholder="請輸入作業名稱"
+        formControlName="mod_Name"
+      />
+    </div>
+  </div>
+  <div class="content-query-unit query-field">
+    <div class="field-title">狀態</div>
+    <div class="field-entry">
+      <select
+        formControlName="mod_State">
+        <option value="2">全部</option>
+        <option value="1">啟用</option>
+        <option value="0">停用</option>
+      </select>
+    </div>
+  </div>
+</div>
+<div class="content-query-button">
+  <div class="content-query-unit query-button">
+    <ul>
+      <li><button class="cancel-btn" (click)="clear()">清除</button></li>
+      <li><button class="query-btn" (click)="search()">查詢</button></li>
+    </ul>
+  </div>
+</div>
