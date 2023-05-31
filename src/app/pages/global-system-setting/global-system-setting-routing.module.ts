@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 // component
 import { GLanguageComponent } from './g-language/g-language.component';
 import { GZoneComponent } from './g-zone/g-zone.component';
+import { GModuleClassComponent } from './g-module-class/g-module-class.component';
 
 const routes: Routes = [
   {
@@ -18,6 +19,10 @@ const routes: Routes = [
   {
     path: 'zone',
     component: GZoneComponent,
+  },
+  {
+    path: 'module-class',
+    component: GModuleClassComponent,
   },
 ];
 

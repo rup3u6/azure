@@ -28,7 +28,7 @@ export class MenuControlService {
         },
         {
           mod_Name: '選單分類',
-          mod_Route: '',
+          mod_Route: '/globalsetting/module-class',
         },
         {
           mod_Name: '選單作業',
