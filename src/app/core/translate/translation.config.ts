@@ -17,8 +17,8 @@ export function ApplicationInitializerFactory(
   return async () => {
     await injector.get(LOCATION_INITIALIZED, Promise.resolve(null));
 
-    const deaultLang = 'zh';
-    translate.addLangs(['en', 'zh']);
+    const deaultLang = 'EN';
+    translate.addLangs(['en', 'EN']);
     translate.setDefaultLang(deaultLang);
     try {
       await lastValueFrom(translate.use(deaultLang));
