@@ -53,7 +53,7 @@ export class ResponseHttpInterceptorService {
                 if (/\/Get/.test(url)) {
                   break;
                 }
-                alert('成功');
+                // alert('成功');
                 break;
 
               default:
