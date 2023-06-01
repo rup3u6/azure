@@ -23,7 +23,7 @@ export class LogExecuteTableComponent {
       headerHozAlign: 'center',
     },
     {
-      title: '操作類型',
+      title: '修改項目',
       field: 'logExec_Module',
       vertAlign: 'middle',
       hozAlign: 'center',
@@ -31,7 +31,7 @@ export class LogExecuteTableComponent {
       formatter: (cell: any) => {
         const rowData = cell.getData();
         let aTag = document.createElement('a');
-        aTag.innerText = rowData.logExec_Module;
+        aTag.innerText = rowData.logExec_Module + '-' + rowData.logExec_ChangeItem;
         aTag.addEventListener('click', (event) => {
           event.stopPropagation();
           const rowData = cell.getData();
@@ -41,11 +41,22 @@ export class LogExecuteTableComponent {
       },
     },
     {
-      title: '操作者',
-      field: 'logExec_CreateCode',
+      title: '操作類型',
+      field: 'logExec_Action',
       vertAlign: 'middle',
       hozAlign: 'center',
       headerHozAlign: 'center',
+    },
+    {
+      title: '操作者',
+      field: 'info_Jobnumber',
+      vertAlign: 'middle',
+      hozAlign: 'center',
+      headerHozAlign: 'center',
+      formatter: (cell: any) => {
+        const rowData = cell.getData();
+        return rowData.info_Jobnumber + '/' + rowData.logExec_CreateCode;
+      },
     },
     {
       title: '操作日期',

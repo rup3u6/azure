@@ -6,7 +6,7 @@
       <div class="popup-component large-size-popup" type="normal">
         <div class="popup-header">
           <div class="popup-header-inner">
-            <div class="popup-header-unit header-text">操作歷程：系統登入</div>
+            <div class="popup-header-unit header-text">操作歷程細項</div>
             <div class="popup-header-unit header-btn">
               <a href="javascript:void(0)" (click)="close.emit()"
                 ><span class="material-icons-outlined"> close </span></a
@@ -29,7 +29,7 @@
             <div class="detail-row detail-content">
               <div class="detail-content-inner">
                 <div class="detail-item">{{data.initData.logExec_CreateCode}}</div>
-                <div class="detail-item">{{data.initData.logExec_Module}}</div>
+                <div class="detail-item">{{data.initData.logExec_Action}} {{data.initData.logExec_ChangeItem}}</div>
               </div>
             </div>
           </div>

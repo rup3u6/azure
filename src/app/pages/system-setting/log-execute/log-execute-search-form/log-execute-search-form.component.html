@@ -1,28 +1,74 @@
 <div class="content-query-field" [formGroup]="searchFormGroup">
   <div class="content-query-unit query-field">
-    <div class="field-title">操作類型</div>
+    <div class="field-title">修改項目</div>
     <div class="field-entry">
       <input
         type="text"
-        placeholder="請輸入操作類型"
+        placeholder="請輸入修改項目"
         formControlName="logExec_ChangeItem"
       />
     </div>
   </div>
   <div class="content-query-unit query-field">
-    <div class="field-title">操作者</div>
+    <div class="field-title">操作類型</div>
     <div class="field-entry">
       <input
         type="text"
-        placeholder="請輸入操作者"
-        formControlName="logExec_CreateCode"
+        placeholder="請輸入操作類型"
+        formControlName="logExec_Action"
       />
-      <!-- <select
-        formControlName="logExec_CreateCode"
-      >
-        <option value="0" selected disabled>全部</option>
-        <option value="admin">admin</option>
-      </select> -->
+    </div>
+  </div>
+  <div class="content-query-unit query-field">
+    <div class="field-title">日期區間起</div>
+    <div class="field-entry">
+      <nz-date-picker
+        nzPlaceHolder="請輸入日期區間起"
+        [(ngModel)]="startSearchDate"
+        (ngModelChange)="startSearchDateChange($event)"
+        [ngModelOptions]="{standalone: true}"
+      ></nz-date-picker>
+    </div>
+  </div>
+  <div class="content-query-unit query-field">
+    <div class="field-title">日期區間迄</div>
+    <div class="field-entry">
+      <nz-date-picker
+        nzPlaceHolder="請輸入日期區間迄"
+        [(ngModel)]="endSearchDate"
+        (ngModelChange)="endSearchDateChange($event)"
+        [ngModelOptions]="{standalone: true}"
+      ></nz-date-picker>
+    </div>
+  </div>
+  <div class="content-query-unit query-field">
+    <div class="field-title">工號</div>
+    <div class="field-entry">
+      <input
+        type="text"
+        placeholder="請輸入工號"
+        formControlName="info_Jobnumber"
+      />
+    </div>
+  </div>
+  <div class="content-query-unit query-field">
+    <div class="field-title">操作者中文姓名</div>
+    <div class="field-entry">
+      <input
+        type="text"
+        placeholder="請輸入操作者中文姓名"
+        formControlName="info_Name"
+      />
+    </div>
+  </div>
+  <div class="content-query-unit query-field">
+    <div class="field-title">操作者英文姓名</div>
+    <div class="field-entry">
+      <input
+        type="text"
+        placeholder="請輸入操作者英文姓名"
+        formControlName="info_Ename"
+      />
     </div>
   </div>
 </div>
