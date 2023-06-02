@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { finalize, firstValueFrom } from 'rxjs';
 
 // service
@@ -29,10 +29,10 @@ export class GModuleClassAddComponent implements OnInit {
 
   ngOnInit(): void {
     this.moduleClassFormGroup = this.formBuilder.group({
-      modClass_Name: [''],
-      modClass_State: [''],
-      modClass_FrontBack: [''],
-      modClass_Order: [''],
+      modClass_Name: ['', [Validators.required]],
+      modClass_State: ['', [Validators.required]],
+      modClass_FrontBack: ['', [Validators.required]],
+      modClass_Order: ['', [Validators.required]],
     });
     if (this.data.mode === 'add') {
       this.setModuleClassFormGroupInit();
@@ -48,18 +48,24 @@ export class GModuleClassAddComponent implements OnInit {
       modClass_Name: '',
       modClass_State: '1',
       modClass_FrontBack: '1',
-      modClass_Order: '',
+      modClass_Order: '0',
     });
   }
 
   async submit() {
+    this.moduleClassFormGroup.markAllAsTouched();
+
+    if (this.moduleClassFormGroup.invalid) { return }
+
     let { modClass_Order } = this.moduleClassFormGroup.value;
 
     let body: any = {
       ...this.moduleClassFormGroup.value,
       modClass_Order: +modClass_Order
     };
+
     this.loadingService.startLoading();
+
     try {
       let res;
       if (this.data.mode === 'add') {
@@ -79,5 +85,9 @@ export class GModuleClassAddComponent implements OnInit {
     } finally {
       this.loadingService.stopLoading();
     }
+  }
+
+  get f() {
+    return this.moduleClassFormGroup.controls;
   }
 }

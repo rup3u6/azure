@@ -29,7 +29,12 @@ const antDesignIcons = AllIcons as {
 const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesignIcons[key])
 
 @NgModule({
-  declarations: [TabulatorTableComponent, ErrorMessagePipe, DeleteConfirmComponent, TabulatorTablePaginationComponent],
+  declarations: [
+    TabulatorTableComponent,
+    ErrorMessagePipe,
+    DeleteConfirmComponent,
+    TabulatorTablePaginationComponent
+  ],
   imports: [
     CommonModule,
     RouterModule,

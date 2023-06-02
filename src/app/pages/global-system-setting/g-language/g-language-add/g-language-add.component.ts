@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { finalize, firstValueFrom } from 'rxjs';
 
 // service
@@ -24,14 +24,14 @@ export class GLanguageAddComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     public gLanguageService: GLanguageService,
-    private loadingService: LoadingService
-  ) {}
+    private loadingService: LoadingService,
+  ) { }
 
   ngOnInit(): void {
     this.languageFormGroup = this.formBuilder.group({
-      lang_Name: [''],
-      lang_Code: [''],
-      lang_State: [''],
+      lang_Name: ['', [Validators.required]],
+      lang_Code: ['', [Validators.required]],
+      lang_State: ['', [Validators.required]],
     });
     if (this.data.mode === 'add') {
       this.setLanguageFormGroupInit();
@@ -52,6 +52,10 @@ export class GLanguageAddComponent implements OnInit {
   }
 
   async submit() {
+    this.languageFormGroup.markAllAsTouched();
+
+    if (this.languageFormGroup.invalid) { return }
+
     let body: any = {
       ...this.languageFormGroup.getRawValue(),
     };
@@ -79,5 +83,9 @@ export class GLanguageAddComponent implements OnInit {
     } finally {
       this.loadingService.stopLoading();
     }
+  }
+
+  get f() {
+    return this.languageFormGroup.controls;
   }
 }

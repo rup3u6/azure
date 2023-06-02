@@ -41,9 +41,7 @@
                     class="form-unit form-field-text"
                     *ngIf="f['userAccount'].errors && f['userAccount'].touched"
                   >
-                    <span>{{
-                      f["userAccount"].errors | errorMessage | translate
-                    }}</span>
+                    <span>{{ f["userAccount"].errors | errorMessage : '帳號 ID' }}</span>
                   </div>
                 </div>
               </div>
@@ -88,13 +86,7 @@
                         f['userPassword'].errors && f['userPassword'].touched
                       "
                     >
-                      <span>{{
-                        f["userPassword"].errors
-                          | errorMessage | translate : {
-                            minLength: f['userPassword'].errors['minlength']?.requiredLength,
-                            inputLength: f['userPassword'].errors['minlength']?.actualLength,
-                          }
-                      }}</span>
+                      <span>{{ f["userPassword"].errors | errorMessage : '密碼 Password' }}</span>
                     </div>
                   </div>
                 </div>
@@ -149,13 +141,7 @@
                       f['verificatCode'].errors && f['verificatCode'].touched
                     "
                   >
-                    <span>{{
-                    f["verificatCode"].errors
-                      | errorMessage | translate : {
-                        minLength: f['verificatCode'].errors['minlength']?.requiredLength,
-                        inputLength: f['verificatCode'].errors['minlength']?.actualLength,
-                      }
-                    }}</span>
+                    <span>{{ f["verificatCode"].errors | errorMessage : '驗證碼 Verification' }}</span>
                   </div>
                 </div>
               </div>

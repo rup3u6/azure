@@ -6,6 +6,7 @@ import {
   TranslateModule,
   TranslateLoader,
   TranslateService,
+  TranslatePipe,
 } from '@ngx-translate/core';
 import {
   ApplicationInitializerFactory,
@@ -49,6 +50,7 @@ import { LoadingComponent } from './components/loading/loading.component';
       useClass: ResponseErrorHttpInterceptorService,
       multi: true,
     },
+    TranslatePipe,
   ],
 })
-export class CoreModule {}
+export class CoreModule { }

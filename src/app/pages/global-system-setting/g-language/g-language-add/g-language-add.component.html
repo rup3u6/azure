@@ -19,7 +19,7 @@
         <div class="popup-content">
           <div class="popup-content-form" [formGroup]="languageFormGroup">
             <div class="form-row">
-              <div class="form-item" type="required" attr="">
+              <div class="form-item" type="required" [attr.attr]="f['lang_Name'].errors && f['lang_Name'].touched && 'error'">
                 <div class="form-item-inner">
                   <div class="form-item-title">語系名稱</div>
                   <div class="form-item-entry">
@@ -29,12 +29,12 @@
                       formControlName="lang_Name"
                     />
                   </div>
-                  <!-- <div class="form-item-text">
-                    <p>欄位填寫錯誤！（警示用）</p>
-                  </div> -->
+                  <div class="form-item-text" *ngIf="f['lang_Name'].errors && f['lang_Name'].touched">
+                    <p>{{ f["lang_Name"].errors | errorMessage : '語系名稱' }}</p>
+                  </div>
                 </div>
               </div>
-              <div class="form-item" type="required">
+              <div class="form-item" type="required" [attr.attr]="f['lang_Code'].errors && f['lang_Code'].touched && 'error'">
                 <div class="form-item-inner">
                   <div class="form-item-title">語系代號</div>
                   <div class="form-item-entry">
@@ -45,11 +45,14 @@
                       [attr.attr]="data.mode === 'edit' && 'readonly'"
                     />
                   </div>
+                  <div class="form-item-text" *ngIf="f['lang_Code'].errors && f['lang_Code'].touched">
+                    <p>{{ f["lang_Code"].errors | errorMessage : '語系代號' }}</p>
+                  </div>
                 </div>
               </div>
             </div>
             <div class="form-row">
-              <div class="form-item" type="required">
+              <div class="form-item" type="required" [attr.attr]="f['lang_State'].errors && f['lang_State'].touched && 'error'">
                 <div class="form-item-inner">
                   <div class="form-item-title">狀態</div>
                   <div class="form-item-entry">
@@ -73,6 +76,9 @@
                         <label for="rd02">停用</label>
                       </li>
                     </ul>
+                  </div>
+                  <div class="form-item-text" *ngIf="f['lang_State'].errors && f['lang_State'].touched">
+                    <p>{{ f["lang_State"] | errorMessage : '狀態' }}</p>
                   </div>
                 </div>
               </div>

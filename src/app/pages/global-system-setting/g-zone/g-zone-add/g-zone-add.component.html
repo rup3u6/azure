@@ -19,7 +19,7 @@
         <div class="popup-content" *ngIf="isZoneFormGroup">
           <div class="popup-content-form" [formGroup]="zoneFormGroup">
             <div class="form-row" formGroupName="oCIn_WfZone_PageData">
-              <div class="form-item" type="required" attr="">
+              <div class="form-item" type="required" [attr.attr]="f['oCIn_WfZone_PageData'].get('zone_Name')?.errors && f['oCIn_WfZone_PageData'].get('zone_Name')?.touched && 'error'">
                 <div class="form-item-inner">
                   <div class="form-item-title">區域名稱</div>
                   <div class="form-item-entry">
@@ -29,9 +29,12 @@
                       formControlName="zone_Name"
                     />
                   </div>
+                  <div class="form-item-text" *ngIf="f['oCIn_WfZone_PageData'].get('zone_Name')?.errors && f['oCIn_WfZone_PageData'].get('zone_Name')?.touched">
+                    <p>{{ f['oCIn_WfZone_PageData'].get('zone_Name')?.errors | errorMessage : '區域名稱' }}</p>
+                  </div>
                 </div>
               </div>
-              <div class="form-item" type="required">
+              <div class="form-item" type="required" [attr.attr]="f['oCIn_WfZone_PageData'].get('zone_Sort')?.errors && f['oCIn_WfZone_PageData'].get('zone_Sort')?.touched && 'error'">
                 <div class="form-item-inner">
                   <div class="form-item-title">排序（升冪）</div>
                   <div class="form-item-entry">
@@ -41,11 +44,14 @@
                       formControlName="zone_Sort"
                     />
                   </div>
+                  <div class="form-item-text" *ngIf="f['oCIn_WfZone_PageData'].get('zone_Sort')?.errors && f['oCIn_WfZone_PageData'].get('zone_Sort')?.touched">
+                    <p>{{ f['oCIn_WfZone_PageData'].get('zone_Sort')?.errors | errorMessage : '排序（升冪）' }}</p>
+                  </div>
                 </div>
               </div>
             </div>
             <div class="form-row" formGroupName="oCIn_WfZone_PageData">
-              <div class="form-item" type="required">
+              <div class="form-item" type="required" [attr.attr]="f['oCIn_WfZone_PageData'].get('zone_State')?.errors && f['oCIn_WfZone_PageData'].get('zone_State')?.touched && 'error'">
                 <div class="form-item-inner">
                   <div class="form-item-title">狀態</div>
                   <div class="form-item-entry">
@@ -70,12 +76,15 @@
                       </li>
                     </ul>
                   </div>
+                  <div class="form-item-text" *ngIf="f['oCIn_WfZone_PageData'].get('zone_State')?.errors && f['oCIn_WfZone_PageData'].get('zone_State')?.touched">
+                    <p>{{ f['oCIn_WfZone_PageData'].get('zone_State')?.errors | errorMessage : '狀態' }}</p>
+                  </div>
                 </div>
               </div>
             </div>
             <hr class="seperate-line">
             <div class="form-row">
-              <div class="form-item" type="required" attr="">
+              <div class="form-item" type="required" [attr.attr]="f['lCIn_Wf_Zone_Site_Pagedata'].errors && f['lCIn_Wf_Zone_Site_Pagedata'].touched && 'error'">
                 <div class="form-item-inner">
                   <div class="form-item-title">site設定</div>
                   <div class="form-item-entry">
@@ -84,19 +93,20 @@
                       [nzMaxTagPlaceholder]="tagPlaceHolder"
                       nzMode="multiple"
                       nzPlaceHolder="Please select"
-                      [(ngModel)]="ckSiteSelectedValue"
-                      (ngModelChange)="setCkSite()"
-                      [ngModelOptions]="{standalone: true}"
+                      formControlName="lCIn_Wf_Zone_Site_Pagedata"
                     >
                       <nz-option *ngFor="let item of ckSiteOption" [nzLabel]="item" [nzValue]="item"></nz-option>
                     </nz-select>
                     <ng-template #tagPlaceHolder let-selectedList>and {{ selectedList.length }} more selected</ng-template>
                   </div>
+                  <div class="form-item-text" *ngIf="f['lCIn_Wf_Zone_Site_Pagedata'].errors && f['lCIn_Wf_Zone_Site_Pagedata'].touched">
+                    <p>{{ f["lCIn_Wf_Zone_Site_Pagedata"].errors | errorMessage : 'site設定' }}</p>
+                  </div>
                 </div>
               </div>
             </div>
             <div class="form-row">
-              <div class="form-item" type="required">
+              <div class="form-item" type="required" [attr.attr]="f['lCIn_Wf_Zone_Langue_Pagedata'].errors && f['lCIn_Wf_Zone_Langue_Pagedata'].touched && 'error'">
                 <div class="form-item-inner">
                   <div class="form-item-title">區域語系</div>
                   <div class="form-item-entry">
@@ -105,25 +115,26 @@
                       [nzMaxTagPlaceholder]="tagPlaceHolder2"
                       nzMode="multiple"
                       nzPlaceHolder="Please select"
-                      [(ngModel)]="cfkLangCodeSelectedValue"
-                      (ngModelChange)="setcfkLangCode()"
-                      [ngModelOptions]="{standalone: true}"
+                      formControlName="lCIn_Wf_Zone_Langue_Pagedata"
                     >
-                      <nz-option *ngFor="let item of cfkLangCodeOption;" [nzLabel]="item.lang_Name" [nzValue]="item.lang_Code" [nzDisabled]="item === 'EN'"></nz-option>
+                      <nz-option *ngFor="let item of cfkLangCodeOption;" [nzLabel]="item.lang_Name" [nzValue]="item.lang_Code" [nzDisabled]="item.lang_Code === 'EN'"></nz-option>
                     </nz-select>
                     <ng-template #tagPlaceHolder2 let-selectedList>and {{ selectedList.length }} more selected</ng-template>
+                  </div>
+                  <div class="form-item-text" *ngIf="f['lCIn_Wf_Zone_Langue_Pagedata'].errors && f['lCIn_Wf_Zone_Langue_Pagedata'].touched">
+                    <p>{{ f["lCIn_Wf_Zone_Langue_Pagedata"].errors | errorMessage : '區域語系' }}</p>
                   </div>
                 </div>
               </div>
             </div>
             <div class="form-row" formGroupName="oCIn_WfZone_PageData">
-              <div class="form-item" type="required">
+              <div class="form-item" type="required" [attr.attr]="f['oCIn_WfZone_PageData'].get('fk_Lang_Code')?.errors && f['oCIn_WfZone_PageData'].get('fk_Lang_Code')?.touched && 'error'">
                 <div class="form-item-inner">
                   <div class="form-item-title">預設語系</div>
                   <div class="form-item-entry">
                     <ul>
                       <ng-container *ngFor="let item of cfkLangCodeOption;let i = index">
-                        <ng-container *ngFor="let item2 of cfkLangCodeSelectedValue">
+                        <ng-container *ngFor="let item2 of f['lCIn_Wf_Zone_Langue_Pagedata'].value">
                           <li *ngIf="item.lang_Code === item2">
                             <input
                               type="radio"
@@ -136,6 +147,9 @@
                         </ng-container>
                       </ng-container>
                     </ul>
+                  </div>
+                  <div class="form-item-text" *ngIf="f['oCIn_WfZone_PageData'].get('fk_Lang_Code')?.errors && f['oCIn_WfZone_PageData'].get('fk_Lang_Code')?.touched">
+                    <p>{{ f['oCIn_WfZone_PageData'].get('fk_Lang_Code')?.errors | errorMessage : '預設語系' }}</p>
                   </div>
                 </div>
               </div>

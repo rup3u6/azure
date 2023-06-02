@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { finalize, firstValueFrom } from 'rxjs';
 
 // models
@@ -29,10 +29,7 @@ export class GZoneAddComponent implements OnInit {
   zoneFormGroup!: FormGroup;
 
   ckSiteOption: any[] = ['台北', '新北'];
-  ckSiteSelectedValue: any[] = [];
-
   cfkLangCodeOption: any[] = [];
-  cfkLangCodeSelectedValue: any[] = [];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -46,41 +43,32 @@ export class GZoneAddComponent implements OnInit {
 
     this.zoneFormGroup = this.formBuilder.group({
       oCIn_WfZone_PageData: this.formBuilder.group({
-        zone_State: [''],
-        zone_Name: [''],
-        zone_Sort: [''],
-        fk_Lang_Code: [''],
+        zone_State: ['', [Validators.required]],
+        zone_Name: ['', [Validators.required]],
+        zone_Sort: ['', [Validators.required]],
+        fk_Lang_Code: ['', [Validators.required]],
       }),
-      lCIn_Wf_Zone_Site_Pagedata: this.formBuilder.group({
-        ck_Site: ['']
-      }),
-      lCIn_Wf_Zone_Langue_Pagedata: this.formBuilder.group({
-        cfk_Lang_Code: ['']
-      }),
+      lCIn_Wf_Zone_Site_Pagedata: [[], [Validators.required]],
+      lCIn_Wf_Zone_Langue_Pagedata: [[], [Validators.required]],
     });
 
     if (this.data.mode === 'add') {
       this.setZoneFormGroupInit();
-      this.cfkLangCodeSelectedValue = ['EN'];
-      this.setcfkLangCode();
     } else {
-      this.zoneFormGroup.setControl(
-        'oCIn_WfZone_PageData',
-        this.formBuilder.group(this.data.initData.oCOut_WfZone_GetDetailPageData)
-      );
-
-      // site設定
-      this.ckSiteSelectedValue =
-        this.data.initData.lCOut_Wf_Zone_Site_GetDetailPageData.map((item: any) => item.ck_Site);
-      this.setCkSite();
+      // site 設定
+      const ckSiteSelectedValue = this.data.initData.lCOut_Wf_Zone_Site_GetDetailPageData.map((item: any) => item.ck_Site);
 
       // 區域語系
-      this.cfkLangCodeSelectedValue = this.data.initData.lCOut_Wf_Zone_Langue_GetDetail.map((item: any) => item.cfk_Lang_Code);
-      if (!this.cfkLangCodeSelectedValue.some((item) => item === 'EN')) {
-        this.cfkLangCodeSelectedValue.push('EN');
+      let cfkLangCodeSelectedValue = this.data.initData.lCOut_Wf_Zone_Langue_GetDetail.map((item: any) => item.cfk_Lang_Code);
+      if (!cfkLangCodeSelectedValue.some((item: any) => item === 'EN')) {
+        cfkLangCodeSelectedValue.push('EN');
       }
-      console.log(this.cfkLangCodeSelectedValue);
-      this.setcfkLangCode();
+
+      this.zoneFormGroup.setControl('oCIn_WfZone_PageData', this.formBuilder.group(this.data.initData.oCOut_WfZone_GetDetailPageData))
+      this.zoneFormGroup.patchValue({
+        lCIn_Wf_Zone_Site_Pagedata: ckSiteSelectedValue,
+        lCIn_Wf_Zone_Langue_Pagedata: cfkLangCodeSelectedValue,
+      });
     }
 
     this.isZoneFormGroup = true;
@@ -91,35 +79,12 @@ export class GZoneAddComponent implements OnInit {
       oCIn_WfZone_PageData: {
         zone_State: '1',
         zone_Name: '',
-        zone_Sort: 0,
+        zone_Sort: '0',
         fk_Lang_Code: 'EN',
       },
-      lCIn_Wf_Zone_Site_Pagedata: [
-        {
-          ck_Site: ""
-        }
-      ],
-      lCIn_Wf_Zone_Langue_Pagedata: [
-        {
-          cfk_Lang_Code: ""
-        }
-      ],
+      lCIn_Wf_Zone_Site_Pagedata: [],
+      lCIn_Wf_Zone_Langue_Pagedata: ['EN'],
     });
-  }
-
-  setCkSite() {
-    this.zoneFormGroup.setControl(
-      'lCIn_Wf_Zone_Site_Pagedata',
-      this.formBuilder.array(
-        this.ckSiteSelectedValue.map(r => this.formBuilder.group({ ck_Site: r }))
-      ));
-  }
-
-  setcfkLangCode() {
-    this.zoneFormGroup.setControl(
-      'lCIn_Wf_Zone_Langue_Pagedata',
-      this.formBuilder.array(
-        this.cfkLangCodeSelectedValue.map(r => this.formBuilder.group({ cfk_Lang_Code: r }))));
   }
 
   async getLanguage() {
@@ -150,6 +115,10 @@ export class GZoneAddComponent implements OnInit {
   }
 
   async submit() {
+    this.zoneFormGroup.markAllAsTouched();
+
+    if (this.zoneFormGroup.invalid) { return }
+
     this.loadingService.startLoading();
 
     try {
@@ -158,15 +127,15 @@ export class GZoneAddComponent implements OnInit {
       if (this.data.mode === 'add') {
         let body: any = {
           ...this.zoneFormGroup.value,
-          lCIn_Wf_Zone_Site_Pagedata: this.ckSiteSelectedValue.map((item) => { return { ck_Site: item } }),
-          lCIn_Wf_Zone_Langue_Pagedata: this.cfkLangCodeSelectedValue.map((item) => { return { cfk_Lang_Code: item } })
+          lCIn_Wf_Zone_Site_Pagedata: this.zoneFormGroup.value.lCIn_Wf_Zone_Site_Pagedata.map((item: any) => { return { ck_Site: item } }),
+          lCIn_Wf_Zone_Langue_Pagedata: this.zoneFormGroup.value.lCIn_Wf_Zone_Langue_Pagedata.map((item: any) => { return { cfk_Lang_Code: item } })
         };
         res = await firstValueFrom(this.gZoneService.add(body));
       } else {
         let body: any = {
           oCIn_WfZone_PageData_Update: this.zoneFormGroup.value.oCIn_WfZone_PageData,
-          lCIn_Wf_Zone_Site_Pagedata_Update: this.ckSiteSelectedValue.map((item) => { return { ck_Site: item } }),
-          lCIn_Wf_Zone_Langue_Pagedata_Update: this.cfkLangCodeSelectedValue.map((item) => { return { cfk_Lang_Code: item } })
+          lCIn_Wf_Zone_Site_Pagedata_Update: this.zoneFormGroup.value.lCIn_Wf_Zone_Site_Pagedata.map((item: any) => { return { ck_Site: item } }),
+          lCIn_Wf_Zone_Langue_Pagedata_Update: this.zoneFormGroup.value.lCIn_Wf_Zone_Langue_Pagedata.map((item: any) => { return { cfk_Lang_Code: item } })
         };
         res = await firstValueFrom(this.gZoneService.edit(body));
       }
@@ -181,5 +150,9 @@ export class GZoneAddComponent implements OnInit {
     } finally {
       this.loadingService.stopLoading();
     }
+  }
+
+  get f() {
+    return this.zoneFormGroup.controls;
   }
 }

@@ -19,7 +19,7 @@
         <div class="popup-content" *ngIf="isModuleFormGroup">
           <div class="popup-content-form" [formGroup]="moduleFormGroup">
             <div class="form-row">
-              <div class="form-item" type="required" attr="">
+              <div class="form-item" type="required" [attr.attr]="f['fk_Modclass_Id'].errors && f['fk_Modclass_Id'].touched && 'error'">
                 <div class="form-item-inner">
                   <div class="form-item-title">選單分類名稱</div>
                   <div class="form-item-entry">
@@ -32,9 +32,12 @@
                       </ng-container>
                     </select>
                   </div>
+                  <div class="form-item-text" *ngIf="f['fk_Modclass_Id'].errors && f['fk_Modclass_Id'].touched">
+                    <p>{{ f["fk_Modclass_Id"] | errorMessage : '選單分類名稱' }}</p>
+                  </div>
                 </div>
               </div>
-              <div class="form-item" type="required">
+              <div class="form-item" type="required" [attr.attr]="f['mod_Name'].errors && f['mod_Name'].touched && 'error'">
                 <div class="form-item-inner">
                   <div class="form-item-title">作業名稱</div>
                   <div class="form-item-entry">
@@ -44,11 +47,14 @@
                       formControlName="mod_Name"
                     />
                   </div>
+                  <div class="form-item-text" *ngIf="f['mod_Name'].errors && f['mod_Name'].touched">
+                    <p>{{ f["mod_Name"].errors | errorMessage : '作業名稱' }}</p>
+                  </div>
                 </div>
               </div>
             </div>
             <div class="form-row">
-              <div class="form-item" type="required">
+              <div class="form-item" type="required" [attr.attr]="f['mod_Route'].errors && f['mod_Route'].touched && 'error'">
                 <div class="form-item-inner">
                   <div class="form-item-title">作業路徑</div>
                   <div class="form-item-entry">
@@ -58,9 +64,12 @@
                       formControlName="mod_Route"
                     />
                   </div>
+                  <div class="form-item-text" *ngIf="f['mod_Route'].errors && f['mod_Route'].touched">
+                    <p>{{ f["mod_Route"].errors | errorMessage : '作業路徑' }}</p>
+                  </div>
                 </div>
               </div>
-              <div class="form-item" type="required">
+              <div class="form-item" type="required" [attr.attr]="f['mod_Order'].errors && f['mod_Order'].touched && 'error'">
                 <div class="form-item-inner">
                   <div class="form-item-title">排序（升冪）</div>
                   <div class="form-item-entry">
@@ -70,11 +79,14 @@
                       formControlName="mod_Order"
                     />
                   </div>
+                  <div class="form-item-text" *ngIf="f['mod_Order'].errors && f['mod_Order'].touched">
+                    <p>{{ f["mod_Order"].errors | errorMessage : '排序（升冪）' }}</p>
+                  </div>
                 </div>
               </div>
             </div>
             <div class="form-row">
-              <div class="form-item" type="required">
+              <div class="form-item" type="required" [attr.attr]="f['mod_State'].errors && f['mod_State'].touched && 'error'">
                 <div class="form-item-inner">
                   <div class="form-item-title">狀態</div>
                   <div class="form-item-entry">
@@ -98,6 +110,9 @@
                         <label for="rd02">停用</label>
                       </li>
                     </ul>
+                  </div>
+                  <div class="form-item-text" *ngIf="f['mod_State'].errors && f['mod_State'].touched">
+                    <p>{{ f["mod_State"].errors | errorMessage : '狀態' }}</p>
                   </div>
                 </div>
               </div>

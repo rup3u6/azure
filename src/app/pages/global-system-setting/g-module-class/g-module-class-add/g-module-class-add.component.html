@@ -19,7 +19,7 @@
         <div class="popup-content">
           <div class="popup-content-form" [formGroup]="moduleClassFormGroup">
             <div class="form-row">
-              <div class="form-item" type="required" attr="">
+              <div class="form-item" type="required" [attr.attr]="f['modClass_Name'].errors && f['modClass_Name'].touched && 'error'">
                 <div class="form-item-inner">
                   <div class="form-item-title">選單分類名稱</div>
                   <div class="form-item-entry">
@@ -29,9 +29,12 @@
                       formControlName="modClass_Name"
                     />
                   </div>
+                  <div class="form-item-text" *ngIf="f['modClass_Name'].errors && f['modClass_Name'].touched">
+                    <p>{{ f["modClass_Name"].errors | errorMessage : '選單分類名稱' }}</p>
+                  </div>
                 </div>
               </div>
-              <div class="form-item" type="required">
+              <div class="form-item" type="required" [attr.attr]="f['modClass_State'].errors && f['modClass_State'].touched && 'error'">
                 <div class="form-item-inner">
                   <div class="form-item-title">前後台別</div>
                   <div class="form-item-entry">
@@ -56,11 +59,14 @@
                       </li>
                     </ul>
                   </div>
+                  <div class="form-item-text" *ngIf="f['modClass_State'].errors && f['modClass_State'].touched">
+                    <p>{{ f["modClass_State"].errors | errorMessage : '前後台別' }}</p>
+                  </div>
                 </div>
               </div>
             </div>
             <div class="form-row">
-              <div class="form-item" type="required">
+              <div class="form-item" type="required" [attr.attr]="f['modClass_Order'].errors && f['modClass_Order'].touched && 'error'">
                 <div class="form-item-inner">
                   <div class="form-item-title">排序（升冪）</div>
                   <div class="form-item-entry">
@@ -70,9 +76,12 @@
                       formControlName="modClass_Order"
                     />
                   </div>
+                  <div class="form-item-text" *ngIf="f['modClass_Order'].errors && f['modClass_Order'].touched">
+                    <p>{{ f["modClass_Order"].errors | errorMessage : '排序（升冪）' }}</p>
+                  </div>
                 </div>
               </div>
-              <div class="form-item" type="required">
+              <div class="form-item" type="required" [attr.attr]="f['modClass_FrontBack'].errors && f['modClass_FrontBack'].touched && 'error'">
                 <div class="form-item-inner">
                   <div class="form-item-title">狀態</div>
                   <div class="form-item-entry">
@@ -96,6 +105,9 @@
                         <label for="rd04">停用</label>
                       </li>
                     </ul>
+                  </div>
+                  <div class="form-item-text" *ngIf="f['modClass_FrontBack'].errors && f['modClass_FrontBack'].touched">
+                    <p>{{ f["modClass_FrontBack"].errors | errorMessage : '狀態' }}</p>
                   </div>
                 </div>
               </div>
