@@ -64,8 +64,8 @@ export class GZoneAddComponent implements OnInit {
         cfkLangCodeSelectedValue.push('EN');
       }
 
-      this.zoneFormGroup.setControl('oCIn_WfZone_PageData', this.formBuilder.group(this.data.initData.oCOut_WfZone_GetDetailPageData))
       this.zoneFormGroup.patchValue({
+        oCIn_WfZone_PageData: { ...this.data.initData.oCOut_WfZone_GetDetailPageData },
         lCIn_Wf_Zone_Site_Pagedata: ckSiteSelectedValue,
         lCIn_Wf_Zone_Langue_Pagedata: cfkLangCodeSelectedValue,
       });
