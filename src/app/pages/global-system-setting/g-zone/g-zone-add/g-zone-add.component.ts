@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { finalize, firstValueFrom } from 'rxjs';
 
 // models
-import { CInLanguageSearch } from '../../../../core/models/baseAPI/language';
+import * as language from 'src/app/core/models/baseAPI/language';
 
 // service
 import { GZoneService } from 'src/app/core/services/baseAPI/g-zone.service';
@@ -123,7 +123,7 @@ export class GZoneAddComponent implements OnInit {
   }
 
   async getLanguage() {
-    const inLanguageSearch: CInLanguageSearch = {
+    const inLanguageSearch: language.GetRequest = {
       lang_State: '1',
       lang_Name: '',
       lang_Code: '',
@@ -135,7 +135,7 @@ export class GZoneAddComponent implements OnInit {
       const languagesearchRes = await firstValueFrom(this.gLanguageService.search(inLanguageSearch));
       if (languagesearchRes.status === '999') {
         this.languagesearchRes = languagesearchRes.data;
-        this.cfkLangCodeOption = this.languagesearchRes.map((item: any) => {
+        this.cfkLangCodeOption = this.languagesearchRes.map((item: language.GetResponses) => {
           return {
             lang_Name: item.lang_Name + '-' + item.lang_Code,
             lang_Code: item.lang_Code

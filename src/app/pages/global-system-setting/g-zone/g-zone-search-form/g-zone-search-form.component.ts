@@ -1,7 +1,8 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { finalize, firstValueFrom } from 'rxjs';
-import { CInZoneSearch } from 'src/app/core/models/baseAPI/zone';
+
+// service
 import { GZoneService } from 'src/app/core/services/baseAPI/g-zone.service';
 import { LoadingService } from 'src/app/core/services/loading.service';
 
@@ -18,7 +19,7 @@ export class GZoneSearchFormComponent implements OnInit {
     private formBuilder: FormBuilder,
     public gZoneService: GZoneService,
     private loadingService: LoadingService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.searchFormGroup = this.formBuilder.group({

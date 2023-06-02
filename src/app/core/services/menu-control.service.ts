@@ -55,7 +55,7 @@ export class MenuControlService {
         },
         {
           mod_Name: 'Location維護',
-          mod_Route: '',
+          mod_Route: '/systemsetting/location',
         },
         {
           mod_Name: '操作歷程檢視',

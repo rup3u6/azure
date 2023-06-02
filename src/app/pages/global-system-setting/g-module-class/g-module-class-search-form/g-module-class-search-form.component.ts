@@ -1,7 +1,8 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { finalize, firstValueFrom } from 'rxjs';
-import { CInModuleClassSearch } from 'src/app/core/models/baseAPI/module-class';
+
+// service
 import { GModuleClassService } from 'src/app/core/services/baseAPI/g-module-class.service';
 import { LoadingService } from 'src/app/core/services/loading.service';
 

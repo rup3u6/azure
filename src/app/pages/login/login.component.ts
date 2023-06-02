@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { finalize, firstValueFrom } from 'rxjs';
 import { CInLoginPageData } from 'src/app/core/models/authAPI/login';
+
+// service
 import { LoadingService } from 'src/app/core/services/loading.service';
 import { LoginService } from 'src/app/core/services/authAPI/login.service';
 

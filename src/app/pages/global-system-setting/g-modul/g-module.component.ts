@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { firstValueFrom } from 'rxjs';
+
+// service
 import { GModuleService } from 'src/app/core/services/baseAPI/g-module.service';
 import { LoadingService } from 'src/app/core/services/loading.service';
 

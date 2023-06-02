@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { firstValueFrom } from 'rxjs';
-import { GLanguageService } from 'src/app/core/services/baseAPI/g-language.service';
-import { LoadingService } from 'src/app/core/services/loading.service';
+
+// service
+import { GLanguageService } from '../../../core/services/baseAPI/g-language.service';
+import { LoadingService } from '../../../core/services/loading.service';
 
 @Component({
   selector: 'app-g-language',

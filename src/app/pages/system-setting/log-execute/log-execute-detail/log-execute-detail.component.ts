@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { finalize, firstValueFrom } from 'rxjs';
+
+// service
 import { LocationService } from 'src/app/core/services/baseAPI/location.service';
 import { LoadingService } from 'src/app/core/services/loading.service';
 

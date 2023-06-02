@@ -3,7 +3,10 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Tabulator } from 'tabulator-tables';
-import { CInZoneSearch } from '../../models/baseAPI/zone';
+
+// models
+import * as base from '../../models/baseAPI/base';
+import * as zone from '../../models/baseAPI/zone';
 
 @Injectable({
   providedIn: 'root',
@@ -32,38 +35,32 @@ export class GZoneService {
     return this.searchFormValue.asObservable();
   }
 
-  search(body?: CInZoneSearch) {
+  search(body?: zone.GetRequest) {
     if (!body) {
       let { zone_State } = this.searchFormValue.value;
       const status = ['0', '1', null];
       body = {
         ...this.searchFormValue.value,
         zone_State: status[zone_State],
-      } as CInZoneSearch;
+      } as zone.GetRequest;
     }
 
-    return this.http.post<any>(`${this.apiUrl}/Base/WfZone/Get`, body);
+    return this.http.post<base.ResponsesBase<zone.GetResponses>>(`${this.apiUrl}/Base/WfZone/Get`, body);
   }
 
-  add(body: any) {
-    return this.http.post<any>(`${this.apiUrl}/Base/WfZone/Create`, body);
+  add(body: zone.CreateRequest) {
+    return this.http.post<base.ResponsesBase<zone.CreateResponses>>(`${this.apiUrl}/Base/WfZone/Create`, body);
   }
 
-  edit(body: any) {
-    return this.http.post<any>(`${this.apiUrl}/Base/WfZone/Update`, body);
+  edit(body: zone.UpdateRequest) {
+    return this.http.post<base.ResponsesBase<zone.UpdateResponses>>(`${this.apiUrl}/Base/WfZone/Update`, body);
   }
 
-  getDetail(body: any) {
-    return this.http.post<any>(
-      `${this.apiUrl}/Base/WfZone/GetDetail`,
-      body
-    );
+  getDetail(body: zone.GetDetailRequest) {
+    return this.http.post<base.ResponsesBase<zone.GetDetailResponses>>(`${this.apiUrl}/Base/WfZone/GetDetail`, body);
   }
 
-  convertState(body: any) {
-    return this.http.post<any>(
-      `${this.apiUrl}/Base/WfZone/ConvertState`,
-      body
-    );
+  convertState(body: zone.ConvertStateRequest) {
+    return this.http.post<base.ResponsesBase<string>>(`${this.apiUrl}/Base/WfZone/ConvertState`, body);
   }
 }

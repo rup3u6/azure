@@ -3,7 +3,10 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Tabulator } from 'tabulator-tables';
-import { CInLanguageSearch } from '../../models/baseAPI/language';
+
+// models
+import * as base from '../../models/baseAPI/base';
+import * as language from '../../models/baseAPI/language';
 
 @Injectable({
   providedIn: 'root'
@@ -32,38 +35,32 @@ export class GLanguageService {
     return this.searchFormValue.asObservable();
   }
 
-  search(body?: CInLanguageSearch) {
+  search(body?: language.GetRequest) {
     if (!body) {
       let { lang_State } = this.searchFormValue.value;
       const status = ['0', '1', null];
       body = {
         ...this.searchFormValue.value,
-        lang_State: status[lang_State],
-      } as CInLanguageSearch;
+        lang_State: status[+lang_State],
+      } as language.GetRequest;
     }
 
-    return this.http.post<any>(`${this.apiUrl}/Base/WfLanguage/Get`, body);
+    return this.http.post<base.ResponsesBase<language.GetResponses[]>>(`${this.apiUrl}/Base/WfLanguage/Get`, body);
   }
 
-  add(body: any) {
-    return this.http.post<any>(`${this.apiUrl}/Base/WfLanguage/Create`, body);
+  add(body: language.CreateRequest) {
+    return this.http.post<base.ResponsesBase<language.CreateResponses>>(`${this.apiUrl}/Base/WfLanguage/Create`, body);
   }
 
-  edit(body: any) {
-    return this.http.post<any>(`${this.apiUrl}/Base/WfLanguage/Update`, body);
+  edit(body: language.UpdateRequest) {
+    return this.http.post<base.ResponsesBase<language.UpdateResponses>>(`${this.apiUrl}/Base/WfLanguage/Update`, body);
   }
 
-  getDetail(body: any) {
-    return this.http.post<any>(
-      `${this.apiUrl}/Base/WfLanguage/GetDetail`,
-      body
-    );
+  getDetail(body: language.GetDetailRequest) {
+    return this.http.post<base.ResponsesBase<language.GetDetailResponses>>(`${this.apiUrl}/Base/WfLanguage/GetDetail`, body);
   }
 
-  convertState(body: any) {
-    return this.http.post<any>(
-      `${this.apiUrl}/Base/WfLanguage/ConvertState`,
-      body
-    );
+  convertState(body: language.ConvertStateRequest) {
+    return this.http.post<base.ResponsesBase<string>>(`${this.apiUrl}/Base/WfLanguage/ConvertState`, body);
   }
 }

@@ -3,7 +3,10 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Tabulator } from 'tabulator-tables';
-import { CInModuleClassSearch } from '../../models/baseAPI/module-class';
+
+// models
+import * as base from '../../models/baseAPI/base';
+import * as moduleClass from '../../models/baseAPI/module-class';
 
 @Injectable({
   providedIn: 'root'
@@ -32,38 +35,32 @@ export class GModuleClassService {
     return this.searchFormValue.asObservable();
   }
 
-  search(body?: CInModuleClassSearch) {
+  search(body?: moduleClass.GetRequest) {
     if (!body) {
       let { modClass_State } = this.searchFormValue.value;
       const status = ['0', '1', null];
       body = {
         ...this.searchFormValue.value,
         modClass_State: status[modClass_State],
-      } as CInModuleClassSearch;
+      } as moduleClass.GetRequest;
     }
 
-    return this.http.post<any>(`${this.apiUrl}/Auth/SysModuleClass/Get`, body);
+    return this.http.post<base.ResponsesBase<moduleClass.GetResponses>>(`${this.apiUrl}/Auth/SysModuleClass/Get`, body);
   }
 
-  add(body: any) {
-    return this.http.post<any>(`${this.apiUrl}/Auth/SysModuleClass/Create`, body);
+  add(body: moduleClass.CreateRequest) {
+    return this.http.post<base.ResponsesBase<moduleClass.CreateResponses>>(`${this.apiUrl}/Base/SysModuleClass/Create`, body);
   }
 
-  edit(body: any) {
-    return this.http.post<any>(`${this.apiUrl}/Auth/SysModuleClass/Update`, body);
+  edit(body: moduleClass.UpdateRequest) {
+    return this.http.post<base.ResponsesBase<moduleClass.UpdateResponses>>(`${this.apiUrl}/Base/SysModuleClass/Update`, body);
   }
 
-  getDetail(body: any) {
-    return this.http.post<any>(
-      `${this.apiUrl}/Auth/SysModuleClass/GetDetail`,
-      body
-    );
+  getDetail(body: moduleClass.GetDetailRequest) {
+    return this.http.post<base.ResponsesBase<moduleClass.GetDetailResponses>>(`${this.apiUrl}/Base/SysModuleClass/GetDetail`, body);
   }
 
-  convertState(body: any) {
-    return this.http.post<any>(
-      `${this.apiUrl}/Auth/SysModuleClass/ConvertState`,
-      body
-    );
+  convertState(body: moduleClass.ConvertStateRequest) {
+    return this.http.post<base.ResponsesBase<string>>(`${this.apiUrl}/Base/SysModuleClass/ConvertState`, body);
   }
 }

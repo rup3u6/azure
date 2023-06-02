@@ -3,8 +3,10 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Tabulator } from 'tabulator-tables';
-import { CInLogExecuteSearch } from 'src/app/core/models/baseAPI/log-execute';
 
+// models
+import * as base from '../../models/baseAPI/base';
+import * as logExecute from '../../models/baseAPI/log-execute';
 
 @Injectable({
   providedIn: 'root',
@@ -33,22 +35,19 @@ export class LogExecuteService {
     return this.searchFormValue.asObservable();
   }
 
-  search(body?: CInLogExecuteSearch) {
+  search(body?: logExecute.GetRequest) {
     if (!body) {
       let { logExec_CreateCode } = this.searchFormValue.value;
       body = {
         ...this.searchFormValue.value,
         logExec_CreateCode: logExec_CreateCode === '0' ? null : logExec_CreateCode,
-      } as CInLogExecuteSearch;
+      } as logExecute.GetRequest;
     }
 
-    return this.http.post<any>(`${this.apiUrl}/Base/SysLogExecute/Get`, body);
+    return this.http.post<base.ResponsesBase<logExecute.GetResponses>>(`${this.apiUrl}/Base/SysLogExecute/Get`, body);
   }
 
-  getDetail(body: any) {
-    return this.http.post<any>(
-      `${this.apiUrl}/Base/SysLogExecute/GetDetail`,
-      body
-    );
+  getDetail(body: logExecute.GetDetailRequest) {
+    return this.http.post<base.ResponsesBase<logExecute.GetDetailResponses>>(`${this.apiUrl}/Base/SysLogExecute/GetDetail`, body);
   }
 }

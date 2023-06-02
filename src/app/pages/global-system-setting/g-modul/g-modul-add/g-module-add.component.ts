@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { finalize, firstValueFrom } from 'rxjs';
 
 // models
-import { CInModuleClassSearch } from '../../../../core/models/baseAPI/module-class';
+import * as moduleClass from 'src/app/core/models/baseAPI/module-class';
 
 // service
 import { GModuleService } from 'src/app/core/services/baseAPI/g-module.service';
@@ -66,7 +66,7 @@ export class GModuleAddComponent implements OnInit {
   }
 
   async getModuleClass() {
-    const inModuleClassSearch: CInModuleClassSearch = {
+    const inModuleClassSearch: moduleClass.GetRequest = {
       modClass_Name: '',
       modClass_State: '1',
     };

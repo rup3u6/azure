@@ -3,7 +3,10 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Tabulator } from 'tabulator-tables';
-import { CInModuleClassSearch } from '../../models/baseAPI/module-class';
+
+// models
+import * as base from '../../models/baseAPI/base';
+import * as module from '../../models/baseAPI/module';
 
 @Injectable({
   providedIn: 'root'
@@ -32,38 +35,32 @@ export class GModuleService {
     return this.searchFormValue.asObservable();
   }
 
-  search(body?: CInModuleClassSearch) {
+  search(body?: module.GetRequest) {
     if (!body) {
       let { mod_State } = this.searchFormValue.value;
       const status = ['0', '1', null];
       body = {
         ...this.searchFormValue.value,
         mod_State: status[mod_State],
-      } as CInModuleClassSearch;
+      } as module.GetRequest;
     }
 
-    return this.http.post<any>(`${this.apiUrl}/Auth/SysModule/Get`, body);
+    return this.http.post<base.ResponsesBase<module.GetResponses>>(`${this.apiUrl}/Auth/SysModule/Get`, body);
   }
 
-  add(body: any) {
-    return this.http.post<any>(`${this.apiUrl}/Auth/SysModule/Create`, body);
+  add(body: module.CreateRequest) {
+    return this.http.post<base.ResponsesBase<module.CreateResponses>>(`${this.apiUrl}/Base/SysModule/Create`, body);
   }
 
-  edit(body: any) {
-    return this.http.post<any>(`${this.apiUrl}/Auth/SysModule/Update`, body);
+  edit(body: module.UpdateRequest) {
+    return this.http.post<base.ResponsesBase<module.UpdateResponses>>(`${this.apiUrl}/Base/SysModule/Update`, body);
   }
 
-  getDetail(body: any) {
-    return this.http.post<any>(
-      `${this.apiUrl}/Auth/SysModule/GetDetail`,
-      body
-    );
+  getDetail(body: module.GetDetailRequest) {
+    return this.http.post<base.ResponsesBase<module.GetDetailResponses>>(`${this.apiUrl}/Base/SysModule/GetDetail`, body);
   }
 
-  convertState(body: any) {
-    return this.http.post<any>(
-      `${this.apiUrl}/Auth/SysModule/ConvertState`,
-      body
-    );
+  convertState(body: module.ConvertStateRequest) {
+    return this.http.post<base.ResponsesBase<string>>(`${this.apiUrl}/Base/SysModule/ConvertState`, body);
   }
 }

@@ -1,7 +1,10 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { GLanguageService } from 'src/app/core/services/baseAPI/g-language.service';
 import { Tabulator } from 'tabulator-tables';
 import { DatePipe } from '@angular/common';
+
+// service
+import { GLanguageService } from 'src/app/core/services/baseAPI/g-language.service';
+import { LoadingService } from 'src/app/core/services/loading.service';
 
 @Component({
   selector: 'div[g-language-table]',
