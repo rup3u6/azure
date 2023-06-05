@@ -1,17 +1,14 @@
-import { APP_INITIALIZER, Injector, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
 import { TokenAuthHttpInterceptorService } from './interceptor/token-auth-http-interceptor.service';
 import { ResponseHttpInterceptorService } from './interceptor/response-http-interceptor.service';
 import {
   TranslateModule,
   TranslateLoader,
-  TranslateService,
   TranslatePipe,
+  TranslateService,
 } from '@ngx-translate/core';
-import {
-  ApplicationInitializerFactory,
-  HttpLoaderFactory,
-} from './translate/translation.config';
+import { HttpLoaderFactory } from './translate/translation.config';
 import { ResponseErrorHttpInterceptorService } from './interceptor/response-error-http-interceptor.service';
 import { LoadingComponent } from './components/loading/loading.component';
 
@@ -19,22 +16,16 @@ import { LoadingComponent } from './components/loading/loading.component';
   declarations: [LoadingComponent],
   imports: [
     TranslateModule.forRoot({
-      defaultLanguage: 'zh',
       loader: {
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,
         deps: [HttpClient],
       },
+      extend: true,
     }),
   ],
   exports: [LoadingComponent],
   providers: [
-    {
-      provide: APP_INITIALIZER,
-      useFactory: ApplicationInitializerFactory,
-      deps: [TranslateService, Injector],
-      multi: true,
-    },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenAuthHttpInterceptorService,
@@ -53,4 +44,9 @@ import { LoadingComponent } from './components/loading/loading.component';
     TranslatePipe,
   ],
 })
-export class CoreModule { }
+export class CoreModule {
+  constructor(protected translateService: TranslateService) {
+    const currentLang = 'zh';
+    translateService.use(currentLang);
+  }
+}

@@ -52,8 +52,15 @@ export class LoginComponent implements OnInit {
   }
 
   async getValidGrphics() {
-    let res = await firstValueFrom(this.loginService.getValidGrphics());
-    this.imgBase64 = await this.blobToBase64(res);
+    this.loadingService.startLoading();
+    try {
+      let res = await firstValueFrom(this.loginService.getValidGrphics());
+      this.imgBase64 = await this.blobToBase64(res);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      this.loadingService.stopLoading();
+    }
   }
 
   blobToBase64(blob: Blob) {
