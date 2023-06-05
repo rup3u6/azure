@@ -40,6 +40,8 @@ export class LogExecuteSearchFormComponent implements OnInit {
       next: (value) => this.logExecuteService.setSearchFormValue(value),
     });
     this.setSearchFormGroupInit();
+    this.startSearchDate = new Date();
+    this.startSearchDateChange(this.startSearchDate);
     this.search();
   }
 
