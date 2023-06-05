@@ -60,7 +60,7 @@ export class GModuleComponent {
       .getTabulatorTable()
       .getSelectedData();
     if (selectedData.length === 0) {
-      this.messageService.showNotification('info', '請選擇資料');
+      this.messageService.showNotification('warning', '請選擇資料');
       return;
     }
     this.popup.data = {};
