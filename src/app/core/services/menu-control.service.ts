@@ -23,7 +23,7 @@ export class MenuControlService {
           mod_Route: '/globalsetting/zone',
         },
         {
-          mod_Name: '全域帳號管理',
+          mod_Name: '區域管理者帳號維護',
           mod_Route: '',
         },
         {
@@ -42,15 +42,15 @@ export class MenuControlService {
       mod_Name: '管理者維護',
       children: [
         {
-          mod_Name: '角色',
+          mod_Name: '角色維護',
           mod_Route: '',
         },
         {
-          mod_Name: '員工資料',
+          mod_Name: '使用者資料查詢',
           mod_Route: '',
         },
         {
-          mod_Name: '秘書',
+          mod_Name: '秘書管理',
           mod_Route: '',
         },
         {
