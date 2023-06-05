@@ -31,12 +31,20 @@ export class LogExecuteTableComponent {
       formatter: (cell: any) => {
         const rowData = cell.getData();
         let aTag = document.createElement('a');
-        aTag.innerText = rowData.logExec_Module + '-' + rowData.logExec_ChangeItem;
+
+        let text = '';
+
+        if (rowData.logExec_Module) { text = rowData.logExec_Module; }
+        if (rowData.logExec_ChangeItem) { text += '/' + rowData.logExec_ChangeItem; }
+
+        aTag.innerText = text;
+
         aTag.addEventListener('click', (event) => {
           event.stopPropagation();
           const rowData = cell.getData();
           this.detail.emit(rowData);
         });
+
         return aTag;
       },
     },
@@ -55,7 +63,14 @@ export class LogExecuteTableComponent {
       headerHozAlign: 'center',
       formatter: (cell: any) => {
         const rowData = cell.getData();
-        return rowData.info_Jobnumber + '/' + rowData.logExec_CreateCode;
+
+        let text = '';
+
+        if (rowData.info_Jobnumber) { text = rowData.info_Jobnumber; }
+        if (rowData.logExec_CreateCode) { text += '/' + rowData.logExec_CreateCode; }
+        if (rowData.info_Ename) { text += '/' + rowData.info_Ename; }
+
+        return text;
       },
     },
     {

@@ -7,7 +7,7 @@
         <div class="popup-header">
           <div class="popup-header-inner">
             <div class="popup-header-unit header-text">
-              {{ data.mode === "add" ? "新增" : "編輯" }}區域維護
+              {{ data.mode === "add" ? "新增" : "編輯" }}Location維護
             </div>
             <div class="popup-header-unit header-btn">
               <a href="javascript:void(0)" (click)="close.emit()"
@@ -19,48 +19,103 @@
         <div class="popup-content">
           <div class="popup-content-form" [formGroup]="locationFormGroup">
             <div class="form-row">
-              <div class="form-item" type="required" attr="">
+              <div class="form-item" type="required" [attr.attr]="f['lCIn_Wf_Zone_Site_Pagedata'].errors && f['lCIn_Wf_Zone_Site_Pagedata'].touched && 'error'">
                 <div class="form-item-inner">
-                  <div class="form-item-title">區域名稱</div>
+                  <div class="form-item-title">Site</div>
                   <div class="form-item-entry">
                     <input
                       type="text"
-                      placeholder="請輸入..."
+                      placeholder="請輸入Site"
                       formControlName="location_Name"
                     />
                   </div>
-                  <!-- <div class="form-item-text">
-                    <p>欄位填寫錯誤！（警示用）</p>
-                  </div> -->
+                  <div class="form-item-text" *ngIf="f['lCIn_Wf_Zone_Site_Pagedata'].errors && f['lCIn_Wf_Zone_Site_Pagedata'].touched">
+                    <p>{{ f["lCIn_Wf_Zone_Site_Pagedata"].errors | errorMessage : 'Site' }}</p>
+                  </div>
                 </div>
               </div>
-              <div class="form-item" type="required">
+              <div class="form-item" type="required" [attr.attr]="f['lCIn_Wf_Zone_Site_Pagedata'].errors && f['lCIn_Wf_Zone_Site_Pagedata'].touched && 'error'">
                 <div class="form-item-inner">
-                  <div class="form-item-title">區域代號</div>
+                  <div class="form-item-title">Location</div>
                   <div class="form-item-entry">
                     <input
                       type="text"
-                      placeholder="請輸入..."
+                      placeholder="請輸入Location"
                       formControlName="location_Code"
                     />
+                  </div>
+                  <div class="form-item-text" *ngIf="f['lCIn_Wf_Zone_Site_Pagedata'].errors && f['lCIn_Wf_Zone_Site_Pagedata'].touched">
+                    <p>{{ f["lCIn_Wf_Zone_Site_Pagedata"].errors | errorMessage : 'Location' }}</p>
                   </div>
                 </div>
               </div>
             </div>
             <div class="form-row">
-              <div class="form-item" type="required">
+              <div class="form-item" type="required" attr="">
                 <div class="form-item-inner">
-                  <div class="form-item-title">排序（升冪）</div>
+                  <div class="form-item-title">Local Name</div>
                   <div class="form-item-entry">
                     <input
                       type="text"
-                      placeholder="請輸入..."
-                      formControlName="location_Sort"
+                      placeholder="請輸入Local Name"
+                      formControlName="location_Name"
                     />
+                  </div>
+                  <div class="form-item-text" *ngIf="f['lCIn_Wf_Zone_Site_Pagedata'].errors && f['lCIn_Wf_Zone_Site_Pagedata'].touched">
+                    <p>{{ f["lCIn_Wf_Zone_Site_Pagedata"].errors | errorMessage : 'Local Name' }}</p>
                   </div>
                 </div>
               </div>
-              <div class="form-item" type="required">
+              <div class="form-item" type="required" [attr.attr]="f['lCIn_Wf_Zone_Site_Pagedata'].errors && f['lCIn_Wf_Zone_Site_Pagedata'].touched && 'error'">
+                <div class="form-item-inner">
+                  <div class="form-item-title">English Name</div>
+                  <div class="form-item-entry">
+                    <input
+                      type="text"
+                      placeholder="請輸入English Name"
+                      formControlName="location_Code"
+                    />
+                  </div>
+                  <div class="form-item-text" *ngIf="f['lCIn_Wf_Zone_Site_Pagedata'].errors && f['lCIn_Wf_Zone_Site_Pagedata'].touched">
+                    <p>{{ f["lCIn_Wf_Zone_Site_Pagedata"].errors | errorMessage : 'English Name' }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-item" type="required" attr="">
+                <div class="form-item-inner">
+                  <div class="form-item-title">分區</div>
+                  <div class="form-item-entry">
+                    <input
+                      type="text"
+                      placeholder="請輸入分區"
+                      formControlName="location_Name"
+                    />
+                  </div>
+                  <div class="form-item-text" *ngIf="f['lCIn_Wf_Zone_Site_Pagedata'].errors && f['lCIn_Wf_Zone_Site_Pagedata'].touched">
+                    <p>{{ f["lCIn_Wf_Zone_Site_Pagedata"].errors | errorMessage : '分區' }}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="form-item" type="required" [attr.attr]="f['lCIn_Wf_Zone_Site_Pagedata'].errors && f['lCIn_Wf_Zone_Site_Pagedata'].touched && 'error'">
+                <div class="form-item-inner">
+                  <div class="form-item-title">公司</div>
+                  <div class="form-item-entry">
+                    <input
+                      type="text"
+                      placeholder="請輸入公司"
+                      formControlName="location_Code"
+                    />
+                  </div>
+                  <div class="form-item-text" *ngIf="f['lCIn_Wf_Zone_Site_Pagedata'].errors && f['lCIn_Wf_Zone_Site_Pagedata'].touched">
+                    <p>{{ f["lCIn_Wf_Zone_Site_Pagedata"].errors | errorMessage : '公司' }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-item" type="required" [attr.attr]="f['lCIn_Wf_Zone_Site_Pagedata'].errors && f['lCIn_Wf_Zone_Site_Pagedata'].touched && 'error'">
                 <div class="form-item-inner">
                   <div class="form-item-title">狀態</div>
                   <div class="form-item-entry">
@@ -84,6 +139,9 @@
                         <label for="rd02">停用</label>
                       </li>
                     </ul>
+                  </div>
+                  <div class="form-item-text" *ngIf="f['lCIn_Wf_Zone_Site_Pagedata'].errors && f['lCIn_Wf_Zone_Site_Pagedata'].touched">
+                    <p>{{ f["lCIn_Wf_Zone_Site_Pagedata"].errors | errorMessage : '狀態' }}</p>
                   </div>
                 </div>
               </div>

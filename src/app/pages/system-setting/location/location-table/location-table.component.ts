@@ -1,7 +1,9 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { LocationService } from 'src/app/core/services/baseAPI/location.service';
 import { Tabulator } from 'tabulator-tables';
 import { DatePipe } from '@angular/common';
+
+// service
+import { LocationService } from 'src/app/core/services/baseAPI/location.service';
 
 @Component({
   selector: 'div[sys-location-table]',
@@ -9,9 +11,11 @@ import { DatePipe } from '@angular/common';
   styleUrls: ['./location-table.component.scss'],
 })
 export class LocationTableComponent {
+
   @Output() add = new EventEmitter<any>();
   @Output() edit = new EventEmitter<any>();
   @Output() deactivate = new EventEmitter<any>();
+
   columnNames: Array<any> = [
     {
       formatter: 'rowSelection',
@@ -23,35 +27,66 @@ export class LocationTableComponent {
       headerHozAlign: 'center',
     },
     {
-      title: '區域名稱',
+      title: 'Site',
       field: 'location_Name',
       vertAlign: 'middle',
       hozAlign: 'center',
       headerHozAlign: 'center',
     },
     {
-      title: '區域代號',
-      field: 'location_Code',
-      vertAlign: 'middle',
-      hozAlign: 'center',
-      headerHozAlign: 'center',
-    },
-    {
-      title: '狀態',
+      title: 'Location',
       field: 'location_State',
       vertAlign: 'middle',
       hozAlign: 'center',
       headerHozAlign: 'center',
     },
     {
-      title: '排序',
+      title: 'Local Name',
       field: 'location_Sort',
       vertAlign: 'middle',
       hozAlign: 'center',
       headerHozAlign: 'center',
     },
     {
-      title: '異動日期',
+      title: 'English Name',
+      field: 'location_Sort',
+      vertAlign: 'middle',
+      hozAlign: 'center',
+      headerHozAlign: 'center',
+    },
+    {
+      title: 'Area',
+      field: 'location_Sort',
+      vertAlign: 'middle',
+      hozAlign: 'center',
+      headerHozAlign: 'center',
+    },
+    {
+      title: 'Company',
+      field: 'location_Sort',
+      vertAlign: 'middle',
+      hozAlign: 'center',
+      headerHozAlign: 'center',
+    },
+    {
+      title: '狀態',
+      field: 'location_Sort',
+      vertAlign: 'middle',
+      hozAlign: 'center',
+      headerHozAlign: 'center',
+      formatter: (cell: any) => {
+        return cell.getValue() === '1' ? '啟用' : '停用';
+      },
+    },
+    {
+      title: '異動者',
+      field: 'location_Sort',
+      vertAlign: 'middle',
+      hozAlign: 'center',
+      headerHozAlign: 'center',
+    },
+    {
+      title: '異動時間',
       field: 'location_EditDate',
       vertAlign: 'middle',
       hozAlign: 'center',
@@ -61,22 +96,8 @@ export class LocationTableComponent {
 
         const date = new Date(timeStamp * 1000);
 
-        return this.datePipe.transform(date, "yyyy/MM/dd");
+        return this.datePipe.transform(date, "yyyy/MM/dd HH:mm");
       },
-    },
-    {
-      title: '異動IP',
-      field: 'location_EditIp',
-      vertAlign: 'middle',
-      hozAlign: 'center',
-      headerHozAlign: 'center',
-    },
-    {
-      title: '異動者',
-      field: 'location_EditCode',
-      vertAlign: 'middle',
-      hozAlign: 'center',
-      headerHozAlign: 'center',
     },
     {
       title: '功能',
@@ -99,6 +120,7 @@ export class LocationTableComponent {
       },
     },
   ];
+
   constructor(
     private datePipe: DatePipe,
     public locationService: LocationService

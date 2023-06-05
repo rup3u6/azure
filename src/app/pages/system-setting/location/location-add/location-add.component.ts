@@ -1,8 +1,11 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { finalize, firstValueFrom } from 'rxjs';
+
+// service
 import { LocationService } from 'src/app/core/services/baseAPI/location.service';
 import { LoadingService } from 'src/app/core/services/loading.service';
+
 
 @Component({
   selector: 'sys-location-add',
@@ -10,6 +13,7 @@ import { LoadingService } from 'src/app/core/services/loading.service';
   styleUrls: ['./location-add.component.scss'],
 })
 export class LocationAddComponent implements OnInit {
+
   @Output() close = new EventEmitter<any>();
   @Input() data: any = {
     mode: '',
@@ -17,18 +21,19 @@ export class LocationAddComponent implements OnInit {
   };
 
   locationFormGroup!: FormGroup;
+
   constructor(
     private formBuilder: FormBuilder,
     public locationService: LocationService,
     private loadingService: LoadingService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.locationFormGroup = this.formBuilder.group({
-      location_Name: [''],
-      location_Code: [''],
-      location_Sort: [''],
-      location_State: [''],
+      location_Name: ['', [Validators.required]],
+      location_Code: ['', [Validators.required]],
+      location_Sort: ['', [Validators.required]],
+      location_State: ['', [Validators.required]],
     });
     if (this.data.mode === 'add') {
       this.setLocationFormGroupInit();
@@ -40,22 +45,30 @@ export class LocationAddComponent implements OnInit {
       });
     }
   }
+
   setLocationFormGroupInit() {
     this.locationFormGroup.patchValue({
       location_Name: '',
       location_Code: '',
+      location_Sort: '0',
       location_State: '1',
     });
   }
 
   async submit() {
+    this.locationFormGroup.markAllAsTouched();
+
+    if (this.locationFormGroup.invalid) { return }
+
     let { location_State } = this.locationFormGroup.value;
+
     let body: any = {
       ...this.locationFormGroup.value,
       location_State: location_State === '1',
     };
 
     this.loadingService.startLoading();
+
     try {
       let res;
       if (this.data.mode === 'add') {
@@ -75,5 +88,9 @@ export class LocationAddComponent implements OnInit {
     } finally {
       this.loadingService.stopLoading();
     }
+  }
+
+  get f() {
+    return this.locationFormGroup.controls;
   }
 }

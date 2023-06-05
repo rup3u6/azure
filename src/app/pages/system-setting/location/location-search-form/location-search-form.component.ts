@@ -1,7 +1,8 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { finalize, firstValueFrom } from 'rxjs';
-import { CInLocationSearch } from 'src/app/core/models/baseAPI/location';
+
+// service
 import { LocationService } from 'src/app/core/services/baseAPI/location.service';
 import { LoadingService } from 'src/app/core/services/loading.service';
 
@@ -11,7 +12,9 @@ import { LoadingService } from 'src/app/core/services/loading.service';
   styleUrls: ['./location-search-form.component.scss'],
 })
 export class LocationSearchFormComponent implements OnInit {
+
   searchFormGroup!: FormGroup;
+
   constructor(
     private formBuilder: FormBuilder,
     public locationService: LocationService,
@@ -29,6 +32,7 @@ export class LocationSearchFormComponent implements OnInit {
     });
     this.setSearchFormGroupInit();
   }
+
   setSearchFormGroupInit() {
     this.searchFormGroup.patchValue({
       location_Name: '',

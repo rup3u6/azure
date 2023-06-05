@@ -3,16 +3,21 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Tabulator } from 'tabulator-tables';
-import { CInLocationSearch } from '../../models/baseAPI/location';
+
+// models
+import * as base from '../../models/baseAPI/base';
+import * as location from '../../models/baseAPI/location';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LocationService {
-  constructor(private http: HttpClient) { }
+
   private apiUrl = environment.apiUrl;
   private tabulatorTable!: Tabulator;
   private searchFormValue = new BehaviorSubject<any>({});
+
+  constructor(private http: HttpClient) { }
 
   tableBuilded(table: Tabulator) {
     this.tabulatorTable = table;
@@ -30,38 +35,32 @@ export class LocationService {
     return this.searchFormValue.asObservable();
   }
 
-  search(body?: CInLocationSearch) {
+  search(body?: location.GetRequest) {
     if (!body) {
       let { location_State } = this.searchFormValue.value;
       const status = [false, true, null];
       body = {
         ...this.searchFormValue.value,
         location_State: status[location_State],
-      } as CInLocationSearch;
+      } as location.GetRequest;
     }
 
-    return this.http.post<any>(`${this.apiUrl}/Base/WfLocation/Get`, body);
+    return this.http.post<base.ResponsesBase<location.GetResponses>>(`${this.apiUrl}/Base/WfLocation/Get`, body);
   }
 
-  add(body: any) {
-    return this.http.post<any>(`${this.apiUrl}/Base/WfLocation/Create`, body);
+  add(body: location.CreateRequest) {
+    return this.http.post<base.ResponsesBase<location.CreateResponses>>(`${this.apiUrl}/Base/WfLocation/Create`, body);
   }
 
-  edit(body: any) {
-    return this.http.post<any>(`${this.apiUrl}/Base/WfLocation/Update`, body);
+  edit(body: location.UpdateRequest) {
+    return this.http.post<base.ResponsesBase<location.UpdateResponses>>(`${this.apiUrl}/Base/WfLocation/Update`, body);
   }
 
-  getDetail(body: any) {
-    return this.http.post<any>(
-      `${this.apiUrl}/Base/WfLocation/GetDetail`,
-      body
-    );
+  getDetail(body: location.GetDetailRequest) {
+    return this.http.post<base.ResponsesBase<location.GetDetailResponses>>(`${this.apiUrl}/Base/WfLocation/GetDetail`, body);
   }
 
-  convertState(body: any) {
-    return this.http.post<any>(
-      `${this.apiUrl}/Base/WfLocation/ConvertState`,
-      body
-    );
+  convertState(body: location.ConvertStateRequest) {
+    return this.http.post<base.ResponsesBase<location.ConvertStateResponses>>(`${this.apiUrl}/Base/WfLocation/ConvertState`, body);
   }
 }

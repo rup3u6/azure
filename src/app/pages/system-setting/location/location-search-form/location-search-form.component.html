@@ -1,28 +1,27 @@
 <div class="content-query-field" [formGroup]="searchFormGroup">
   <div class="content-query-unit query-field">
-    <div class="field-title">區域名稱</div>
+    <div class="field-title">Site</div>
     <div class="field-entry">
-      <input
-        type="text"
-        placeholder="請輸入..."
-        formControlName="location_Name"
-      />
+      <select
+        formControlName="location_State">
+        <option value="2">WHI</option>
+      </select>
     </div>
-  </div><div class="content-query-unit query-field">
-    <div class="field-title">區域代號</div>
+  </div>
+  <div class="content-query-unit query-field">
+    <div class="field-title">Location</div>
     <div class="field-entry">
-      <input
-        type="text"
-        placeholder="請輸入..."
-        formControlName="location_Code"
-      />
+      <select
+        formControlName="location_State">
+        <option value="2">新竹</option>
+      </select>
     </div>
   </div>
   <div class="content-query-unit query-field">
     <div class="field-title">狀態</div>
     <div class="field-entry">
-      <select 
-      formControlName="location_State">
+      <select
+        formControlName="location_State">
         <option value="2">全部</option>
         <option value="1">啟用</option>
         <option value="0">停用</option>

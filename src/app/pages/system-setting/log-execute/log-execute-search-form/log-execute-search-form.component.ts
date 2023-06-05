@@ -55,21 +55,33 @@ export class LogExecuteSearchFormComponent implements OnInit {
   }
 
   startSearchDateChange(result: Date): void {
-    const date = this.datePipe.transform(result, "yyyy/MM/dd 00:00:00");
+    if (result) {
+      const date = this.datePipe.transform(result, "yyyy/MM/dd 00:00:00");
 
-    if (date) {
+      if (date) {
+        this.searchFormGroup.patchValue({
+          startSearchDate: Math.round(new Date(date).getTime() / 1000)
+        });
+      }
+    } else {
       this.searchFormGroup.patchValue({
-        startSearchDate: Math.round(new Date(date).getTime() / 1000)
+        startSearchDate: result,
       });
     }
   }
 
   endSearchDateChange(result: Date): void {
-    const date = this.datePipe.transform(result, "yyyy/MM/dd 24:59:59");
+    if (result) {
+      const date = this.datePipe.transform(result, "yyyy/MM/dd 23:59:59");
 
-    if (date) {
+      if (date) {
+        this.searchFormGroup.patchValue({
+          endSearchDate: Math.round(new Date(date).getTime() / 1000),
+        });
+      }
+    } else {
       this.searchFormGroup.patchValue({
-        endSearchDate: Math.round(new Date(date).getTime() / 1000)
+        endSearchDate: result,
       });
     }
   }
