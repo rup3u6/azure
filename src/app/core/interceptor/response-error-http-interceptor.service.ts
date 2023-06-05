@@ -70,7 +70,7 @@ export class ResponseErrorHttpInterceptorService implements HttpInterceptor {
               },
               () => this.loginService.logout()
             );
-
+            break;
           case 404:
             this.messageService.showNotification(
               'error',
