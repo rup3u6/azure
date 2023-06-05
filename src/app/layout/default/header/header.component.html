@@ -58,7 +58,10 @@
           <li (click)="logout()">ABC13579</li>
         </ul>
       </div>
-      <div class="header-info-unit location-text">
+      <div
+        class="header-info-unit location-text"
+        *ngIf="!router.url.startsWith('/globalsetting')"
+      >
         <span>Taiwan</span>
       </div>
     </div>
