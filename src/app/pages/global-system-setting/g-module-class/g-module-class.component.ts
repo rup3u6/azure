@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
 import { firstValueFrom } from 'rxjs';
 import { GModuleClassService } from 'src/app/core/services/baseAPI/g-module-class.service';
 import { LoadingService } from 'src/app/core/services/loading.service';
+import { MessageService } from 'src/app/core/services/message.service';
 
 @Component({
   selector: 'app-g-module-class',
@@ -17,9 +17,9 @@ export class GModuleClassComponent {
   };
 
   constructor(
-    private formBuilder: FormBuilder,
     public gModuleClassService: GModuleClassService,
-    private loadingService: LoadingService
+    private loadingService: LoadingService,
+    private messageService: MessageService
   ) { }
 
   addPopupHandler() {
@@ -58,7 +58,7 @@ export class GModuleClassComponent {
       .getTabulatorTable()
       .getSelectedData();
     if (selectedData.length === 0) {
-      alert('請選擇資料');
+      this.messageService.showNotification('info', '請選擇資料');
       return;
     }
     this.popup.data = {};

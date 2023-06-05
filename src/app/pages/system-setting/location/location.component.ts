@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
 import { firstValueFrom } from 'rxjs';
 
 // service
 import { LocationService } from '../../../core/services/baseAPI/location.service';
 import { LoadingService } from '../../../core/services/loading.service';
+import { MessageService } from 'src/app/core/services/message.service';
 
 @Component({
   selector: 'app-location',
@@ -19,9 +19,9 @@ export class LocationComponent {
   };
 
   constructor(
-    private formBuilder: FormBuilder,
     public locationService: LocationService,
-    private loadingService: LoadingService
+    private loadingService: LoadingService,
+    private messageService: MessageService
   ) {}
 
   addPopupHandler() {
@@ -60,7 +60,7 @@ export class LocationComponent {
       .getTabulatorTable()
       .getSelectedData();
     if (selectedData.length === 0) {
-      alert('請選擇資料');
+      this.messageService.showNotification('info', '請選擇資料');
       return;
     }
     this.popup.data = {};

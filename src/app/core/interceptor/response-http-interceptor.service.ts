@@ -6,14 +6,15 @@ import {
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map, tap } from 'rxjs';
+import { MessageService } from '../services/message.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ResponseHttpInterceptorService {
-  constructor() {}
+  constructor(private messageService: MessageService) {}
 
-  replacer(key: string, value: any): any {
+  replacer(_key: string, value: any): any {
     if (typeof value === 'number') {
       return BigInt(value).toString();
     }
@@ -46,18 +47,32 @@ export class ResponseHttpInterceptorService {
           if (/\/i18n\/.*\.json$/.test(url)) {
             return;
           }
-          const { status, data, message } = res.body;
+          const { status, message, field } = res.body;
           if (status) {
             switch (status) {
               case '999':
-                if (/\/Get/.test(url)) {
+                //  login及所有get/getDetail 成功不通知
+                if (/\/(Get|Login)/.test(url)) {
                   break;
                 }
-                // alert('成功');
+                this.messageService.showNotification('success', '執行成功');
                 break;
-
+              case '901':
+                this.messageService.showNotification(
+                  'warning',
+                  '資料格式或欄位驗證錯誤'
+                );
+                break;
+              case '900':
+                this.messageService.showNotification('error', '執行失敗');
+                break;
               default:
-                alert(message);
+                this.messageService.showNotification(
+                  'error',
+                  '執行失敗',
+                  '請洽系統管理員'
+                );
+
                 break;
             }
           }

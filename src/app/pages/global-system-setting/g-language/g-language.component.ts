@@ -1,27 +1,26 @@
 import { Component } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
 import { firstValueFrom } from 'rxjs';
 
 // service
 import { GLanguageService } from '../../../core/services/baseAPI/g-language.service';
 import { LoadingService } from '../../../core/services/loading.service';
+import { MessageService } from 'src/app/core/services/message.service';
 
 @Component({
   selector: 'app-g-language',
   templateUrl: './g-language.component.html',
-  styleUrls: ['./g-language.component.scss']
+  styleUrls: ['./g-language.component.scss'],
 })
 export class GLanguageComponent {
-
   popup: any = {
     component: null,
     data: null,
   };
 
   constructor(
-    private formBuilder: FormBuilder,
     public gLanguageService: GLanguageService,
-    private loadingService: LoadingService
+    private loadingService: LoadingService,
+    private messageService: MessageService
   ) {}
 
   addPopupHandler() {
@@ -65,7 +64,7 @@ export class GLanguageComponent {
       .getTabulatorTable()
       .getSelectedData();
     if (selectedData.length === 0) {
-      alert('請選擇資料');
+      this.messageService.showNotification('info', '請選擇資料');
       return;
     }
     this.popup.data = {};
@@ -78,11 +77,11 @@ export class GLanguageComponent {
       .getSelectedData();
 
     let body: any = {
-      lCIn_ConvertState_PageData: selectedData.map(item => {
+      lCIn_ConvertState_PageData: selectedData.map((item) => {
         return {
           lPk: item.lang_Code,
-          sName: item.lang_Name
-        }
+          sName: item.lang_Name,
+        };
       }),
       sState: '0',
     };

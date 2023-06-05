@@ -1,4 +1,5 @@
 <div class="container">
   <router-outlet></router-outlet>
   <app-loading *ngIf="loadingService.isLoading$ | async"></app-loading>
+  <app-message-service-virtual-ref></app-message-service-virtual-ref>
 </div>

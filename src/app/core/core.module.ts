@@ -11,10 +11,13 @@ import {
 import { HttpLoaderFactory } from './translate/translation.config';
 import { ResponseErrorHttpInterceptorService } from './interceptor/response-error-http-interceptor.service';
 import { LoadingComponent } from './components/loading/loading.component';
+import { MessageServiceVirtualRefComponent } from './components/message-service-virtual-ref/message-service-virtual-ref.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
-  declarations: [LoadingComponent],
+  declarations: [LoadingComponent, MessageServiceVirtualRefComponent],
   imports: [
+    CommonModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -24,7 +27,7 @@ import { LoadingComponent } from './components/loading/loading.component';
       extend: true,
     }),
   ],
-  exports: [LoadingComponent],
+  exports: [LoadingComponent, MessageServiceVirtualRefComponent],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
