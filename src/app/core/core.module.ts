@@ -46,7 +46,7 @@ import { LoadingComponent } from './components/loading/loading.component';
 })
 export class CoreModule {
   constructor(protected translateService: TranslateService) {
-    const currentLang = 'zh';
+    const currentLang = 'EN';
     translateService.use(currentLang);
   }
 }
