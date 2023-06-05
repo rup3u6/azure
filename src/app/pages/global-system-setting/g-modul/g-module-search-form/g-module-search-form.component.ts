@@ -31,13 +31,14 @@ export class GModuleSearchFormComponent implements OnInit {
       next: (value) => this.gModuleService.setSearchFormValue(value),
     });
     this.setSearchFormGroupInit();
+    this.search();
   }
 
   setSearchFormGroupInit() {
     this.searchFormGroup.patchValue({
       modClass_Name: '',
       mod_Name: '',
-      mod_State: '2',
+      mod_State: '1',
     });
   }
 
@@ -58,5 +59,6 @@ export class GModuleSearchFormComponent implements OnInit {
   clear() {
     this.setSearchFormGroupInit();
     this.gModuleService.getTabulatorTable().clearData();
+    this.gModuleService.getTabulatorTable().clearSort();
   }
 }

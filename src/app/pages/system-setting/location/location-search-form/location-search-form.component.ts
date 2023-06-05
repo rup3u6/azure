@@ -31,13 +31,14 @@ export class LocationSearchFormComponent implements OnInit {
       next: (value) => this.locationService.setSearchFormValue(value),
     });
     this.setSearchFormGroupInit();
+    this.search();
   }
 
   setSearchFormGroupInit() {
     this.searchFormGroup.patchValue({
       location_Name: '',
       location_Code: '',
-      location_State: '2',
+      location_State: '1',
     });
   }
 
@@ -58,5 +59,6 @@ export class LocationSearchFormComponent implements OnInit {
   clear() {
     this.setSearchFormGroupInit();
     this.locationService.getTabulatorTable().clearData();
+    this.locationService.getTabulatorTable().clearSort();
   }
 }

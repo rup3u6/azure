@@ -40,6 +40,7 @@ export class LogExecuteSearchFormComponent implements OnInit {
       next: (value) => this.logExecuteService.setSearchFormValue(value),
     });
     this.setSearchFormGroupInit();
+    this.search();
   }
 
   setSearchFormGroupInit() {
@@ -103,5 +104,6 @@ export class LogExecuteSearchFormComponent implements OnInit {
   clear() {
     this.setSearchFormGroupInit();
     this.logExecuteService.getTabulatorTable().clearData();
+    this.logExecuteService.getTabulatorTable().clearSort();
   }
 }

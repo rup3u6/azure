@@ -31,13 +31,14 @@ export class GLanguageSearchFormComponent implements OnInit {
       next: (value) => this.gLanguageService.setSearchFormValue(value),
     });
     this.setSearchFormGroupInit();
+    this.search();
   }
 
   setSearchFormGroupInit() {
     this.searchFormGroup.patchValue({
       lang_Name: '',
       lang_Code: '',
-      lang_State: '2',
+      lang_State: '1',
     });
   }
 
@@ -58,5 +59,6 @@ export class GLanguageSearchFormComponent implements OnInit {
   clear() {
     this.setSearchFormGroupInit();
     this.gLanguageService.getTabulatorTable().clearData();
+    this.gLanguageService.getTabulatorTable().clearSort();
   }
 }

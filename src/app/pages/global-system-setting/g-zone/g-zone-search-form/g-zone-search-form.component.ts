@@ -30,11 +30,12 @@ export class GZoneSearchFormComponent implements OnInit {
       next: (value) => this.gZoneService.setSearchFormValue(value),
     });
     this.setSearchFormGroupInit();
+    this.search();
   }
 
   setSearchFormGroupInit() {
     this.searchFormGroup.patchValue({
-      zone_State: '2',
+      zone_State: '1',
       zone_Name: '',
     });
   }
@@ -56,5 +57,6 @@ export class GZoneSearchFormComponent implements OnInit {
   clear() {
     this.setSearchFormGroupInit();
     this.gZoneService.getTabulatorTable().clearData();
+    this.gZoneService.getTabulatorTable().clearSort();
   }
 }
