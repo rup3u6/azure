@@ -38,10 +38,11 @@ export class MessageService {
   }
 
   public showModal(
+    type: string,
     msg: { title: string; msgList?: Array<string> },
     callback: any = () => {}
   ) {
-    this.modal.warning({
+    let config = {
       nzTitle: msg.title,
       nzContent: this.templateMap.get('tplContent'),
       nzOkText: '關閉',
@@ -51,6 +52,32 @@ export class MessageService {
         msgList: msg.msgList,
       },
       nzOnOk: () => callback(),
-    });
+    };
+    switch (type) {
+      case 'success':
+        this.modal.success(config);
+        break;
+      case 'info':
+        this.modal.info(config);
+        break;
+      case 'warning':
+        this.modal.warning(config);
+        break;
+      case 'error':
+        this.modal.error(config);
+        break;
+    }
+
+    // this.modal.warning({
+    //   nzTitle: msg.title,
+    //   nzContent: this.templateMap.get('tplContent'),
+    //   nzOkText: '關閉',
+    //   nzMaskClosable: false,
+    //   nzClosable: false,
+    //   nzComponentParams: {
+    //     msgList: msg.msgList,
+    //   },
+    //   nzOnOk: () => callback(),
+    // });
   }
 }

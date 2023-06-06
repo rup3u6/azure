@@ -5,13 +5,14 @@ import {
   HttpErrorResponse,
   HttpInterceptor,
 } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, Injector } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
 import { LoginService } from '../services/authAPI/login.service';
 import { MessageService } from '../services/message.service';
 
 // enum
 import { Message } from 'src/app/core/enum/message';
+import { TranslateService } from '@ngx-translate/core';
 
 @Injectable({
   providedIn: 'root',
@@ -19,7 +20,8 @@ import { Message } from 'src/app/core/enum/message';
 export class ResponseErrorHttpInterceptorService implements HttpInterceptor {
   constructor(
     private loginService: LoginService,
-    public messageService: MessageService
+    public messageService: MessageService,
+    private readonly injector: Injector
   ) {}
 
   public statusHandler(response: any) {
@@ -28,21 +30,21 @@ export class ResponseErrorHttpInterceptorService implements HttpInterceptor {
 
     switch (status) {
       case '900':
-        this.messageService.showNotification(Message.error, '執行失敗');
+        this.messageService.showModal(Message.error, {
+          title: '執行失敗',
+        });
         break;
       case '901':
-        this.messageService.showNotification(
-          Message.warning,
-          '資料格式或欄位驗證錯誤'
-        );
+        this.messageService.showModal(Message.error, {
+          title: '資料格式或欄位驗證錯誤',
+        });
         break;
 
       default:
-        this.messageService.showNotification(
-          Message.error,
-          '未知的錯誤',
-          '請洽系統管理員'
-        );
+        this.messageService.showModal(Message.error, {
+          title: '錯誤',
+          msgList: ['請洽系統管理員'],
+        });
         break;
     }
   }
@@ -56,6 +58,16 @@ export class ResponseErrorHttpInterceptorService implements HttpInterceptor {
         const { url } = request;
         //  i18n不通知
         if (/\/i18n\/.*\.json$/.test(url)) {
+          const lang = /\/i18n\/(?<lang>.*)\.json$/.exec(url)?.groups?.['lang'];
+          console.log(`無${lang}語系語言包`);
+          // try {
+          //   const translateService = this.injector.get(TranslateService);
+          //   setTimeout(() => {
+          //     translateService.use('EN');
+          //   }, 0);
+          // } catch (error) {
+          //   // console.log(error)
+          // }
           return throwError(() => error);
         }
 
@@ -67,6 +79,7 @@ export class ResponseErrorHttpInterceptorService implements HttpInterceptor {
           case 401:
           case 403:
             this.messageService.showModal(
+              Message.warning,
               {
                 title: '登入逾時',
                 msgList: ['請重新登入'],
@@ -75,32 +88,28 @@ export class ResponseErrorHttpInterceptorService implements HttpInterceptor {
             );
             break;
           case 404:
-            this.messageService.showNotification(
-              Message.error,
-              'Not Found',
-              'URL錯誤'
-            );
+            this.messageService.showModal(Message.error, {
+              title: 'Not Found',
+              msgList: ['URL錯誤'],
+            });
             break;
           case 405:
-            this.messageService.showNotification(
-              Message.error,
-              'Not Found',
-              'Request的Method錯誤'
-            );
+            this.messageService.showModal(Message.error, {
+              title: 'Method Not Allowed',
+              msgList: ['Request的Method錯誤'],
+            });
             break;
           case 415:
-            this.messageService.showNotification(
-              Message.error,
-              'Unsupported Media Type',
-              'Request的Content-Type錯誤'
-            );
+            this.messageService.showModal(Message.error, {
+              title: 'Unsupported Media Type',
+              msgList: ['Request的Content-Type錯誤'],
+            });
             break;
           case 504:
-            this.messageService.showNotification(
-              Message.error,
-              'Gateway Timeout',
-              '請洽系統管理員'
-            );
+            this.messageService.showModal(Message.error, {
+              title: 'Gateway Timeout',
+              msgList: ['請洽系統管理員'],
+            });
             break;
           default:
             this.statusHandler(response);

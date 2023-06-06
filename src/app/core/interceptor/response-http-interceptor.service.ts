@@ -55,27 +55,28 @@ export class ResponseHttpInterceptorService {
             switch (status) {
               case '999':
                 //  login及所有get/getDetail 成功不通知
-                if (/\/(Get|Login)/.test(url)) {
+                if (/\/(Get|Login|DropDownList)/.test(url)) {
                   break;
                 }
-                this.messageService.showNotification(Message.success, '執行成功');
+                this.messageService.showModal(Message.success, {
+                  title: '執行成功',
+                });
                 break;
               case '901':
-                this.messageService.showNotification(
-                  Message.warning,
-                  '資料格式或欄位驗證錯誤'
-                );
+                this.messageService.showModal(Message.warning, {
+                  title: '資料格式或欄位驗證錯誤',
+                });
                 break;
               case '900':
-                this.messageService.showNotification(Message.error, '執行失敗');
+                this.messageService.showModal(Message.error, {
+                  title: '執行失敗',
+                });
                 break;
               default:
-                this.messageService.showNotification(
-                  Message.error,
-                  '執行失敗',
-                  '請洽系統管理員'
-                );
-
+                this.messageService.showModal(Message.error, {
+                  title: '執行失敗',
+                  msgList: ['請洽系統管理員'],
+                });
                 break;
             }
           }
