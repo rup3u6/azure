@@ -40,4 +40,7 @@ export class TabulatorTablePaginationComponent implements OnInit {
   setCurrentPage(event: any) {
     this.tabulatorTable.setPage(event.target.value);
   }
+  setPageSize(event: any) {
+    this.tabulatorTable.setPageSize(event.target.value);
+  }
 }
