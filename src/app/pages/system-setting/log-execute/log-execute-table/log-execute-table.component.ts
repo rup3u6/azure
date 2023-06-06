@@ -14,15 +14,6 @@ export class LogExecuteTableComponent {
 
   columnNames: Array<any> = [
     {
-      formatter: 'rowSelection',
-      titleFormatter: 'rowSelection',
-      headerSort: false,
-      maxWidth: 30,
-      minWidth: 30,
-      vertAlign: 'middle',
-      headerHozAlign: 'center',
-    },
-    {
       title: '修改項目',
       field: 'logExec_Module',
       vertAlign: 'middle',
