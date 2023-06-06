@@ -5,12 +5,13 @@ import { LoginComponent } from './login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { HttpClient } from '@angular/common/http';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
+import {
+  TranslateLoader,
+  TranslateModule,
+  TranslateService,
+} from '@ngx-translate/core';
+import { HttpLoaderFactory } from 'src/app/core/translate/translation.config';
 
-export function createTranslateLoader(http: HttpClient) {
-  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
-}
 @NgModule({
   declarations: [LoginComponent],
   imports: [
@@ -20,7 +21,7 @@ export function createTranslateLoader(http: HttpClient) {
     TranslateModule.forChild({
       loader: {
         provide: TranslateLoader,
-        useFactory: createTranslateLoader,
+        useFactory: HttpLoaderFactory,
         deps: [HttpClient],
       },
       extend: true,
@@ -32,5 +33,5 @@ export class LoginModule {
     const currentLang = translateService.currentLang;
     translateService.currentLang = '';
     translateService.use(currentLang);
-}
+  }
 }

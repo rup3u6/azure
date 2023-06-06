@@ -19,11 +19,13 @@ import { CommonModule } from '@angular/common';
   imports: [
     CommonModule,
     TranslateModule.forRoot({
+      defaultLanguage: 'EN',
       loader: {
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,
         deps: [HttpClient],
       },
+      isolate: false,
       extend: true,
     }),
   ],
