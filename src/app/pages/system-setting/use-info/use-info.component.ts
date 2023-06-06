@@ -1,48 +1,40 @@
 import { Component } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 import { firstValueFrom } from 'rxjs';
 
-// enum
-import { Message } from 'src/app/core/enum/message';
-
 // service
-import { GLanguageService } from 'src/app/core/services/baseAPI/g-language.service';
+import { UseInfoService } from 'src/app/core/services/baseAPI/use-info.service';
 import { LoadingService } from 'src/app/core/services/loading.service';
-import { MessageService } from 'src/app/core/services/message.service';
 
 @Component({
-  selector: 'app-g-language',
-  templateUrl: './g-language.component.html',
-  styleUrls: ['./g-language.component.scss'],
+  selector: 'app-use-info',
+  templateUrl: './use-info.component.html',
+  styleUrls: ['./use-info.component.scss']
 })
-export class GLanguageComponent {
+export class UseInfoComponent  {
+
   popup: any = {
     component: null,
     data: null,
   };
 
   constructor(
-    public gLanguageService: GLanguageService,
-    private loadingService: LoadingService,
-    private messageService: MessageService
-  ) { }
-
-  addPopupHandler() {
-    this.popup.data = {
-      mode: 'add',
-      initData: {},
-    };
-    this.popup.component = 'add';
-  }
+    private formBuilder: FormBuilder,
+    public useInfoService: UseInfoService,
+    private loadingService: LoadingService
+  ) {}
 
   async editPopupHandler(rowData: any) {
+    console.log(rowData);
+
     let body = {
-      lang_Code: rowData.lang_Code,
+      info_Id: rowData.info_Id,
     };
 
     this.loadingService.startLoading();
 
     try {
-      let res = await firstValueFrom(this.gLanguageService.getDetail(body));
+      let res = await firstValueFrom(this.useInfoService.getDetail(body));
       const { status } = res;
 
       if (status !== '999') {
@@ -63,11 +55,11 @@ export class GLanguageComponent {
   }
 
   deactivatePopupHandler() {
-    let selectedData = this.gLanguageService
+    let selectedData = this.useInfoService
       .getTabulatorTable()
       .getSelectedData();
     if (selectedData.length === 0) {
-      this.messageService.showNotification(Message.warning, '請選擇資料');
+      alert('請選擇資料');
       return;
     }
     this.popup.data = {};
@@ -75,16 +67,16 @@ export class GLanguageComponent {
   }
 
   async deactivateHandler() {
-    let selectedData = this.gLanguageService
+    let selectedData = this.useInfoService
       .getTabulatorTable()
       .getSelectedData();
 
     let body: any = {
-      lCIn_ConvertState_PageData: selectedData.map((item) => {
+      lCIn_ConvertState_PageData: selectedData.map(item => {
         return {
           lPk: item.lang_Code,
-          sName: item.lang_Name,
-        };
+          sName: item.lang_Name
+        }
       }),
       sState: '0',
     };
@@ -92,11 +84,11 @@ export class GLanguageComponent {
     this.loadingService.startLoading();
 
     try {
-      let res = await firstValueFrom(this.gLanguageService.convertState(body));
+      let res = await firstValueFrom(this.useInfoService.convertState(body));
       const { status } = res;
       if (status === '999') {
-        let searchRes = await firstValueFrom(this.gLanguageService.search());
-        this.gLanguageService.getTabulatorTable().setData(searchRes.data ?? []);
+        let searchRes = await firstValueFrom(this.useInfoService.search());
+        this.useInfoService.getTabulatorTable().setData(searchRes.data ?? []);
         this.popup.component = null;
       }
     } catch (error) {

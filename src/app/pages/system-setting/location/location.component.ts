@@ -3,8 +3,8 @@ import { FormBuilder } from '@angular/forms';
 import { firstValueFrom } from 'rxjs';
 
 // service
-import { LocationService } from '../../../core/services/baseAPI/location.service';
-import { LoadingService } from '../../../core/services/loading.service';
+import { LocationService } from 'src/app/core/services/baseAPI/location.service';
+import { LoadingService } from 'src/app/core/services/loading.service';
 
 @Component({
   selector: 'app-location',

@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 // component
 import { LocationComponent } from './location/location.component';
 import { LogExecuteComponent } from './log-execute/log-execute.component';
+import { UseInfoComponent } from './use-info/use-info.component';
 
 const routes: Routes = [
   {
@@ -18,6 +19,10 @@ const routes: Routes = [
   {
     path: 'log-execute',
     component: LogExecuteComponent,
+  },
+  {
+    path: 'use-info',
+    component: UseInfoComponent,
   },
 ];
 

@@ -1,0 +1,307 @@
+
+<!-- START: popup -->
+<div class="frame-block">
+  <div class="frame-compose popup-compose">
+    <div class="extra-size-popup-close">
+      <a (click)="close.emit()"
+        ><span class="material-icons-outlined">highlight_off</span></a
+      >
+    </div>
+    <div class="popup-composer-inner">
+      <!-- START: default-popup -->
+      <div class="popup-component extra-size-popup" type="normal">
+        <div class="popup-header">
+          <div class="popup-header-inner">
+            <div class="popup-header-unit header-text">編輯員工權限及角色</div>
+            <!-- <div class="popup-header-unit header-btn">
+                  <a routerLink="/role"
+                    ><span class="material-icons-outlined"> close </span></a
+                  >
+                </div> -->
+          </div>
+        </div>
+        <div class="popup-content">
+          <div class="popup-content-form" [formGroup]="useInfoFormGroup">
+            <div class="popup-content-item">
+              <div class="popup-content-item-inner">
+                <div class="popup-form">
+                  <div class="form-row row-1">
+                    <div class="form-item" type="required" attr="">
+                      <div class="form-item-inner">
+                        <ul class="user-info-list">
+                          <li>工號</li>
+                          <li>中文姓名</li>
+                          <li>英文姓名</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-row row-1">
+                    <div class="form-item" type="required" attr="">
+                      <div class="form-item-inner">
+                        <table class="text-table">
+                          <tr>
+                            <td>
+                              <span class="tdinner">
+                                <span class="td-title">出生日</span>
+                                <span class="td-content">{{(data.initData.info_Birthday * 1000) | date:'yyyy/MM/dd' }}</span>
+                              </span>
+                            </td>
+                            <td>
+                              <span class="tdinner">
+                                <span class="td-title">身分證</span>
+                                <span class="td-content">{{ data.initData.info_Identification }}</span>
+                              </span>
+                            </td>
+                            <td>
+                              <span class="tdinner">
+                                <span class="td-title">性別</span>
+                                <span class="td-content">{{ data.initData.info_Sex === 'M' ? '男' : '女'}}</span>
+                              </span>
+                            </td>
+                            <td>
+                              <span class="tdinner">
+                                <span class="td-title">手機</span>
+                                <span class="td-content">{{ data.initData.info_Cellphone }}</span>
+                              </span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <span class="tdinner">
+                                <span class="td-title">任職日期</span>
+                                <span class="td-content">{{(data.initData.info_Take_Office * 1000) | date:'yyyy/MM/dd' }}</span>
+                              </span>
+                            </td>
+                            <td>
+                              <span class="tdinner">
+                                <span class="td-title">離職日期</span>
+                                <span class="td-content">{{(data.initData.info_Resign * 1000) | date:'yyyy/MM/dd' }}</span>
+                              </span>
+                            </td>
+                            <td>
+                              <span class="tdinner">
+                                <span class="td-title">信箱</span>
+                                <span class="td-content">{{ data.initData.info_Email }}</span>
+                              </span>
+                            </td>
+                            <td>
+                              <span class="tdinner">
+                                <span class="td-title">分機</span>
+                                <span class="td-content">{{ data.initData.info_Ext }}</span>
+                              </span>
+                            </td>
+                          </tr>
+                        </table>
+                        <hr class="seperate-line" />
+                        <table class="text-table">
+                          <tr>
+                            <td>
+                              <span class="tdinner">
+                                <span class="td-title">公司別</span>
+                                <span class="td-content">{{ data.initData.info_Company }}</span>
+                              </span>
+                            </td>
+                            <td>
+                              <span class="tdinner">
+                                <span class="td-title">部門代號</span>
+                                <span class="td-content">{{ data.initData.info_Dept }}</span>
+                              </span>
+                            </td>
+                            <td>
+                              <span class="tdinner">
+                                <span class="td-title">部門名稱</span>
+                                <span class="td-content">{{ data.initData.info_Dept_Name }}</span>
+                              </span>
+                            </td>
+                            <td>
+                              <span class="tdinner">
+                                <span class="td-title">主管工號</span>
+                                <span class="td-content">{{ data.initData.info_Supervisor_Id }}</span>
+                              </span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <span class="tdinner">
+                                <span class="td-title">員工類別</span>
+                                <span class="td-content">{{ data.initData.info_Employee_Type }}</span>
+                              </span>
+                            </td>
+                            <td>
+                              <span class="tdinner">
+                                <span class="td-title">付薪地</span>
+                                <span class="td-content">{{ data.initData.info_Salary_Area }}</span>
+                              </span>
+                            </td>
+                            <td>
+                              <span class="tdinner">
+                                <span class="td-title">座位區域</span>
+                                <span class="td-content">{{ data.initData.info_Seat }}</span>
+                              </span>
+                            </td>
+                            <td>
+                              <span class="tdinner">
+                                <span class="td-title">端點</span>
+                                <span class="td-content">{{ data.initData.info_Site }}</span>
+                              </span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <span class="tdinner">
+                                <span class="td-title">派外日期</span>
+                                <span class="td-content">{{(data.initData.info_Expatriate_Date * 1000) | date:'yyyy/MM/dd' }}</span>
+                              </span>
+                            </td>
+                            <td>
+                              <span class="tdinner">
+                                <span class="td-title">識別項目</span>
+                                <span class="td-content"></span>
+                              </span>
+                            </td>
+                            <td>
+                              <span class="tdinner">
+                                <span class="td-title">秘書</span>
+                                <span class="td-content">{{ data.initData.info_Secretary }}</span>
+                              </span>
+                            </td>
+                            <td>
+                              <span class="tdinner">
+                                <span class="td-title"></span>
+                                <span class="td-content"></span>
+                              </span>
+                            </td>
+                          </tr>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="popup-form">
+                  <div class="form-row row-3">
+                    <div class="form-item" type="required">
+                        <div class="form-item-inner">
+                          <div class="form-item-title">使用者身份</div>
+                          <div class="form-item-entry">
+                            <ul>
+                              <li>
+                                {{useInfoFormGroup.value.info_Global}}
+                                <input
+                                  type="checkbox"
+                                  formControlName="info_Global"
+                                  id="info_Global"
+                                />
+                                <label for="info_Global">全域管理者</label>
+                              </li>
+                              <li>
+                                <input
+                                  type="checkbox"
+                                  formControlName="info_Backend"
+                                  id="info_Backend"
+                                />
+                                <label for="info_Backend">區域管理者</label>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+                  <div class="form-row row-1">
+                    <div class="form-item" type="required">
+                        <div class="form-item-inner">
+                          <div class="form-item-title">角色</div>
+                          <div class="form-item-entry">
+                            <ul>
+                              <ng-container *ngFor="let item of roleNameList">
+                                <!-- <ng-container *ngFor="let item2 of data.initData.lCOut_UseRole_PageData"> -->
+                                  <li>
+                                    <!-- [checked]="item.key === item2.role_Id" -->
+                                    <input type="checkbox" id="lCOut_UseRole_PageData-{{item.key}}" />
+                                    <label for="lCOut_UseRole_PageData-{{item.key}}">{{ item.value }}</label>
+                                  </li>
+                                <!-- </ng-container> -->
+                              </ng-container>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+                  <!-- <div class="form-row row-1">
+                    <div class="form-item" type="required">
+                        <div class="form-item-inner">
+                          <div class="input-table">
+                            <div class="input-table-inner">
+                                <div class="input-table-item input-table-btn">
+                                    <ul>
+                                        <li><button class="input-table-add"><span>新增</span></button></li>
+                                    </ul>
+                                </div>
+                                <div class="input-table-item input-table-content">
+                                    <table>
+                                        <tr>
+                                            <th>項次</th>
+                                            <th>角色</th>
+                                            <th>功能</th>
+                                        </tr>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>
+                                                <select name="" id="">
+                                                    <option value="">a</option>
+                                                    <option value="">b</option>
+                                                    <option value="">c</option>
+                                                </select>
+                                            </td>
+                                            <td><button class="del-icon-btn"><span class="material-icons-outlined">delete</span></button></td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>
+                                                <select name="" id="">
+                                                    <option value="">a</option>
+                                                    <option value="">b</option>
+                                                    <option value="">c</option>
+                                                </select>
+                                            </td>
+                                            <td><button class="del-icon-btn"><span class="material-icons-outlined">delete</span></button></td>
+                                        </tr>
+                                        <tr>
+                                            <td>3</td>
+                                            <td>
+                                                <select name="" id="">
+                                                    <option value="">a</option>
+                                                    <option value="">b</option>
+                                                    <option value="">c</option>
+                                                </select>
+                                            </td>
+                                            <td><button class="del-icon-btn"><span class="material-icons-outlined">delete</span></button></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                  </div> -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="popup-footer">
+          <div class="popup-footer-inner">
+            <div class="popup-footer-unit footer-button" btn="cancel">
+              <button (click)="close.emit()">取消</button>
+            </div>
+            <div class="popup-footer-unit footer-button" btn="confirm">
+              <button (click)="submit()">確認</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- END: default-popup -->
+    </div>
+  </div>
+</div>
+<!-- END: popup -->

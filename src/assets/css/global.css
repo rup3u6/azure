@@ -19,7 +19,7 @@
 26px: 1.6125rem
 28px: 1.75rem
 30px: 1.875rem
-32px: 2rem 
+32px: 2rem
 */
 /* tabulator-table */
 @import  "tabulator-tables";
@@ -52,6 +52,10 @@ html,
 body {
     margin: 0;
     padding: 0;
+}
+
+button, input, optgroup, select, textarea {
+    margin: revert;
 }
 
 a,

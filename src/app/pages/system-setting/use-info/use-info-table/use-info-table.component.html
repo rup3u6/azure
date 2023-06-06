@@ -1,0 +1,18 @@
+<div class="content-result-inner">
+  <!-- START: result-function -->
+  <div class="result-function">
+    <ul>
+      <li>
+        <a routerLink="/user" attr="refresh">手動更新秘書</a>
+      </li>
+    </ul>
+  </div>
+  <!-- END: result-function -->
+
+  <div
+    app-tabulator-table-pagination
+    [columnNames]="columnNames"
+    [tableConfig]="{ selectable: 1 }"
+    (tableBuilded)="tableBuilded($event)"
+  ></div>
+</div>

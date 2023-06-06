@@ -3,8 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { finalize, firstValueFrom } from 'rxjs';
 
 // service
-import { GLanguageService } from '../../../../core/services/baseAPI/g-language.service';
-import { LoadingService } from '../../../../core/services/loading.service';
+import { GLanguageService } from 'src/app/core/services/baseAPI/g-language.service';
+import { LoadingService } from 'src/app/core/services/loading.service';
 
 @Component({
   selector: 'g-language-add',
@@ -14,7 +14,7 @@ import { LoadingService } from '../../../../core/services/loading.service';
 export class GLanguageAddComponent implements OnInit {
 
   @Output() close = new EventEmitter<any>();
-  @Input() data: any = {
+  @Input() data = {
     mode: '',
     initData: {},
   };

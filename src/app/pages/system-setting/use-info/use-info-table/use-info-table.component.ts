@@ -1,16 +1,16 @@
+import { DatePipe } from '@angular/common';
 import { Component, EventEmitter, Output } from '@angular/core';
 import { Tabulator } from 'tabulator-tables';
-import { DatePipe } from '@angular/common';
 
-// service
-import { LocationService } from 'src/app/core/services/baseAPI/location.service';
+// services
+import { UseInfoService } from 'src/app/core/services/baseAPI/use-info.service';
 
 @Component({
-  selector: 'div[sys-location-table]',
-  templateUrl: './location-table.component.html',
-  styleUrls: ['./location-table.component.scss'],
+  selector: 'div[sys-use-info-table]',
+  templateUrl: './use-info-table.component.html',
+  styleUrls: ['./use-info-table.component.scss']
 })
-export class LocationTableComponent {
+export class UseInfoTableComponent {
 
   @Output() add = new EventEmitter<any>();
   @Output() edit = new EventEmitter<any>();
@@ -27,73 +27,59 @@ export class LocationTableComponent {
       headerHozAlign: 'center',
     },
     {
-      title: 'Site',
-      field: 'cfk_Site',
+      title: '工號',
+      field: 'info_Jobnumber',
       vertAlign: 'middle',
       hozAlign: 'center',
       headerHozAlign: 'center',
     },
     {
-      title: 'Location',
-      field: 'ck_Location_Code',
+      title: '姓名',
+      field: 'info_Name',
       vertAlign: 'middle',
       hozAlign: 'center',
-      headerHozAlign: 'center',
-    },
-    {
-      title: 'Local name',
-      field: 'location_Name',
-      vertAlign: 'middle',
-      hozAlign: 'center',
-      headerHozAlign: 'center',
-    },
-    {
-      title: 'English Name',
-      field: 'location_EnglishName',
-      vertAlign: 'middle',
-      hozAlign: 'center',
-      headerHozAlign: 'center',
-    },
-    {
-      title: 'Area',
-      field: 'location_Area',
-      vertAlign: 'middle',
-      hozAlign: 'center',
-      headerHozAlign: 'center',
-    },
-    {
-      title: 'Company',
-      field: 'location_Company',
-      vertAlign: 'middle',
-      hozAlign: 'center',
-      headerHozAlign: 'center',
-    },
-    {
-      title: '狀態',
-      field: 'location_State',
-      vertAlign: 'middle',
-      hozAlign: 'center',
-      headerHozAlign: 'center',
-      formatter: (cell: any) => {
-        return cell.getValue() === '1' ? '啟用' : '停用';
+      headerHozAlign: 'center', formatter: (cell: any) => {
+        const rowData = cell.getData();
+
+        let text = '';
+
+        if (rowData.info_Name) { text = rowData.info_Name; }
+        if (rowData.info_Ename) { text += '(' + rowData.info_Ename + ")"; }
+
+        return text;
       },
     },
     {
-      title: '異動者',
-      field: 'location_Sort',
+      title: 'Site',
+      field: 'info_Site',
+      vertAlign: 'middle',
+      hozAlign: 'center',
+      headerHozAlign: 'center',
+    },
+    {
+      title: '部門',
+      field: 'info_Dept',
+      vertAlign: 'middle',
+      hozAlign: 'center',
+      headerHozAlign: 'center',
+    },
+    {
+      title: '秘書',
+      field: 'info_Secretary',
       vertAlign: 'middle',
       hozAlign: 'center',
       headerHozAlign: 'center',
       formatter: (cell: any) => {
         const rowData = cell.getData();
+
         let text = '';
 
-        if (rowData.info_Jobnumber) { text = rowData.info_Jobnumber; }
+        if (rowData.info_Secretary) { text = rowData.info_Secretary; }
 
-        if (rowData.location_EditCode) {
-          if (text) { text += '/'; }
+        if (rowData.secretary_Name) {
+          if (text) { text += '-'; }
 
-          text += rowData.location_EditCode;
+          text += rowData.secretary_Name;
         }
 
         if (rowData.info_Ename) {
@@ -103,20 +89,6 @@ export class LocationTableComponent {
         }
 
         return text;
-      },
-    },
-    {
-      title: '異動時間',
-      field: 'location_EditDate',
-      vertAlign: 'middle',
-      hozAlign: 'center',
-      headerHozAlign: 'center',
-      formatter: (cell: any) => {
-        const timeStamp = cell.getValue();
-
-        const date = new Date(timeStamp * 1000);
-
-        return this.datePipe.transform(date, "yyyy/MM/dd HH:mm");
       },
     },
     {
@@ -143,10 +115,10 @@ export class LocationTableComponent {
 
   constructor(
     private datePipe: DatePipe,
-    public locationService: LocationService
+    public useInfoService: UseInfoService
   ) { }
 
   tableBuilded(table: Tabulator) {
-    this.locationService.tableBuilded(table);
+    this.useInfoService.tableBuilded(table);
   }
 }

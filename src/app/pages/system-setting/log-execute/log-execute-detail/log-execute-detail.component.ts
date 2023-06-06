@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { finalize, firstValueFrom } from 'rxjs';
 
 // service
-import { LocationService } from 'src/app/core/services/baseAPI/location.service';
 import { LoadingService } from 'src/app/core/services/loading.service';
 
 @Component({
@@ -19,9 +18,7 @@ export class LogExecuteDetailComponent implements OnInit {
     initData: {},
   };
 
-  constructor(
-    public locationService: LocationService,
-  ) { }
+  constructor() { }
 
   ngOnInit(): void { }
 }

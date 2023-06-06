@@ -1,0 +1,60 @@
+<div class="content-query-field" [formGroup]="searchFormGroup">
+  <div class="content-query-unit query-field">
+    <div class="field-title">工號</div>
+    <div class="field-entry">
+      <input
+        type="text"
+        placeholder="請輸入工號"
+        formControlName="info_Jobnumber"
+      />
+    </div>
+  </div>
+  <div class="content-query-unit query-field">
+    <div class="field-title">中文姓名</div>
+    <div class="field-entry">
+      <input
+        type="text"
+        placeholder="請輸入中文姓名"
+        formControlName="info_Name"
+      />
+    </div>
+  </div>
+  <div class="content-query-unit query-field">
+    <div class="field-title">英文姓名</div>
+    <div class="field-entry">
+      <input
+        type="text"
+        placeholder="請輸入英文姓名"
+        formControlName="info_Ename"
+      />
+    </div>
+  </div>
+  <div class="content-query-unit query-field">
+    <div class="field-title">秘書工號</div>
+    <div class="field-entry">
+      <input
+        type="text"
+        placeholder="請輸入秘書工號"
+        formControlName="info_Secretary"
+      />
+    </div>
+  </div>
+  <div class="content-query-unit query-field">
+    <div class="field-title">秘書姓名</div>
+    <div class="field-entry">
+      <input
+        type="text"
+        placeholder="請輸入秘書姓名"
+        formControlName="secretary_Name"
+      />
+    </div>
+  </div>
+</div>
+<div class="content-query-button">
+  <div class="content-query-unit query-button">
+    <ul>
+      <li><button class="cancel-btn" (click)="clear()">清除</button></li>
+      <li><button class="query-btn" (click)="search()">查詢</button></li>
+    </ul>
+  </div>
+</div>

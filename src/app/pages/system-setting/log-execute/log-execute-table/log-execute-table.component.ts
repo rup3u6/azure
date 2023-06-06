@@ -35,7 +35,11 @@ export class LogExecuteTableComponent {
         let text = '';
 
         if (rowData.logExec_Module) { text = rowData.logExec_Module; }
-        if (rowData.logExec_ChangeItem) { text += '/' + rowData.logExec_ChangeItem; }
+        if (rowData.logExec_ChangeItem) {
+          if (text) { text += '/'; }
+
+          text += rowData.logExec_ChangeItem;
+        }
 
         aTag.innerText = text;
 
@@ -67,8 +71,16 @@ export class LogExecuteTableComponent {
         let text = '';
 
         if (rowData.info_Jobnumber) { text = rowData.info_Jobnumber; }
-        if (rowData.logExec_CreateCode) { text += '/' + rowData.logExec_CreateCode; }
-        if (rowData.info_Ename) { text += '/' + rowData.info_Ename; }
+        if (rowData.logExec_CreateCode) {
+          if (text) { text += '/'; }
+
+          text += rowData.logExec_CreateCode;
+        }
+        if (rowData.info_Ename) {
+          if (text) { text += '/'; }
+
+          text += rowData.info_Ename;
+        }
 
         return text;
       },

@@ -1,0 +1,53 @@
+<main class="main-component main-content">
+  <div class="main-content-inner">
+    <div class="main-content-unit content-title">
+      <div class="content-title-inner">
+        <h1>使用者資料查詢</h1>
+      </div>
+    </div>
+    <!-- START: content-title -->
+    <div class="main-content-unit content-title">
+      <div class="content-title-inner">
+        <h1></h1>
+      </div>
+    </div>
+    <!-- END: content-title -->
+    <!-- START: content-query -->
+    <div sys-use-info-search-form class="main-content-unit content-query"></div>
+    <!-- END: content-query -->
+    <hr class="seperate-line" />
+    <!-- START: content-result -->
+    <div
+      sys-use-info-table
+      class="main-content-unit content-result"
+      (edit)="editPopupHandler($event)"
+      (deactivate)="deactivatePopupHandler()"
+    ></div>
+    <!-- END: content-result -->
+  </div>
+</main>
+
+<sys-use-info-add
+  *ngIf="popup.component === 'add'"
+  [data]="popup.data"
+  (close)="popup.component = null"
+></sys-use-info-add>
+
+<app-delete-confirm
+  *ngIf="popup.component === 'deactivate'"
+  (submit)="deactivateHandler()"
+  (close)="popup.component = null"
+>
+  <div class="popup-content">
+    <p>【停用項目】</p>
+    <ul>
+      <li
+        *ngFor="
+          let item of useInfoService.getTabulatorTable().getSelectedData()
+        "
+      >
+        {{ item.lang_Name }}
+      </li>
+    </ul>
+  </div>
+</app-delete-confirm>
