@@ -18,7 +18,7 @@
         </div>
         <div class="popup-content" *ngIf="isZoneFormGroup">
           <div class="popup-content-form" [formGroup]="zoneFormGroup">
-            <div class="form-row" formGroupName="oCIn_WfZone_PageData">
+            <div class="form-row row-2" formGroupName="oCIn_WfZone_PageData">
               <div class="form-item" type="required" [attr.attr]="f['oCIn_WfZone_PageData'].get('zone_Name')?.errors && f['oCIn_WfZone_PageData'].get('zone_Name')?.touched && 'error'">
                 <div class="form-item-inner">
                   <div class="form-item-title">區域名稱</div>
@@ -50,7 +50,7 @@
                 </div>
               </div>
             </div>
-            <div class="form-row" formGroupName="oCIn_WfZone_PageData">
+            <div class="form-row row-2" formGroupName="oCIn_WfZone_PageData">
               <div class="form-item" type="required" [attr.attr]="f['oCIn_WfZone_PageData'].get('zone_State')?.errors && f['oCIn_WfZone_PageData'].get('zone_State')?.touched && 'error'">
                 <div class="form-item-inner">
                   <div class="form-item-title">狀態</div>
@@ -83,7 +83,7 @@
               </div>
             </div>
             <hr class="seperate-line">
-            <div class="form-row">
+            <div class="form-row row-1">
               <div class="form-item" type="required" [attr.attr]="f['lCIn_Wf_Zone_Site_Pagedata'].errors && f['lCIn_Wf_Zone_Site_Pagedata'].touched && 'error'">
                 <div class="form-item-inner">
                   <div class="form-item-title">site設定</div>
@@ -105,7 +105,7 @@
                 </div>
               </div>
             </div>
-            <div class="form-row">
+            <div class="form-row row-1">
               <div class="form-item" type="required" [attr.attr]="f['lCIn_Wf_Zone_Langue_Pagedata'].errors && f['lCIn_Wf_Zone_Langue_Pagedata'].touched && 'error'">
                 <div class="form-item-inner">
                   <div class="form-item-title">區域語系</div>
@@ -127,7 +127,7 @@
                 </div>
               </div>
             </div>
-            <div class="form-row" formGroupName="oCIn_WfZone_PageData">
+            <div class="form-row row-1" formGroupName="oCIn_WfZone_PageData">
               <div class="form-item" type="required" [attr.attr]="f['oCIn_WfZone_PageData'].get('fk_Lang_Code')?.errors && f['oCIn_WfZone_PageData'].get('fk_Lang_Code')?.touched && 'error'">
                 <div class="form-item-inner">
                   <div class="form-item-title">預設語系</div>

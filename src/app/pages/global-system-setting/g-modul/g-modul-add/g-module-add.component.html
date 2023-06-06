@@ -18,7 +18,7 @@
         </div>
         <div class="popup-content" *ngIf="isModuleFormGroup">
           <div class="popup-content-form" [formGroup]="moduleFormGroup">
-            <div class="form-row">
+            <div class="form-row row-2">
               <div class="form-item" type="required" [attr.attr]="f['fk_Modclass_Id'].errors && f['fk_Modclass_Id'].touched && 'error'">
                 <div class="form-item-inner">
                   <div class="form-item-title">選單分類名稱</div>
@@ -53,7 +53,7 @@
                 </div>
               </div>
             </div>
-            <div class="form-row">
+            <div class="form-row row-2">
               <div class="form-item" type="required" [attr.attr]="f['mod_Route'].errors && f['mod_Route'].touched && 'error'">
                 <div class="form-item-inner">
                   <div class="form-item-title">作業路徑</div>
@@ -85,7 +85,7 @@
                 </div>
               </div>
             </div>
-            <div class="form-row">
+            <div class="form-row row-2">
               <div class="form-item" type="required" [attr.attr]="f['mod_State'].errors && f['mod_State'].touched && 'error'">
                 <div class="form-item-inner">
                   <div class="form-item-title">狀態</div>
