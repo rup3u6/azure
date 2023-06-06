@@ -6,6 +6,9 @@ import { LocationService } from '../../../core/services/baseAPI/location.service
 import { LoadingService } from '../../../core/services/loading.service';
 import { MessageService } from 'src/app/core/services/message.service';
 
+// enum
+import { Message } from 'src/app/core/enum/message';
+
 @Component({
   selector: 'app-location',
   templateUrl: './location.component.html',
@@ -60,7 +63,7 @@ export class LocationComponent {
       .getTabulatorTable()
       .getSelectedData();
     if (selectedData.length === 0) {
-      this.messageService.showNotification('warning', '請選擇資料');
+      this.messageService.showNotification(Message.warning, '請選擇資料');
       return;
     }
     this.popup.data = {};

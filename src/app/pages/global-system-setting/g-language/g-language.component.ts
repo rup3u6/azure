@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 
+// enum
+import { Message } from 'src/app/core/enum/message';
+
 // service
 import { GLanguageService } from '../../../core/services/baseAPI/g-language.service';
 import { LoadingService } from '../../../core/services/loading.service';
@@ -21,7 +24,7 @@ export class GLanguageComponent {
     public gLanguageService: GLanguageService,
     private loadingService: LoadingService,
     private messageService: MessageService
-  ) {}
+  ) { }
 
   addPopupHandler() {
     this.popup.data = {
@@ -64,7 +67,7 @@ export class GLanguageComponent {
       .getTabulatorTable()
       .getSelectedData();
     if (selectedData.length === 0) {
-      this.messageService.showNotification('warning', '請選擇資料');
+      this.messageService.showNotification(Message.warning, '請選擇資料');
       return;
     }
     this.popup.data = {};

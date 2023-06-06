@@ -8,6 +8,9 @@ import { Injectable } from '@angular/core';
 import { Observable, map, tap } from 'rxjs';
 import { MessageService } from '../services/message.service';
 
+// enum
+import { Message } from 'src/app/core/enum/message';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -55,20 +58,20 @@ export class ResponseHttpInterceptorService {
                 if (/\/(Get|Login)/.test(url)) {
                   break;
                 }
-                this.messageService.showNotification('success', '執行成功');
+                this.messageService.showNotification(Message.success, '執行成功');
                 break;
               case '901':
                 this.messageService.showNotification(
-                  'warning',
+                  Message.warning,
                   '資料格式或欄位驗證錯誤'
                 );
                 break;
               case '900':
-                this.messageService.showNotification('error', '執行失敗');
+                this.messageService.showNotification(Message.error, '執行失敗');
                 break;
               default:
                 this.messageService.showNotification(
-                  'error',
+                  Message.error,
                   '執行失敗',
                   '請洽系統管理員'
                 );

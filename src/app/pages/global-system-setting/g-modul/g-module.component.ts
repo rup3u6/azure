@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 
+// enum
+import { Message } from 'src/app/core/enum/message';
+
 // service
 import { GModuleService } from 'src/app/core/services/baseAPI/g-module.service';
 import { LoadingService } from 'src/app/core/services/loading.service';
@@ -60,7 +63,7 @@ export class GModuleComponent {
       .getTabulatorTable()
       .getSelectedData();
     if (selectedData.length === 0) {
-      this.messageService.showNotification('warning', '請選擇資料');
+      this.messageService.showNotification(Message.warning, '請選擇資料');
       return;
     }
     this.popup.data = {};

@@ -10,6 +10,9 @@ import { Observable, catchError, throwError } from 'rxjs';
 import { LoginService } from '../services/authAPI/login.service';
 import { MessageService } from '../services/message.service';
 
+// enum
+import { Message } from 'src/app/core/enum/message';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -25,18 +28,18 @@ export class ResponseErrorHttpInterceptorService implements HttpInterceptor {
 
     switch (status) {
       case '900':
-        this.messageService.showNotification('error', '執行失敗');
+        this.messageService.showNotification(Message.error, '執行失敗');
         break;
       case '901':
         this.messageService.showNotification(
-          'warning',
+          Message.warning,
           '資料格式或欄位驗證錯誤'
         );
         break;
 
       default:
         this.messageService.showNotification(
-          'error',
+          Message.error,
           '未知的錯誤',
           '請洽系統管理員'
         );
@@ -73,28 +76,28 @@ export class ResponseErrorHttpInterceptorService implements HttpInterceptor {
             break;
           case 404:
             this.messageService.showNotification(
-              'error',
+              Message.error,
               'Not Found',
               'URL錯誤'
             );
             break;
           case 405:
             this.messageService.showNotification(
-              'error',
+              Message.error,
               'Not Found',
               'Request的Method錯誤'
             );
             break;
           case 415:
             this.messageService.showNotification(
-              'error',
+              Message.error,
               'Unsupported Media Type',
               'Request的Content-Type錯誤'
             );
             break;
           case 504:
             this.messageService.showNotification(
-              'error',
+              Message.error,
               'Gateway Timeout',
               '請洽系統管理員'
             );
