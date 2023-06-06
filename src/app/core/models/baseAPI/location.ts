@@ -32,6 +32,7 @@ export interface CreateResponses {
 
 //#region Update
 export interface UpdateRequest {
+  cfk_Zone_Id: number;
   cfk_Site: string;
   ck_Location_Code: string;
   location_Name: string;
@@ -39,23 +40,16 @@ export interface UpdateRequest {
   location_Area: string;
   location_Company: string;
   location_State: string;
-  location_Id: number;
 }
 
 export interface UpdateResponses {
-  cfk_Zone_Id: number;
   cfk_Site: string;
-  fk_Lang_Code: string;
   ck_Location_Code: string;
   location_Name: string;
-  location_State: string;
   location_EnglishName: string;
   location_Area: string;
   location_Company: string;
-  location_CreateId: number;
-  location_CreateCode: string;
-  location_CreateDate: number;
-  location_CreateIp: string;
+  location_State: string;
   location_EditId: number;
   location_EditCode: string;
   location_EditDate: number;
@@ -65,9 +59,9 @@ export interface UpdateResponses {
 
 //#region Get
 export interface GetRequest {
-  location_State: boolean;
-  location_Name: string;
-  location_Code: string;
+  ck_Location_Code: string;
+  cfk_Site: string;
+  location_State: string;
 }
 
 export interface GetResponses {
@@ -80,11 +74,8 @@ export interface GetResponses {
   location_EnglishName: string;
   location_Area: string;
   location_Company: string;
-  location_CreateId: number;
-  location_CreateCode: string;
-  location_CreateDate: number;
-  location_CreateIp: string;
   location_EditId: number;
+  info_Jobnumber: string;
   location_EditCode: string;
   location_EditDate: number;
   location_EditIp: string;
@@ -93,7 +84,9 @@ export interface GetResponses {
 
 //#region GetDetail
 export interface GetDetailRequest {
-  lPk: string;
+  cfk_Zone_Id: number;
+  cfk_Site: string;
+  ck_Location_Code: string;
 }
 
 export interface GetDetailResponses {
@@ -119,17 +112,15 @@ export interface GetDetailResponses {
 
 //#region ConvertState
 export interface ConvertStateRequest {
-  lPk: number;
-  bState: string;
+  cIn_WfLocation_ConvertState_Pk: ConvertStateCIn_WfLocation_ConvertState_Pk[];
+  sState: string;
 }
 
-export interface ConvertStateResponses {
-  location_Id: number;
-  location_State: boolean;
-  location_EditCode: string;
-  location_EditId: number;
-  location_EditDate: number;
-  location_EditIp: string;
+export interface ConvertStateCIn_WfLocation_ConvertState_Pk {
+  cfk_Zone_Id: number;
+  cfk_Site: string;
+  ck_Location_Code: string;
+  location_Name: string;
 }
+
 //#endregion
-

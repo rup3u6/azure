@@ -38,7 +38,7 @@ export class LocationService {
   search(body?: location.GetRequest) {
     if (!body) {
       let { location_State } = this.searchFormValue.value;
-      const status = [false, true, null];
+      const status = ['0', '1', null];
       body = {
         ...this.searchFormValue.value,
         location_State: status[location_State],
@@ -61,6 +61,6 @@ export class LocationService {
   }
 
   convertState(body: location.ConvertStateRequest) {
-    return this.http.post<base.ResponsesBase<location.ConvertStateResponses>>(`${this.apiUrl}/Base/WfLocation/ConvertState`, body);
+    return this.http.post<base.ResponsesBase<string>>(`${this.apiUrl}/Base/WfLocation/ConvertState`, body);
   }
 }

@@ -9,13 +9,14 @@ nz-date-picker.ant-picker {
   padding: 0;
   width: 100%;
 
-  &-focused,
   &:hover {
     border: none;
     border-bottom: #ccc solid 1px;
   }
 
   &-focused {
+    border: none;
+    border-bottom: #aaa solid 1px !important;
     box-shadow: none;
   }
 

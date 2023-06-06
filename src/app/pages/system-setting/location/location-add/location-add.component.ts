@@ -30,27 +30,33 @@ export class LocationAddComponent implements OnInit {
 
   ngOnInit(): void {
     this.locationFormGroup = this.formBuilder.group({
+      cfk_Site: ['', [Validators.required]],
+      ck_Location_Code: ['', [Validators.required]],
       location_Name: ['', [Validators.required]],
-      location_Code: ['', [Validators.required]],
-      location_Sort: ['', [Validators.required]],
+      location_EnglishName: ['', [Validators.required]],
+      location_Area: ['', [Validators.required]],
+      location_Company: ['', [Validators.required]],
       location_State: ['', [Validators.required]],
     });
     if (this.data.mode === 'add') {
       this.setLocationFormGroupInit();
     } else {
-      let location_State = this.data.initData.location_State ? '1' : '0';
       this.locationFormGroup.patchValue({
         ...this.data.initData,
-        location_State,
       });
+      this.locationFormGroup.controls?.['cfk_Site'].disable();
+      this.locationFormGroup.controls?.['ck_Location_Code'].disable();
     }
   }
 
   setLocationFormGroupInit() {
     this.locationFormGroup.patchValue({
+      cfk_Site: '',
+      ck_Location_Code: '',
       location_Name: '',
-      location_Code: '',
-      location_Sort: '0',
+      location_EnglishName: '',
+      location_Area: '',
+      location_Company: '',
       location_State: '1',
     });
   }
@@ -60,11 +66,8 @@ export class LocationAddComponent implements OnInit {
 
     if (this.locationFormGroup.invalid) { return }
 
-    let { location_State } = this.locationFormGroup.value;
-
     let body: any = {
-      ...this.locationFormGroup.value,
-      location_State: location_State === '1',
+      ...this.locationFormGroup.getRawValue(),
     };
 
     this.loadingService.startLoading();
@@ -74,7 +77,7 @@ export class LocationAddComponent implements OnInit {
       if (this.data.mode === 'add') {
         res = await firstValueFrom(this.locationService.add(body));
       } else {
-        body.location_Id = this.data.initData.location_Id;
+        body.cfk_Zone_Id = this.data.initData.cfk_Zone_Id;
         res = await firstValueFrom(this.locationService.edit(body));
       }
       const { status } = res;
