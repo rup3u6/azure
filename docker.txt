@@ -1,0 +1,17 @@
+建立image
+docker image build -t nginx_wis_family_cms:0.0.1 .
+
+打包image
+docker save -o nginx_wis_family_cms_0.0.1.tar nginx_wis_family_cms:0.0.1
+
+刪除image
+docker image rm nginx_wis_family_cms:0.0.1
+
+建立container
+docker run -d --name web -p 8091:80 -v <path/to/i18n/folder>:/usr/share/nginx/html/wis_fe/assets/i18n nginx_wis_family_cms:0.0.1
+
+匯入image
+docker load --input nginx_wis_family_cms_0.0.1.tar
+
+
+docker-compose up -d

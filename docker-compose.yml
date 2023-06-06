@@ -1,0 +1,13 @@
+version: '1'
+
+services:
+  nginx:
+    container_name: nginx_wis_family_cms
+    build:
+    # build from Dockerfile
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+     - "8091:80"
+    # volumes:
+    # - <path/to/i18n/folder>:/usr/share/nginx/html/wis_fe/assets/i18n
