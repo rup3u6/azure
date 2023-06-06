@@ -44,10 +44,12 @@ export class MenuControlService {
         {
           mod_Name: '角色維護',
           mod_Route: '',
+          // mod_Route: '/systemsetting/use-role',
         },
         {
           mod_Name: '使用者資料查詢',
-          mod_Route: '/systemsetting/use-info',
+          mod_Route: '',
+          // mod_Route: '/systemsetting/use-info',
         },
         {
           mod_Name: '秘書管理',

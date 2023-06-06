@@ -49,18 +49,18 @@ export class GModuleClassService {
   }
 
   add(body: moduleClass.CreateRequest) {
-    return this.http.post<base.ResponsesBase<moduleClass.CreateResponses>>(`${this.apiUrl}/Base/SysModuleClass/Create`, body);
+    return this.http.post<base.ResponsesBase<moduleClass.CreateResponses>>(`${this.apiUrl}/Auth/SysModuleClass/Create`, body);
   }
 
   edit(body: moduleClass.UpdateRequest) {
-    return this.http.post<base.ResponsesBase<moduleClass.UpdateResponses>>(`${this.apiUrl}/Base/SysModuleClass/Update`, body);
+    return this.http.post<base.ResponsesBase<moduleClass.UpdateResponses>>(`${this.apiUrl}/Auth/SysModuleClass/Update`, body);
   }
 
   getDetail(body: moduleClass.GetDetailRequest) {
-    return this.http.post<base.ResponsesBase<moduleClass.GetDetailResponses>>(`${this.apiUrl}/Base/SysModuleClass/GetDetail`, body);
+    return this.http.post<base.ResponsesBase<moduleClass.GetDetailResponses>>(`${this.apiUrl}/Auth/SysModuleClass/GetDetail`, body);
   }
 
   convertState(body: moduleClass.ConvertStateRequest) {
-    return this.http.post<base.ResponsesBase<string>>(`${this.apiUrl}/Base/SysModuleClass/ConvertState`, body);
+    return this.http.post<base.ResponsesBase<string>>(`${this.apiUrl}/Auth/SysModuleClass/ConvertState`, body);
   }
 }
