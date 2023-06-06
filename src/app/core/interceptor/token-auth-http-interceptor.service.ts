@@ -23,7 +23,7 @@ export class TokenAuthHttpInterceptorService {
         headers: req.headers
           .set('Authorization', `Bearer ${token}`)
           .set('Language', translateService.currentLang)
-          .set('Zone', 'tw'),
+          .set('Zone', '52753953372377088')
       });
     } catch (error) {
       // console.log(error)

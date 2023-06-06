@@ -28,49 +28,49 @@ export class LocationTableComponent {
     },
     {
       title: 'Site',
-      field: 'location_Name',
+      field: 'cfk_Site',
       vertAlign: 'middle',
       hozAlign: 'center',
       headerHozAlign: 'center',
     },
     {
       title: 'Location',
-      field: 'location_State',
+      field: 'ck_Location_Code',
       vertAlign: 'middle',
       hozAlign: 'center',
       headerHozAlign: 'center',
     },
     {
-      title: 'Local Name',
-      field: 'location_Sort',
+      title: 'Local name',
+      field: 'location_Name',
       vertAlign: 'middle',
       hozAlign: 'center',
       headerHozAlign: 'center',
     },
     {
       title: 'English Name',
-      field: 'location_Sort',
+      field: 'location_EnglishName',
       vertAlign: 'middle',
       hozAlign: 'center',
       headerHozAlign: 'center',
     },
     {
       title: 'Area',
-      field: 'location_Sort',
+      field: 'location_Area',
       vertAlign: 'middle',
       hozAlign: 'center',
       headerHozAlign: 'center',
     },
     {
       title: 'Company',
-      field: 'location_Sort',
+      field: 'location_Company',
       vertAlign: 'middle',
       hozAlign: 'center',
       headerHozAlign: 'center',
     },
     {
       title: '狀態',
-      field: 'location_Sort',
+      field: 'location_State',
       vertAlign: 'middle',
       hozAlign: 'center',
       headerHozAlign: 'center',
@@ -84,6 +84,16 @@ export class LocationTableComponent {
       vertAlign: 'middle',
       hozAlign: 'center',
       headerHozAlign: 'center',
+      formatter: (cell: any) => {
+        const rowData = cell.getData();
+        let text = '';
+
+        if (rowData.info_Jobnumber) { text = rowData.info_Jobnumber; }
+        if (rowData.location_EditCode) { text += '/' + rowData.location_EditCode; }
+        if (rowData.info_Ename) { text += '/' + rowData.info_Ename; }
+
+        return text;
+      },
     },
     {
       title: '異動時間',

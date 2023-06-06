@@ -19,12 +19,12 @@ export class LocationSearchFormComponent implements OnInit {
     private formBuilder: FormBuilder,
     public locationService: LocationService,
     private loadingService: LoadingService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.searchFormGroup = this.formBuilder.group({
-      location_Name: [''],
-      location_Code: [''],
+      ck_Location_Code: [''],
+      cfk_Site: [''],
       location_State: [''],
     });
     this.searchFormGroup.valueChanges.subscribe({
@@ -36,8 +36,8 @@ export class LocationSearchFormComponent implements OnInit {
 
   setSearchFormGroupInit() {
     this.searchFormGroup.patchValue({
-      location_Name: '',
-      location_Code: '',
+      ck_Location_Code: '',
+      cfk_Site: '',
       location_State: '1',
     });
   }
