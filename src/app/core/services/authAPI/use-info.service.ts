@@ -6,7 +6,7 @@ import { Tabulator } from 'tabulator-tables';
 
 // models
 import * as base from '../../models/baseAPI/base';
-import * as useInfo from '../../models/baseAPI/use-info';
+import * as useInfo from '../../models/authAPI/use-info';
 
 @Injectable({
   providedIn: 'root'

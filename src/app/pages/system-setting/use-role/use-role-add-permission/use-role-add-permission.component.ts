@@ -3,7 +3,7 @@ import { ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationError
 import { BehaviorSubject, catchError, finalize } from 'rxjs';
 
 // service
-import { UseRoleService } from 'src/app/core/services/baseAPI/use-role.service';
+import { UseRoleService } from 'src/app/core/services/authAPI/use-role.service';
 import { LoadingService } from 'src/app/core/services/loading.service';
 
 @Component({

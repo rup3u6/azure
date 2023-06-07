@@ -3,7 +3,7 @@ import { Tabulator } from 'tabulator-tables';
 import { DatePipe } from '@angular/common';
 
 // service
-import { UseRoleService } from 'src/app/core/services/baseAPI/use-role.service';
+import { UseRoleService } from 'src/app/core/services/authAPI/use-role.service';
 import { LoadingService } from 'src/app/core/services/loading.service';
 
 @Component({

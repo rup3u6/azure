@@ -3,7 +3,7 @@ import { FormBuilder } from '@angular/forms';
 import { firstValueFrom } from 'rxjs';
 
 // service
-import { UseInfoService } from 'src/app/core/services/baseAPI/use-info.service';
+import { UseInfoService } from 'src/app/core/services/authAPI/use-info.service';
 import { LoadingService } from 'src/app/core/services/loading.service';
 
 @Component({

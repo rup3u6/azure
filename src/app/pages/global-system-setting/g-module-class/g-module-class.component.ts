@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
-import { GModuleClassService } from 'src/app/core/services/baseAPI/g-module-class.service';
+import { GModuleClassService } from 'src/app/core/services/authAPI/g-module-class.service';
 import { LoadingService } from 'src/app/core/services/loading.service';
 import { MessageService } from 'src/app/core/services/message.service';
 

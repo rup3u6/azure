@@ -3,7 +3,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { Tabulator } from 'tabulator-tables';
 
 // services
-import { UseInfoService } from 'src/app/core/services/baseAPI/use-info.service';
+import { UseInfoService } from 'src/app/core/services/authAPI/use-info.service';
 
 @Component({
   selector: 'div[sys-use-info-table]',

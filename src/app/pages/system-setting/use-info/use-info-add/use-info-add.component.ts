@@ -7,7 +7,7 @@ import { DropDownList } from 'src/app/core/enum/drop-down-list';
 
 // service
 import { DropDownListService } from 'src/app/core/services/baseAPI/drop-down-list.service';
-import { UseInfoService } from 'src/app/core/services/baseAPI/use-info.service';
+import { UseInfoService } from 'src/app/core/services/authAPI/use-info.service';
 import { LoadingService } from 'src/app/core/services/loading.service';
 
 @Component({

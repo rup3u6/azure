@@ -3,11 +3,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { finalize, firstValueFrom } from 'rxjs';
 
 // models
-import * as moduleClass from 'src/app/core/models/baseAPI/module-class';
+import * as moduleClass from 'src/app/core/models/authAPI/module-class';
 
 // service
-import { GModuleService } from 'src/app/core/services/baseAPI/g-module.service';
-import { GModuleClassService } from 'src/app/core/services/baseAPI/g-module-class.service';
+import { GModuleService } from 'src/app/core/services/authAPI/g-module.service';
+import { GModuleClassService } from 'src/app/core/services/authAPI/g-module-class.service';
 import { LoadingService } from 'src/app/core/services/loading.service';
 
 @Component({

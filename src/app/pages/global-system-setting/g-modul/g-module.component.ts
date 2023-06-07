@@ -5,7 +5,7 @@ import { firstValueFrom } from 'rxjs';
 import { Message } from 'src/app/core/enum/message';
 
 // service
-import { GModuleService } from 'src/app/core/services/baseAPI/g-module.service';
+import { GModuleService } from 'src/app/core/services/authAPI/g-module.service';
 import { LoadingService } from 'src/app/core/services/loading.service';
 import { MessageService } from 'src/app/core/services/message.service';
 

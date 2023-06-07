@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { finalize, firstValueFrom } from 'rxjs';
 
 // service
-import { GModuleService } from 'src/app/core/services/baseAPI/g-module.service';
+import { GModuleService } from 'src/app/core/services/authAPI/g-module.service';
 import { LoadingService } from 'src/app/core/services/loading.service';
 
 @Component({

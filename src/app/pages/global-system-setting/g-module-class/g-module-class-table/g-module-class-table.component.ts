@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { GModuleClassService } from 'src/app/core/services/baseAPI/g-module-class.service';
+import { GModuleClassService } from 'src/app/core/services/authAPI/g-module-class.service';
 import { Tabulator } from 'tabulator-tables';
 import { DatePipe } from '@angular/common';
 
