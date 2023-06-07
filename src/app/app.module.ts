@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
 import { LayoutModule } from './layout/layout.module';
+import { MsalRedirectComponent } from '@azure/msal-angular';
 
 @NgModule({
   declarations: [AppComponent],
@@ -19,6 +20,6 @@ import { LayoutModule } from './layout/layout.module';
     SharedModule,
   ],
   providers: [],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent, MsalRedirectComponent],
 })
 export class AppModule {}

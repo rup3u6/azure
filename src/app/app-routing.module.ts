@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './core/guards/auth.guard';
 import { DefaultComponent } from './layout/default/default.component';
+import { BrowserUtils } from '@azure/msal-browser';
 
 const routes: Routes = [
   {
@@ -42,8 +43,18 @@ const routes: Routes = [
   { path: '**', redirectTo: '/home', pathMatch: 'full' },
 ];
 
+const isIframe = window !== window.parent && !window.opener;
+
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    RouterModule.forRoot(routes, {
+      // Don't perform initial navigation in iframes or popups
+      initialNavigation:
+        !BrowserUtils.isInIframe() && !BrowserUtils.isInPopup()
+          ? 'enabledNonBlocking'
+          : 'disabled', // Set to enabledBlocking to use Angular Universal
+    }),
+  ],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

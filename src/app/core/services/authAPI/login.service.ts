@@ -4,12 +4,17 @@ import { CInLoginPageData } from '../../models/authAPI/login';
 import { tap } from 'rxjs';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
+import { MsalService } from '@azure/msal-angular';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LoginService {
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private authService: MsalService
+  ) {}
   private apiUrl = environment.apiUrl;
 
   login(body: CInLoginPageData) {
@@ -23,7 +28,12 @@ export class LoginService {
   }
   logout() {
     sessionStorage.removeItem('wis_cms_token');
-    this.router.navigate(['/login']);
+    let accounts = this.authService.instance.getAllAccounts();
+    if (accounts.length > 0) {
+      this.authService.logout();
+    } else {
+      this.router.navigate(['/login']);
+    }
   }
 
   getValidGrphics() {
