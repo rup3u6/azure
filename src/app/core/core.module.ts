@@ -52,7 +52,7 @@ const isIE =
           redirectUri: environment.msalRedirectUri,
         },
         cache: {
-          cacheLocation: 'localStorage',
+          cacheLocation: 'sessionStorage',
           storeAuthStateInCookie: isIE,
         },
       }),
