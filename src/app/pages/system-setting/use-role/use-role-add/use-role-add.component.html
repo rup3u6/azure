@@ -1,0 +1,160 @@
+<!-- START: popup -->
+<div class="frame-block">
+  <div class="frame-compose popup-compose">
+    <div class="extra-size-popup-close">
+      <a (click)="close.emit()"
+        ><span class="material-icons-outlined">highlight_off</span></a
+      >
+    </div>
+    <div class="popup-composer-inner">
+      <!-- START: default-popup -->
+      <div class="popup-component extra-size-popup" type="normal">
+        <div class="popup-header">
+          <div class="popup-header-inner">
+            <div class="popup-header-unit header-text">
+              {{ data.mode === "add" ? "新增" : "編輯" }}角色
+            </div>
+            <!-- <div class="popup-header-unit header-btn">
+                <a routerLink="/role"
+                  ><span class="material-icons-outlined"> close </span></a
+                >
+              </div> -->
+          </div>
+        </div>
+        <div class="popup-content" *ngIf="isUseRoleFormGroup">
+          <div class="popup-content-form" [formGroup]="useRoleFormGroup">
+            <div class="popup-content-item popup-content-tab">
+              <div class="popup-content-item-inner">
+                <ul>
+                  <li><a (click)="tab = 1" [ngClass]="{'active': tab === 1}">資料維護</a></li>
+                  <li><a (click)="tab = 2" [ngClass]="{'active': tab === 2}">權限選單</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="popup-content-item">
+              <div class="popup-content-item-inner">
+                <div class="popup-form">
+                  <div class="form-row row-3" formGroupName="oCTab_UseRole">
+                    <div class="form-item" type="required" [attr.attr]="f['oCTab_UseRole'].get('role_Name')?.errors && f['oCTab_UseRole'].get('role_Name')?.touched && 'error'">
+                      <div class="form-item-inner">
+                        <div class="form-item-title">角色名稱</div>
+                        <div class="form-item-entry">
+                          <input
+                            type="text"
+                            placeholder="請輸入角色名稱"
+                            formControlName="role_Name"
+                          />
+                        </div>
+                        <div class="form-item-text" *ngIf="f['oCTab_UseRole'].get('role_Name')?.errors && f['oCTab_UseRole'].get('role_Name')?.touched">
+                          <p>{{ f['oCTab_UseRole'].get('role_Name')?.errors | errorMessage : '角色名稱' }}</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-item" type="required" [attr.attr]="f['oCTab_UseRole'].get('role_State')?.errors && f['oCTab_UseRole'].get('role_State')?.touched && 'error'">
+                      <div class="form-item-inner">
+                        <div class="form-item-title">狀態</div>
+                        <div class="form-item-entry">
+                          <ul>
+                            <li>
+                              <input
+                                type="radio"
+                                id="rd01"
+                                value="1"
+                                formControlName="role_State"
+                              />
+                              <label for="rd01">啟用</label>
+                            </li>
+                            <li>
+                              <input
+                                type="radio"
+                                id="rd02"
+                                value="0"
+                                formControlName="role_State"
+                              />
+                              <label for="rd02">停用</label>
+                            </li>
+                          </ul>
+                        </div>
+                        <div class="form-item-text" *ngIf="f['oCTab_UseRole'].get('role_State')?.errors && f['oCTab_UseRole'].get('role_State')?.touched">
+                          <p>{{ f['oCTab_UseRole'].get('role_State')?.errors | errorMessage : '狀態' }}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <hr class="seperate-line" />
+                  <div class="form-row row-2" [hidden]="tab !== 1">
+                    <div class="form-item" type="required" [attr.attr]="f['oCTab_UseRole'].get('role_Name')?.errors && f['oCTab_UseRole'].get('role_Name')?.touched && 'error'">
+                      <div class="form-item-inner">
+                        <div class="form-item-title">角色使用者</div>
+                        <div class="form-item-entry">
+                          <nz-transfer
+                            [nzDataSource]="useInfoList"
+                            (nzChange)="nzTransferChange()"
+                          ></nz-transfer>
+                        </div>
+                        <div class="form-item-text" *ngIf="f['oCTab_UseRole'].get('role_Name')?.errors && f['oCTab_UseRole'].get('role_Name')?.touched">
+                          <p>{{ f['oCTab_UseRole'].get('role_Name')?.errors | errorMessage : '角色使用者' }}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <hr class="seperate-line" [hidden]="tab !== 1"/>
+                  <div class="form-row row-3" [hidden]="tab !== 1">
+                    <div class="form-item" type="required" [attr.attr]="f['oCTab_UseRole'].get('role_StartDate')?.errors && f['oCTab_UseRole'].get('role_StartDate')?.touched && 'error'">
+                      <div class="form-item-inner">
+                        <div class="form-item-title">有效日期(起)</div>
+                        <div class="form-item-entry">
+                          <nz-date-picker
+                            nzPlaceHolder="請輸入日期區間(起)"
+                            [(ngModel)]="roleStartDate"
+                            (ngModelChange)="roleStartDateChange($event)"
+                            [ngModelOptions]="{standalone: true}"
+                          ></nz-date-picker>
+                        </div>
+                        <div class="form-item-text" *ngIf="f['oCTab_UseRole'].get('role_StartDate')?.errors && f['oCTab_UseRole'].get('role_StartDate')?.touched">
+                          <p>{{ f['oCTab_UseRole'].get('role_StartDate')?.errors | errorMessage : '有效日期(起)' }}</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-item" type="required" [attr.attr]="f['oCTab_UseRole'].get('role_EndDate')?.errors && f['oCTab_UseRole'].get('role_EndDate')?.touched && 'error'">
+                      <div class="form-item-inner">
+                        <div class="form-item-title">有效日期(迄)</div>
+                        <div class="form-item-entry">
+                          <nz-date-picker
+                            nzPlaceHolder="請輸入日期區間(迄)"
+                            [(ngModel)]="roleEndDate"
+                            (ngModelChange)="roleEndDateChange($event)"
+                            [ngModelOptions]="{standalone: true}"
+                          ></nz-date-picker>
+                        </div>
+                        <div class="form-item-text" *ngIf="f['oCTab_UseRole'].get('role_EndDate')?.errors && f['oCTab_UseRole'].get('role_EndDate')?.touched">
+                          <p>{{ f['oCTab_UseRole'].get('role_EndDate')?.errors | errorMessage : '有效日期(迄)' }}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <sys-use-role-add-permission
+                    formControlName="lCIn_UseRoleAuth_PageData"
+                    [hidden]="tab !== 2"
+                  ></sys-use-role-add-permission>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="popup-footer">
+          <div class="popup-footer-inner">
+            <div class="popup-footer-unit footer-button" btn="cancel">
+              <button (click)="close.emit()">取消</button>
+            </div>
+            <div class="popup-footer-unit footer-button" btn="confirm">
+              <button (click)="submit()">確認</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- END: default-popup -->
+    </div>
+  </div>
+</div>
+<!-- END: popup -->

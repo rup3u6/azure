@@ -32,18 +32,18 @@ export interface UpdateResponses {
 
 //#region Get
 export interface GetRequest {
-  info_Id: number;
   info_Jobnumber: string;
   info_Name: string;
-  info_Site: string;
-  info_Dept: string;
+  info_Ename: string;
   info_Secretary: string;
   secretary_Name: string;
 }
 
 export interface GetResponses {
+  info_Id: number;
   info_Jobnumber: string;
   info_Name: string;
+  info_Ename: string;
   info_Site: string;
   info_Dept: string;
   info_Secretary: string;

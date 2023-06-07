@@ -62,6 +62,7 @@ export class LogExecuteTableComponent {
         let text = '';
 
         if (rowData.info_Jobnumber) { text = rowData.info_Jobnumber; }
+
         if (rowData.logExec_CreateCode) {
           if (text) { text += '/'; }
 

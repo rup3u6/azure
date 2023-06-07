@@ -1,0 +1,26 @@
+<div class="form-row row-1">
+  <div class="form-item" type="required" attr="">
+    <div class="form-item-inner">
+      <div class="form-item-entry">
+        <div class="tree-field">
+          <div class="tree-field-inner">
+            <div class="tree-field-unit" *ngFor="let item of ['', '']">
+              <div class="tree-field-checkbox">
+                <input type="checkbox" id="cb11" name="cb11">
+                <label for="cb11">全域管理者維護</label>
+              </div>
+              <div class="sub-tree-field-unit">
+                <ng-container *ngFor="let item of list$ | async">
+                  <div class="tree-field-checkbox">
+                    <input type="checkbox" id="{{item.value}}" [(ngModel)]="item.check" (ngModelChange)="cfkRoleIdChange()">
+                    <label for="{{item.value}}">{{item.name}}</label>
+                  </div>
+                </ng-container>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
