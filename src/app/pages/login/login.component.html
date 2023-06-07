@@ -28,7 +28,7 @@
               >
                 <div class="login-form-item-inner">
                   <div class="form-unit form-title-text">
-                    帳號<span>ID</span>
+                    帳號<span (click)="loginAAD()">ID</span>
                   </div>
                   <div class="form-unit form-field-input">
                     <input
@@ -112,12 +112,6 @@
                         />
                       </div>
                       <div class="form-part form-field-link">
-                        <!-- <a
-                          href="javascript:void(0)"
-                          class="form-verify"
-                          tabindex="-1"
-                          >1234</a
-                        > -->
                         <a class="form-verify">
                           <img [src]="imgBase64" alt="captcha">
                         </a>

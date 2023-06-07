@@ -1,26 +1,52 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { finalize, firstValueFrom } from 'rxjs';
+import {
+  Subject,
+  filter,
+  finalize,
+  firstValueFrom,
+  takeUntil,
+  tap,
+} from 'rxjs';
 import { CInLoginPageData } from 'src/app/core/models/authAPI/login';
 
 // service
 import { LoadingService } from 'src/app/core/services/loading.service';
 import { LoginService } from 'src/app/core/services/authAPI/login.service';
+import {
+  MSAL_GUARD_CONFIG,
+  MsalBroadcastService,
+  MsalGuardConfiguration,
+  MsalService,
+} from '@azure/msal-angular';
+import {
+  EventMessage,
+  EventType,
+  InteractionStatus,
+  RedirectRequest,
+} from '@azure/msal-browser';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
   loginFormGroup!: FormGroup;
   pwdVis: boolean = false;
   imgBase64: any;
 
+  private readonly _destroying$ = new Subject<void>();
   constructor(
     private formBuilder: FormBuilder,
     private loginService: LoginService,
-    private loadingService: LoadingService
+    private loadingService: LoadingService,
+    @Inject(MSAL_GUARD_CONFIG) private msalGuardConfig: MsalGuardConfiguration,
+    private broadcastService: MsalBroadcastService,
+    private authService: MsalService,
+    private router: Router,
+    private msalBroadcastService: MsalBroadcastService
   ) {
     this.getValidGrphics();
   }
@@ -31,6 +57,30 @@ export class LoginComponent implements OnInit {
       userPassword: ['', [Validators.required]],
       verificatCode: ['', [Validators.required]],
     });
+    this.msalBroadcastService.msalSubject$
+      .pipe(
+        filter((msg: EventMessage) => msg.eventType === EventType.LOGIN_SUCCESS)
+      )
+      .subscribe((result: any) => {
+        console.log(result);
+        let idToken = result.payload.idToken;
+        sessionStorage.setItem('wis_cms_token', String(idToken));
+        this.router.navigate(['/home']);
+      });
+
+    this.broadcastService.inProgress$
+      .pipe(
+        filter(
+          (status: InteractionStatus) => status === InteractionStatus.None
+        ),
+        takeUntil(this._destroying$)
+      )
+      .subscribe(() => {
+        let accounts = this.authService.instance.getAllAccounts();
+        if (accounts.length > 0 && sessionStorage.getItem('wis_cms_token')) {
+          this.router.navigate(['/home']);
+        }
+      });
   }
 
   login() {
@@ -79,5 +129,20 @@ export class LoginComponent implements OnInit {
 
   get f() {
     return this.loginFormGroup.controls;
+  }
+
+  loginAAD() {
+    if (this.msalGuardConfig.authRequest) {
+      this.authService.loginRedirect({
+        ...this.msalGuardConfig.authRequest,
+      } as RedirectRequest);
+    } else {
+      this.authService.loginRedirect();
+    }
+  }
+
+  ngOnDestroy(): void {
+    this._destroying$.next(undefined);
+    this._destroying$.complete();
   }
 }
