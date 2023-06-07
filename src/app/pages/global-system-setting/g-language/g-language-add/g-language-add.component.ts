@@ -32,6 +32,8 @@ export class GLanguageAddComponent implements OnInit {
       lang_Name: ['', [Validators.required]],
       lang_Code: ['', [Validators.required]],
       lang_State: ['', [Validators.required]],
+      i18N_Front: ['', [Validators.required]],
+      i18N_Back: ['', [Validators.required]],
     });
     if (this.data.mode === 'add') {
       this.setLanguageFormGroupInit();
@@ -48,6 +50,8 @@ export class GLanguageAddComponent implements OnInit {
       lang_Name: '',
       lang_Code: '',
       lang_State: '1',
+      i18N_Front: '',
+      i18N_Back: '',
     });
   }
 

@@ -42,6 +42,20 @@ export class GLanguageTableComponent {
       headerHozAlign: 'center',
     },
     {
+      title: '前台I18N檔名',
+      field: 'i18N_Front',
+      vertAlign: 'middle',
+      hozAlign: 'center',
+      headerHozAlign: 'center',
+    },
+    {
+      title: '後台I18N檔名',
+      field: 'i18N_Back',
+      vertAlign: 'middle',
+      hozAlign: 'center',
+      headerHozAlign: 'center',
+    },
+    {
       title: '狀態',
       field: 'lang_State',
       vertAlign: 'middle',

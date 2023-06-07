@@ -52,6 +52,38 @@
               </div>
             </div>
             <div class="form-row row-2">
+              <div class="form-item" type="required" [attr.attr]="f['i18N_Front'].errors && f['i18N_Front'].touched && 'error'">
+                <div class="form-item-inner">
+                  <div class="form-item-title">前台I18N檔名</div>
+                  <div class="form-item-entry">
+                    <input
+                      type="text"
+                      placeholder="請輸入前台I18N檔名"
+                      formControlName="i18N_Front"
+                    />
+                  </div>
+                  <div class="form-item-text" *ngIf="f['i18N_Front'].errors && f['i18N_Front'].touched">
+                    <p>{{ f["i18N_Front"].errors | errorMessage : '前台I18N檔名' }}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="form-item" type="required" [attr.attr]="f['i18N_Back'].errors && f['i18N_Back'].touched && 'error'">
+                <div class="form-item-inner">
+                  <div class="form-item-title">後台I18N檔名</div>
+                  <div class="form-item-entry">
+                    <input
+                      type="text"
+                      placeholder="請輸入後台I18N檔名"
+                      formControlName="i18N_Back"
+                    />
+                  </div>
+                  <div class="form-item-text" *ngIf="f['i18N_Back'].errors && f['i18N_Back'].touched">
+                    <p>{{ f["i18N_Back"].errors | errorMessage : '後台I18N檔名' }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-row row-2">
               <div class="form-item" type="required" [attr.attr]="f['lang_State'].errors && f['lang_State'].touched && 'error'">
                 <div class="form-item-inner">
                   <div class="form-item-title">狀態</div>

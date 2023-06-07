@@ -31,7 +31,6 @@ export interface UpdateRequest {
   lang_Code: string;
   i18N_Front: string;
   i18N_Back: string;
-
 }
 
 export interface UpdateResponses {
