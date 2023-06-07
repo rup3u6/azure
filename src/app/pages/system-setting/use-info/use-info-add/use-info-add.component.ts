@@ -3,10 +3,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { finalize, firstValueFrom } from 'rxjs';
 
 // emum
-import { DropDownList } from 'src/app/core/enum/drop-down-list';
+import { ListItem } from 'src/app/core/enum/list-item';
 
 // service
-import { DropDownListService } from 'src/app/core/services/baseAPI/drop-down-list.service';
+import { ListItemService } from 'src/app/core/services/baseAPI/list_item.service';
 import { UseInfoService } from 'src/app/core/services/authAPI/use-info.service';
 import { LoadingService } from 'src/app/core/services/loading.service';
 
@@ -29,7 +29,7 @@ export class UseInfoAddComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    public dropDownListService: DropDownListService,
+    public listItemService: ListItemService,
     public useInfoService: UseInfoService,
     private loadingService: LoadingService,
   ) { }
@@ -66,15 +66,15 @@ export class UseInfoAddComponent implements OnInit {
     this.loadingService.startLoading();
 
     try {
-      const roleNameListRes = await firstValueFrom(this.dropDownListService.get(DropDownList.角色名稱));
+      const roleNameListRes = await firstValueFrom(this.listItemService.get(ListItem.顯示角色名稱));
 
       if (roleNameListRes.status === '999') {
         let roleNameList = [];
 
-        for (let i in roleNameListRes.data[0]) {
+        for (let i in roleNameListRes.data.dListItem) {
           roleNameList.push({
             key: i,
-            value: roleNameListRes.data[0][i],
+            value: roleNameListRes.data.dListItem[i],
           });
         }
 

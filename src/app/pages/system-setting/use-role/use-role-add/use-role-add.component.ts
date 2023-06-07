@@ -3,9 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { firstValueFrom } from 'rxjs';
 import { DatePipe } from '@angular/common';
 
-// enum
-import { DropDownList } from 'src/app/core/enum/drop-down-list';
-
 // service
 import { UseInfoService } from 'src/app/core/services/authAPI/use-info.service';
 import { UseRoleService } from 'src/app/core/services/authAPI/use-role.service';
