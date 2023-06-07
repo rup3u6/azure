@@ -15,18 +15,18 @@ export class ListItemService {
 
   constructor(private http: HttpClient) { }
 
-  get(body1: string, sParentCode = '') {
-    const a = body1.split(',');
+  search(listItemStrList: string[], sParentCode = '') {
+    let body: listItem.Request[] = listItemStrList.map(item => {
+      const arr = item.split(',');
 
-    let body: listItem.Request[] = [
-      {
-        sListItemType: a[0],
-        sTypeCode: a[1],
-        sStyleCode: a[2],
-        sParentCode
+      return {
+        sListItemType: arr[0],
+        sTypeCode: arr[1],
+        sStyleCode: arr[2],
+        sParentCode,
       }
-    ];
+    });
 
-    return this.http.post<base.ResponsesBase<listItem.ListItemResponsesBase<any[]>>>(`${this.apiUrl}/Base/ListItem`, body);
+    return this.http.post<base.ResponsesBase<listItem.ListItemResponsesBase<any[]>[]>>(`${this.apiUrl}/Base/ListItem`, body);
   }
 }

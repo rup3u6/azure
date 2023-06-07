@@ -129,10 +129,10 @@ export class UseRoleAddComponent implements OnInit {
     this.loadingService.startLoading();
 
     try {
-      const roleNameListRes = await firstValueFrom(this.useInfoService.search(body));
+      const useInfoRes = await firstValueFrom(this.useInfoService.search(body));
 
-      if (roleNameListRes.status === '999') {
-        this.useInfoList = roleNameListRes.data.map(item => {
+      if (useInfoRes.status === '999') {
+        this.useInfoList = useInfoRes.data.map(item => {
           //#region title
           let text = '';
 

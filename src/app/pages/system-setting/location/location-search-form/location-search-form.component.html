@@ -1,45 +1,19 @@
-<div class="content-query-field" [formGroup]="searchFormGroup">
+<div class="content-query-field" [formGroup]="searchFormGroup" *ngIf="isSearchFormGroup">
   <div class="content-query-unit query-field">
     <div class="field-title">Site</div>
     <div class="field-entry">
-      <select
-        formControlName="cfk_Site">
+      <select formControlName="cfk_Site" (change)="getLocation()">
         <option value="" selected disabled>請輸入Site</option>
-        <option value="WCHQ">WCHQ</option>
-        <option value="WETW">WETW</option>
-        <option value="WHC">WHC</option>
-        <option value="WIH">WIH</option>
-        <option value="WKH">WKH</option>
-        <option value="WTN">WTN</option>
+        <option [value]="item.key" *ngFor="let item of siteList">{{item.value}}</option>
       </select>
     </div>
   </div>
   <div class="content-query-unit query-field">
     <div class="field-title">Location</div>
     <div class="field-entry">
-      <select
-        formControlName="ck_Location_Code">
+      <select formControlName="ck_Location_Code">
         <option value="" selected disabled>請輸入Location</option>
-        <option value="003">新竹</option>
-        <option value="005">高雄</option>
-        <option value="006">汐止</option>
-        <option value="008">桃園 - 龍潭</option>
-        <option value="010">新竹-湖口</option>
-        <option value="013">汐止 - 翔智</option>
-        <option value="014">桃園 - 翔智</option>
-        <option value="016">內湖</option>
-        <option value="018">龍潭實驗室</option>
-        <option value="021">汐止-WCHQ</option>
-        <option value="026">新竹-WMT</option>
-        <option value="027">新竹-研發二路廠</option>
-        <option value="029">緯謙-高雄</option>
-        <option value="030">高雄-國泰</option>
-        <option value="031">汐止-WMT</option>
-        <option value="032">新竹-湖口 II</option>
-        <option value="034">台南</option>
-        <option value="035">新竹-光復辦公區</option>
-        <option value="036">新竹-創新辦公區</option>
-        <option value="037">緯謙-汐止</option>
+        <option [value]="item.key" *ngFor="let item of locationList">{{item.value}}</option>
       </select>
     </div>
   </div>

@@ -6,7 +6,6 @@ import { finalize, firstValueFrom } from 'rxjs';
 import { LocationService } from 'src/app/core/services/baseAPI/location.service';
 import { LoadingService } from 'src/app/core/services/loading.service';
 
-
 @Component({
   selector: 'sys-location-add',
   templateUrl: './location-add.component.html',

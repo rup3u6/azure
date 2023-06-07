@@ -23,8 +23,9 @@ export class UseInfoAddComponent implements OnInit {
     initData: {},
   };
 
-  roleNameList: any;
+  roleNameList: any = [];
 
+  isUseInfoFormGroup = false;
   useInfoFormGroup!: FormGroup;
 
   constructor(
@@ -52,6 +53,7 @@ export class UseInfoAddComponent implements OnInit {
         info_Backend: this.data.initData.info_Backend === '1',
       });
     }
+    this.isUseInfoFormGroup = true;
   }
 
   setLanguageFormGroupInit() {
@@ -66,15 +68,15 @@ export class UseInfoAddComponent implements OnInit {
     this.loadingService.startLoading();
 
     try {
-      const roleNameListRes = await firstValueFrom(this.listItemService.get(ListItem.顯示角色名稱));
+      const listItemRes = await firstValueFrom(this.listItemService.search([ListItem.顯示角色名稱]));
 
-      if (roleNameListRes.status === '999') {
+      if (listItemRes.status === '999') {
         let roleNameList = [];
 
-        for (let i in roleNameListRes.data.dListItem) {
+        for (let i in listItemRes.data[0].dListItem) {
           roleNameList.push({
             key: i,
-            value: roleNameListRes.data.dListItem[i],
+            value: listItemRes.data[0].dListItem[i],
           });
         }
 
