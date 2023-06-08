@@ -55,7 +55,7 @@ export class ResponseHttpInterceptorService {
             switch (status) {
               case '999':
                 //  login及所有get/getDetail 成功不通知
-                if (/\/(Get|Login|DropDownList)/.test(url)) {
+                if (/\/(Get|Login|ListItem|)/.test(url)) {
                   break;
                 }
                 this.messageService.showModal(Message.success, {
