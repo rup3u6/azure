@@ -1,4 +1,5 @@
-import { Injectable, TemplateRef } from '@angular/core';
+import { Injectable, Injector, TemplateRef } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 
@@ -7,9 +8,11 @@ import { NzNotificationService } from 'ng-zorro-antd/notification';
 })
 export class MessageService {
   private templateMap = new Map<string, TemplateRef<any>>();
+
   constructor(
     private modal: NzModalService,
-    private notification: NzNotificationService
+    private notification: NzNotificationService,
+    private readonly injector: Injector
   ) {}
 
   public initTemplate(tempName: string, ref: TemplateRef<any>): void {
@@ -67,17 +70,20 @@ export class MessageService {
         this.modal.error(config);
         break;
     }
-
-    // this.modal.warning({
-    //   nzTitle: msg.title,
-    //   nzContent: this.templateMap.get('tplContent'),
-    //   nzOkText: '關閉',
-    //   nzMaskClosable: false,
-    //   nzClosable: false,
-    //   nzComponentParams: {
-    //     msgList: msg.msgList,
-    //   },
-    //   nzOnOk: () => callback(),
-    // });
+  }
+  public responseErrorMsgTranslate(msg: string, field: Array<any>) {
+    const translateService = this.injector.get(TranslateService);
+    if (field?.length) {
+      let transMsgArray = field.map(
+        ({ field: i18nField = ' ', errorMessage }) => {
+          let transField = translateService.instant(i18nField.toUpperCase());
+          return translateService.instant(errorMessage, { field: transField });
+        }
+      );
+      return transMsgArray;
+    } else {
+      let transMsg = translateService.instant(msg);
+      return transMsg === msg ? [`errorCode：${transMsg}`] : [transMsg];
+    }
   }
 }

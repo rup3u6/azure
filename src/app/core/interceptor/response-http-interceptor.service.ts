@@ -51,11 +51,12 @@ export class ResponseHttpInterceptorService {
             return;
           }
           const { status, message, field } = res.body;
+          let msgList;
           if (status) {
             switch (status) {
               case '999':
                 //  login及所有get/getDetail 成功不通知
-                if (/\/(Get|Login|ListItem|)/.test(url)) {
+                if (/\/(Get|Login|ListItem)/.test(url)) {
                   break;
                 }
                 this.messageService.showModal(Message.success, {
@@ -63,18 +64,28 @@ export class ResponseHttpInterceptorService {
                 });
                 break;
               case '901':
+                msgList = this.messageService.responseErrorMsgTranslate(
+                  message,
+                  field
+                );
                 this.messageService.showModal(Message.warning, {
                   title: '資料格式或欄位驗證錯誤',
+                  msgList,
                 });
                 break;
               case '900':
+                msgList = this.messageService.responseErrorMsgTranslate(
+                  message,
+                  field
+                );
                 this.messageService.showModal(Message.error, {
                   title: '執行失敗',
+                  msgList,
                 });
                 break;
               default:
                 this.messageService.showModal(Message.error, {
-                  title: '執行失敗',
+                  title: '錯誤',
                   msgList: ['請洽系統管理員'],
                 });
                 break;

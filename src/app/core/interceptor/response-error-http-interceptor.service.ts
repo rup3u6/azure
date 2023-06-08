@@ -26,15 +26,17 @@ export class ResponseErrorHttpInterceptorService implements HttpInterceptor {
 
   public statusHandler(response: any) {
     //  處理自定義項目
-    const { status } = response;
-
+    const { status, message, field } = response;
+    let msgList;
     switch (status) {
       case '900':
+        msgList = this.messageService.responseErrorMsgTranslate(message, field);
         this.messageService.showModal(Message.error, {
           title: '執行失敗',
         });
         break;
       case '901':
+        msgList = this.messageService.responseErrorMsgTranslate(message, field);
         this.messageService.showModal(Message.error, {
           title: '資料格式或欄位驗證錯誤',
         });
@@ -60,14 +62,14 @@ export class ResponseErrorHttpInterceptorService implements HttpInterceptor {
         if (/\/i18n\/.*\.json$/.test(url)) {
           const lang = /\/i18n\/(?<lang>.*)\.json$/.exec(url)?.groups?.['lang'];
           console.log(`無${lang}語系語言包`);
-          // try {
-          //   const translateService = this.injector.get(TranslateService);
-          //   setTimeout(() => {
-          //     translateService.use('EN');
-          //   }, 0);
-          // } catch (error) {
-          //   // console.log(error)
-          // }
+          try {
+            const translateService = this.injector.get(TranslateService);
+            setTimeout(() => {
+              translateService.use('EN');
+            }, 0);
+          } catch (error) {
+            // console.log(error)
+          }
           return throwError(() => error);
         }
 
