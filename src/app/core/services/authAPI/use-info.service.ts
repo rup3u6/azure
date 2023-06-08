@@ -53,7 +53,7 @@ export class UseInfoService {
   }
 
   edit(body: useInfo.UpdateRequest) {
-    return this.http.post<base.ResponsesBase<useInfo.UpdateResponses>>(`${this.apiUrl}/Auth/UseInfo/Update`, body);
+    return this.http.post<base.ResponsesBase<useInfo.UpdateResponses>>(`${this.apiUrl}/Auth/UseInfo/BestowRoleAsync`, body);
   }
 
   getDetail(body: useInfo.GetDetailRequest) {

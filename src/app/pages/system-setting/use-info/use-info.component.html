@@ -16,7 +16,7 @@
       sys-use-info-table
       class="main-content-unit content-result"
       (edit)="editPopupHandler($event)"
-      (deactivate)="deactivatePopupHandler()"
+      (seach)="seachHandler()"
     ></div>
     <!-- END: content-result -->
   </div>
@@ -27,22 +27,3 @@
   [data]="popup.data"
   (close)="popup.component = null"
 ></sys-use-info-add>
-
-<app-delete-confirm
-  *ngIf="popup.component === 'deactivate'"
-  (submit)="deactivateHandler()"
-  (close)="popup.component = null"
->
-  <div class="popup-content">
-    <p>【停用項目】</p>
-    <ul>
-      <li
-        *ngFor="
-          let item of useInfoService.getTabulatorTable().getSelectedData()
-        "
-      >
-        {{ item.lang_Name }}
-      </li>
-    </ul>
-  </div>
-</app-delete-confirm>

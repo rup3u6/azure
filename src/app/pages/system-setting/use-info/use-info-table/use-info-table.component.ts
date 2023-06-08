@@ -12,9 +12,8 @@ import { UseInfoService } from 'src/app/core/services/authAPI/use-info.service';
 })
 export class UseInfoTableComponent {
 
-  @Output() add = new EventEmitter<any>();
+  @Output() seach = new EventEmitter<any>();
   @Output() edit = new EventEmitter<any>();
-  @Output() deactivate = new EventEmitter<any>();
 
   columnNames: Array<any> = [
     {

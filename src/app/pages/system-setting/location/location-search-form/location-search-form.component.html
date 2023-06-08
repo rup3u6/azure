@@ -3,7 +3,7 @@
     <div class="field-title">Site</div>
     <div class="field-entry">
       <select formControlName="cfk_Site" (change)="getLocation()">
-        <option value="" selected disabled>請輸入Site</option>
+        <option value="" selected>全部</option>
         <option [value]="item.key" *ngFor="let item of siteList">{{item.value}}</option>
       </select>
     </div>
@@ -12,7 +12,7 @@
     <div class="field-title">Location</div>
     <div class="field-entry">
       <select formControlName="ck_Location_Code">
-        <option value="" selected disabled>請輸入Location</option>
+        <option value="" selected>全部</option>
         <option [value]="item.key" *ngFor="let item of locationList">{{item.value}}</option>
       </select>
     </div>

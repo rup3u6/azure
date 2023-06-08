@@ -8,9 +8,14 @@ export interface CreateResponses {
 
 //#region Update
 export interface UpdateRequest {
-  info_Id: number;
+  cfk_Info_Id: string;
   info_Global: string;
   info_Backend: string;
+  lCIn_UseInfo_RoleData: UpdatelCIn_UseInfo_RoleData[]
+}
+
+export interface UpdatelCIn_UseInfo_RoleData {
+  cfk_Role_Id: string;
 }
 
 export interface UpdateResponses {

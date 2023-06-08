@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { finalize, firstValueFrom } from 'rxjs';
+import { firstValueFrom } from 'rxjs';
 
 // emum
 import { ListItem } from 'src/app/core/enum/list-item';
@@ -23,7 +23,7 @@ export class UseInfoAddComponent implements OnInit {
     initData: {},
   };
 
-  roleNameList: any = [];
+  roleList: any = [];
 
   isUseInfoFormGroup = false;
   useInfoFormGroup!: FormGroup;
@@ -39,28 +39,36 @@ export class UseInfoAddComponent implements OnInit {
     await this.getRoleName();
 
     this.useInfoFormGroup = this.formBuilder.group({
-      info_Id: ['', [Validators.required]],
-      info_Global: ['', [Validators.required]],
-      info_Backend: ['', [Validators.required]],
+      info_Global: [''],
+      info_Backend: [''],
+      identity: this.formBuilder.array([], [Validators.required, Validators.minLength(1)]),
+      lCIn_UseInfo_RoleData: this.formBuilder.array([], [Validators.required, Validators.minLength(1)]),
     });
     if (this.data.mode === 'add') {
       this.setLanguageFormGroupInit();
     } else {
-      this.useInfoFormGroup.controls?.['info_Global'].disable();
       this.useInfoFormGroup.patchValue({
         ...this.data.initData,
         info_Global: this.data.initData.info_Global === '1',
         info_Backend: this.data.initData.info_Backend === '1',
+
       });
+
+      this.useInfoFormGroup.controls?.['info_Global'].disable();
+
+      this.data.initData.lCOut_UseRole_PageData.forEach((item: any) => {
+        this.roleList.find((item2: any) => item.role_Id === item2.key).checked = true;
+      });
+
+      this.roleChange();
     }
     this.isUseInfoFormGroup = true;
   }
 
   setLanguageFormGroupInit() {
     this.useInfoFormGroup.patchValue({
-      info_Id: '',
-      info_Global: false,
-      info_Backend: false,
+      info_Global: '0',
+      info_Backend: '0',
     });
   }
 
@@ -71,16 +79,16 @@ export class UseInfoAddComponent implements OnInit {
       const listItemRes = await firstValueFrom(this.listItemService.search([ListItem.顯示角色名稱]));
 
       if (listItemRes.status === '999') {
-        let roleNameList = [];
+        let roleList = [];
 
         for (let i in listItemRes.data[0].dListItem) {
-          roleNameList.push({
+          roleList.push({
             key: i,
             value: listItemRes.data[0].dListItem[i],
           });
         }
 
-        this.roleNameList = roleNameList;
+        this.roleList = roleList;
       }
     } catch (error) {
       console.log(error)
@@ -89,13 +97,47 @@ export class UseInfoAddComponent implements OnInit {
     }
   }
 
+  identityChange() {
+    let identity = [];
+
+    if (this.useInfoFormGroup.getRawValue().info_Global) {
+      identity.push('info_Global');
+    }
+
+    if (this.useInfoFormGroup.getRawValue().info_Backend) {
+      identity.push('info_Backend');
+    }
+
+    this.useInfoFormGroup.setControl(
+      'identity',
+      this.formBuilder.array(identity, [Validators.required, Validators.minLength(1)])
+    );
+  }
+
+  roleChange() {
+    const roleSelect = this.roleList
+      .filter((item: any) => item.checked)
+      .map((item: any) => {
+        return this.formBuilder.group({
+          cfk_Role_Id: item.key
+        });
+      });
+
+    this.useInfoFormGroup.setControl(
+      'lCIn_UseInfo_RoleData',
+      this.formBuilder.array(roleSelect, [Validators.required, Validators.minLength(1)])
+    )
+  }
+
   async submit() {
     this.useInfoFormGroup.markAllAsTouched();
 
     if (this.useInfoFormGroup.invalid) { return }
 
     let body: any = {
-      ...this.useInfoFormGroup.getRawValue(),
+      info_Global: this.useInfoFormGroup.getRawValue().info_Global ? '1' : '0',
+      info_Backend: this.useInfoFormGroup.getRawValue().info_Backend ? '1' : '0',
+      lCIn_UseInfo_RoleData: this.useInfoFormGroup.getRawValue().lCIn_UseInfo_RoleData,
     };
 
     this.loadingService.startLoading();
@@ -106,9 +148,7 @@ export class UseInfoAddComponent implements OnInit {
       if (this.data.mode === 'add') {
         res = await firstValueFrom(this.useInfoService.add(body));
       } else {
-        body.info_Id = this.data.initData.info_Id;
-        body.info_Global = this.useInfoFormGroup.value.info_Global ? '1' : '0';
-        body.info_Backend = this.useInfoFormGroup.value.info_Backend ? '1' : '0';
+        body.cfk_Info_Id = this.data.initData.info_Id;
         res = await firstValueFrom(this.useInfoService.edit(body));
       }
 
