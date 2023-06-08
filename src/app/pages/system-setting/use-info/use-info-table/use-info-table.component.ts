@@ -81,10 +81,10 @@ export class UseInfoTableComponent {
           text += rowData.secretary_Name;
         }
 
-        if (rowData.info_Ename) {
+        if (rowData.secretary_EName) {
           if (text) { text += '/'; }
 
-          text += rowData.info_Ename;
+          text += rowData.secretary_EName;
         }
 
         return text;
