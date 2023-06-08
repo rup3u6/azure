@@ -33,12 +33,14 @@ export class ResponseErrorHttpInterceptorService implements HttpInterceptor {
         msgList = this.messageService.responseErrorMsgTranslate(message, field);
         this.messageService.showModal(Message.error, {
           title: '執行失敗',
+          msgList,
         });
         break;
       case '901':
         msgList = this.messageService.responseErrorMsgTranslate(message, field);
         this.messageService.showModal(Message.error, {
           title: '資料格式或欄位驗證錯誤',
+          msgList,
         });
         break;
 
