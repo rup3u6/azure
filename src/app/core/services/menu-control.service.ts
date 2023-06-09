@@ -26,14 +26,14 @@ export class MenuControlService {
           mod_Name: '區域管理者帳號維護',
           mod_Route: '',
         },
-        {
-          mod_Name: '選單分類',
-          mod_Route: '/globalsetting/module-class',
-        },
-        {
-          mod_Name: '選單作業',
-          mod_Route: '/globalsetting/module',
-        },
+        // {
+        //   mod_Name: '選單分類',
+        //   mod_Route: '/globalsetting/module-class',
+        // },
+        // {
+        //   mod_Name: '選單作業',
+        //   mod_Route: '/globalsetting/module',
+        // },
       ],
     },
   ];
@@ -48,7 +48,6 @@ export class MenuControlService {
         },
         {
           mod_Name: '使用者資料查詢',
-          // mod_Route: '',
           mod_Route: '/systemsetting/use-info',
         },
         {
