@@ -20,6 +20,10 @@ import { UseRoleAddComponent } from './use-role/use-role-add/use-role-add.compon
 import { UseRoleAddPermissionComponent } from './use-role/use-role-add-permission/use-role-add-permission.component';
 import { UseRoleSearchFormComponent } from './use-role/use-role-search-form/use-role-search-form.component';
 import { UseRoleTableComponent } from './use-role/use-role-table/use-role-table.component';
+import { SecretaryComponent } from './secretary/secretary.component';
+import { SecretaryAddComponent } from './secretary/secretary-add/secretary-add.component';
+import { SecretarySearchFormComponent } from './secretary/secretary-search-form/secretary-search-form.component';
+import { SecretaryTableComponent } from './secretary/secretary-table/secretary-table.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +44,10 @@ import { UseRoleTableComponent } from './use-role/use-role-table/use-role-table.
     UseRoleAddPermissionComponent,
     UseRoleSearchFormComponent,
     UseRoleTableComponent,
+    SecretaryComponent,
+    SecretaryAddComponent,
+    SecretarySearchFormComponent,
+    SecretaryTableComponent,
   ],
   imports: [
     SharedModule,

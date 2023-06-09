@@ -53,7 +53,7 @@ export class MenuControlService {
         },
         {
           mod_Name: '秘書管理',
-          mod_Route: '',
+          mod_Route: '/systemsetting/secretary',
         },
         {
           mod_Name: 'Location維護',

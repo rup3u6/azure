@@ -6,6 +6,7 @@ import { LocationComponent } from './location/location.component';
 import { LogExecuteComponent } from './log-execute/log-execute.component';
 import { UseInfoComponent } from './use-info/use-info.component';
 import { UseRoleComponent } from './use-role/use-role.component';
+import { SecretaryComponent } from './secretary/secretary.component';
 
 const routes: Routes = [
   {
@@ -29,10 +30,14 @@ const routes: Routes = [
     path: 'use-role',
     component: UseRoleComponent,
   },
+  {
+    path: 'secretary',
+    component: SecretaryComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class SystemSettingRoutingModule {}
+export class SystemSettingRoutingModule { }
