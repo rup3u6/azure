@@ -19,12 +19,15 @@ export class TokenAuthHttpInterceptorService {
     const token = this.loginService.getToken();
     try {
       const translateService = this.injector.get(TranslateService);
+      console.log(req);
+      let responseType =
+        req.responseType === 'json' ? 'text' : req.responseType;
       req = req.clone({
         headers: req.headers
           .set('Authorization', `Bearer ${token}`)
           .set('Language', translateService.currentLang)
           .set('Zone', '52753953372377088'),
-        responseType: 'text' as 'json',
+        responseType,
       });
     } catch (error) {
       // console.log(error)
