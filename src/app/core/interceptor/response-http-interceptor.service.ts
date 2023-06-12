@@ -6,10 +6,14 @@ import {
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map, tap } from 'rxjs';
+// import jsonBig from 'json-bigint'
+
 import { MessageService } from '../services/message.service';
 
 // enum
 import { Message } from 'src/app/core/enum/message';
+
+const JSONbig = require('json-bigint');
 
 @Injectable({
   providedIn: 'root',
@@ -17,12 +21,13 @@ import { Message } from 'src/app/core/enum/message';
 export class ResponseHttpInterceptorService {
   constructor(private messageService: MessageService) {}
 
-  replacer(_key: string, value: any): any {
-    if (typeof value === 'number') {
-      return BigInt(value).toString();
-    }
-    return value;
-  }
+  // replacer(_key: string, value: any): any {
+  //   if (typeof value === 'number') {
+  //     console.log(JSONbig.parse(24148002872625634))
+  //     return BigInt(value).toString();
+  //   }
+  //   return value;
+  // }
 
   public intercept(
     req: HttpRequest<any>,
@@ -33,10 +38,14 @@ export class ResponseHttpInterceptorService {
         if (req.responseType === 'blob') {
           void 0;
         } else if (res instanceof HttpResponse) {
+          if (/\/i18n\/.*\.json$/.test(req.url)) {
+            return res;
+          }
           // 將number轉型為string，避免Bigint溢位
           res = res.clone({
-            body: JSON.parse(JSON.stringify(res.body, this.replacer)),
+            body: JSON.stringify(JSONbig.parse(res.body)),
           });
+          console.log(res);
         }
         return res;
       }),
