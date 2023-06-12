@@ -44,13 +44,13 @@ export class SecretaryAddComponent implements OnInit {
       sec_Depts: ['', Validators.required],
       sec_Special: ['', Validators.required],
     });
+    this.secretaryFormGroup.controls?.['info_Site'].disable();
     if (this.data.mode === 'add') {
       this.setSecretaryFormGroupInit();
     } else {
       this.secretaryFormGroup.patchValue({
         ...this.data.initData,
       });
-      this.secretaryFormGroup.controls?.['info_Site'].disable();
     }
     this.isSecretaryFormGroup = true;
   }
