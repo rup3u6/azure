@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -43,8 +43,7 @@ export class MenuControlService {
       children: [
         {
           mod_Name: '角色維護',
-          mod_Route: '',
-          // mod_Route: '/systemsetting/use-role',
+          mod_Route: '/systemsetting/use-role',
         },
         {
           mod_Name: '使用者資料查詢',
@@ -182,7 +181,8 @@ export class MenuControlService {
     },
   ];
 
-  constructor(private router: Router) {}
+  constructor(private router: Router) { }
+
   setSideMenu(menuType: string, turnPage: boolean = false) {
     switch (menuType) {
       case 'globalSetting':
@@ -208,5 +208,28 @@ export class MenuControlService {
       }
       url && this.router.navigate([url]);
     }
+  }
+
+  // 根據菜單主鍵id獲取下級菜單
+  // id：菜單主鍵id
+  // arry：菜單陣列信息
+  private getParentArry(id: any, arry: any, { _pid = "pid" } = {}) {
+    return arry.reduce((newArry: any, menuItem: any) => {
+      return menuItem[_pid] == id ? [...newArry, menuItem] : newArry;
+    }, []);
+  }
+
+  // 以下function無關menu建立
+  // 製作階層物件
+  // id：菜單主鍵id
+  createDataLevelObj(id: any, arry: any, { _id = "id", _pid = "pid", _child = "child" } = {}) {
+    let childArry = this.getParentArry(id, arry, { _pid });
+
+    return childArry.map((item: any) => {
+      return {
+        ...item,
+        [_child]: this.createDataLevelObj(item[_id], arry, { _id, _pid, _child, }),
+      };
+    });
   }
 }

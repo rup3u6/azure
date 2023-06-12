@@ -1,8 +1,9 @@
-import { Component, OnInit, forwardRef } from '@angular/core';
-import { ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors, FormBuilder, Validators, AbstractControl, FormGroup } from '@angular/forms';
-import { BehaviorSubject, catchError, finalize } from 'rxjs';
+import { Component, Input, OnInit, forwardRef } from '@angular/core';
+import { FormBuilder, FormGroupDirective, Validators } from '@angular/forms';
+import { BehaviorSubject, firstValueFrom, map } from 'rxjs';
 
 // service
+import { MenuControlService } from 'src/app/core/services/menu-control.service';
 import { UseRoleService } from 'src/app/core/services/authAPI/use-role.service';
 import { LoadingService } from 'src/app/core/services/loading.service';
 
@@ -10,104 +11,100 @@ import { LoadingService } from 'src/app/core/services/loading.service';
   selector: 'sys-use-role-add-permission',
   templateUrl: './use-role-add-permission.component.html',
   styleUrls: ['./use-role-add-permission.component.scss'],
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => UseRoleAddPermissionComponent),
-      multi: true
-    },
-    {
-      provide: NG_VALIDATORS,
-      useExisting: forwardRef(() => UseRoleAddPermissionComponent),
-      multi: true
-    }
-  ]
 })
-export class UseRoleAddPermissionComponent implements OnInit, ControlValueAccessor {
+export class UseRoleAddPermissionComponent implements OnInit {
 
-  onChanged: any = () => { };
-  onTouched: any = () => { };
+  @Input() data: any = {
+    mode: '',
+    initData: {},
+  };
 
-  list$ = new BehaviorSubject<any>([]);
-
-  form!: FormGroup;
-  onValidationChange!: () => void;
+  useRoleGetModuleslist$ = new BehaviorSubject<any>([]);
 
   constructor(
     private formBuilder: FormBuilder,
+    private menuControlService: MenuControlService,
     private useRoleService: UseRoleService,
     private loadingService: LoadingService,
+    private rootFormGroup: FormGroupDirective,
   ) { }
 
-  ngOnInit(): void {
-    this.list$.next([
-      {
-        name: '語系設定',
-        value: 11111111111111111,
-        check: false,
-      },
-      {
-        name: '區域維護',
-        value: 22222222222222222,
-        check: false,
-      },
-      {
-        name: '區域帳號管理者維護',
-        value: 33333333333333333,
-        check: false,
-      }
-    ]);
+  async ngOnInit(): Promise<void> {
+    await this.getUseRoleGetModules();
+    this.useRoleGetModulesChange();
+  }
 
-    this.form = this.formBuilder.group({
-      lCIn_UseRoleAuth_PageData: this.formBuilder.array([
-        this.formBuilder.group({
-          cfk_Role_Id: [''],
-          cfk_Info_Id: ['']
-        })
-      ], [Validators.minLength(1)])
+  async getUseRoleGetModules() {
+    // TODO 目前只有一組 Zone Id 有資料
+    const body = {
+      // lZoneId:  this.data.initData.oCTab_UseRole.fk_Zone_Id
+      lZoneId: 52753953372377090
+    };
+
+    this.loadingService.startLoading();
+
+    try {
+      const useRoleGetModulesRes = await firstValueFrom(this.useRoleService.getModules(body));
+
+      if (useRoleGetModulesRes.status === '999') {
+        if (this.data.mode === 'edit') {
+          this.data.initData.lCTab_UseRoleAuth.forEach((item: any) => {
+            useRoleGetModulesRes.data.find((item2: any) => item.cfk_Mod_Id === item2.module_Pk).checked = true;
+          });
+        }
+
+        const menuControl = this.menuControlService.createDataLevelObj(
+          0,
+          useRoleGetModulesRes.data,
+          { _id: "module_Pk", _pid: "module_Parent", _child: "child" }
+        )
+
+        this.useRoleGetModuleslist$.next(menuControl);
+      }
+    } catch (error) {
+      console.log(error)
+    } finally {
+      this.loadingService.stopLoading();
+    }
+  }
+
+  useRoleGetModulesChange(useRoleGetModules?: any) {
+    if (useRoleGetModules?.child.length) {
+      useRoleGetModules.child.forEach((item: any) => {
+        item.checked = useRoleGetModules.checked;
+      });
+    }
+
+    let useRoleGetModulesSelect: any[] = [];
+
+    this.useRoleGetModuleslist$.value.forEach((item: any) => {
+      item.child.forEach((item2: any) => {
+        if (item2.checked) {
+          let obj;
+
+          if (this.data.mode === 'add') {
+            obj = { cfk_Mod_Id: item2.module_Pk };
+          } else {
+            obj = {
+              cfk_Role_Id: this.data.initData.oCTab_UseRole.role_Id,
+              cfk_Mod_Id: item2.module_Pk
+            }
+          }
+
+          useRoleGetModulesSelect.push(this.formBuilder.group(obj));
+        }
+      });
     });
 
-    this.form.valueChanges.subscribe((val: any) =>
-      this.onChanged(val.lCIn_UseRoleAuth_PageData)
-    );
-  }
+    console.log(useRoleGetModulesSelect);
 
-  writeValue(value: any) {
-  }
-
-  registerOnChange(fn: any) {
-    this.onChanged = fn;
-  }
-
-  registerOnTouched(fn: any) {
-    this.onTouched = fn;
-  }
-
-  setDisabledState(isDisable: boolean) {
-
-  }
-
-  validate(control: AbstractControl): ValidationErrors | null {
-    return this.form.valid ? null : { invalidValue: 'error' };
-  }
-
-  registerOnValidatorChange?(fn: () => void): void {
-    this.onValidationChange = fn;
-  }
-
-  cfkRoleIdChange() {
-    const Role_IdSelect = this.list$.value
-      .filter((item: any) => item.check)
-      .map((item: any) => {
-        return this.formBuilder.group({
-          cfk_Role_Id: item.value,
-          cfk_Info_Id: item.value,
-        });
-      });
-
-    this.form.setControl(
+    this.rootFormGroup.control.setControl(
       'lCIn_UseRoleAuth_PageData',
-      this.formBuilder.array(Role_IdSelect)
+      this.formBuilder.array(useRoleGetModulesSelect, [Validators.required, Validators.minLength(1)])
     );
+  }
+
+  get f() {
+    return this.rootFormGroup.control;
   }
 }

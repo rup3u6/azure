@@ -34,8 +34,8 @@
             <div class="popup-content-item">
               <div class="popup-content-item-inner">
                 <div class="popup-form">
-                  <div class="form-row row-3" formGroupName="oCTab_UseRole">
-                    <div class="form-item" type="required" [attr.attr]="f['oCTab_UseRole'].get('role_Name')?.errors && f['oCTab_UseRole'].get('role_Name')?.touched && 'error'">
+                  <div class="form-row row-3" formGroupName="oCIn_UseRole_PageData">
+                    <div class="form-item" type="required" [attr.attr]="f['oCIn_UseRole_PageData'].get('role_Name')?.errors && f['oCIn_UseRole_PageData'].get('role_Name')?.touched && 'error'">
                       <div class="form-item-inner">
                         <div class="form-item-title">角色名稱</div>
                         <div class="form-item-entry">
@@ -45,12 +45,12 @@
                             formControlName="role_Name"
                           />
                         </div>
-                        <div class="form-item-text" *ngIf="f['oCTab_UseRole'].get('role_Name')?.errors && f['oCTab_UseRole'].get('role_Name')?.touched">
-                          <p>{{ f['oCTab_UseRole'].get('role_Name')?.errors | errorMessage : '角色名稱' }}</p>
+                        <div class="form-item-text" *ngIf="f['oCIn_UseRole_PageData'].get('role_Name')?.errors && f['oCIn_UseRole_PageData'].get('role_Name')?.touched">
+                          <p>{{ f['oCIn_UseRole_PageData'].get('role_Name')?.errors | errorMessage : '角色名稱' }}</p>
                         </div>
                       </div>
                     </div>
-                    <div class="form-item" type="required" [attr.attr]="f['oCTab_UseRole'].get('role_State')?.errors && f['oCTab_UseRole'].get('role_State')?.touched && 'error'">
+                    <div class="form-item" type="required" [attr.attr]="f['oCIn_UseRole_PageData'].get('role_State')?.errors && f['oCIn_UseRole_PageData'].get('role_State')?.touched && 'error'">
                       <div class="form-item-inner">
                         <div class="form-item-title">狀態</div>
                         <div class="form-item-entry">
@@ -75,32 +75,32 @@
                             </li>
                           </ul>
                         </div>
-                        <div class="form-item-text" *ngIf="f['oCTab_UseRole'].get('role_State')?.errors && f['oCTab_UseRole'].get('role_State')?.touched">
-                          <p>{{ f['oCTab_UseRole'].get('role_State')?.errors | errorMessage : '狀態' }}</p>
+                        <div class="form-item-text" *ngIf="f['oCIn_UseRole_PageData'].get('role_State')?.errors && f['oCIn_UseRole_PageData'].get('role_State')?.touched">
+                          <p>{{ f['oCIn_UseRole_PageData'].get('role_State')?.errors | errorMessage : '狀態' }}</p>
                         </div>
                       </div>
                     </div>
                   </div>
                   <hr class="seperate-line" />
                   <div class="form-row row-2" [hidden]="tab !== 1">
-                    <div class="form-item" type="required" [attr.attr]="f['oCTab_UseRole'].get('role_Name')?.errors && f['oCTab_UseRole'].get('role_Name')?.touched && 'error'">
+                    <div class="form-item" type="required" [attr.attr]="f['lCIn_UseRoleMember_PageData'].errors && f['lCIn_UseRoleMember_PageData'].touched && 'error'">
                       <div class="form-item-inner">
                         <div class="form-item-title">角色使用者</div>
                         <div class="form-item-entry">
                           <nz-transfer
                             [nzDataSource]="useInfoList"
-                            (nzChange)="nzTransferChange()"
+                            (nzChange)="useRoleMemberChange()"
                           ></nz-transfer>
                         </div>
-                        <div class="form-item-text" *ngIf="f['oCTab_UseRole'].get('role_Name')?.errors && f['oCTab_UseRole'].get('role_Name')?.touched">
-                          <p>{{ f['oCTab_UseRole'].get('role_Name')?.errors | errorMessage : '角色使用者' }}</p>
+                        <div class="form-item-text" *ngIf="f['lCIn_UseRoleMember_PageData'].errors && f['lCIn_UseRoleMember_PageData'].touched">
+                          <p>{{ f['lCIn_UseRoleMember_PageData'].errors | errorMessage : '角色使用者' }}</p>
                         </div>
                       </div>
                     </div>
                   </div>
                   <hr class="seperate-line" [hidden]="tab !== 1"/>
                   <div class="form-row row-3" [hidden]="tab !== 1">
-                    <div class="form-item" type="required" [attr.attr]="f['oCTab_UseRole'].get('role_StartDate')?.errors && f['oCTab_UseRole'].get('role_StartDate')?.touched && 'error'">
+                    <div class="form-item" type="required" [attr.attr]="f['oCIn_UseRole_PageData'].get('role_StartDate')?.errors && f['oCIn_UseRole_PageData'].get('role_StartDate')?.touched && 'error'">
                       <div class="form-item-inner">
                         <div class="form-item-title">有效日期(起)</div>
                         <div class="form-item-entry">
@@ -111,12 +111,12 @@
                             [ngModelOptions]="{standalone: true}"
                           ></nz-date-picker>
                         </div>
-                        <div class="form-item-text" *ngIf="f['oCTab_UseRole'].get('role_StartDate')?.errors && f['oCTab_UseRole'].get('role_StartDate')?.touched">
-                          <p>{{ f['oCTab_UseRole'].get('role_StartDate')?.errors | errorMessage : '有效日期(起)' }}</p>
+                        <div class="form-item-text" *ngIf="f['oCIn_UseRole_PageData'].get('role_StartDate')?.errors && f['oCIn_UseRole_PageData'].get('role_StartDate')?.touched">
+                          <p>{{ f['oCIn_UseRole_PageData'].get('role_StartDate')?.errors | errorMessage : '有效日期(起)' }}</p>
                         </div>
                       </div>
                     </div>
-                    <div class="form-item" type="required" [attr.attr]="f['oCTab_UseRole'].get('role_EndDate')?.errors && f['oCTab_UseRole'].get('role_EndDate')?.touched && 'error'">
+                    <div class="form-item" type="required" [attr.attr]="f['oCIn_UseRole_PageData'].get('role_EndDate')?.errors && f['oCIn_UseRole_PageData'].get('role_EndDate')?.touched && 'error'">
                       <div class="form-item-inner">
                         <div class="form-item-title">有效日期(迄)</div>
                         <div class="form-item-entry">
@@ -127,14 +127,14 @@
                             [ngModelOptions]="{standalone: true}"
                           ></nz-date-picker>
                         </div>
-                        <div class="form-item-text" *ngIf="f['oCTab_UseRole'].get('role_EndDate')?.errors && f['oCTab_UseRole'].get('role_EndDate')?.touched">
-                          <p>{{ f['oCTab_UseRole'].get('role_EndDate')?.errors | errorMessage : '有效日期(迄)' }}</p>
+                        <div class="form-item-text" *ngIf="f['oCIn_UseRole_PageData'].get('role_EndDate')?.errors && f['oCIn_UseRole_PageData'].get('role_EndDate')?.touched">
+                          <p>{{ f['oCIn_UseRole_PageData'].get('role_EndDate')?.errors | errorMessage : '有效日期(迄)' }}</p>
                         </div>
                       </div>
                     </div>
                   </div>
                   <sys-use-role-add-permission
-                    formControlName="lCIn_UseRoleAuth_PageData"
+                    [data]="data"
                     [hidden]="tab !== 2"
                   ></sys-use-role-add-permission>
                 </div>

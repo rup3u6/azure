@@ -14,8 +14,8 @@ import { LoadingService } from 'src/app/core/services/loading.service';
 })
 export class LogExecuteSearchFormComponent implements OnInit {
 
-  startSearchDate!: Date;
-  endSearchDate!: Date;
+  startSearchDate!: Date | null;
+  endSearchDate!: Date | null;
 
   searchFormGroup!: FormGroup;
 
@@ -39,9 +39,15 @@ export class LogExecuteSearchFormComponent implements OnInit {
     this.searchFormGroup.valueChanges.subscribe({
       next: (value) => this.logExecuteService.setSearchFormValue(value),
     });
+
     this.setSearchFormGroupInit();
+
     this.startSearchDate = new Date();
     this.startSearchDateChange(this.startSearchDate);
+
+    this.endSearchDate = new Date();
+    this.endSearchDateChange(this.endSearchDate);
+
     this.search();
   }
 
@@ -98,13 +104,17 @@ export class LogExecuteSearchFormComponent implements OnInit {
           this.loadingService.stopLoading();
         })
       )
-      .subscribe((res) => {
+      .subscribe((res: any) => {
+        console.log(res);
+
         this.logExecuteService.getTabulatorTable().setData(res.data);
       });
   }
 
   clear() {
     this.setSearchFormGroupInit();
+    this.startSearchDate = null;
+    this.endSearchDate = null;
     this.logExecuteService.getTabulatorTable().clearData();
     this.logExecuteService.getTabulatorTable().clearSort();
   }

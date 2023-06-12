@@ -46,14 +46,14 @@ export class UseRoleAddComponent implements OnInit {
     await this.getUseInfo();
 
     this.useRoleFormGroup = this.formBuilder.group({
-      oCTab_UseRole: this.formBuilder.group({
+      oCIn_UseRole_PageData: this.formBuilder.group({
         role_State: ['', [Validators.required]],
         role_Name: ['', [Validators.required]],
         role_StartDate: ['', [Validators.required]],
         role_EndDate: ['', [Validators.required]],
       }),
-      lCIn_UseRoleMember_PageData: this.formBuilder.array([], [Validators.minLength(1)]),
-      lCIn_UseRoleAuth_PageData: this.formBuilder.array([], [Validators.minLength(1)]),
+      lCIn_UseRoleMember_PageData: this.formBuilder.array([], [Validators.required, Validators.minLength(1)]),
+      lCIn_UseRoleAuth_PageData: this.formBuilder.array([], [Validators.required, Validators.minLength(1)]),
     });
 
     if (this.data.mode === 'add') {
@@ -63,10 +63,10 @@ export class UseRoleAddComponent implements OnInit {
       this.roleEndDate = new Date(this.datePipe.transform(this.data.initData.oCTab_UseRole.role_EndDate * 1000, 'yyyy/MM/dd 23:59:59') ?? '');
 
       this.useRoleFormGroup.patchValue({
-        oCTab_UseRole: this.data.initData.oCTab_UseRole,
+        oCIn_UseRole_PageData: this.data.initData.oCTab_UseRole,
       });
 
-      await this.nzTransferChange();
+      await this.useRoleMemberChange();
     }
 
     this.isUseRoleFormGroup = true;
@@ -74,7 +74,7 @@ export class UseRoleAddComponent implements OnInit {
 
   setLanguageFormGroupInit() {
     this.useRoleFormGroup.patchValue({
-      oCTab_UseRole: {
+      oCIn_UseRole_PageData: {
         role_State: '1',
         role_Name: '',
         role_StartDate: '',
@@ -90,7 +90,7 @@ export class UseRoleAddComponent implements OnInit {
       const date = this.datePipe.transform(result, 'yyyy/MM/dd 00:00:00');
 
       if (date) {
-        (<FormGroup>this.useRoleFormGroup.get('oCTab_UseRole')).patchValue({
+        (<FormGroup>this.useRoleFormGroup.get('oCIn_UseRole_PageData')).patchValue({
           role_StartDate: Math.round(new Date(date).getTime() / 1000),
         });
       }
@@ -106,7 +106,7 @@ export class UseRoleAddComponent implements OnInit {
       const date = this.datePipe.transform(result, 'yyyy/MM/dd 23:59:59');
 
       if (date) {
-        (<FormGroup>this.useRoleFormGroup.get('oCTab_UseRole')).patchValue({
+        (<FormGroup>this.useRoleFormGroup.get('oCIn_UseRole_PageData')).patchValue({
           role_EndDate: Math.round(new Date(date).getTime() / 1000),
         });
       }
@@ -132,7 +132,7 @@ export class UseRoleAddComponent implements OnInit {
       const useInfoRes = await firstValueFrom(this.useInfoService.search(body));
 
       if (useInfoRes.status === '999') {
-        this.useInfoList = useInfoRes.data.map(item => {
+        this.useInfoList = useInfoRes.data.map((item: any) => {
           //#region title
           let text = '';
 
@@ -173,19 +173,27 @@ export class UseRoleAddComponent implements OnInit {
     }
   }
 
-  nzTransferChange(): void {
+  useRoleMemberChange(): void {
     const useInfoSelect = this.useInfoList
       .filter((item: any) => item.direction === 'right')
       .map((item: any) => {
-        return this.formBuilder.group({
-          cfk_Role_Id: this.data.initData.oCTab_UseRole.role_Id,
-          cfk_Info_Id: item.key
-        });
+        let obj;
+
+        if (this.data.mode === 'add') {
+          obj = { cfk_Info_Id: item.key };
+        } else {
+          obj = {
+            cfk_Role_Id: this.data.initData.oCTab_UseRole.role_Id,
+            cfk_Info_Id: item.key
+          }
+        }
+
+        return this.formBuilder.group(obj);
       });
 
     this.useRoleFormGroup.setControl(
       'lCIn_UseRoleMember_PageData',
-      this.formBuilder.array(useInfoSelect)
+      this.formBuilder.array(useInfoSelect, [Validators.required, Validators.minLength(1)])
     );
   }
 
@@ -196,18 +204,23 @@ export class UseRoleAddComponent implements OnInit {
       return;
     }
 
-    let body: any = {
-      ...this.useRoleFormGroup.getRawValue(),
-    };
-
     this.loadingService.startLoading();
 
     try {
       let res;
 
       if (this.data.mode === 'add') {
+        let body: any = {
+          ...this.useRoleFormGroup.getRawValue(),
+        };
         res = await firstValueFrom(this.useRoleService.add(body));
       } else {
+        let body: any = {
+          oCIn_UseRole_Update_PageData: this.useRoleFormGroup.getRawValue().oCIn_UseRole_PageData,
+          lCIn_UseRoleMember_Update: this.useRoleFormGroup.getRawValue().lCIn_UseRoleMember_PageData,
+          lCIn_UseRoleAuth_Update: this.useRoleFormGroup.getRawValue().lCIn_UseRoleAuth_PageData,
+        };
+        body.oCIn_UseRole_Update_PageData.role_Id = this.data.initData.oCTab_UseRole.role_Id;
         res = await firstValueFrom(this.useRoleService.edit(body));
       }
 

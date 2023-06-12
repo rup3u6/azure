@@ -55,10 +55,19 @@ nz {
 
   nz-select,
   nz-date-picker.ant-picker,
-  nz-transfer.ant-transfer .ant-transfer-list {
+  nz-transfer.ant-transfer .ant-transfer-list,
+  .tree-field {
     border-radius: 4px;
     border: 1px solid #f04949;
     outline-color: #f04949;
+  }
+
+  .tree-field {
+    overflow: hidden;
+
+    .tree-field-inner {
+      margin: -1px;
+    }
   }
 }
 
