@@ -8,6 +8,7 @@ export interface CreateResponses {
 
 //#region Update
 export interface UpdateRequest {
+  info_Name: string;
   cfk_Info_Id: string;
   info_Global: string;
   info_Backend: string;

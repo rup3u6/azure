@@ -41,7 +41,6 @@ export class UseInfoAddComponent implements OnInit {
     this.useInfoFormGroup = this.formBuilder.group({
       info_Global: [''],
       info_Backend: [''],
-      identity: this.formBuilder.array([], [Validators.required, Validators.minLength(1)]),
       lCIn_UseInfo_RoleData: this.formBuilder.array([], [Validators.required, Validators.minLength(1)]),
     });
     if (this.data.mode === 'add') {
@@ -51,10 +50,10 @@ export class UseInfoAddComponent implements OnInit {
         ...this.data.initData,
         info_Global: this.data.initData.info_Global === '1',
         info_Backend: this.data.initData.info_Backend === '1',
-
       });
 
       this.useInfoFormGroup.controls?.['info_Global'].disable();
+      this.useInfoFormGroup.controls?.['info_Backend'].disable();
 
       this.data.initData.lCOut_UseRole_PageData.forEach((item: any) => {
         this.roleList.find((item2: any) => item.role_Id === item2.key).checked = true;
@@ -97,23 +96,6 @@ export class UseInfoAddComponent implements OnInit {
     }
   }
 
-  identityChange() {
-    let identity = [];
-
-    if (this.useInfoFormGroup.getRawValue().info_Global) {
-      identity.push('info_Global');
-    }
-
-    if (this.useInfoFormGroup.getRawValue().info_Backend) {
-      identity.push('info_Backend');
-    }
-
-    this.useInfoFormGroup.setControl(
-      'identity',
-      this.formBuilder.array(identity, [Validators.required, Validators.minLength(1)])
-    );
-  }
-
   roleChange() {
     const roleSelect = this.roleList
       .filter((item: any) => item.checked)
@@ -135,6 +117,7 @@ export class UseInfoAddComponent implements OnInit {
     if (this.useInfoFormGroup.invalid) { return }
 
     let body: any = {
+      info_Name: this.data.initData.info_Name,
       info_Global: this.useInfoFormGroup.getRawValue().info_Global ? '1' : '0',
       info_Backend: this.useInfoFormGroup.getRawValue().info_Backend ? '1' : '0',
       lCIn_UseInfo_RoleData: this.useInfoFormGroup.getRawValue().lCIn_UseInfo_RoleData,

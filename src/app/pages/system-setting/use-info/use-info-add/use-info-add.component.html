@@ -180,8 +180,7 @@
                 </div>
                 <div class="popup-form">
                   <div class="form-row row-3">
-                    <div class="form-item" type="required"
-                         [attr.attr]="f['identity'].errors && f['identity'].touched && 'error'">
+                    <div class="form-item">
                         <div class="form-item-inner">
                           <div class="form-item-title">使用者身份</div>
                           <div class="form-item-entry">
@@ -191,23 +190,18 @@
                                   type="checkbox"
                                   formControlName="info_Global"
                                   id="info_Global"
-                                  (change)="identityChange()"
                                   />
                                   <label for="info_Global">全域管理者</label>
                                 </li>
                                 <li>
                                   <input
-                                  type="checkbox"
-                                  formControlName="info_Backend"
-                                  id="info_Backend"
-                                  (change)="identityChange()"
-                                />
-                                <label for="info_Backend">區域管理者</label>
+                                    type="checkbox"
+                                    formControlName="info_Backend"
+                                    id="info_Backend"
+                                  />
+                                  <label for="info_Backend">區域管理者</label>
                               </li>
                             </ul>
-                          </div>
-                          <div class="form-item-text" *ngIf="f['identity'].errors && f['identity'].touched">
-                            <p>{{ f['identity'].errors | errorMessage : '使用者身份' }}</p>
                           </div>
                         </div>
                       </div>
