@@ -45,7 +45,6 @@ export class ResponseHttpInterceptorService {
           res = res.clone({
             body: JSON.stringify(JSONbig.parse(res.body)),
           });
-          console.log(res);
         }
         return res;
       }),
@@ -59,7 +58,7 @@ export class ResponseHttpInterceptorService {
           if (/\/i18n\/.*\.json$/.test(url)) {
             return;
           }
-          const { status, message, field } = res.body;
+          const { status, message, field } = JSON.parse(res.body);
           let msgList;
           if (status) {
             switch (status) {

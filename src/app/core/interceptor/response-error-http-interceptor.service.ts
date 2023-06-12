@@ -26,7 +26,7 @@ export class ResponseErrorHttpInterceptorService implements HttpInterceptor {
 
   public statusHandler(response: any) {
     //  處理自定義項目
-    const { status, message, field } = response;
+    const { status, message, field } = JSON.parse(response);
     let msgList;
     switch (status) {
       case '900':
