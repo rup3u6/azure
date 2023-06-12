@@ -4,6 +4,7 @@ import { finalize, firstValueFrom } from 'rxjs';
 import { DatePipe } from '@angular/common';
 
 // service
+import { ValidatorService } from 'src/app/core/services/validator.service';
 import { LogExecuteService } from 'src/app/core/services/baseAPI/log-execute.service';
 import { LoadingService } from 'src/app/core/services/loading.service';
 
@@ -22,6 +23,7 @@ export class LogExecuteSearchFormComponent implements OnInit {
   constructor(
     private datePipe: DatePipe,
     private formBuilder: FormBuilder,
+    public validatorService: ValidatorService,
     public logExecuteService: LogExecuteService,
     private loadingService: LoadingService
   ) { }
@@ -36,6 +38,8 @@ export class LogExecuteSearchFormComponent implements OnInit {
       info_Name: [''],
       info_Ename: [''],
     });
+    this.searchFormGroup.setValidators(this.validatorService.dateRangeValidator('startSearchDate', 'endSearchDate'));
+
     this.searchFormGroup.valueChanges.subscribe({
       next: (value) => this.logExecuteService.setSearchFormValue(value),
     });
@@ -95,7 +99,15 @@ export class LogExecuteSearchFormComponent implements OnInit {
     }
   }
 
+  disabledDate(current: Date): boolean {
+    return new Date().getTime() < current.getTime();
+  }
+
   async search() {
+    this.searchFormGroup.markAllAsTouched();
+
+    if (this.searchFormGroup.invalid) { return }
+
     this.loadingService.startLoading();
     this.logExecuteService
       .search()
@@ -117,5 +129,9 @@ export class LogExecuteSearchFormComponent implements OnInit {
     this.endSearchDate = null;
     this.logExecuteService.getTabulatorTable().clearData();
     this.logExecuteService.getTabulatorTable().clearSort();
+  }
+
+  get f() {
+    return this.searchFormGroup.controls;
   }
 }

@@ -86,3 +86,9 @@ nz {
 .result-table {
   width: calc(100vw - 280px);
 }
+
+.query-field[attr="error"] {
+  .form-item-text p {
+    color: #f04949;
+  }
+}

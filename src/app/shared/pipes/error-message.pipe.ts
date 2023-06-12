@@ -17,6 +17,7 @@ export class ErrorMessagePipe implements PipeTransform {
     for (const key in errors) {
       switch (key) {
         case 'required': error = '此欄位必填'; break;
+        case 'greaterThanEndDate': error = '起日大於迄日'; break;
         case 'minlength': error = 'VIEW.ERROR'; break;
         default: error = '未知的錯誤'; break;
       }
