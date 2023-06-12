@@ -73,7 +73,7 @@ export class ResponseHttpInterceptorService {
                 break;
               case '901':
                 msgList = this.messageService.responseErrorMsgTranslate(
-                  message,
+                  status,
                   field
                 );
                 this.messageService.showModal(Message.warning, {
@@ -83,8 +83,8 @@ export class ResponseHttpInterceptorService {
                 break;
               case '900':
                 msgList = this.messageService.responseErrorMsgTranslate(
-                  message,
-                  field
+                  status,
+                  message
                 );
                 this.messageService.showModal(Message.error, {
                   title: '執行失敗',

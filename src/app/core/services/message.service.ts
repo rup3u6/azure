@@ -71,19 +71,21 @@ export class MessageService {
         break;
     }
   }
-  public responseErrorMsgTranslate(msg: string, field: Array<any>) {
+  public responseErrorMsgTranslate(status: string, msgOrField: any) {
     const translateService = this.injector.get(TranslateService);
-    if (field?.length) {
-      let transMsgArray = field.map(
-        ({ field: i18nField = ' ', errorMessage }) => {
-          let transField = translateService.instant(i18nField.toUpperCase());
-          return translateService.instant(errorMessage, { field: transField });
-        }
-      );
+    if (status === '901') {
+      // msgOrField: Array<{field:'', errorMessage:''}>
+      let transMsgArray = msgOrField.map((item: any) => {
+        let i18nField = item.field;
+        let errorMessage = item.errorMessage;
+        let transField = translateService.instant(i18nField.toUpperCase());
+        return translateService.instant(errorMessage, { field: transField });
+      });
       return transMsgArray;
     } else {
-      let transMsg = translateService.instant(msg);
-      return transMsg === msg ? [`errorCode：${transMsg}`] : [transMsg];
+      //  msgOrField: string
+      let transMsg = translateService.instant(msgOrField);
+      return transMsg === msgOrField ? [`errorCode：${transMsg}`] : [transMsg];
     }
   }
 }

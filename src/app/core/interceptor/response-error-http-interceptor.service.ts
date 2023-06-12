@@ -22,7 +22,7 @@ export class ResponseErrorHttpInterceptorService implements HttpInterceptor {
     private loginService: LoginService,
     public messageService: MessageService,
     private readonly injector: Injector
-  ) { }
+  ) {}
 
   public statusHandler(response: any) {
     //  處理自定義項目
@@ -30,14 +30,17 @@ export class ResponseErrorHttpInterceptorService implements HttpInterceptor {
     let msgList;
     switch (status) {
       case '900':
-        msgList = this.messageService.responseErrorMsgTranslate(message, field);
+        msgList = this.messageService.responseErrorMsgTranslate(
+          status,
+          message
+        );
         this.messageService.showModal(Message.error, {
           title: '執行失敗',
           msgList,
         });
         break;
       case '901':
-        msgList = this.messageService.responseErrorMsgTranslate(message, field);
+        msgList = this.messageService.responseErrorMsgTranslate(status, field);
         this.messageService.showModal(Message.error, {
           title: '資料格式或欄位驗證錯誤',
           msgList,
