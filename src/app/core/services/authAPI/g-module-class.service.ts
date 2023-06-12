@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, map } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Tabulator } from 'tabulator-tables';
 
@@ -45,22 +45,37 @@ export class GModuleClassService {
       } as moduleClass.GetRequest;
     }
 
-    return this.http.post<base.ResponsesBase<moduleClass.GetResponses>>(`${this.apiUrl}/Auth/SysModuleClass/Get`, body);
+    return this.http.post<base.ResponsesBase<moduleClass.GetResponses>>(`${this.apiUrl}/Auth/SysModuleClass/Get`,
+      body
+    )
+    .pipe(map((res: any) => JSON.parse(res)));
   }
 
   add(body: moduleClass.CreateRequest) {
-    return this.http.post<base.ResponsesBase<moduleClass.CreateResponses>>(`${this.apiUrl}/Auth/SysModuleClass/Create`, body);
+    return this.http.post<base.ResponsesBase<moduleClass.CreateResponses>>(`${this.apiUrl}/Auth/SysModuleClass/Create`,
+      body
+    )
+    .pipe(map((res: any) => JSON.parse(res)));
   }
 
   edit(body: moduleClass.UpdateRequest) {
-    return this.http.post<base.ResponsesBase<moduleClass.UpdateResponses>>(`${this.apiUrl}/Auth/SysModuleClass/Update`, body);
+    return this.http.post<base.ResponsesBase<moduleClass.UpdateResponses>>(`${this.apiUrl}/Auth/SysModuleClass/Update`,
+      body
+    )
+    .pipe(map((res: any) => JSON.parse(res)));
   }
 
   getDetail(body: moduleClass.GetDetailRequest) {
-    return this.http.post<base.ResponsesBase<moduleClass.GetDetailResponses>>(`${this.apiUrl}/Auth/SysModuleClass/GetDetail`, body);
+    return this.http.post<base.ResponsesBase<moduleClass.GetDetailResponses>>(`${this.apiUrl}/Auth/SysModuleClass/GetDetail`,
+      body
+    )
+    .pipe(map((res: any) => JSON.parse(res)));
   }
 
   convertState(body: moduleClass.ConvertStateRequest) {
-    return this.http.post<base.ResponsesBase<string>>(`${this.apiUrl}/Auth/SysModuleClass/ConvertState`, body);
+    return this.http.post<base.ResponsesBase<string>>(`${this.apiUrl}/Auth/SysModuleClass/ConvertState`,
+      body
+    )
+    .pipe(map((res: any) => JSON.parse(res)));
   }
 }

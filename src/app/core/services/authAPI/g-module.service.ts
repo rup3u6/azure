@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, map } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Tabulator } from 'tabulator-tables';
 
@@ -45,22 +45,37 @@ export class GModuleService {
       } as module.GetRequest;
     }
 
-    return this.http.post<base.ResponsesBase<module.GetResponses>>(`${this.apiUrl}/Auth/SysModule/Get`, body);
+    return this.http.post<base.ResponsesBase<module.GetResponses>>(`${this.apiUrl}/Auth/SysModule/Get`,
+      body
+    )
+    .pipe(map((res: any) => JSON.parse(res)));
   }
 
   add(body: module.CreateRequest) {
-    return this.http.post<base.ResponsesBase<module.CreateResponses>>(`${this.apiUrl}/Auth/SysModule/Create`, body);
+    return this.http.post<base.ResponsesBase<module.CreateResponses>>(`${this.apiUrl}/Auth/SysModule/Create`,
+      body
+    )
+    .pipe(map((res: any) => JSON.parse(res)));
   }
 
   edit(body: module.UpdateRequest) {
-    return this.http.post<base.ResponsesBase<module.UpdateResponses>>(`${this.apiUrl}/Auth/SysModule/Update`, body);
+    return this.http.post<base.ResponsesBase<module.UpdateResponses>>(`${this.apiUrl}/Auth/SysModule/Update`,
+      body
+    )
+    .pipe(map((res: any) => JSON.parse(res)));
   }
 
   getDetail(body: module.GetDetailRequest) {
-    return this.http.post<base.ResponsesBase<module.GetDetailResponses>>(`${this.apiUrl}/Auth/SysModule/GetDetail`, body);
+    return this.http.post<base.ResponsesBase<module.GetDetailResponses>>(`${this.apiUrl}/Auth/SysModule/GetDetail`,
+      body
+    )
+    .pipe(map((res: any) => JSON.parse(res)));
   }
 
   convertState(body: module.ConvertStateRequest) {
-    return this.http.post<base.ResponsesBase<string>>(`${this.apiUrl}/Auth/SysModule/ConvertState`, body);
+    return this.http.post<base.ResponsesBase<string>>(`${this.apiUrl}/Auth/SysModule/ConvertState`,
+      body
+    )
+    .pipe(map((res: any) => JSON.parse(res)));
   }
 }

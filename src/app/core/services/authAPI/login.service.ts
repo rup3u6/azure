@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CInLoginPageData } from '../../models/authAPI/login';
-import { tap } from 'rxjs';
+import { map, tap } from 'rxjs';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { MsalService } from '@azure/msal-angular';
@@ -14,11 +14,13 @@ export class LoginService {
     private http: HttpClient,
     private router: Router,
     private authService: MsalService
-  ) {}
+  ) { }
+
   private apiUrl = environment.apiUrl;
 
   login(body: CInLoginPageData) {
     return this.http.post<any>(`${this.apiUrl}/Auth/Login`, body).pipe(
+      map((res: any) => JSON.parse(res)),
       tap((res) => {
         sessionStorage.setItem('wis_cms_token', res.data);
         const { status } = res;
@@ -26,6 +28,7 @@ export class LoginService {
       })
     );
   }
+
   logout() {
     sessionStorage.removeItem('wis_cms_token');
     let accounts = this.authService.instance.getAllAccounts();

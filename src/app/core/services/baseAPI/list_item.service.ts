@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 // models
 import * as base from '../../models/baseAPI/base';
 import * as listItem from '../../models/baseAPI/list_item';
+import { map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +28,9 @@ export class ListItemService {
       }
     });
 
-    return this.http.post<base.ResponsesBase<listItem.ListItemResponsesBase<any[]>[]>>(`${this.apiUrl}/Base/ListItem`, body);
+    return this.http.post<base.ResponsesBase<listItem.ListItemResponsesBase<any[]>[]>>(`${this.apiUrl}/Base/ListItem`,
+      body
+    )
+    .pipe(map((res: any) => JSON.parse(res)));
   }
 }

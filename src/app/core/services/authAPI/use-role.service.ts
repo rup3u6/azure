@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, map } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Tabulator } from 'tabulator-tables';
 
@@ -45,22 +45,44 @@ export class UseRoleService {
       } as UseRole.GetRequest;
     }
 
-    return this.http.post<base.ResponsesBase<UseRole.GetResponses[]>>(`${this.apiUrl}/Auth/UseRole/Get`, body);
+    return this.http.post<base.ResponsesBase<UseRole.GetResponses[]>>(`${this.apiUrl}/Auth/UseRole/Get`,
+      body
+    )
+    .pipe(map((res: any) => JSON.parse(res)));
   }
 
   add(body: UseRole.CreateRequest) {
-    return this.http.post<base.ResponsesBase<UseRole.CreateResponses>>(`${this.apiUrl}/Auth/UseRole/Create`, body);
+    return this.http.post<base.ResponsesBase<UseRole.CreateResponses>>(`${this.apiUrl}/Auth/UseRole/Create`,
+      body
+    )
+    .pipe(map((res: any) => JSON.parse(res)));
   }
 
   edit(body: UseRole.UpdateRequest) {
-    return this.http.post<base.ResponsesBase<UseRole.UpdateResponses>>(`${this.apiUrl}/Auth/UseRole/Update`, body);
+    return this.http.post<base.ResponsesBase<UseRole.UpdateResponses>>(`${this.apiUrl}/Auth/UseRole/Update`,
+      body
+    )
+    .pipe(map((res: any) => JSON.parse(res)));
   }
 
   getDetail(body: UseRole.GetDetailRequest) {
-    return this.http.post<base.ResponsesBase<UseRole.GetDetailResponses>>(`${this.apiUrl}/Auth/UseRole/GetDetail`, body);
+    return this.http.post<base.ResponsesBase<UseRole.GetDetailResponses>>(`${this.apiUrl}/Auth/UseRole/GetDetail`,
+      body
+    )
+    .pipe(map((res: any) => JSON.parse(res)));
   }
 
   convertState(body: UseRole.ConvertStateRequest) {
-    return this.http.post<base.ResponsesBase<string>>(`${this.apiUrl}/Auth/UseRole/ConvertState`, body);
+    return this.http.post<base.ResponsesBase<string>>(`${this.apiUrl}/Auth/UseRole/ConvertState`,
+      body
+    )
+    .pipe(map((res: any) => JSON.parse(res)));
+  }
+
+  getModules(body: UseRole.GetModulesRequest) {
+    return this.http.post<base.ResponsesBase<UseRole.GetModulesResponses[]>>(`${this.apiUrl}/Auth/UseRole/GetModules`,
+      body
+    )
+    .pipe(map((res: any) => JSON.parse(res)));
   }
 }

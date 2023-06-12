@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, map } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Tabulator } from 'tabulator-tables';
 
@@ -45,22 +45,37 @@ export class LocationService {
       } as location.GetRequest;
     }
 
-    return this.http.post<base.ResponsesBase<location.GetResponses>>(`${this.apiUrl}/Base/WfLocation/Get`, body);
+    return this.http.post<base.ResponsesBase<location.GetResponses>>(`${this.apiUrl}/Base/WfLocation/Get`,
+      body
+    )
+    .pipe(map((res: any) => JSON.parse(res)));
   }
 
   add(body: location.CreateRequest) {
-    return this.http.post<base.ResponsesBase<location.CreateResponses>>(`${this.apiUrl}/Base/WfLocation/Create`, body);
+    return this.http.post<base.ResponsesBase<location.CreateResponses>>(`${this.apiUrl}/Base/WfLocation/Create`,
+      body
+    )
+    .pipe(map((res: any) => JSON.parse(res)));
   }
 
   edit(body: location.UpdateRequest) {
-    return this.http.post<base.ResponsesBase<location.UpdateResponses>>(`${this.apiUrl}/Base/WfLocation/Update`, body);
+    return this.http.post<base.ResponsesBase<location.UpdateResponses>>(`${this.apiUrl}/Base/WfLocation/Update`,
+      body
+    )
+    .pipe(map((res: any) => JSON.parse(res)));
   }
 
   getDetail(body: location.GetDetailRequest) {
-    return this.http.post<base.ResponsesBase<location.GetDetailResponses>>(`${this.apiUrl}/Base/WfLocation/GetDetail`, body);
+    return this.http.post<base.ResponsesBase<location.GetDetailResponses>>(`${this.apiUrl}/Base/WfLocation/GetDetail`,
+      body
+    )
+    .pipe(map((res: any) => JSON.parse(res)));
   }
 
   convertState(body: location.ConvertStateRequest) {
-    return this.http.post<base.ResponsesBase<string>>(`${this.apiUrl}/Base/WfLocation/ConvertState`, body);
+    return this.http.post<base.ResponsesBase<string>>(`${this.apiUrl}/Base/WfLocation/ConvertState`,
+      body
+    )
+    .pipe(map((res: any) => JSON.parse(res)));
   }
 }

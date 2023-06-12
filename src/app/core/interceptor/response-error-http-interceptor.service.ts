@@ -22,7 +22,7 @@ export class ResponseErrorHttpInterceptorService implements HttpInterceptor {
     private loginService: LoginService,
     public messageService: MessageService,
     private readonly injector: Injector
-  ) {}
+  ) { }
 
   public statusHandler(response: any) {
     //  處理自定義項目

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, map } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Tabulator } from 'tabulator-tables';
 
@@ -44,10 +44,18 @@ export class LogExecuteService {
       } as logExecute.GetRequest;
     }
 
-    return this.http.post<base.ResponsesBase<logExecute.GetResponses>>(`${this.apiUrl}/Base/SysLogExecute/Get`, body);
+    return this.http
+    .post<base.ResponsesBase<logExecute.GetResponses[]>>(
+      `${this.apiUrl}/Base/SysLogExecute/Get`,
+      body
+    )
+    .pipe(map((res: any) => JSON.parse(res)));
   }
 
   getDetail(body: logExecute.GetDetailRequest) {
-    return this.http.post<base.ResponsesBase<logExecute.GetDetailResponses>>(`${this.apiUrl}/Base/SysLogExecute/GetDetail`, body);
+    return this.http.post<base.ResponsesBase<logExecute.GetDetailResponses>>(`${this.apiUrl}/Base/SysLogExecute/GetDetail`,
+      body
+    )
+    .pipe(map((res: any) => JSON.parse(res)));
   }
 }
