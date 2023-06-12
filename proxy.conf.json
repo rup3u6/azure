@@ -8,5 +8,10 @@
     "target": "http://192.168.51.223:5051",
     "secure": false,
     "pathRewrite": { "^/wis_api": "" }
+  },
+  "/wis_api/Secretary": {
+    "target": "http://192.168.51.223:5052",
+    "secure": false,
+    "pathRewrite": { "^/wis_api": "" }
   }
 }
