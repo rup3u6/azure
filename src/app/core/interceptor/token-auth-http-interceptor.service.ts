@@ -19,7 +19,7 @@ export class TokenAuthHttpInterceptorService {
     const token = this.loginService.getToken();
     try {
       const translateService = this.injector.get(TranslateService);
-      console.log(req);
+      //  responseType非json的維持，以確保blob格式
       let responseType =
         req.responseType === 'json' ? 'text' : req.responseType;
       req = req.clone({
