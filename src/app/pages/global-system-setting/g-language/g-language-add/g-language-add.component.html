@@ -59,7 +59,9 @@
                     <input
                       type="text"
                       placeholder="請輸入前台I18N檔名"
+                      [value]="f['lang_Code'].value ? f['lang_Code'].value + '_f.json' : ''"
                       formControlName="i18N_Front"
+                      attr="readonly"
                     />
                   </div>
                   <div class="form-item-text" *ngIf="f['i18N_Front'].errors && f['i18N_Front'].touched">
@@ -74,8 +76,10 @@
                     <input
                       type="text"
                       placeholder="請輸入後台I18N檔名"
+                      [value]="f['lang_Code'].value ? f['lang_Code'].value + '_b.json' : ''"
                       formControlName="i18N_Back"
-                    />
+                      attr="readonly"
+                      />
                   </div>
                   <div class="form-item-text" *ngIf="f['i18N_Back'].errors && f['i18N_Back'].touched">
                     <p>{{ f["i18N_Back"].errors | errorMessage : '後台I18N檔名' }}</p>

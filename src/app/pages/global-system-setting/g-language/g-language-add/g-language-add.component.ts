@@ -35,6 +35,8 @@ export class GLanguageAddComponent implements OnInit {
       i18N_Front: ['', [Validators.required]],
       i18N_Back: ['', [Validators.required]],
     });
+    this.languageFormGroup.controls?.['i18N_Front'].disable();
+    this.languageFormGroup.controls?.['i18N_Back'].disable();
     if (this.data.mode === 'add') {
       this.setLanguageFormGroupInit();
     } else {
@@ -62,6 +64,8 @@ export class GLanguageAddComponent implements OnInit {
 
     let body: any = {
       ...this.languageFormGroup.getRawValue(),
+      i18N_Front: this.languageFormGroup.getRawValue().lang_Code + '_f.json',
+      i18N_Back: this.languageFormGroup.getRawValue().lang_Code + '_b.json',
     };
 
     this.loadingService.startLoading();
