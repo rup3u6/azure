@@ -56,10 +56,15 @@
         </select>
       </div>
       <div class="header-info-unit user-link">
-        <ul>
+        <ul (click)="userLinkNavClick($event)">
           <li>Allen Lin</li>
-          <li (click)="logout()">ABC13579</li>
+          <li>ABC13579</li>
         </ul>
+        <div class="user-link-nav" *ngIf="isUserLinkNav">
+          <ul>
+            <li (click)="logout()"><a routerLink="/login">登出</a></li>
+          </ul>
+        </div>
       </div>
       <div
         class="header-info-unit location-text"
