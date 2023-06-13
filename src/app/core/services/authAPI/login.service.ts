@@ -14,7 +14,7 @@ export class LoginService {
     private http: HttpClient,
     private router: Router,
     private authService: MsalService
-  ) { }
+  ) {}
 
   private apiUrl = environment.apiUrl;
 
@@ -33,7 +33,9 @@ export class LoginService {
     sessionStorage.removeItem('wis_cms_token');
     let accounts = this.authService.instance.getAllAccounts();
     if (accounts.length > 0) {
-      this.authService.logout();
+      this.authService.logoutRedirect({
+        postLogoutRedirectUri: environment.msalRedirectUri,
+      });
     } else {
       this.router.navigate(['/login']);
     }

@@ -5,7 +5,7 @@ import {
   HttpErrorResponse,
   HttpInterceptor,
 } from '@angular/common/http';
-import { Injectable, Injector } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
 import { LoginService } from '../services/authAPI/login.service';
 import { MessageService } from '../services/message.service';
@@ -21,7 +21,7 @@ export class ResponseErrorHttpInterceptorService implements HttpInterceptor {
   constructor(
     private loginService: LoginService,
     public messageService: MessageService,
-    private readonly injector: Injector
+    private translateService: TranslateService
   ) {}
 
   public statusHandler(response: any) {
@@ -68,9 +68,8 @@ export class ResponseErrorHttpInterceptorService implements HttpInterceptor {
           const lang = /\/i18n\/(?<lang>.*)\.json$/.exec(url)?.groups?.['lang'];
           console.log(`無${lang}語系語言包`);
           try {
-            const translateService = this.injector.get(TranslateService);
             setTimeout(() => {
-              translateService.use('EN');
+              this.translateService.use('EN_b');
             }, 0);
           } catch (error) {
             // console.log(error)

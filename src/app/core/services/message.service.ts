@@ -1,4 +1,4 @@
-import { Injectable, Injector, TemplateRef } from '@angular/core';
+import { Injectable, TemplateRef } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
@@ -12,7 +12,7 @@ export class MessageService {
   constructor(
     private modal: NzModalService,
     private notification: NzNotificationService,
-    private readonly injector: Injector
+    private translateService: TranslateService
   ) {}
 
   public initTemplate(tempName: string, ref: TemplateRef<any>): void {
@@ -72,19 +72,20 @@ export class MessageService {
     }
   }
   public responseErrorMsgTranslate(status: string, msgOrField: any) {
-    const translateService = this.injector.get(TranslateService);
     if (status === '901') {
       // msgOrField: Array<{field:'', errorMessage:''}>
       let transMsgArray = msgOrField.map((item: any) => {
         let i18nField = item.field;
         let errorMessage = item.errorMessage;
-        let transField = translateService.instant(i18nField.toUpperCase());
-        return translateService.instant(errorMessage, { field: transField });
+        let transField = this.translateService.instant(i18nField.toUpperCase());
+        return this.translateService.instant(errorMessage, {
+          field: transField,
+        });
       });
       return transMsgArray;
     } else {
       //  msgOrField: string
-      let transMsg = translateService.instant(msgOrField);
+      let transMsg = this.translateService.instant(msgOrField);
       return transMsg === msgOrField ? [`errorCode：${transMsg}`] : [transMsg];
     }
   }

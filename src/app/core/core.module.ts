@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpBackend } from '@angular/common/http';
 import {
   TranslateModule,
   TranslateLoader,
@@ -35,11 +35,11 @@ const isIE =
   imports: [
     CommonModule,
     TranslateModule.forRoot({
-      defaultLanguage: 'EN',
+      defaultLanguage: 'EN_b',
       loader: {
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,
-        deps: [HttpClient],
+        deps: [HttpBackend],
       },
       isolate: false,
       extend: true,
@@ -97,7 +97,6 @@ const isIE =
 })
 export class CoreModule {
   constructor(protected translateService: TranslateService) {
-    const currentLang = 'EN';
-    translateService.use(currentLang);
+    translateService.use(translateService.defaultLang);
   }
 }

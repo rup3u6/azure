@@ -59,7 +59,12 @@ export class LoginComponent implements OnInit, OnDestroy {
     });
     this.msalBroadcastService.msalSubject$
       .pipe(
-        filter((msg: EventMessage) => msg.eventType === EventType.LOGIN_SUCCESS)
+        // tap((msg: EventMessage) => console.log(msg)),
+        filter(
+          (msg: EventMessage) =>
+            msg.eventType === EventType.LOGIN_SUCCESS ||
+            msg.eventType === EventType.ACQUIRE_TOKEN_SUCCESS
+        )
       )
       .subscribe((result: any) => {
         console.log(result);
@@ -70,6 +75,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
     this.broadcastService.inProgress$
       .pipe(
+        // tap((status: InteractionStatus) => console.log(status)),
         filter(
           (status: InteractionStatus) => status === InteractionStatus.None
         ),
