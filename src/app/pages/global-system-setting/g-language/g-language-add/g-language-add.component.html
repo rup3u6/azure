@@ -52,13 +52,12 @@
               </div>
             </div>
             <div class="form-row row-2">
-              <div class="form-item" type="required" [attr.attr]="f['i18N_Front'].errors && f['i18N_Front'].touched && 'error'">
+              <div class="form-item" [attr.attr]="f['i18N_Front'].errors && f['i18N_Front'].touched && 'error'">
                 <div class="form-item-inner">
                   <div class="form-item-title">前台I18N檔名</div>
                   <div class="form-item-entry">
                     <input
                       type="text"
-                      placeholder="請輸入前台I18N檔名"
                       [value]="f['lang_Code'].value ? f['lang_Code'].value + '_f.json' : ''"
                       formControlName="i18N_Front"
                       attr="readonly"
@@ -69,13 +68,12 @@
                   </div>
                 </div>
               </div>
-              <div class="form-item" type="required" [attr.attr]="f['i18N_Back'].errors && f['i18N_Back'].touched && 'error'">
+              <div class="form-item" [attr.attr]="f['i18N_Back'].errors && f['i18N_Back'].touched && 'error'">
                 <div class="form-item-inner">
                   <div class="form-item-title">後台I18N檔名</div>
                   <div class="form-item-entry">
                     <input
                       type="text"
-                      placeholder="請輸入後台I18N檔名"
                       [value]="f['lang_Code'].value ? f['lang_Code'].value + '_b.json' : ''"
                       formControlName="i18N_Back"
                       attr="readonly"
