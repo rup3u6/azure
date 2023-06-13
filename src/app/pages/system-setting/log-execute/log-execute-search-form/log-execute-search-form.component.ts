@@ -45,13 +45,6 @@ export class LogExecuteSearchFormComponent implements OnInit {
     });
 
     this.setSearchFormGroupInit();
-
-    this.startSearchDate = new Date();
-    this.startSearchDateChange(this.startSearchDate);
-
-    this.endSearchDate = new Date();
-    this.endSearchDateChange(this.endSearchDate);
-
     this.search();
   }
 
@@ -65,6 +58,12 @@ export class LogExecuteSearchFormComponent implements OnInit {
       info_Name: '',
       info_Ename: '',
     });
+
+    this.startSearchDate = new Date();
+    this.startSearchDateChange(this.startSearchDate);
+
+    this.endSearchDate = new Date();
+    this.endSearchDateChange(this.endSearchDate);
   }
 
   startSearchDateChange(result: Date): void {
@@ -125,8 +124,6 @@ export class LogExecuteSearchFormComponent implements OnInit {
 
   clear() {
     this.setSearchFormGroupInit();
-    this.startSearchDate = null;
-    this.endSearchDate = null;
     this.logExecuteService.getTabulatorTable().clearData();
     this.logExecuteService.getTabulatorTable().clearSort();
   }
