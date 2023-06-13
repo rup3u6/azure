@@ -94,6 +94,8 @@ export class UseRoleAddPermissionComponent implements OnInit {
           useRoleGetModulesSelect.push(this.formBuilder.group(obj));
         }
       });
+
+      item.checked = item.child.every((item2: any) => item2.checked);
     });
 
     console.log(useRoleGetModulesSelect);
