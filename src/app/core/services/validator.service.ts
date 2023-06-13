@@ -13,7 +13,11 @@ export class ValidatorService {
       const startDateControl = formGroup.get(start)!;
       const endDateControl = formGroup.get(end)!;
 
-      if (startDateControl.value > endDateControl.value) {
+      if (
+        startDateControl.value &&
+        endDateControl.value &&
+        startDateControl.value > endDateControl.value
+      ) {
         let errors = endDateControl.errors;
         startDateControl.setErrors({
           ...errors,
