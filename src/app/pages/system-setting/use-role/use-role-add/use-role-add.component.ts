@@ -4,6 +4,7 @@ import { firstValueFrom } from 'rxjs';
 import { DatePipe } from '@angular/common';
 
 // service
+import { ValidatorService } from 'src/app/core/services/validator.service';
 import { UseInfoService } from 'src/app/core/services/authAPI/use-info.service';
 import { UseRoleService } from 'src/app/core/services/authAPI/use-role.service';
 import { LoadingService } from 'src/app/core/services/loading.service';
@@ -37,6 +38,7 @@ export class UseRoleAddComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private datePipe: DatePipe,
+    private validatorService: ValidatorService,
     private useInfoService: UseInfoService,
     public useRoleService: UseRoleService,
     private loadingService: LoadingService
@@ -55,6 +57,12 @@ export class UseRoleAddComponent implements OnInit {
       lCIn_UseRoleMember_PageData: this.formBuilder.array([], [Validators.required, Validators.minLength(1)]),
       lCIn_UseRoleAuth_PageData: this.formBuilder.array([], [Validators.required, Validators.minLength(1)]),
     });
+    this.useRoleFormGroup.setValidators(
+      this.validatorService.dateRangeValidator(
+        ['oCIn_UseRole_PageData', 'role_StartDate'],
+        ['oCIn_UseRole_PageData', 'role_EndDate'],
+      )
+    );
 
     if (this.data.mode === 'add') {
       this.setLanguageFormGroupInit();
