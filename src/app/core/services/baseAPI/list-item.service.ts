@@ -4,7 +4,7 @@ import { environment } from 'src/environments/environment';
 
 // models
 import * as base from '../../models/baseAPI/base';
-import * as listItem from '../../models/baseAPI/list_item';
+import * as listItem from '../../models/baseAPI/list-item';
 import { map } from 'rxjs';
 
 @Injectable({

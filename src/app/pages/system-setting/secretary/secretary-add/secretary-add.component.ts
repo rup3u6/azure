@@ -6,7 +6,7 @@ import { finalize, firstValueFrom } from 'rxjs';
 import { ListItem } from 'src/app/core/enum/list-item';
 
 // service
-import { ListItemService } from 'src/app/core/services/baseAPI/list_item.service';
+import { ListItemService } from 'src/app/core/services/baseAPI/list-item.service';
 import { SecretaryService } from 'src/app/core/services/secretaryAPI/secretary.service';
 import { LoadingService } from 'src/app/core/services/loading.service';
 
