@@ -117,7 +117,7 @@
                       nzPlaceHolder="Please select"
                       formControlName="lCIn_Wf_Zone_Langue_Pagedata"
                     >
-                      <nz-option *ngFor="let item of cfkLangCodeOption;" [nzLabel]="item.lang_Name" [nzValue]="item.lang_Code" [nzDisabled]="item.lang_Code === 'EN'"></nz-option>
+                      <nz-option *ngFor="let item of cfkLangCodeOption;" [nzLabel]="item.lang_Name" [nzValue]="item.lang_Code" [nzDisabled]="item.lang_Code === 'en'"></nz-option>
                     </nz-select>
                     <ng-template #tagPlaceHolder2 let-selectedList>and {{ selectedList.length }} more selected</ng-template>
                   </div>

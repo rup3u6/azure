@@ -60,8 +60,8 @@ export class GZoneAddComponent implements OnInit {
 
       // 區域語系
       let cfkLangCodeSelectedValue = this.data.initData.lCOut_Wf_Zone_Langue_GetDetail.map((item: any) => item.cfk_Lang_Code);
-      if (!cfkLangCodeSelectedValue.some((item: any) => item === 'EN')) {
-        cfkLangCodeSelectedValue.push('EN');
+      if (!cfkLangCodeSelectedValue.some((item: any) => item === 'en')) {
+        cfkLangCodeSelectedValue.push('en');
       }
 
       this.zoneFormGroup.patchValue({
@@ -80,10 +80,10 @@ export class GZoneAddComponent implements OnInit {
         zone_State: '1',
         zone_Name: '',
         zone_Sort: '0',
-        fk_Lang_Code: 'EN',
+        fk_Lang_Code: 'en',
       },
       lCIn_Wf_Zone_Site_Pagedata: [],
-      lCIn_Wf_Zone_Langue_Pagedata: ['EN'],
+      lCIn_Wf_Zone_Langue_Pagedata: ['en'],
     });
   }
 
