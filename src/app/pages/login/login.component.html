@@ -28,7 +28,7 @@
               >
                 <div class="login-form-item-inner">
                   <div class="form-unit form-title-text">
-                    帳號<span (click)="loginAAD()">ID</span>
+                    帳號<span>ID</span>
                   </div>
                   <div class="form-unit form-field-input">
                     <input
@@ -146,7 +146,7 @@
           <div class="login-component login-button">
             <button type="button" (click)="login()">登入</button>
             <hr class="login-seperate-line">
-            <a href="#">以 Azure 登入</a>
+            <a (click)="loginAAD($event)">以 Azure 登入</a>
           </div>
           <!-- END: login-button -->
         </div>

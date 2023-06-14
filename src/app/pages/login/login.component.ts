@@ -137,7 +137,9 @@ export class LoginComponent implements OnInit, OnDestroy {
     return this.loginFormGroup.controls;
   }
 
-  loginAAD() {
+  loginAAD(event: any) {
+    event.preventDefault();
+
     if (this.msalGuardConfig.authRequest) {
       this.authService.loginRedirect({
         ...this.msalGuardConfig.authRequest,
