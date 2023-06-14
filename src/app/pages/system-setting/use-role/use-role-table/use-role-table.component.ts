@@ -35,6 +35,16 @@ export class UseRoleTableComponent {
       headerHozAlign: 'center',
     },
     {
+      title: '狀態',
+      field: 'role_State',
+      vertAlign: 'middle',
+      hozAlign: 'center',
+      headerHozAlign: 'center',
+      formatter: (cell: any) => {
+        return cell.getValue() === '1' ? '啟用' : '停用';
+      },
+    },
+    {
       title: '異動者',
       field: 'role_EditCode',
       vertAlign: 'middle',
@@ -52,7 +62,7 @@ export class UseRoleTableComponent {
 
         const date = new Date(timeStamp * 1000);
 
-        return this.datePipe.transform(date, "yyyy/MM/dd");
+        return this.datePipe.transform(date, "yyyy/MM/dd hh:mm");
       },
     },
     {
