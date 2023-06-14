@@ -1195,6 +1195,7 @@ hr.seperate-line {
 
 .extra-size-popup .popup-content {
   padding: 0;
+  background: #fff;
 }
 
 .extra-size-popup .popup-content-item {
@@ -1243,15 +1244,26 @@ hr.seperate-line {
 }
 
 .extra-size-popup .popup-form {
-  padding: 20px 10px;
+  padding: 15px 5px;
+  margin-top: 15px;
   border: #aaa solid 1px;
   border-radius: 8px;
   background: #fff;
-  margin-top: 15px;
 }
 
 .extra-size-popup .popup-form:nth-child(1) {
   margin: 0;
+}
+
+.popup-compose .styleless-popup-form {
+  padding: 10px 0 20px;
+  border: none;
+  background: none;
+}
+
+.popup-compose .pupop-content-tab-line {
+  background: none;
+  border-bottom: #aaa solid 1px;
 }
 
 .transfer-field-inner {

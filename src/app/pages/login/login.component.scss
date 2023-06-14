@@ -30,7 +30,7 @@
 }
 
 .login-compose-inner {
-  padding: 50px 25px;
+  padding: 50px 25px 25px;
 }
 
 /* login-form */
@@ -158,12 +158,26 @@ a.form-pw span {
   font-size: 1.125rem;
   color: #fff;
   background: #006c91;
-  letter-spacing: 0.5rem;
+  letter-spacing: 0.15rem;
   cursor: pointer;
 }
 
 .login-button button:hover {
   background: #014b64;
+}
+
+.login-seperate-line {
+  margin: 20px 0 10px;
+  border-color: #f9f9f9;
+}
+
+.login-button a {
+  color: #0076CD;
+  font-weight: bold;
+}
+
+.login-button a:hover {
+  color: #2b9aea;
 }
 
 /* END: login */
