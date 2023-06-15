@@ -3,6 +3,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { firstValueFrom } from 'rxjs';
 import { DatePipe } from '@angular/common';
 
+// enum
+import { ResponseStatus } from 'src/app/core/enum/responseStatus';
+
 // service
 import { ValidatorService } from 'src/app/core/services/validator.service';
 import { UseInfoService } from 'src/app/core/services/authAPI/use-info.service';
@@ -139,7 +142,7 @@ export class UseRoleAddComponent implements OnInit {
     try {
       const useInfoRes = await firstValueFrom(this.useInfoService.search(body));
 
-      if (useInfoRes.status === '999') {
+      if (useInfoRes.status === ResponseStatus.執行成功) {
         this.useInfoList = useInfoRes.data.map((item: any) => {
           //#region title
           let text = '';
@@ -234,7 +237,7 @@ export class UseRoleAddComponent implements OnInit {
 
       const { status } = res;
 
-      if (status === '999') {
+      if (status === ResponseStatus.執行成功) {
         let searchRes = await firstValueFrom(this.useRoleService.search());
         this.useRoleService.getTabulatorTable().setData(searchRes.data ?? []);
         this.close.emit();

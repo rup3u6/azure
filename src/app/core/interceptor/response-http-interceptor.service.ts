@@ -1,16 +1,12 @@
-import {
-  HttpRequest,
-  HttpHandler,
-  HttpEvent,
-  HttpResponse,
-} from '@angular/common/http';
+import { HttpRequest, HttpHandler, HttpEvent, HttpResponse, } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map, tap } from 'rxjs';
-// import jsonBig from 'json-bigint'
 
+// service;
 import { MessageService } from '../services/message.service';
 
 // enum
+import { ResponseStatus } from 'src/app/core/enum/responseStatus';
 import { Message } from 'src/app/core/enum/message';
 
 const JSONbig = require('json-bigint');
@@ -19,7 +15,7 @@ const JSONbig = require('json-bigint');
   providedIn: 'root',
 })
 export class ResponseHttpInterceptorService {
-  constructor(private messageService: MessageService) {}
+  constructor(private messageService: MessageService) { }
 
   // replacer(_key: string, value: any): any {
   //   if (typeof value === 'number') {
@@ -62,7 +58,7 @@ export class ResponseHttpInterceptorService {
           let msgList;
           if (status) {
             switch (status) {
-              case '999':
+              case ResponseStatus.執行成功:
                 //  login及所有get/getDetail 成功不通知
                 if (/\/(Get|Login|ListItem)/.test(url)) {
                   break;
@@ -71,7 +67,7 @@ export class ResponseHttpInterceptorService {
                   title: '執行成功',
                 });
                 break;
-              case '901':
+              case ResponseStatus.資料格式或欄位驗證錯誤:
                 msgList = this.messageService.responseErrorMsgTranslate(
                   status,
                   field
@@ -81,7 +77,7 @@ export class ResponseHttpInterceptorService {
                   msgList,
                 });
                 break;
-              case '900':
+              case ResponseStatus.執行失敗:
                 msgList = this.messageService.responseErrorMsgTranslate(
                   status,
                   message

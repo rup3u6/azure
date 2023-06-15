@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 
 // enum
+import { ResponseStatus } from 'src/app/core/enum/responseStatus';
 import { Message } from 'src/app/core/enum/message';
 
 // service
@@ -45,7 +46,7 @@ export class GLanguageComponent {
       let res = await firstValueFrom(this.gLanguageService.getDetail(body));
       const { status } = res;
 
-      if (status !== '999') {
+      if (status !== ResponseStatus.執行成功) {
         return;
       }
 
@@ -94,7 +95,7 @@ export class GLanguageComponent {
     try {
       let res = await firstValueFrom(this.gLanguageService.convertState(body));
       const { status } = res;
-      if (status === '999') {
+      if (status === ResponseStatus.執行成功) {
         let searchRes = await firstValueFrom(this.gLanguageService.search());
         this.gLanguageService.getTabulatorTable().setData(searchRes.data ?? []);
         this.popup.component = null;

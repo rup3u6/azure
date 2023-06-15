@@ -2,6 +2,9 @@ import { Component, Input, OnInit, forwardRef } from '@angular/core';
 import { FormBuilder, FormGroupDirective, Validators } from '@angular/forms';
 import { BehaviorSubject, firstValueFrom, map } from 'rxjs';
 
+// enum
+import { ResponseStatus } from 'src/app/core/enum/responseStatus';
+
 // service
 import { MenuControlService } from 'src/app/core/services/menu-control.service';
 import { UseRoleService } from 'src/app/core/services/authAPI/use-role.service';
@@ -46,7 +49,7 @@ export class UseRoleAddPermissionComponent implements OnInit {
     try {
       const useRoleGetModulesRes = await firstValueFrom(this.useRoleService.getModules(body));
 
-      if (useRoleGetModulesRes.status === '999') {
+      if (useRoleGetModulesRes.status === ResponseStatus.執行成功) {
         if (this.data.mode === 'edit') {
           this.data.initData.lCTab_UseRoleAuth.forEach((item: any) => {
             useRoleGetModulesRes.data.find((item2: any) => item.cfk_Mod_Id === item2.module_Pk).checked = true;

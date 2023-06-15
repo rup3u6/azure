@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { firstValueFrom } from 'rxjs';
 
+// enum
+import { ResponseStatus } from 'src/app/core/enum/responseStatus';
+
 // service
 import { LocationService } from 'src/app/core/services/baseAPI/location.service';
 import { LoadingService } from 'src/app/core/services/loading.service';
@@ -42,7 +45,7 @@ export class LocationComponent {
     try {
       let res = await firstValueFrom(this.locationService.getDetail(body));
       const { status } = res;
-      if (status !== '999') {
+      if (status !== ResponseStatus.執行成功) {
         return;
       }
       this.popup.data = {
@@ -90,7 +93,7 @@ export class LocationComponent {
     try {
       let res = await firstValueFrom(this.locationService.convertState(body));
       const { status } = res;
-      if (status === '999') {
+      if (status === ResponseStatus.執行成功) {
         let searchRes = await firstValueFrom(this.locationService.search());
         this.locationService.getTabulatorTable().setData(searchRes.data ?? []);
         this.popup.component = null

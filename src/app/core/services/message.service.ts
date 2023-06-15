@@ -3,6 +3,9 @@ import { TranslateService } from '@ngx-translate/core';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 
+// enum
+import { ResponseStatus } from 'src/app/core/enum/responseStatus';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -72,7 +75,7 @@ export class MessageService {
     }
   }
   public responseErrorMsgTranslate(status: string, msgOrField: any) {
-    if (status === '901') {
+    if (status === ResponseStatus.資料格式或欄位驗證錯誤) {
       // msgOrField: Array<{field:'', errorMessage:''}>
       let transMsgArray = msgOrField.map((item: any) => {
         let i18nField = item.field;

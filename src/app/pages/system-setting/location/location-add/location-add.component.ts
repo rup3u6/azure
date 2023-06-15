@@ -2,6 +2,9 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { finalize, firstValueFrom } from 'rxjs';
 
+// enum
+import { ResponseStatus } from 'src/app/core/enum/responseStatus';
+
 // service
 import { LocationService } from 'src/app/core/services/baseAPI/location.service';
 import { LoadingService } from 'src/app/core/services/loading.service';
@@ -80,7 +83,7 @@ export class LocationAddComponent implements OnInit {
         res = await firstValueFrom(this.locationService.edit(body));
       }
       const { status } = res;
-      if (status === '999') {
+      if (status === ResponseStatus.執行成功) {
         let searchRes = await firstValueFrom(this.locationService.search());
         this.locationService.getTabulatorTable().setData(searchRes.data ?? []);
         this.close.emit();

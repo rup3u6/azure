@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 
 // enum
+import { ResponseStatus } from 'src/app/core/enum/responseStatus';
 import { Message } from 'src/app/core/enum/message';
 
 // service
@@ -43,7 +44,7 @@ export class GModuleComponent {
     try {
       let res = await firstValueFrom(this.gModuleService.getDetail(body));
       const { status } = res;
-      if (status !== '999') {
+      if (status !== ResponseStatus.執行成功) {
         return;
       }
       this.popup.data = {
@@ -88,7 +89,7 @@ export class GModuleComponent {
     try {
       let res = await firstValueFrom(this.gModuleService.convertState(body));
       const { status } = res;
-      if (status === '999') {
+      if (status === ResponseStatus.執行成功) {
         let searchRes = await firstValueFrom(this.gModuleService.search());
         this.gModuleService.getTabulatorTable().setData(searchRes.data ?? []);
         this.popup.component = null

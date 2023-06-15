@@ -2,7 +2,8 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { firstValueFrom } from 'rxjs';
 
-// emum
+// enum
+import { ResponseStatus } from 'src/app/core/enum/responseStatus';
 import { ListItem } from 'src/app/core/enum/list-item';
 
 // service
@@ -77,7 +78,7 @@ export class UseInfoAddComponent implements OnInit {
     try {
       const listItemRes = await firstValueFrom(this.listItemService.search([ListItem.顯示角色名稱]));
 
-      if (listItemRes.status === '999') {
+      if (listItemRes.status === ResponseStatus.執行成功) {
         let roleList = [];
 
         for (let i in listItemRes.data[0].dListItem) {
@@ -137,7 +138,7 @@ export class UseInfoAddComponent implements OnInit {
 
       const { status } = res;
 
-      if (status === '999') {
+      if (status === ResponseStatus.執行成功) {
         let searchRes = await firstValueFrom(this.useInfoService.search());
         this.useInfoService.getTabulatorTable().setData(searchRes.data ?? []);
         this.close.emit();

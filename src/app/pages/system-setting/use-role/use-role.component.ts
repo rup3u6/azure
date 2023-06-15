@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { firstValueFrom } from 'rxjs';
 
+// enum
+import { ResponseStatus } from 'src/app/core/enum/responseStatus';
+
 // service
 import { UseRoleService } from 'src/app/core/services/authAPI/use-role.service';
 import { LoadingService } from 'src/app/core/services/loading.service';
@@ -43,7 +46,7 @@ export class UseRoleComponent {
       let res = await firstValueFrom(this.useRoleService.getDetail(body));
       const { status } = res;
 
-      if (status !== '999') {
+      if (status !== ResponseStatus.執行成功) {
         return;
       }
 
@@ -92,7 +95,7 @@ export class UseRoleComponent {
     try {
       let res = await firstValueFrom(this.useRoleService.convertState(body));
       const { status } = res;
-      if (status === '999') {
+      if (status === ResponseStatus.執行成功) {
         let searchRes = await firstValueFrom(this.useRoleService.search());
         this.useRoleService.getTabulatorTable().setData(searchRes.data ?? []);
         this.popup.component = null;

@@ -11,6 +11,7 @@ import { LoginService } from '../services/authAPI/login.service';
 import { MessageService } from '../services/message.service';
 
 // enum
+import { ResponseStatus } from 'src/app/core/enum/responseStatus';
 import { Message } from 'src/app/core/enum/message';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -29,7 +30,7 @@ export class ResponseErrorHttpInterceptorService implements HttpInterceptor {
     const { status, message, field } = JSON.parse(response);
     let msgList;
     switch (status) {
-      case '900':
+      case ResponseStatus.執行失敗:
         msgList = this.messageService.responseErrorMsgTranslate(
           status,
           message
@@ -39,7 +40,7 @@ export class ResponseErrorHttpInterceptorService implements HttpInterceptor {
           msgList,
         });
         break;
-      case '901':
+      case ResponseStatus.資料格式或欄位驗證錯誤:
         msgList = this.messageService.responseErrorMsgTranslate(status, field);
         this.messageService.showModal(Message.error, {
           title: '資料格式或欄位驗證錯誤',

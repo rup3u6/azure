@@ -6,6 +6,9 @@ import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { MsalService } from '@azure/msal-angular';
 
+// enum
+import { ResponseStatus } from 'src/app/core/enum/responseStatus';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -24,7 +27,7 @@ export class LoginService {
       tap((res) => {
         sessionStorage.setItem('wis_cms_token', res.data);
         const { status } = res;
-        status === '999' && this.router.navigate(['/home']);
+        status === ResponseStatus.執行成功 && this.router.navigate(['/home']);
       })
     );
   }

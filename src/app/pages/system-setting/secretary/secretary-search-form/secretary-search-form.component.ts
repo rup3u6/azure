@@ -2,7 +2,8 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { finalize, firstValueFrom } from 'rxjs';
 
-// emum
+// enum
+import { ResponseStatus } from 'src/app/core/enum/responseStatus';
 import { ListItem } from 'src/app/core/enum/list-item';
 
 // service
@@ -62,7 +63,7 @@ export class SecretarySearchFormComponent implements OnInit {
     try {
       const listItemRes = await firstValueFrom(this.listItemService.search([ListItem.顯示Site,]));
 
-      if (listItemRes.status === '999') {
+      if (listItemRes.status === ResponseStatus.執行成功) {
         let siteList = [];
         for (let i in listItemRes.data[0].dListItem) {
           siteList.push({
@@ -88,7 +89,7 @@ export class SecretarySearchFormComponent implements OnInit {
         [ListItem.與Site關聯_顯示Location名稱], this.searchFormGroup.value.cfk_Site
       ));
 
-      if (listItemRes.status === '999') {
+      if (listItemRes.status === ResponseStatus.執行成功) {
         let locationList = [];
         for (let i in listItemRes.data[0].dListItem) {
           locationList.push({

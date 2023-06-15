@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { firstValueFrom } from 'rxjs';
 
+// enum
+import { ResponseStatus } from 'src/app/core/enum/responseStatus';
+
 // services
 import { LogExecuteService } from 'src/app/core/services/baseAPI/log-execute.service';
 import { LoadingService } from 'src/app/core/services/loading.service';
@@ -32,7 +35,7 @@ export class LogExecuteComponent {
     try {
       let res = await firstValueFrom(this.logExecuteService.getDetail(body));
       const { status } = res;
-      if (status !== '999') {
+      if (status !== ResponseStatus.執行成功) {
         return;
       }
       this.popup.data = {

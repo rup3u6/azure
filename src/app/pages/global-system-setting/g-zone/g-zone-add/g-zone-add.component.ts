@@ -2,6 +2,9 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { finalize, firstValueFrom } from 'rxjs';
 
+// enum
+import { ResponseStatus } from 'src/app/core/enum/responseStatus';
+
 // models
 import * as language from 'src/app/core/models/baseAPI/language';
 
@@ -98,7 +101,7 @@ export class GZoneAddComponent implements OnInit {
 
     try {
       const languagesearchRes = await firstValueFrom(this.gLanguageService.search(inLanguageSearch));
-      if (languagesearchRes.status === '999') {
+      if (languagesearchRes.status === ResponseStatus.執行成功) {
         this.languagesearchRes = languagesearchRes.data;
         this.cfkLangCodeOption = this.languagesearchRes.map((item: language.GetResponses) => {
           return {
@@ -140,7 +143,7 @@ export class GZoneAddComponent implements OnInit {
         res = await firstValueFrom(this.gZoneService.edit(body));
       }
       const { status } = res;
-      if (status === '999') {
+      if (status === ResponseStatus.執行成功) {
         let searchRes = await firstValueFrom(this.gZoneService.search());
         this.gZoneService.getTabulatorTable().setData(searchRes.data ?? []);
         this.close.emit();

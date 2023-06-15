@@ -5,6 +5,7 @@ import { LoadingService } from 'src/app/core/services/loading.service';
 import { MessageService } from 'src/app/core/services/message.service';
 
 // enum
+import { ResponseStatus } from 'src/app/core/enum/responseStatus';
 import { Message } from 'src/app/core/enum/message';
 
 @Component({
@@ -41,7 +42,7 @@ export class GModuleClassComponent {
     try {
       let res = await firstValueFrom(this.gModuleClassService.getDetail(body));
       const { status } = res;
-      if (status !== '999') {
+      if (status !== ResponseStatus.執行成功) {
         return;
       }
       this.popup.data = {
@@ -87,7 +88,7 @@ export class GModuleClassComponent {
     try {
       let res = await firstValueFrom(this.gModuleClassService.convertState(body));
       const { status } = res;
-      if (status === '999') {
+      if (status === ResponseStatus.執行成功) {
         let searchRes = await firstValueFrom(this.gModuleClassService.search());
         this.gModuleClassService.getTabulatorTable().setData(searchRes.data ?? []);
         this.popup.component = null

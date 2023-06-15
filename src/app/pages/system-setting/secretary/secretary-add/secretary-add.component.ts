@@ -2,7 +2,8 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { finalize, firstValueFrom } from 'rxjs';
 
-// emum
+// enum
+import { ResponseStatus } from 'src/app/core/enum/responseStatus';
 import { ListItem } from 'src/app/core/enum/list-item';
 
 // service
@@ -78,7 +79,7 @@ export class SecretaryAddComponent implements OnInit {
     try {
       const listItemRes = await firstValueFrom(this.listItemService.search([ListItem.顯示工號_中名_英名_Site]));
 
-      if (listItemRes.status === '999') {
+      if (listItemRes.status === ResponseStatus.執行成功) {
         let siteList = [];
         for (let i in listItemRes.data[0].dListItem) {
           siteList.push({
@@ -115,7 +116,7 @@ export class SecretaryAddComponent implements OnInit {
         res = await firstValueFrom(this.secretaryService.edit(body));
       }
       const { status } = res;
-      if (status === '999') {
+      if (status === ResponseStatus.執行成功) {
         let searchRes = await firstValueFrom(this.secretaryService.search());
         this.secretaryService.getTabulatorTable().setData(searchRes.data ?? []);
         this.close.emit();

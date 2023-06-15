@@ -2,6 +2,9 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { finalize, firstValueFrom } from 'rxjs';
 
+// enum
+import { ResponseStatus } from 'src/app/core/enum/responseStatus';
+
 // service
 import { GModuleClassService } from 'src/app/core/services/authAPI/g-module-class.service';
 import { LoadingService } from 'src/app/core/services/loading.service';
@@ -75,7 +78,7 @@ export class GModuleClassAddComponent implements OnInit {
         res = await firstValueFrom(this.gModuleClassService.edit(body));
       }
       const { status } = res;
-      if (status === '999') {
+      if (status === ResponseStatus.執行成功) {
         let searchRes = await firstValueFrom(this.gModuleClassService.search());
         this.gModuleClassService.getTabulatorTable().setData(searchRes.data ?? []);
         this.close.emit();

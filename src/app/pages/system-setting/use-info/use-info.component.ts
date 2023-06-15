@@ -2,6 +2,9 @@ import { Component, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { firstValueFrom } from 'rxjs';
 
+// enum
+import { ResponseStatus } from 'src/app/core/enum/responseStatus';
+
 // component
 import { UseInfoSearchFormComponent } from 'src/app/pages/system-setting/use-info/use-info-search-form/use-info-search-form.component';
 
@@ -42,7 +45,7 @@ export class UseInfoComponent {
       let res = await firstValueFrom(this.useInfoService.getDetail(body));
       const { status } = res;
 
-      if (status !== '999') {
+      if (status !== ResponseStatus.執行成功) {
         return;
       }
 
