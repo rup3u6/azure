@@ -6,7 +6,6 @@ import { GLanguageComponent } from './g-language/g-language.component';
 import { GZoneComponent } from './g-zone/g-zone.component';
 import { GModuleClassComponent } from './g-module-class/g-module-class.component';
 import { GModuleComponent } from './g-modul/g-module.component';
-import { GZoneManagerComponent } from './g-zone-manager/g-zone-manager.component';
 
 const routes: Routes = [
   {
@@ -29,10 +28,6 @@ const routes: Routes = [
   {
     path: 'module',
     component: GModuleComponent,
-  },
-  {
-    path: 'zone-manager',
-    component: GZoneManagerComponent,
   },
 ];
 
