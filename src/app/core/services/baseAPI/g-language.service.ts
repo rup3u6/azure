@@ -5,7 +5,7 @@ import { environment } from 'src/environments/environment';
 import { Tabulator } from 'tabulator-tables';
 
 // models
-import * as base from '../../models/baseAPI/base';
+import * as base from '../../models/base';
 import * as language from '../../models/baseAPI/language';
 
 @Injectable({

@@ -4,7 +4,7 @@ import { NzModalService } from 'ng-zorro-antd/modal';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 
 // enum
-import { ResponseStatus } from 'src/app/core/enum/responseStatus';
+import { ResponseStatus } from 'src/app/core/enum/response-status';
 
 @Injectable({
   providedIn: 'root',

@@ -5,8 +5,8 @@ import { environment } from 'src/environments/environment';
 import { Tabulator } from 'tabulator-tables';
 
 // models
-import * as base from 'src/app/core/models/baseAPI/base';
-import * as UseRole from 'src/app/core/models/authAPI/useRole';
+import * as base from 'src/app/core/models/base';
+import * as UseRole from 'src/app/core/models/authAPI/use-role';
 
 @Injectable({
   providedIn: 'root'

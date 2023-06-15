@@ -5,12 +5,14 @@ import { environment } from 'src/environments/environment';
 import { Tabulator } from 'tabulator-tables';
 
 // models
-import * as base from '../../models/baseAPI/base';
+import * as base from '../../models/base';
 import * as useInfo from '../../models/authAPI/use-info';
+
 @Injectable({
   providedIn: 'root',
 })
 export class UseInfoService {
+
   private apiUrl = environment.apiUrl;
   private tabulatorTable!: Tabulator;
   private searchFormValue = new BehaviorSubject<any>({});

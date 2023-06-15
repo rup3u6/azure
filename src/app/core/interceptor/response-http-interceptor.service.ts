@@ -6,7 +6,7 @@ import { Observable, map, tap } from 'rxjs';
 import { MessageService } from '../services/message.service';
 
 // enum
-import { ResponseStatus } from 'src/app/core/enum/responseStatus';
+import { ResponseStatus } from 'src/app/core/enum/response-status';
 import { Message } from 'src/app/core/enum/message';
 
 const JSONbig = require('json-bigint');

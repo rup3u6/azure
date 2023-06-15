@@ -5,7 +5,7 @@ import { LoadingService } from 'src/app/core/services/loading.service';
 import { MessageService } from 'src/app/core/services/message.service';
 
 // enum
-import { ResponseStatus } from 'src/app/core/enum/responseStatus';
+import { ResponseStatus } from 'src/app/core/enum/response-status';
 import { Message } from 'src/app/core/enum/message';
 
 @Component({

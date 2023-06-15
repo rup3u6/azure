@@ -7,7 +7,7 @@ import { environment } from 'src/environments/environment';
 import { MsalService } from '@azure/msal-angular';
 
 // enum
-import { ResponseStatus } from 'src/app/core/enum/responseStatus';
+import { ResponseStatus } from 'src/app/core/enum/response-status';
 
 @Injectable({
   providedIn: 'root',

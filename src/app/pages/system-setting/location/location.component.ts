@@ -3,7 +3,7 @@ import { FormBuilder } from '@angular/forms';
 import { firstValueFrom } from 'rxjs';
 
 // enum
-import { ResponseStatus } from 'src/app/core/enum/responseStatus';
+import { ResponseStatus } from 'src/app/core/enum/response-status';
 
 // service
 import { LocationService } from 'src/app/core/services/baseAPI/location.service';

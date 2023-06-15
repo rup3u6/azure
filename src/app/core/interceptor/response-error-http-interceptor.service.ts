@@ -11,7 +11,7 @@ import { LoginService } from '../services/authAPI/login.service';
 import { MessageService } from '../services/message.service';
 
 // enum
-import { ResponseStatus } from 'src/app/core/enum/responseStatus';
+import { ResponseStatus } from 'src/app/core/enum/response-status';
 import { Message } from 'src/app/core/enum/message';
 import { TranslateService } from '@ngx-translate/core';
 

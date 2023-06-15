@@ -4,7 +4,7 @@ import { firstValueFrom } from 'rxjs';
 import { DatePipe } from '@angular/common';
 
 // enum
-import { ResponseStatus } from 'src/app/core/enum/responseStatus';
+import { ResponseStatus } from 'src/app/core/enum/response-status';
 
 // service
 import { ValidatorService } from 'src/app/core/services/validator.service';

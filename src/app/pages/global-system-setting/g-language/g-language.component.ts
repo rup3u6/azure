@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 
 // enum
-import { ResponseStatus } from 'src/app/core/enum/responseStatus';
+import { ResponseStatus } from 'src/app/core/enum/response-status';
 import { Message } from 'src/app/core/enum/message';
 
 // service

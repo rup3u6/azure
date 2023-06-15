@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 
 // models
-import * as base from '../../models/baseAPI/base';
+import * as base from '../../models/base';
 import * as listItem from '../../models/baseAPI/list-item';
 import { map } from 'rxjs';
 

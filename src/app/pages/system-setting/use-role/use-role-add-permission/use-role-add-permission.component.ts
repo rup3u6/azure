@@ -3,7 +3,7 @@ import { FormBuilder, FormGroupDirective, Validators } from '@angular/forms';
 import { BehaviorSubject, firstValueFrom, map } from 'rxjs';
 
 // enum
-import { ResponseStatus } from 'src/app/core/enum/responseStatus';
+import { ResponseStatus } from 'src/app/core/enum/response-status';
 
 // service
 import { MenuControlService } from 'src/app/core/services/menu-control.service';

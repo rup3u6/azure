@@ -3,7 +3,7 @@ import { FormBuilder } from '@angular/forms';
 import { firstValueFrom } from 'rxjs';
 
 // enum
-import { ResponseStatus } from 'src/app/core/enum/responseStatus';
+import { ResponseStatus } from 'src/app/core/enum/response-status';
 
 // component
 import { UseInfoSearchFormComponent } from 'src/app/pages/system-setting/use-info/use-info-search-form/use-info-search-form.component';
