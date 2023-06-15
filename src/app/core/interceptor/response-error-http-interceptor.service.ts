@@ -70,7 +70,7 @@ export class ResponseErrorHttpInterceptorService implements HttpInterceptor {
           console.log(`無${lang}語系語言包`);
           try {
             setTimeout(() => {
-              this.translateService.use('EN_b');
+              this.translateService.use('en_b');
             }, 0);
           } catch (error) {
             // console.log(error)

@@ -35,7 +35,7 @@ const isIE =
   imports: [
     CommonModule,
     TranslateModule.forRoot({
-      defaultLanguage: 'EN_b',
+      defaultLanguage: 'en_b',
       loader: {
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,
