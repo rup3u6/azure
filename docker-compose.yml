@@ -8,6 +8,6 @@ services:
       context: ./
       dockerfile: Dockerfile
     ports:
-     - "8091:80"
+     - "8091:443"
     # volumes:
-    # - <path/to/i18n/folder>:/usr/share/nginx/html/wis_fe/assets/i18n
+    # - <path/to/i18n/folder>:/usr/share/nginx/html/wis_cms_fe/assets/i18n

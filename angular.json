@@ -20,7 +20,7 @@
             "outputPath": "dist/wistronfamily_cms_fe",
             "index": "src/index.html",
             "main": "src/main.ts",
-            "baseHref": "/wis_fe/",
+            "baseHref": "/wis_cms_fe/",
             "polyfills": ["zone.js"],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",

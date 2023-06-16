@@ -8,7 +8,7 @@ docker save -o nginx_wis_family_cms_0.0.1.tar nginx_wis_family_cms:0.0.1
 docker image rm nginx_wis_family_cms:0.0.1
 
 建立container
-docker run -d --name web -p 8091:80 -v <path/to/i18n/folder>:/usr/share/nginx/html/wis_fe/assets/i18n nginx_wis_family_cms:0.0.1
+docker run -d --name web -p 8091:443 -v <path/to/i18n/folder>:/usr/share/nginx/html/wis_cms_fe/assets/i18n nginx_wis_family_cms:0.0.1
 
 匯入image
 docker load --input nginx_wis_family_cms_0.0.1.tar
