@@ -8,6 +8,7 @@ import { MsalService } from '@azure/msal-angular';
 
 // enum
 import { ResponseStatus } from 'src/app/core/enum/response-status';
+import { ManagerInfoService } from './manager-info.service';
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +17,8 @@ export class LoginService {
   constructor(
     private http: HttpClient,
     private router: Router,
-    private authService: MsalService
+    private authService: MsalService,
+    private managerInfoService: ManagerInfoService
   ) {}
 
   private apiUrl = environment.apiUrl;
@@ -34,6 +36,7 @@ export class LoginService {
 
   logout() {
     sessionStorage.removeItem('wis_cms_token');
+    this.managerInfoService.clearManagerInfo();
     let accounts = this.authService.instance.getAllAccounts();
     if (accounts.length > 0) {
       this.authService.logoutRedirect({

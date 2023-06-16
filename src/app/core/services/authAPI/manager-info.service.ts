@@ -55,6 +55,15 @@ export class ManagerInfoService {
       );
   }
 
+  clearManagerInfo() {
+    this.managerName = '';
+    this.managerJobNumber = '';
+    this.isGlobal = '0';
+    this.isBackend = '0';
+    this.activeZoneItem = {};
+    this.zoneList = [];
+  }
+
   get activeLangList() {
     return (
       this.zoneList.find(
