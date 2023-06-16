@@ -72,7 +72,7 @@ export class GLanguageComponent {
     if (selectedData.length === 0) {
       this.messageService.showNotification(
         Message.warning,
-        this.translateService.instant('SELECT_ZERO')
+        this.translateService.instant('ERRORS.SELECT_ZERO')
       );
       return;
     }
