@@ -23,10 +23,12 @@ export class TokenAuthHttpInterceptorService {
       //  responseType非json的維持，以確保blob格式
       let responseType =
         req.responseType === 'json' ? 'text' : req.responseType;
+      //  translateService.currentLang為 Lang_Code + '_b'
+      const currentLang = this.translateService.currentLang.slice(0, -2);
       req = req.clone({
         headers: req.headers
           .set('Authorization', `Bearer ${token}`)
-          .set('Language', this.translateService.currentLang)
+          .set('Language', currentLang)
           .set('Zone', this.managerInfoService.activeZoneItem.zoneId ?? ''),
         responseType,
       });
