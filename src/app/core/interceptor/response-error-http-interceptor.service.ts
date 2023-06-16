@@ -96,25 +96,31 @@ export class ResponseErrorHttpInterceptorService implements HttpInterceptor {
             break;
           case 404:
             this.messageService.showModal(Message.error, {
-              title: 'Not Found',
+              title: '404 Not Found',
               msgList: ['URL錯誤'],
             });
             break;
           case 405:
             this.messageService.showModal(Message.error, {
-              title: 'Method Not Allowed',
+              title: '405 Method Not Allowed',
               msgList: ['Request的Method錯誤'],
             });
             break;
           case 415:
             this.messageService.showModal(Message.error, {
-              title: 'Unsupported Media Type',
+              title: '415 Unsupported Media Type',
               msgList: ['Request的Content-Type錯誤'],
+            });
+            break;
+          case 502:
+            this.messageService.showModal(Message.error, {
+              title: '502 Bad Gateway',
+              msgList: ['請洽系統管理員'],
             });
             break;
           case 504:
             this.messageService.showModal(Message.error, {
-              title: 'Gateway Timeout',
+              title: '504 Gateway Timeout',
               msgList: ['請洽系統管理員'],
             });
             break;
