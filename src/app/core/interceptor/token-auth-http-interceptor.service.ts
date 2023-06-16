@@ -3,6 +3,7 @@ import { LoginService } from '../services/authAPI/login.service';
 import { HttpEvent, HttpHandler, HttpRequest } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
+import { ManagerInfoService } from '../services/authAPI/manager-info.service';
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +11,8 @@ import { TranslateService } from '@ngx-translate/core';
 export class TokenAuthHttpInterceptorService {
   constructor(
     private loginService: LoginService,
-    private translateService: TranslateService
+    private translateService: TranslateService,
+    private managerInfoService: ManagerInfoService
   ) {}
   intercept(
     req: HttpRequest<any>,
@@ -25,7 +27,7 @@ export class TokenAuthHttpInterceptorService {
         headers: req.headers
           .set('Authorization', `Bearer ${token}`)
           .set('Language', this.translateService.currentLang)
-          .set('Zone', '52753953372377088'),
+          .set('Zone', this.managerInfoService.activeZoneItem.zoneId ?? ''),
         responseType,
       });
     } catch (error) {

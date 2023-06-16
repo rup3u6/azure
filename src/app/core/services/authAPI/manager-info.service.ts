@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { LoginService } from './login.service';
 import { map, tap } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -19,14 +18,13 @@ export class ManagerInfoService {
 
   //  區域管理者可使用該區域管理員所有功能(menu)
   public isBackend = '0';
-  private activeZoneId = '';
+  public activeZoneItem: any = {};
 
   //  區域選單，含可選用語系及可使用的menu
   public zoneList = [];
 
   constructor(
     private http: HttpClient,
-    private loginService: LoginService,
     private translateService: TranslateService
   ) {}
 
@@ -42,15 +40,13 @@ export class ManagerInfoService {
           this.isGlobal = isGlobal;
           this.isBackend = isBackend;
           this.zoneList = zones;
-          const defaultZoneItem = zones.find(
-            (zoneItem: any) => zoneItem.isDefault === '1'
-          );
+          this.activeZoneItem =
+            zones.find((zoneItem: any) => zoneItem.isDefault === '1') ?? {};
           //  若無預設語言則以英文為主
           const defaultLanguage =
-            defaultZoneItem.lang.find(
+            this.activeZoneItem.lang.find(
               (langItem: any) => langItem.isDefault === '1'
             )?.langCode ?? 'en';
-          this.activeZoneId = defaultZoneItem.zoneId;
           //  對應語系檔案名稱規則：langCode + '_b'， en -> en_b
           setTimeout(() => {
             this.translateService.use(`${defaultLanguage}_b`);
@@ -59,10 +55,10 @@ export class ManagerInfoService {
       );
   }
 
-  get activeZoneItem() {
+  get activeLangList() {
     return (
       this.zoneList.find(
-        (zoneItem: any) => zoneItem.zoneId === this.activeZoneId
+        (zoneItem: any) => zoneItem.zoneId === this.activeZoneItem.zoneId
       )?.['lang'] ?? []
     );
   }

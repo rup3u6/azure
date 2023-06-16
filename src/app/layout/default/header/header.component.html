@@ -53,7 +53,7 @@
       <div class="header-info-unit lang-selector">
         <select [(ngModel)]="currentLang" (change)="changeLang($event)">
           <option
-            *ngFor="let langItem of managerInfoService.activeZoneItem"
+            *ngFor="let langItem of managerInfoService.activeLangList"
             [value]="langItem['langCode'] + '_b'"
           >
             {{ langItem["langName"] }}
@@ -79,7 +79,7 @@
         class="header-info-unit location-text"
         *ngIf="!router.url.startsWith('/globalsetting')"
       >
-        <span>Taiwan</span>
+        <span>{{ managerInfoService.activeZoneItem.zoneName }}</span>
       </div>
     </div>
   </div>
