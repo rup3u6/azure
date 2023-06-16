@@ -80,16 +80,17 @@ export class MessageService {
       let transMsgArray = msgOrField.map((item: any) => {
         let i18nField = item.field;
         let errorMessage = item.errorMessage;
-        let transField = this.translateService.instant(i18nField.toUpperCase());
-        return this.translateService.instant(errorMessage, {
+        let transField = this.translateService.instant(
+          'PAGES.' + i18nField.toUpperCase()
+        );
+        return this.translateService.instant('ERRORS.' + errorMessage, {
           field: transField,
         });
       });
       return transMsgArray;
     } else {
       //  msgOrField: string
-      let transMsg = this.translateService.instant(msgOrField);
-      return transMsg === msgOrField ? [`errorCode：${transMsg}`] : [transMsg];
+      return [this.translateService.instant('ERRORS.' + msgOrField)];
     }
   }
 }

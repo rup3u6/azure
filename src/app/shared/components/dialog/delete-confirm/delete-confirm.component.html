@@ -6,7 +6,9 @@
       <div class="popup-component default-size-popup" type="warning">
         <div class="popup-header">
           <div class="popup-header-inner">
-            <div class="popup-header-unit header-text">停用</div>
+            <div class="popup-header-unit header-text">
+              {{ "BUTTONS.DISABLE" | translate }}
+            </div>
             <div class="popup-header-unit header-btn">
               <a href="javascript:void(0)" (click)="close.emit()"
                 ><span class="material-icons-outlined"> close </span></a
@@ -27,10 +29,10 @@
         <div class="popup-footer">
           <div class="popup-footer-inner">
             <div class="popup-footer-unit footer-button" btn="cancel">
-              <button (click)="close.emit()">取消</button>
+              <button (click)="close.emit()">{{ "BUTTONS.CANCEL" | translate }}</button>
             </div>
             <div class="popup-footer-unit footer-button" btn="confirm">
-              <button (click)="submit.emit()">確認</button>
+              <button (click)="submit.emit()">{{ "BUTTONS.CONFIRM" | translate }}</button>
             </div>
           </div>
         </div>

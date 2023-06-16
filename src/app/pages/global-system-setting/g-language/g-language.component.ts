@@ -9,6 +9,7 @@ import { Message } from 'src/app/core/enum/message';
 import { GLanguageService } from 'src/app/core/services/baseAPI/g-language.service';
 import { LoadingService } from 'src/app/core/services/loading.service';
 import { MessageService } from 'src/app/core/services/message.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-g-language',
@@ -24,8 +25,9 @@ export class GLanguageComponent {
   constructor(
     public gLanguageService: GLanguageService,
     private loadingService: LoadingService,
-    private messageService: MessageService
-  ) { }
+    private messageService: MessageService,
+    private translateService: TranslateService
+  ) {}
 
   addPopupHandler() {
     this.popup.data = {
@@ -68,7 +70,10 @@ export class GLanguageComponent {
       .getTabulatorTable()
       .getSelectedData();
     if (selectedData.length === 0) {
-      this.messageService.showNotification(Message.warning, '請選擇資料');
+      this.messageService.showNotification(
+        Message.warning,
+        this.translateService.instant('SELECT_ZERO')
+      );
       return;
     }
     this.popup.data = {};

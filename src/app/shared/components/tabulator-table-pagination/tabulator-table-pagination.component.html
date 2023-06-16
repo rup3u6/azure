@@ -1,8 +1,10 @@
 <!-- <div class="content-result-inner"> -->
 <!-- START: result-counter -->
 <div *ngIf="tableReady" class="result-counter">
-  共<span>{{ tabulatorTable.getDataCount() }}</span
-  >筆
+  {{
+    "TABLE_INFO.TOTAL_COUNT"
+      | translate : { count: tabulatorTable.getDataCount() }
+  }}
 </div>
 <!-- END: result-counter -->
 <!-- START: result-table -->
@@ -18,10 +20,18 @@
 <!-- START: result-page -->
 <div class="result-page" *ngIf="tableReady">
   <ul>
-    <li><a href="javascript:void(0)" (click)="previousPage()">上一頁</a></li>
-    <li><a href="javascript:void(0)" (click)="nextPage()">下一頁</a></li>
     <li>
-      <span>顯示</span>
+      <a href="javascript:void(0)" (click)="previousPage()">{{
+        "TABLE_INFO.PREV_PAGE" | translate
+      }}</a>
+    </li>
+    <li>
+      <a href="javascript:void(0)" (click)="nextPage()">{{
+        "TABLE_INFO.NEXT_PAGE" | translate
+      }}</a>
+    </li>
+    <li>
+      <span>{{ "TABLE_INFO.PAGE_SIZE_BEFORE" | translate }}</span>
       <select
         [value]="tabulatorTable.getPageSize()"
         (change)="setPageSize($event)"
@@ -30,10 +40,10 @@
         <option value="20">20</option>
         <option value="50">50</option>
       </select>
-      <span>筆</span>
+      <span>{{ "TABLE_INFO.PAGE_SIZE_AFTER" | translate }}</span>
     </li>
     <li>
-      <span>前往</span>
+      <span>{{ "TABLE_INFO.PAGE_TO_BEFORE" | translate }}</span>
       <select
         [value]="tabulatorTable.getPage()"
         (change)="setCurrentPage($event)"
@@ -48,7 +58,7 @@
           {{ index + 1 }}
         </option>
       </select>
-      <span>頁</span>
+      <span>{{ "TABLE_INFO.PAGE_TO_AFTER" | translate }}</span>
     </li>
   </ul>
 </div>

@@ -7,7 +7,10 @@
         <div class="popup-header">
           <div class="popup-header-inner">
             <div class="popup-header-unit header-text">
-              {{ data.mode === "add" ? "新增" : "編輯" }}語系
+              {{
+                (data.mode === "add" ? "BUTTONS.CREATE" : "BUTTONS.UPDATE")
+                  | translate
+              }}
             </div>
             <div class="popup-header-unit header-btn">
               <a href="javascript:void(0)" (click)="close.emit()"
@@ -19,76 +22,157 @@
         <div class="popup-content">
           <div class="popup-content-form" [formGroup]="languageFormGroup">
             <div class="form-row row-2">
-              <div class="form-item" type="required" [attr.attr]="f['lang_Name'].errors && f['lang_Name'].touched && 'error'">
+              <!-- 語系名稱 -->
+              <div
+                class="form-item"
+                type="required"
+                [attr.attr]="
+                  f['lang_Name'].errors && f['lang_Name'].touched && 'error'
+                "
+              >
                 <div class="form-item-inner">
-                  <div class="form-item-title">語系名稱</div>
+                  <div class="form-item-title">
+                    {{ "PAGES.LANG_NAME" | translate }}
+                  </div>
                   <div class="form-item-entry">
                     <input
                       type="text"
-                      placeholder="請輸入語系名稱"
+                      [placeholder]="
+                        'PLACEHOLDER.ENTRY'
+                          | translate : { field: 'PAGES.LANG_NAME' | translate }
+                      "
                       formControlName="lang_Name"
                     />
                   </div>
-                  <div class="form-item-text" *ngIf="f['lang_Name'].errors && f['lang_Name'].touched">
-                    <p>{{ f["lang_Name"].errors | errorMessage : '語系名稱' }}</p>
+                  <div
+                    class="form-item-text"
+                    *ngIf="f['lang_Name'].errors && f['lang_Name'].touched"
+                  >
+                    <p>
+                      {{ f["lang_Name"].errors | errorMessage : "語系名稱" }}
+                    </p>
                   </div>
                 </div>
               </div>
-              <div class="form-item" type="required" [attr.attr]="f['lang_Code'].errors && f['lang_Code'].touched && 'error'">
+              <!-- 語系代號 -->
+              <div
+                class="form-item"
+                type="required"
+                [attr.attr]="
+                  f['lang_Code'].errors && f['lang_Code'].touched && 'error'
+                "
+              >
                 <div class="form-item-inner">
-                  <div class="form-item-title">語系代號</div>
+                  <div class="form-item-title">
+                    {{ "PAGES.LANG_CODE" | translate }}
+                  </div>
                   <div class="form-item-entry">
                     <input
                       type="text"
-                      placeholder="請輸入語系代號"
+                      [placeholder]="
+                        'PLACEHOLDER.ENTRY'
+                          | translate : { field: 'PAGES.LANG_CODE' | translate }
+                      "
                       formControlName="lang_Code"
                       [attr.attr]="data.mode === 'edit' && 'readonly'"
                     />
                   </div>
-                  <div class="form-item-text" *ngIf="f['lang_Code'].errors && f['lang_Code'].touched">
-                    <p>{{ f["lang_Code"].errors | errorMessage : '語系代號' }}</p>
+                  <div
+                    class="form-item-text"
+                    *ngIf="f['lang_Code'].errors && f['lang_Code'].touched"
+                  >
+                    <p>
+                      {{ f["lang_Code"].errors | errorMessage : "語系代號" }}
+                    </p>
                   </div>
                 </div>
               </div>
             </div>
+            <!-- 前台I18N檔名 -->
             <div class="form-row row-2">
-              <div class="form-item" [attr.attr]="f['i18N_Front'].errors && f['i18N_Front'].touched && 'error'">
+              <div
+                class="form-item"
+                [attr.attr]="
+                  f['i18N_Front'].errors && f['i18N_Front'].touched && 'error'
+                "
+              >
                 <div class="form-item-inner">
-                  <div class="form-item-title">前台I18N檔名</div>
+                  <div class="form-item-title">
+                    {{ "PAGES.I18N_FRONT" | translate }}
+                  </div>
                   <div class="form-item-entry">
                     <input
                       type="text"
-                      [value]="f['lang_Code'].value ? f['lang_Code'].value + '_f.json' : ''"
+                      [value]="
+                        f['lang_Code'].value
+                          ? f['lang_Code'].value + '_f.json'
+                          : ''
+                      "
                       formControlName="i18N_Front"
                       attr="readonly"
                     />
                   </div>
-                  <div class="form-item-text" *ngIf="f['i18N_Front'].errors && f['i18N_Front'].touched">
-                    <p>{{ f["i18N_Front"].errors | errorMessage : '前台I18N檔名' }}</p>
+                  <div
+                    class="form-item-text"
+                    *ngIf="f['i18N_Front'].errors && f['i18N_Front'].touched"
+                  >
+                    <p>
+                      {{
+                        f["i18N_Front"].errors | errorMessage : "前台I18N檔名"
+                      }}
+                    </p>
                   </div>
                 </div>
               </div>
-              <div class="form-item" [attr.attr]="f['i18N_Back'].errors && f['i18N_Back'].touched && 'error'">
+              <!-- 後台I18N檔名 -->
+              <div
+                class="form-item"
+                [attr.attr]="
+                  f['i18N_Back'].errors && f['i18N_Back'].touched && 'error'
+                "
+              >
                 <div class="form-item-inner">
-                  <div class="form-item-title">後台I18N檔名</div>
+                  <div class="form-item-title">
+                    {{ "PAGES.I18N_BACK" | translate }}
+                  </div>
                   <div class="form-item-entry">
                     <input
                       type="text"
-                      [value]="f['lang_Code'].value ? f['lang_Code'].value + '_b.json' : ''"
+                      [value]="
+                        f['lang_Code'].value
+                          ? f['lang_Code'].value + '_b.json'
+                          : ''
+                      "
                       formControlName="i18N_Back"
                       attr="readonly"
-                      />
+                    />
                   </div>
-                  <div class="form-item-text" *ngIf="f['i18N_Back'].errors && f['i18N_Back'].touched">
-                    <p>{{ f["i18N_Back"].errors | errorMessage : '後台I18N檔名' }}</p>
+                  <div
+                    class="form-item-text"
+                    *ngIf="f['i18N_Back'].errors && f['i18N_Back'].touched"
+                  >
+                    <p>
+                      {{
+                        f["i18N_Back"].errors | errorMessage : "後台I18N檔名"
+                      }}
+                    </p>
                   </div>
                 </div>
               </div>
             </div>
             <div class="form-row row-2">
-              <div class="form-item" type="required" [attr.attr]="f['lang_State'].errors && f['lang_State'].touched && 'error'">
+              <!-- 狀態 -->
+              <div
+                class="form-item"
+                type="required"
+                [attr.attr]="
+                  f['lang_State'].errors && f['lang_State'].touched && 'error'
+                "
+              >
                 <div class="form-item-inner">
-                  <div class="form-item-title">狀態</div>
+                  <div class="form-item-title">
+                    {{ "PAGES.LANG_STATE" | translate }}
+                  </div>
                   <div class="form-item-entry">
                     <ul>
                       <li>
@@ -98,7 +182,9 @@
                           value="1"
                           formControlName="lang_State"
                         />
-                        <label for="rd01">啟用</label>
+                        <label for="rd01">{{
+                          "SELECT_OPTIONS.ENABLE" | translate
+                        }}</label>
                       </li>
                       <li>
                         <input
@@ -107,12 +193,17 @@
                           value="0"
                           formControlName="lang_State"
                         />
-                        <label for="rd02">停用</label>
+                        <label for="rd02">{{
+                          "SELECT_OPTIONS.DISABLE" | translate
+                        }}</label>
                       </li>
                     </ul>
                   </div>
-                  <div class="form-item-text" *ngIf="f['lang_State'].errors && f['lang_State'].touched">
-                    <p>{{ f["lang_State"] | errorMessage : '狀態' }}</p>
+                  <div
+                    class="form-item-text"
+                    *ngIf="f['lang_State'].errors && f['lang_State'].touched"
+                  >
+                    <p>{{ f["lang_State"] | errorMessage : "狀態" }}</p>
                   </div>
                 </div>
               </div>
@@ -122,10 +213,14 @@
         <div class="popup-footer">
           <div class="popup-footer-inner">
             <div class="popup-footer-unit footer-button" btn="cancel">
-              <button (click)="close.emit()">取消</button>
+              <button (click)="close.emit()">
+                {{ "BUTTONS.CANCEL" | translate }}
+              </button>
             </div>
             <div class="popup-footer-unit footer-button" btn="confirm">
-              <button (click)="submit()">確認</button>
+              <button (click)="submit()">
+                {{ "BUTTONS.CONFIRM" | translate }}
+              </button>
             </div>
           </div>
         </div>

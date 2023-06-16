@@ -1,4 +1,9 @@
-import { HttpRequest, HttpHandler, HttpEvent, HttpResponse, } from '@angular/common/http';
+import {
+  HttpRequest,
+  HttpHandler,
+  HttpEvent,
+  HttpResponse,
+} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map, tap } from 'rxjs';
 
@@ -8,6 +13,7 @@ import { MessageService } from '../services/message.service';
 // enum
 import { ResponseStatus } from 'src/app/core/enum/response-status';
 import { Message } from 'src/app/core/enum/message';
+import { TranslateService } from '@ngx-translate/core';
 
 const JSONbig = require('json-bigint');
 
@@ -15,7 +21,10 @@ const JSONbig = require('json-bigint');
   providedIn: 'root',
 })
 export class ResponseHttpInterceptorService {
-  constructor(private messageService: MessageService) { }
+  constructor(
+    private messageService: MessageService,
+    private translateService: TranslateService
+  ) {}
 
   // replacer(_key: string, value: any): any {
   //   if (typeof value === 'number') {
@@ -83,7 +92,7 @@ export class ResponseHttpInterceptorService {
                   message
                 );
                 this.messageService.showModal(Message.error, {
-                  title: '執行失敗',
+                  title: this.translateService.instant('ERRORS.TITLE.900'),
                   msgList,
                 });
                 break;

@@ -2,7 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { LoginService } from './login.service';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { map, tap } from 'rxjs';
+import { TranslateService } from '@ngx-translate/core';
 
 @Injectable({
   providedIn: 'root',
@@ -21,23 +22,48 @@ export class ManagerInfoService {
   private activeZoneId = '';
 
   //  區域選單，含可選用語系及可使用的menu
-  private zoneList = [];
+  public zoneList = [];
 
-  constructor(private http: HttpClient, private loginService: LoginService) {}
+  constructor(
+    private http: HttpClient,
+    private loginService: LoginService,
+    private translateService: TranslateService
+  ) {}
 
-  async getManagerInfo() {
-    const token = this.loginService.getToken();
-    // this.http.post<any>(`${this.apiUrl}/Auth/Login`, {token}).pipe(
-    //   map((res: any) => JSON.parse(res)),
-    //   tap((res) => {
-    //     sessionStorage.setItem('wis_cms_token', res.data);
-    //     const { status } = res;
-    //     status === '999' && this.router.navigate(['/home']);
-    //   })
-    // );
-    this.managerName = 'Allen Lin';
-    this.managerJobNumber = 'ABC13579';
-    this.isGlobal = '1';
-    this.isBackend = '1';
+  getManagerInfo() {
+    return this.http
+      .post<any>(`${this.apiUrl}/Auth/Login/GetLoginInfo`, null)
+      .pipe(
+        map((res: any) => JSON.parse(res)),
+        tap((res) => {
+          const { name, jobNumber, isGlobal, isBackend, zones } = res.data;
+          this.managerName = name;
+          this.managerJobNumber = jobNumber;
+          this.isGlobal = isGlobal;
+          this.isBackend = isBackend;
+          this.zoneList = zones;
+          const defaultZoneItem = zones.find(
+            (zoneItem: any) => zoneItem.isDefault === '1'
+          );
+          //  若無預設語言則以英文為主
+          const defaultLanguage =
+            defaultZoneItem.lang.find(
+              (langItem: any) => langItem.isDefault === '1'
+            )?.langCode ?? 'en';
+          this.activeZoneId = defaultZoneItem.zoneId;
+          //  對應語系檔案名稱規則：langCode + '_b'， en -> en_b
+          setTimeout(() => {
+            this.translateService.use(`${defaultLanguage}_b`);
+          });
+        })
+      );
+  }
+
+  get activeZoneItem() {
+    return (
+      this.zoneList.find(
+        (zoneItem: any) => zoneItem.zoneId === this.activeZoneId
+      )?.['lang'] ?? []
+    );
   }
 }

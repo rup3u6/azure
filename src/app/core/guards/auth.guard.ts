@@ -1,13 +1,11 @@
 import { Injectable } from '@angular/core';
 import {
   ActivatedRouteSnapshot,
-  CanActivate,
-  CanActivateChild,
   Router,
   RouterStateSnapshot,
   UrlTree,
 } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, firstValueFrom } from 'rxjs';
 import { ManagerInfoService } from '../services/authAPI/manager-info.service';
 import { LoadingService } from '../services/loading.service';
 import { Message } from '../enum/message';
@@ -45,7 +43,7 @@ export class AuthGuard {
       if (!this.managerInfoService.managerJobNumber) {
         try {
           this.loadingService.startLoading();
-          await this.managerInfoService.getManagerInfo();
+          await firstValueFrom(this.managerInfoService.getManagerInfo());
         } catch (e) {
           console.log(e);
         } finally {

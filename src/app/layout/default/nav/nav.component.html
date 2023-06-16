@@ -1,7 +1,10 @@
 <div class="nav-component nav-list">
   <div class="nav-list-inner" *ngIf="menuControlService.sideMenu$">
-    <div class="nav-list-unit nav-text" *ngFor="let menuGroup of menuControlService.sideMenu$ | async">
-      <h4>{{ menuGroup.mod_Name }}</h4>
+    <div
+      class="nav-list-unit nav-text"
+      *ngFor="let menuGroup of menuControlService.sideMenu$ | async"
+    >
+      <h4>{{ menuGroup.mod_Name | translate }}</h4>
       <div class="nav-list-unit nav-link">
         <ul>
           <li
@@ -9,13 +12,13 @@
             [attr.style]="menuItem.mod_Route || 'opacity: 0.4;'"
           >
             <a
-              *ngIf="menuItem.mod_Route.length; else noPath"
+              *ngIf="menuItem.mod_Route?.length; else noPath"
               [routerLink]="menuItem.mod_Route"
               routerLinkActive="active"
-              >{{ menuItem.mod_Name }}</a
+              >{{ menuItem.mod_Name | translate }}</a
             >
             <ng-template #noPath>
-              <a>{{ menuItem.mod_Name }}</a>
+              <a>{{ menuItem.mod_Name | translate }}</a>
             </ng-template>
           </li>
         </ul>

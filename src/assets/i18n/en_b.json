@@ -1,16 +1,62 @@
 {
-    "M0001": "已存在重複的資料",
-    "M0002": "{{field}} 欄位必填",
-    "M0003": "驗證碼過期或錯誤",
-    "M0004": "帳號或密碼錯誤",
+  "ERRORS": {
+    "TITLE": {
+      "SUCCESS": "success",
+      "ERROR": "Error",
+      "900": "Fail",
+      "901": "資料格式或欄位驗證錯誤"
+    },
+    "M0001": "Data is existed",
+    "M0002": "{{field}} is required",
+    "M0003": "Verification code incorrect or expired",
+    "M0004": "Incorrect username or password",
     "M0005": "取得該帳號所有角色發生錯誤",
     "M0006": "取得使用者帳號資訊發生錯誤",
     "M0007": "取得該帳號的選單權限列表發生錯誤",
     "M0008": "取得該帳號所有角色的選單權限列表發生錯誤",
-    "LANG_NAME": "語系名稱",
-    "LANG_CODE": "語系代號",
-    "LANG_STATE": "狀態",
-    "I18N_FRONT": "前台I18N檔名",
-    "I18N_BACK": "後台I18N檔名"
+    "M0009": "Data is not existed",
+    "SELECT_ZERO": "Please select"
+  },
+  "PAGES": {
+    "EDIT_DATE": "Edit Date",
+    "EDIT_IP": "Edit IP",
+    "EDIT_CODE": "EDIT NAME",
+    "FUNCTION": "Function",
+    "LANG_NAME": "Language Name",
+    "LANG_CODE": "Language Code",
+    "LANG_STATE": "Status",
+    "I18N_FRONT": "Front I18n File Name",
+    "I18N_BACK": "Back I18n File Name",
+    "DISABLE_ITEMS": "Disable Items"
+  },
+  "MENUS": {
+    "GLOBAL_LANGUAGE": "Language Setting"
+  },
+  "BUTTONS": {
+    "LOGOUT": "Logout",
+    "SEARCH": "Search",
+    "CLEAR": "Clear",
+    "CREATE": "Create",
+    "UPDATE": "Update",
+    "CONFIRM": "Confirm",
+    "CANCEL": "Cancel",
+    "DISABLE": "Disable"
+  },
+  "SELECT_OPTIONS": {
+    "ALL": "All",
+    "ENABLE": "Enable",
+    "DISABLE": "Disable"
+  },
+  "PLACEHOLDER": {
+    "ENTRY": "Please entry {{field}}"
+  },
+  "TABLE_INFO": {
+    "TOTAL_COUNT": "Total {{count}} data",
+    "PREV_PAGE": "Prev Page",
+    "NEXT_PAGE": "Next Page",
+    "PAGE_SIZE_BEFORE": "Page Size",
+    "PAGE_SIZE_AFTER": "",
+    "PAGE_TO_BEFORE": "Go",
+    "PAGE_TO_AFTER": "Page"
   }
-  
+}

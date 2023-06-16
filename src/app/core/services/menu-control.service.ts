@@ -15,17 +15,17 @@ export class MenuControlService {
       mod_Name: '全域管理者維護',
       children: [
         {
-          mod_Name: '語系設定',
+          mod_Name: 'MENUS.GLOBAL_LANGUAGE', //  語系設定
           mod_Route: '/globalsetting/language',
         },
         {
           mod_Name: '區域維護',
           mod_Route: '/globalsetting/zone',
         },
-        {
-          mod_Name: '區域管理者帳號維護',
-          mod_Route: '',
-        },
+        // {
+        //   mod_Name: '區域管理者帳號維護',
+        //   mod_Route: '',
+        // },
         // {
         //   mod_Name: '選單分類',
         //   mod_Route: '/globalsetting/module-class',
@@ -181,7 +181,7 @@ export class MenuControlService {
     },
   ];
 
-  constructor(private router: Router) { }
+  constructor(private router: Router) {}
 
   setSideMenu(menuType: string, turnPage: boolean = false) {
     switch (menuType) {
@@ -213,7 +213,7 @@ export class MenuControlService {
   // 根據菜單主鍵id獲取下級菜單
   // id：菜單主鍵id
   // arry：菜單陣列信息
-  private getParentArry(id: any, arry: any, { _pid = "pid" } = {}) {
+  private getParentArry(id: any, arry: any, { _pid = 'pid' } = {}) {
     return arry.reduce((newArry: any, menuItem: any) => {
       return menuItem[_pid] == id ? [...newArry, menuItem] : newArry;
     }, []);
@@ -222,13 +222,21 @@ export class MenuControlService {
   // 以下function無關menu建立
   // 製作階層物件
   // id：菜單主鍵id
-  createDataLevelObj(id: any, arry: any, { _id = "id", _pid = "pid", _child = "child" } = {}) {
+  createDataLevelObj(
+    id: any,
+    arry: any,
+    { _id = 'id', _pid = 'pid', _child = 'child' } = {}
+  ) {
     let childArry = this.getParentArry(id, arry, { _pid });
 
     return childArry.map((item: any) => {
       return {
         ...item,
-        [_child]: this.createDataLevelObj(item[_id], arry, { _id, _pid, _child, }),
+        [_child]: this.createDataLevelObj(item[_id], arry, {
+          _id,
+          _pid,
+          _child,
+        }),
       };
     });
   }

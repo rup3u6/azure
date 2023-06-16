@@ -36,7 +36,7 @@ export class ResponseErrorHttpInterceptorService implements HttpInterceptor {
           message
         );
         this.messageService.showModal(Message.error, {
-          title: '執行失敗',
+          title: this.translateService.instant('ERRORS.TITLE.900'),
           msgList,
         });
         break;

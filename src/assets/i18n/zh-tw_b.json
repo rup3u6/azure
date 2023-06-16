@@ -1,0 +1,62 @@
+{
+  "ERRORS": {
+    "TITLE": {
+      "SUCCESS": "成功",
+      "ERROR": "錯誤",
+      "900": "執行失敗",
+      "901": "資料格式或欄位驗證錯誤"
+    },
+    "M0001": "已存在重複的資料",
+    "M0002": "{{field}} 欄位必填",
+    "M0003": "驗證碼過期或錯誤",
+    "M0004": "帳號或密碼錯誤",
+    "M0005": "取得該帳號所有角色發生錯誤",
+    "M0006": "取得使用者帳號資訊發生錯誤",
+    "M0007": "取得該帳號的選單權限列表發生錯誤",
+    "M0008": "取得該帳號所有角色的選單權限列表發生錯誤",
+    "M0009": "資料不存在",
+    "SELECT_ZERO": "請選擇資料"
+  },
+  "PAGES": {
+    "EDIT_DATE": "異動日期",
+    "EDIT_IP": "異動IP",
+    "EDIT_CODE": "異動者",
+    "FUNCTION": "功能",
+    "LANG_NAME": "語系名稱",
+    "LANG_CODE": "語系代號",
+    "LANG_STATE": "狀態",
+    "I18N_FRONT": "前台I18N檔名",
+    "I18N_BACK": "後台I18N檔名",
+    "DISABLE_ITEMS": "停用項目"
+  },
+  "MENUS": {
+    "GLOBAL_LANGUAGE": "語系設定"
+  },
+  "BUTTONS": {
+    "LOGOUT": "登出",
+    "SEARCH": "查詢",
+    "CLEAR": "清除",
+    "CREATE": "新增",
+    "UPDATE": "編輯",
+    "CONFIRM": "確認",
+    "CANCEL": "取消",
+    "DISABLE": "停用"
+  },
+  "SELECT_OPTIONS": {
+    "ALL": "全部",
+    "ENABLE": "啟用",
+    "DISABLE": "停用"
+  },
+  "PLACEHOLDER": {
+    "ENTRY": "請輸入{{field}}"
+  },
+  "TABLE_INFO": {
+    "TOTAL_COUNT": "共 {{count}} 筆",
+    "PREV_PAGE": "上一頁",
+    "NEXT_PAGE": "下一頁",
+    "PAGE_SIZE_BEFORE": "顯示",
+    "PAGE_SIZE_AFTER": "筆",
+    "PAGE_TO_BEFORE": "前往",
+    "PAGE_TO_AFTER": "頁"
+  }
+}
