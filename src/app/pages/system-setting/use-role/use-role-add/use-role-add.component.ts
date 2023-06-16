@@ -5,9 +5,12 @@ import { DatePipe } from '@angular/common';
 
 // enum
 import { ResponseStatus } from 'src/app/core/enum/response-status';
+import { Message } from 'src/app/core/enum/message';
+import { ListItem } from 'src/app/core/enum/list-item';
 
 // service
 import { ValidatorService } from 'src/app/core/services/validator.service';
+import { MessageService } from 'src/app/core/services/message.service';
 import { UseInfoService } from 'src/app/core/services/authAPI/use-info.service';
 import { UseRoleService } from 'src/app/core/services/authAPI/use-role.service';
 import { LoadingService } from 'src/app/core/services/loading.service';
@@ -42,6 +45,7 @@ export class UseRoleAddComponent implements OnInit {
     private formBuilder: FormBuilder,
     private datePipe: DatePipe,
     private validatorService: ValidatorService,
+    private messageService: MessageService,
     private useInfoService: UseInfoService,
     public useRoleService: UseRoleService,
     private loadingService: LoadingService
@@ -208,10 +212,43 @@ export class UseRoleAddComponent implements OnInit {
     );
   }
 
+  async showError() {
+    let msgList!: string[];
+
+    const IsShareError =
+      this.f['oCIn_UseRole_PageData'].get('role_Name')?.errors ||
+      this.f['oCIn_UseRole_PageData'].get('role_State')?.errors;
+    const Istab1Error =
+      this.f['oCIn_UseRole_PageData'].get('role_EndDate')?.errors ||
+      this.f['oCIn_UseRole_PageData'].get('role_EndDate')?.errors ||
+      this.f['lCIn_UseRoleMember_PageData'].errors;
+    const Istab2Error = this.f['lCIn_UseRoleAuth_PageData'].errors;
+
+    switch (this.tab) {
+      case 1:
+        if (IsShareError || Istab1Error) { return; }
+        if (Istab2Error) { msgList = ['權限選單頁籤有誤']; }
+        break;
+      case 2:
+        if (IsShareError || Istab2Error) { return; }
+        if (Istab1Error) { msgList = ['資料維護頁籤有誤']; }
+        break;
+    }
+
+    if (msgList.length) {
+      this.messageService.showModal(Message.error, {
+        title: '執行失敗',
+        msgList: msgList,
+      });
+    }
+  }
+
   async submit() {
     this.useRoleFormGroup.markAllAsTouched();
 
     if (this.useRoleFormGroup.invalid) {
+      this.showError();
+
       return;
     }
 
