@@ -4,21 +4,21 @@
       class="nav-list-unit nav-text"
       *ngFor="let menuGroup of menuControlService.sideMenu$ | async"
     >
-      <h4>{{ menuGroup.mod_Name | translate }}</h4>
+      <h4>{{ menuGroup.module_Name | translate }}</h4>
       <div class="nav-list-unit nav-link">
         <ul>
           <li
-            *ngFor="let menuItem of menuGroup.children"
+            *ngFor="let menuItem of menuGroup.child"
             [attr.style]="menuItem.mod_Route || 'opacity: 0.4;'"
           >
             <a
               *ngIf="menuItem.mod_Route?.length; else noPath"
               [routerLink]="menuItem.mod_Route"
               routerLinkActive="active"
-              >{{ menuItem.mod_Name | translate }}</a
+              >{{ menuItem.module_Name | translate }}</a
             >
             <ng-template #noPath>
-              <a>{{ menuItem.mod_Name | translate }}</a>
+              <a>{{ menuItem.module_Name | translate }}</a>
             </ng-template>
           </li>
         </ul>

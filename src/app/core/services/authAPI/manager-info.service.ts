@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { map, tap } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
+import { MenuControlService } from '../menu-control.service';
 
 @Injectable({
   providedIn: 'root',
@@ -25,7 +26,8 @@ export class ManagerInfoService {
 
   constructor(
     private http: HttpClient,
-    private translateService: TranslateService
+    private translateService: TranslateService,
+    private menuControlService: MenuControlService
   ) {}
 
   getManagerInfo() {
@@ -47,6 +49,13 @@ export class ManagerInfoService {
             this.activeZoneItem.lang.find(
               (langItem: any) => langItem.isDefault === '1'
             )?.langCode ?? 'en';
+          // 設置管理員menu
+          const menuControl = this.menuControlService.createDataLevelObj(
+            0,
+            this.activeZoneItem.menu ?? [],
+            { _id: 'module_Pk', _pid: 'module_Parent', _child: 'child' }
+          );
+          this.menuControlService.setNormalSettingMenu(menuControl);
           //  對應語系檔案名稱規則：langCode + '_b'， en -> en_b
           setTimeout(() => {
             this.translateService.use(`${defaultLanguage}_b`);
