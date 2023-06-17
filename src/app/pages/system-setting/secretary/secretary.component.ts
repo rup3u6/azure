@@ -37,7 +37,8 @@ export class SecretaryComponent {
 
   async editPopupHandler(rowData: any) {
     let body = {
-      pfk_Info_Id: rowData.pfk_Info_Id,
+      fk_Info_Id: rowData.fk_Info_Id,
+      pk_Secretary: rowData.pk_Secretary,
     };
     this.loadingService.startLoading();
     try {

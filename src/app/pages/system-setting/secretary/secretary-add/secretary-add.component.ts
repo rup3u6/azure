@@ -29,6 +29,8 @@ export class SecretaryAddComponent implements OnInit {
   isSecretaryFormGroup = false;
   secretaryFormGroup!: FormGroup;
 
+  secretaryName = '';
+
   constructor(
     private formBuilder: FormBuilder,
     public listItemService: ListItemService,
@@ -38,9 +40,8 @@ export class SecretaryAddComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     await this.getSite();
-
     this.secretaryFormGroup = this.formBuilder.group({
-      pfk_Info_Id: ['', Validators.required],
+      fk_Info_Id: ['', Validators.required],
       info_Site: ['', Validators.required],
       sec_Depts: ['', Validators.required],
       sec_Special: ['', Validators.required],
@@ -52,24 +53,26 @@ export class SecretaryAddComponent implements OnInit {
       this.secretaryFormGroup.patchValue({
         ...this.data.initData,
       });
+      this.fkInfoIdChange();
     }
     this.isSecretaryFormGroup = true;
   }
 
   setSecretaryFormGroupInit() {
     this.secretaryFormGroup.patchValue({
-      pfk_Info_Id: '',
+      fk_Info_Id: '',
       info_Site: '',
       sec_Depts: '',
       sec_Special: '',
     });
   }
 
-  pfkInfoIdChange(e: any) {
-    const useInfolist = this.useInfolist.find(item => item.key === this.secretaryFormGroup.value.pfk_Info_Id).value;
+  fkInfoIdChange() {
+    const useInfolist = this.useInfolist.find(item => item.key === this.secretaryFormGroup.value.fk_Info_Id).value;
 
+    this.secretaryName = useInfolist;
     this.secretaryFormGroup.patchValue({
-      info_Site: useInfolist.split('/')[3],
+      info_Site: useInfolist.split('/')[3]
     });
   }
 
@@ -103,7 +106,8 @@ export class SecretaryAddComponent implements OnInit {
     if (this.secretaryFormGroup.invalid) { return }
 
     let body: any = {
-      ...this.secretaryFormGroup.value,
+      ...this.secretaryFormGroup.getRawValue(),
+      secretary_Name: this.secretaryName,
     };
 
     this.loadingService.startLoading();
@@ -113,6 +117,7 @@ export class SecretaryAddComponent implements OnInit {
       if (this.data.mode === 'add') {
         res = await firstValueFrom(this.secretaryService.add(body));
       } else {
+        body.pk_Secretary = this.data.initData.pk_Secretary;
         res = await firstValueFrom(this.secretaryService.edit(body));
       }
       const { status } = res;
