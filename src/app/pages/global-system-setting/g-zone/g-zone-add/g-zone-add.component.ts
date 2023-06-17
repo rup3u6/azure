@@ -4,11 +4,13 @@ import { finalize, firstValueFrom } from 'rxjs';
 
 // enum
 import { ResponseStatus } from 'src/app/core/enum/response-status';
+import { ListItem } from 'src/app/core/enum/list-item';
 
 // models
 import * as language from 'src/app/core/models/baseAPI/language';
 
 // service
+import { ListItemService } from 'src/app/core/services/baseAPI/list-item.service';
 import { GZoneService } from 'src/app/core/services/baseAPI/g-zone.service';
 import { GLanguageService } from 'src/app/core/services/baseAPI/g-language.service';
 import { LoadingService } from 'src/app/core/services/loading.service';
@@ -26,22 +28,26 @@ export class GZoneAddComponent implements OnInit {
     initData: {},
   };
 
+  tab = 1;
+
   languagesearchRes: any;
 
   isZoneFormGroup = false;
   zoneFormGroup!: FormGroup;
 
-  ckSiteOption: any[] = ['台北', '新北'];
+  ckSiteOption: any[] = [];
   cfkLangCodeOption: any[] = [];
 
   constructor(
     private formBuilder: FormBuilder,
+    public listItemService: ListItemService,
     public gZoneService: GZoneService,
     public gLanguageService: GLanguageService,
     private loadingService: LoadingService
   ) { }
 
   async ngOnInit(): Promise<void> {
+    await this.getSite();
     await this.getLanguage();
 
     this.zoneFormGroup = this.formBuilder.group({
@@ -90,6 +96,30 @@ export class GZoneAddComponent implements OnInit {
     });
   }
 
+  async getSite() {
+    this.loadingService.startLoading();
+
+    try {
+      const listItemRes = await firstValueFrom(this.listItemService.search([ListItem.顯示Site,]));
+
+      if (listItemRes.status === ResponseStatus.執行成功) {
+        let siteList = [];
+        for (let i in listItemRes.data[0].dListItem) {
+          siteList.push({
+            key: i,
+            value: listItemRes.data[0].dListItem[i],
+          });
+        }
+
+        this.ckSiteOption = siteList;
+      }
+    } catch (error) {
+      console.log(error)
+    } finally {
+      this.loadingService.stopLoading();
+    }
+  }
+
   async getLanguage() {
     const inLanguageSearch: language.GetRequest = {
       lang_State: '1',
@@ -115,6 +145,10 @@ export class GZoneAddComponent implements OnInit {
     } finally {
       this.loadingService.stopLoading();
     }
+  }
+
+  tabChange(index: number) {
+    this.tab = index;
   }
 
   async submit() {

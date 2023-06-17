@@ -33,8 +33,6 @@ export class UseInfoComponent {
   ) { }
 
   async editPopupHandler(rowData: any) {
-    console.log(rowData);
-
     let body = {
       info_Id: rowData.info_Id,
     };

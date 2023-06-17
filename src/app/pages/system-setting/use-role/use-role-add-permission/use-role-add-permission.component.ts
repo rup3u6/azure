@@ -11,12 +11,14 @@ import { UseRoleService } from 'src/app/core/services/authAPI/use-role.service';
 import { LoadingService } from 'src/app/core/services/loading.service';
 
 @Component({
-  selector: 'sys-use-role-add-permission',
+  selector: 'div[sys-use-role-add-permission]',
   templateUrl: './use-role-add-permission.component.html',
   styleUrls: ['./use-role-add-permission.component.scss'],
+  host: { class: 'form-row row-1' },
 })
 export class UseRoleAddPermissionComponent implements OnInit {
 
+  @Input() controlName!: string;
   @Input() data: any = {
     mode: '',
     initData: {},
@@ -34,7 +36,11 @@ export class UseRoleAddPermissionComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     await this.getUseRoleGetModules();
-    this.useRoleGetModulesChange();
+
+    if (this.data.mode === 'add') {
+    } else {
+      this.useRoleGetModulesChange();
+    }
   }
 
   async getUseRoleGetModules() {
@@ -52,7 +58,11 @@ export class UseRoleAddPermissionComponent implements OnInit {
       if (useRoleGetModulesRes.status === ResponseStatus.執行成功) {
         if (this.data.mode === 'edit') {
           this.data.initData.lCTab_UseRoleAuth.forEach((item: any) => {
-            useRoleGetModulesRes.data.find((item2: any) => item.cfk_Mod_Id === item2.module_Pk).checked = true;
+            const useRoleGetModules = useRoleGetModulesRes.data.find((item2: any) => item.cfk_Mod_Id === item2.module_Pk)
+
+            if (useRoleGetModules) {
+              useRoleGetModules.checked = true;
+            }
           });
         }
 
@@ -101,10 +111,8 @@ export class UseRoleAddPermissionComponent implements OnInit {
       item.checked = item.child.every((item2: any) => item2.checked);
     });
 
-    console.log(useRoleGetModulesSelect);
-
     this.rootFormGroup.control.setControl(
-      'lCIn_UseRoleAuth_PageData',
+      this.controlName,
       this.formBuilder.array(useRoleGetModulesSelect, [Validators.required, Validators.minLength(1)])
     );
   }

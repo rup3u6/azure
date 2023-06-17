@@ -22,10 +22,10 @@ export class MenuControlService {
           module_Name: '區域維護',
           mod_Route: '/globalsetting/zone',
         },
-        // {
-        //   module_Name: '區域管理者帳號維護',
-        //   mod_Route: '',
-        // },
+        {
+          module_Name: '白名單維護',
+          mod_Route: '',
+        },
         // {
         //   module_Name: '選單分類',
         //   mod_Route: '/globalsetting/module-class',
@@ -62,7 +62,7 @@ export class MenuControlService {
           mod_Route: '/systemsetting/log-execute',
         },
         {
-          module_Name: '信用卡卡號格式',
+          module_Name: '聯絡我們維護',
           mod_Route: '',
         },
       ],

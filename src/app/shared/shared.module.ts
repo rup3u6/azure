@@ -19,6 +19,7 @@ import * as AllIcons from '@ant-design/icons-angular/icons';
 import { TabulatorTableComponent } from './components/tabulator-table/tabulator-table.component';
 import { DeleteConfirmComponent } from './components/dialog/delete-confirm/delete-confirm.component';
 import { TabulatorTablePaginationComponent } from './components/tabulator-table-pagination/tabulator-table-pagination.component';
+import { UseRoleAddPermissionComponent } from '../pages/system-setting/use-role/use-role-add-permission/use-role-add-permission.component';
 
 // pipe
 import { ErrorMessagePipe } from './pipes/error-message.pipe';
@@ -33,7 +34,8 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     TabulatorTableComponent,
     ErrorMessagePipe,
     DeleteConfirmComponent,
-    TabulatorTablePaginationComponent
+    TabulatorTablePaginationComponent,
+    UseRoleAddPermissionComponent,
   ],
   imports: [
     CommonModule,
@@ -55,6 +57,7 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     DeleteConfirmComponent,
     TabulatorTablePaginationComponent,
     DemoNgZorroAntdModule,
+    UseRoleAddPermissionComponent,
   ],
   providers: [
     DatePipe,

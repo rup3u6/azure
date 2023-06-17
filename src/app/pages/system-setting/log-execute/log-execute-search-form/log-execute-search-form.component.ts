@@ -116,8 +116,6 @@ export class LogExecuteSearchFormComponent implements OnInit {
         })
       )
       .subscribe((res: any) => {
-        console.log(res);
-
         this.logExecuteService.getTabulatorTable().setData(res.data);
       });
   }
