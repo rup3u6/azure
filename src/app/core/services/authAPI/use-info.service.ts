@@ -1,8 +1,9 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, map } from 'rxjs';
-import { environment } from 'src/environments/environment';
 import { Tabulator } from 'tabulator-tables';
+
+// service
+import { HttpService } from '../../services/http.service';
 
 // models
 import * as base from '../../models/base';
@@ -13,11 +14,11 @@ import * as useInfo from '../../models/authAPI/use-info';
 })
 export class UseInfoService {
 
-  private apiUrl = environment.apiUrl;
+  private apiUrl = 'Auth/UseInfo';
   private tabulatorTable!: Tabulator;
   private searchFormValue = new BehaviorSubject<any>({});
 
-  constructor(private http: HttpClient) {}
+  constructor(private httpService: HttpService) { }
 
   tableBuilded(table: Tabulator) {
     this.tabulatorTable = table;
@@ -44,47 +45,23 @@ export class UseInfoService {
         lang_State: status[+lang_State],
       } as useInfo.GetRequest;
     }
-    return this.http
-      .post<base.ResponsesBase<useInfo.GetResponses[]>>(
-        `${this.apiUrl}/Auth/UseInfo/Get`,
-        body
-      )
-      .pipe(map((res: any) => JSON.parse(res)));
+
+    return this.httpService.post<base.ResponsesBase<useInfo.GetResponses[]>>(`${this.apiUrl}/Get`, body);
   }
 
   add(body: useInfo.CreateRequest) {
-    return this.http
-      .post<base.ResponsesBase<useInfo.CreateResponses>>(
-        `${this.apiUrl}/Auth/UseInfo/Create`,
-        body
-      )
-      .pipe(map((res: any) => JSON.parse(res)));
+    return this.httpService.post<base.ResponsesBase<useInfo.CreateResponses>>(`${this.apiUrl}/Create`, body);
   }
 
   edit(body: useInfo.UpdateRequest) {
-    return this.http
-      .post<base.ResponsesBase<useInfo.UpdateResponses>>(
-        `${this.apiUrl}/Auth/UseInfo/BestowRoleAsync`,
-        body
-      )
-      .pipe(map((res: any) => JSON.parse(res)));
+    return this.httpService.post<base.ResponsesBase<useInfo.UpdateResponses>>(`${this.apiUrl}/BestowRoleAsync`, body);
   }
 
   getDetail(body: useInfo.GetDetailRequest) {
-    return this.http
-      .post<base.ResponsesBase<useInfo.GetDetailResponses>>(
-        `${this.apiUrl}/Auth/UseInfo/GetDetail`,
-        body
-      )
-      .pipe(map((res: any) => JSON.parse(res)));
+    return this.httpService.post<base.ResponsesBase<useInfo.GetDetailResponses>>(`${this.apiUrl}/GetDetail`, body);
   }
 
   convertState(body: useInfo.ConvertStateRequest) {
-    return this.http
-      .post<base.ResponsesBase<useInfo.ConvertStateResponses>>(
-        `${this.apiUrl}/Auth/UseInfo/ConvertState`,
-        body
-      )
-      .pipe(map((res: any) => JSON.parse(res)));
+    return this.httpService.post<base.ResponsesBase<useInfo.ConvertStateResponses>>(`${this.apiUrl}/ConvertState`, body);
   }
 }

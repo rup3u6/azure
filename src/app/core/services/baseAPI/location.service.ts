@@ -1,8 +1,9 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, map } from 'rxjs';
-import { environment } from 'src/environments/environment';
 import { Tabulator } from 'tabulator-tables';
+
+// service
+import { HttpService } from '../../services/http.service';
 
 // models
 import * as base from '../../models/base';
@@ -13,11 +14,11 @@ import * as location from '../../models/baseAPI/location';
 })
 export class LocationService {
 
-  private apiUrl = environment.apiUrl;
+  private apiUrl = 'Base/WfLocation';
   private tabulatorTable!: Tabulator;
   private searchFormValue = new BehaviorSubject<any>({});
 
-  constructor(private http: HttpClient) { }
+  constructor(private httpService: HttpService) { }
 
   tableBuilded(table: Tabulator) {
     this.tabulatorTable = table;
@@ -45,37 +46,22 @@ export class LocationService {
       } as location.GetRequest;
     }
 
-    return this.http.post<base.ResponsesBase<location.GetResponses>>(`${this.apiUrl}/Base/WfLocation/Get`,
-      body
-    )
-    .pipe(map((res: any) => JSON.parse(res)));
+    return this.httpService.post<base.ResponsesBase<location.GetResponses[]>>(`${this.apiUrl}/Get`, body);
   }
 
   add(body: location.CreateRequest) {
-    return this.http.post<base.ResponsesBase<location.CreateResponses>>(`${this.apiUrl}/Base/WfLocation/Create`,
-      body
-    )
-    .pipe(map((res: any) => JSON.parse(res)));
+    return this.httpService.post<base.ResponsesBase<location.CreateResponses>>(`${this.apiUrl}/Create`, body);
   }
 
   edit(body: location.UpdateRequest) {
-    return this.http.post<base.ResponsesBase<location.UpdateResponses>>(`${this.apiUrl}/Base/WfLocation/Update`,
-      body
-    )
-    .pipe(map((res: any) => JSON.parse(res)));
+    return this.httpService.post<base.ResponsesBase<location.UpdateResponses>>(`${this.apiUrl}/Update`, body);
   }
 
   getDetail(body: location.GetDetailRequest) {
-    return this.http.post<base.ResponsesBase<location.GetDetailResponses>>(`${this.apiUrl}/Base/WfLocation/GetDetail`,
-      body
-    )
-    .pipe(map((res: any) => JSON.parse(res)));
+    return this.httpService.post<base.ResponsesBase<location.GetDetailResponses>>(`${this.apiUrl}/GetDetail`, body);
   }
 
   convertState(body: location.ConvertStateRequest) {
-    return this.http.post<base.ResponsesBase<string>>(`${this.apiUrl}/Base/WfLocation/ConvertState`,
-      body
-    )
-    .pipe(map((res: any) => JSON.parse(res)));
+    return this.httpService.post<base.ResponsesBase<string>>(`${this.apiUrl}/ConvertState`, body);
   }
 }

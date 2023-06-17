@@ -183,6 +183,8 @@ export interface GetModulesResponses {
   module_Name: string;
   module_Parent: string;
   module_order: string;
+
+  checked: boolean;
 }
 //#endregion
 

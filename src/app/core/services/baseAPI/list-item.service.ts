@@ -1,20 +1,22 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment';
+import { BehaviorSubject } from 'rxjs';
+import { Tabulator } from 'tabulator-tables';
+
+// service
+import { HttpService } from '../../services/http.service';
 
 // models
 import * as base from '../../models/base';
 import * as listItem from '../../models/baseAPI/list-item';
-import { map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ListItemService {
 
-  private apiUrl = environment.apiUrl;
+  private apiUrl = 'Base/ListItem';
 
-  constructor(private http: HttpClient) { }
+  constructor(private httpService: HttpService) { }
 
   search(listItemStrList: string[], sParentCode = '') {
     let body: listItem.Request[] = listItemStrList.map(item => {
@@ -28,9 +30,6 @@ export class ListItemService {
       }
     });
 
-    return this.http.post<base.ResponsesBase<listItem.ListItemResponsesBase<any[]>[]>>(`${this.apiUrl}/Base/ListItem`,
-      body
-    )
-    .pipe(map((res: any) => JSON.parse(res)));
+    return this.httpService.post<base.ResponsesBase<listItem.ListItemResponsesBase<any[]>[]>>(this.apiUrl, body);
   }
 }

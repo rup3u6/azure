@@ -1,8 +1,9 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, map } from 'rxjs';
-import { environment } from 'src/environments/environment';
 import { Tabulator } from 'tabulator-tables';
+
+// service
+import { HttpService } from '../../services/http.service';
 
 // models
 import * as base from '../../models/base';
@@ -13,11 +14,11 @@ import * as language from '../../models/baseAPI/language';
 })
 export class GLanguageService {
 
-  private apiUrl = environment.apiUrl;
+  private apiUrl = 'Base/WfLanguage';
   private tabulatorTable!: Tabulator;
   private searchFormValue = new BehaviorSubject<any>({});
 
-  constructor(private http: HttpClient) { }
+  constructor(private httpService: HttpService) { }
 
   tableBuilded(table: Tabulator) {
     this.tabulatorTable = table;
@@ -45,37 +46,22 @@ export class GLanguageService {
       } as language.GetRequest;
     }
 
-    return this.http.post<base.ResponsesBase<language.GetResponses[]>>(`${this.apiUrl}/Base/WfLanguage/Get`,
-      body
-    )
-    .pipe(map((res: any) => JSON.parse(res)));
+    return this.httpService.post<base.ResponsesBase<language.GetResponses[]>>(`${this.apiUrl}/Get`, body);
   }
 
   add(body: language.CreateRequest) {
-    return this.http.post<base.ResponsesBase<language.CreateResponses>>(`${this.apiUrl}/Base/WfLanguage/Create`,
-      body
-    )
-    .pipe(map((res: any) => JSON.parse(res)));
+    return this.httpService.post<base.ResponsesBase<language.CreateResponses>>(`${this.apiUrl}/Create`, body);
   }
 
   edit(body: language.UpdateRequest) {
-    return this.http.post<base.ResponsesBase<language.UpdateResponses>>(`${this.apiUrl}/Base/WfLanguage/Update`,
-      body
-    )
-    .pipe(map((res: any) => JSON.parse(res)));
+    return this.httpService.post<base.ResponsesBase<language.UpdateResponses>>(`${this.apiUrl}/Update`, body);
   }
 
   getDetail(body: language.GetDetailRequest) {
-    return this.http.post<base.ResponsesBase<language.GetDetailResponses>>(`${this.apiUrl}/Base/WfLanguage/GetDetail`,
-      body
-    )
-    .pipe(map((res: any) => JSON.parse(res)));
+    return this.httpService.post<base.ResponsesBase<language.GetDetailResponses>>(`${this.apiUrl}/GetDetail`, body);
   }
 
   convertState(body: language.ConvertStateRequest) {
-    return this.http.post<base.ResponsesBase<string>>(`${this.apiUrl}/Base/WfLanguage/ConvertState`,
-      body
-    )
-    .pipe(map((res: any) => JSON.parse(res)));
+    return this.httpService.post<base.ResponsesBase<string>>(`${this.apiUrl}/ConvertState`, body);
   }
 }

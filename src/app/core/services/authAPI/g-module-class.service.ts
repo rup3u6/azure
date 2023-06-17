@@ -1,8 +1,9 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, map } from 'rxjs';
-import { environment } from 'src/environments/environment';
 import { Tabulator } from 'tabulator-tables';
+
+// service
+import { HttpService } from '../../services/http.service';
 
 // models
 import * as base from '../../models/base';
@@ -13,11 +14,11 @@ import * as moduleClass from '../../models/authAPI/module-class';
 })
 export class GModuleClassService {
 
-  private apiUrl = environment.apiUrl;
+  private apiUrl = 'Auth/SysModuleClass';
   private tabulatorTable!: Tabulator;
   private searchFormValue = new BehaviorSubject<any>({});
 
-  constructor(private http: HttpClient) { }
+  constructor(private httpService: HttpService) { }
 
   tableBuilded(table: Tabulator) {
     this.tabulatorTable = table;
@@ -45,37 +46,22 @@ export class GModuleClassService {
       } as moduleClass.GetRequest;
     }
 
-    return this.http.post<base.ResponsesBase<moduleClass.GetResponses>>(`${this.apiUrl}/Auth/SysModuleClass/Get`,
-      body
-    )
-    .pipe(map((res: any) => JSON.parse(res)));
+    return this.httpService.post<base.ResponsesBase<moduleClass.GetResponses>>(`${this.apiUrl}/Get`, body);
   }
 
   add(body: moduleClass.CreateRequest) {
-    return this.http.post<base.ResponsesBase<moduleClass.CreateResponses>>(`${this.apiUrl}/Auth/SysModuleClass/Create`,
-      body
-    )
-    .pipe(map((res: any) => JSON.parse(res)));
+    return this.httpService.post<base.ResponsesBase<moduleClass.CreateResponses>>(`${this.apiUrl}/Create`, body);
   }
 
   edit(body: moduleClass.UpdateRequest) {
-    return this.http.post<base.ResponsesBase<moduleClass.UpdateResponses>>(`${this.apiUrl}/Auth/SysModuleClass/Update`,
-      body
-    )
-    .pipe(map((res: any) => JSON.parse(res)));
+    return this.httpService.post<base.ResponsesBase<moduleClass.UpdateResponses>>(`${this.apiUrl}/Update`, body);
   }
 
   getDetail(body: moduleClass.GetDetailRequest) {
-    return this.http.post<base.ResponsesBase<moduleClass.GetDetailResponses>>(`${this.apiUrl}/Auth/SysModuleClass/GetDetail`,
-      body
-    )
-    .pipe(map((res: any) => JSON.parse(res)));
+    return this.httpService.post<base.ResponsesBase<moduleClass.GetDetailResponses>>(`${this.apiUrl}/GetDetail`, body);
   }
 
   convertState(body: moduleClass.ConvertStateRequest) {
-    return this.http.post<base.ResponsesBase<string>>(`${this.apiUrl}/Auth/SysModuleClass/ConvertState`,
-      body
-    )
-    .pipe(map((res: any) => JSON.parse(res)));
+    return this.httpService.post<base.ResponsesBase<string>>(`${this.apiUrl}/ConvertState`, body);
   }
 }

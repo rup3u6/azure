@@ -1,8 +1,9 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, map } from 'rxjs';
-import { environment } from 'src/environments/environment';
 import { Tabulator } from 'tabulator-tables';
+
+// service
+import { HttpService } from '../../services/http.service';
 
 // models
 import * as base from '../../models/base';
@@ -13,11 +14,11 @@ import * as logExecute from '../../models/baseAPI/log-execute';
 })
 export class LogExecuteService {
 
-  private apiUrl = environment.apiUrl;
+  private apiUrl = 'Base/SysLogExecute';
   private tabulatorTable!: Tabulator;
   private searchFormValue = new BehaviorSubject<any>({});
 
-  constructor(private http: HttpClient) { }
+  constructor(private httpService: HttpService) { }
 
   tableBuilded(table: Tabulator) {
     this.tabulatorTable = table;
@@ -44,18 +45,10 @@ export class LogExecuteService {
       } as logExecute.GetRequest;
     }
 
-    return this.http
-    .post<base.ResponsesBase<logExecute.GetResponses[]>>(
-      `${this.apiUrl}/Base/SysLogExecute/Get`,
-      body
-    )
-    .pipe(map((res: any) => JSON.parse(res)));
+    return this.httpService.post<base.ResponsesBase<logExecute.GetResponses[]>>(`${this.apiUrl}/Get`, body);
   }
 
   getDetail(body: logExecute.GetDetailRequest) {
-    return this.http.post<base.ResponsesBase<logExecute.GetDetailResponses>>(`${this.apiUrl}/Base/SysLogExecute/GetDetail`,
-      body
-    )
-    .pipe(map((res: any) => JSON.parse(res)));
+    return this.httpService.post<base.ResponsesBase<logExecute.GetDetailResponses>>(`${this.apiUrl}/GetDetail`, body);
   }
 }

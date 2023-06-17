@@ -1,8 +1,9 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, map } from 'rxjs';
-import { environment } from 'src/environments/environment';
 import { Tabulator } from 'tabulator-tables';
+
+// service
+import { HttpService } from '../../services/http.service';
 
 // models
 import * as base from '../../models/base';
@@ -13,11 +14,11 @@ import * as zone from '../../models/baseAPI/zone';
 })
 export class GZoneService {
 
-  private apiUrl = environment.apiUrl;
+  private apiUrl = 'Base/WfZone';
   private tabulatorTable!: Tabulator;
   private searchFormValue = new BehaviorSubject<any>({});
 
-  constructor(private http: HttpClient) { }
+  constructor(private httpService: HttpService) { }
 
   tableBuilded(table: Tabulator) {
     this.tabulatorTable = table;
@@ -45,37 +46,22 @@ export class GZoneService {
       } as zone.GetRequest;
     }
 
-    return this.http.post<base.ResponsesBase<zone.GetResponses>>(`${this.apiUrl}/Base/WfZone/Get`,
-      body
-    )
-    .pipe(map((res: any) => JSON.parse(res)));
+    return this.httpService.post<base.ResponsesBase<zone.GetResponses[]>>(`${this.apiUrl}/Get`, body);
   }
 
   add(body: zone.CreateRequest) {
-    return this.http.post<base.ResponsesBase<zone.CreateResponses>>(`${this.apiUrl}/Base/WfZone/Create`,
-      body
-    )
-    .pipe(map((res: any) => JSON.parse(res)));
+    return this.httpService.post<base.ResponsesBase<zone.CreateResponses>>(`${this.apiUrl}/Create`, body);
   }
 
   edit(body: zone.UpdateRequest) {
-    return this.http.post<base.ResponsesBase<zone.UpdateResponses>>(`${this.apiUrl}/Base/WfZone/Update`,
-      body
-    )
-    .pipe(map((res: any) => JSON.parse(res)));
+    return this.httpService.post<base.ResponsesBase<zone.UpdateResponses>>(`${this.apiUrl}/Update`, body);
   }
 
   getDetail(body: zone.GetDetailRequest) {
-    return this.http.post<base.ResponsesBase<zone.GetDetailResponses>>(`${this.apiUrl}/Base/WfZone/GetDetail`,
-      body
-    )
-    .pipe(map((res: any) => JSON.parse(res)));
+    return this.httpService.post<base.ResponsesBase<zone.GetDetailResponses>>(`${this.apiUrl}/GetDetail`, body);
   }
 
   convertState(body: zone.ConvertStateRequest) {
-    return this.http.post<base.ResponsesBase<string>>(`${this.apiUrl}/Base/WfZone/ConvertState`,
-      body
-    )
-    .pipe(map((res: any) => JSON.parse(res)));
+    return this.httpService.post<base.ResponsesBase<string>>(`${this.apiUrl}/ConvertState`, body);
   }
 }

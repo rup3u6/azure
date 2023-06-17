@@ -1,8 +1,9 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, map } from 'rxjs';
-import { environment } from 'src/environments/environment';
 import { Tabulator } from 'tabulator-tables';
+
+// service
+import { HttpService } from '../../services/http.service';
 
 // models
 import * as base from '../../models/base';
@@ -13,11 +14,11 @@ import * as secretary from '../../models/secretaryAPI/secretary';
 })
 export class SecretaryService {
 
-  private apiUrl = environment.apiUrl;
+  private apiUrl = 'Secretary/WfSecretary';
   private tabulatorTable!: Tabulator;
   private searchFormValue = new BehaviorSubject<any>({});
 
-  constructor(private http: HttpClient) { }
+  constructor(private httpService: HttpService) { }
 
   tableBuilded(table: Tabulator) {
     this.tabulatorTable = table;
@@ -42,30 +43,18 @@ export class SecretaryService {
       } as secretary.GetRequest;
     }
 
-    return this.http.post<base.ResponsesBase<secretary.GetResponses>>(`${this.apiUrl}/Secretary/WfSecretary/Get`,
-      body
-    )
-    .pipe(map((res: any) => JSON.parse(res)));
+    return this.httpService.post<base.ResponsesBase<secretary.GetResponses[]>>(`${this.apiUrl}/Get`, body);
   }
 
   add(body: secretary.CreateRequest) {
-    return this.http.post<base.ResponsesBase<secretary.CreateResponses>>(`${this.apiUrl}/Secretary/WfSecretary/Create`,
-      body
-    )
-    .pipe(map((res: any) => JSON.parse(res)));
+    return this.httpService.post<base.ResponsesBase<secretary.CreateResponses>>(`${this.apiUrl}/Create`, body);
   }
 
   edit(body: secretary.UpdateRequest) {
-    return this.http.post<base.ResponsesBase<secretary.UpdateResponses>>(`${this.apiUrl}/Secretary/WfSecretary/Update`,
-      body
-    )
-    .pipe(map((res: any) => JSON.parse(res)));
+    return this.httpService.post<base.ResponsesBase<secretary.UpdateResponses>>(`${this.apiUrl}/Update`, body);
   }
 
   getDetail(body: secretary.GetDetailRequest) {
-    return this.http.post<base.ResponsesBase<secretary.GetDetailResponses>>(`${this.apiUrl}/Secretary/WfSecretary/GetDetail`,
-      body
-    )
-    .pipe(map((res: any) => JSON.parse(res)));
+    return this.httpService.post<base.ResponsesBase<secretary.GetDetailResponses>>(`${this.apiUrl}/GetDetail`, body);
   }
 }
