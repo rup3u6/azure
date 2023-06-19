@@ -1216,7 +1216,7 @@ hr.seperate-line-solid {
 }
 
 .extra-size-popup .popup-content-item-inner {
-  width: 1320px;
+  max-width: 1320px;
   margin: 0 auto;
   padding: 15px 0;
 }
