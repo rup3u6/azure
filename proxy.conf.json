@@ -1,17 +1,17 @@
 {
-  "/wis_api/Auth": {
+  "/wis_cms_api/Auth": {
     "target": "http://192.168.51.223:5050",
     "secure": false,
-    "pathRewrite": { "^/wis_api": "" }
+    "pathRewrite": { "^/wis_cms_api": "" }
   },
-  "/wis_api/Base": {
+  "/wis_cms_api/Base": {
     "target": "http://192.168.51.223:5051",
     "secure": false,
-    "pathRewrite": { "^/wis_api": "" }
+    "pathRewrite": { "^/wis_cms_api": "" }
   },
-  "/wis_api/Secretary": {
+  "/wis_cms_api/Secretary": {
     "target": "http://192.168.51.223:5052",
     "secure": false,
-    "pathRewrite": { "^/wis_api": "" }
+    "pathRewrite": { "^/wis_cms_api": "" }
   }
 }
