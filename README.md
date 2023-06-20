@@ -29,7 +29,7 @@ $ cd /path/to/wistronfamily_cms_fe/
 確認後端各api server位置是否正確
 
 ## 5. 建立image
->$ docker image build -t nginx_wis_family_cms:0.0.1
+>$ docker image build -t nginx_wis_family_cms:0.0.1 .
 
 ## 6. Run container
 >$ docker run -d --name web -p 8091:80 nginx_wis_family_cms:0.0.1
