@@ -55,7 +55,7 @@ export class LocationTableComponent {
       headerHozAlign: 'center',
     },
     {
-      title: 'Area',
+      title: '分區',
       field: 'location_Area',
       vertAlign: 'middle',
       hozAlign: 'center',
