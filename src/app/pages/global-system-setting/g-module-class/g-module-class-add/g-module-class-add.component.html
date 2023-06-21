@@ -68,16 +68,16 @@
             <div class="form-row row-2">
               <div class="form-item" type="required" [attr.attr]="f['modClass_Order'].errors && f['modClass_Order'].touched && 'error'">
                 <div class="form-item-inner">
-                  <div class="form-item-title">排序（升冪）</div>
+                  <div class="form-item-title">排序</div>
                   <div class="form-item-entry">
                     <input
                       type="text"
-                      placeholder="請輸入排序（升冪）"
+                      placeholder="請輸入排序"
                       formControlName="modClass_Order"
                     />
                   </div>
                   <div class="form-item-text" *ngIf="f['modClass_Order'].errors && f['modClass_Order'].touched">
-                    <p>{{ f["modClass_Order"].errors | errorMessage : '排序（升冪）' }}</p>
+                    <p>{{ f["modClass_Order"].errors | errorMessage : '排序' }}</p>
                   </div>
                 </div>
               </div>
