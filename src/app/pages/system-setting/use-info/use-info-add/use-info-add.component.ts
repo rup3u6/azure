@@ -73,28 +73,7 @@ export class UseInfoAddComponent implements OnInit {
   }
 
   async getRoleName() {
-    this.loadingService.startLoading();
-
-    try {
-      const listItemRes = await firstValueFrom(this.listItemService.search([ListItem.顯示角色名稱]));
-
-      if (listItemRes.status === ResponseStatus.執行成功) {
-        let roleList = [];
-
-        for (let i in listItemRes.data[0].dListItem) {
-          roleList.push({
-            key: i,
-            value: listItemRes.data[0].dListItem[i],
-          });
-        }
-
-        this.roleList = roleList;
-      }
-    } catch (error) {
-      console.log(error)
-    } finally {
-      this.loadingService.stopLoading();
-    }
+    this.roleList = await this.listItemService.GetRoleName();
   }
 
   roleChange() {

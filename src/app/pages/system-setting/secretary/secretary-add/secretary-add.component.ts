@@ -77,27 +77,7 @@ export class SecretaryAddComponent implements OnInit {
   }
 
   async getSite() {
-    this.loadingService.startLoading();
-
-    try {
-      const listItemRes = await firstValueFrom(this.listItemService.search([ListItem.顯示工號_中名_英名_Site]));
-
-      if (listItemRes.status === ResponseStatus.執行成功) {
-        let siteList = [];
-        for (let i in listItemRes.data[0].dListItem) {
-          siteList.push({
-            key: i,
-            value: listItemRes.data[0].dListItem[i],
-          });
-        }
-
-        this.useInfolist = siteList;
-      }
-    } catch (error) {
-      console.log(error)
-    } finally {
-      this.loadingService.stopLoading();
-    }
+    this.useInfolist = await this.listItemService.getSecretaryName();
   }
 
   async submit() {

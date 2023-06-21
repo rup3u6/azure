@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { firstValueFrom } from 'rxjs';
 
@@ -9,12 +9,17 @@ import { ResponseStatus } from 'src/app/core/enum/response-status';
 import { LocationService } from 'src/app/core/services/baseAPI/location.service';
 import { LoadingService } from 'src/app/core/services/loading.service';
 
+// component
+import { LocationSearchFormComponent } from './location-search-form/location-search-form.component';
+
 @Component({
   selector: 'app-location',
   templateUrl: './location.component.html',
   styleUrls: ['./location.component.scss'],
 })
 export class LocationComponent {
+
+  @ViewChild(LocationSearchFormComponent) LocationSearchForm!: LocationSearchFormComponent;
 
   popup: any = {
     component: null,
@@ -33,6 +38,19 @@ export class LocationComponent {
       initData: {},
     };
     this.popup.component = 'add';
+  }
+
+  addPopupCloseHandler(event: any) {
+    if (event) {
+      this.LocationSearchForm.searchFormGroup.patchValue({
+        ck_Location_Code: '',
+        cfk_Site: '',
+        location_State: '2',
+      })
+      this.LocationSearchForm.search();
+    }
+
+    this.popup.component = null;
   }
 
   async editPopupHandler(rowData: any) {

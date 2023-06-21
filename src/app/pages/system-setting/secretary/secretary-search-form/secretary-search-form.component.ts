@@ -18,9 +18,6 @@ import { LoadingService } from 'src/app/core/services/loading.service';
 })
 export class SecretarySearchFormComponent implements OnInit {
 
-  siteList: any = [];
-  locationList: any = [];
-
   isSearchFormGroup = false;
   searchFormGroup!: FormGroup;
 
@@ -32,8 +29,6 @@ export class SecretarySearchFormComponent implements OnInit {
   ) { }
 
   async ngOnInit(): Promise<void> {
-    await this.getSite();
-
     this.searchFormGroup = this.formBuilder.group({
       info_Jobnumber: [''],
       info_Name: [''],
@@ -55,56 +50,6 @@ export class SecretarySearchFormComponent implements OnInit {
       sec_Depts: '',
       sec_Special: '',
     });
-  }
-
-  async getSite() {
-    this.loadingService.startLoading();
-
-    try {
-      const listItemRes = await firstValueFrom(this.listItemService.search([ListItem.顯示Site,]));
-
-      if (listItemRes.status === ResponseStatus.執行成功) {
-        let siteList = [];
-        for (let i in listItemRes.data[0].dListItem) {
-          siteList.push({
-            key: i,
-            value: listItemRes.data[0].dListItem[i],
-          });
-        }
-
-        this.siteList = siteList;
-      }
-    } catch (error) {
-      console.log(error)
-    } finally {
-      this.loadingService.stopLoading();
-    }
-  }
-
-  async getLocation() {
-    this.loadingService.startLoading();
-
-    try {
-      const listItemRes = await firstValueFrom(this.listItemService.search(
-        [ListItem.與Site關聯_顯示Location名稱], this.searchFormGroup.value.cfk_Site
-      ));
-
-      if (listItemRes.status === ResponseStatus.執行成功) {
-        let locationList = [];
-        for (let i in listItemRes.data[0].dListItem) {
-          locationList.push({
-            key: i,
-            value: listItemRes.data[0].dListItem[i],
-          });
-        }
-
-        this.locationList = locationList;
-      }
-    } catch (error) {
-      console.log(error)
-    } finally {
-      this.loadingService.stopLoading();
-    }
   }
 
   async search() {

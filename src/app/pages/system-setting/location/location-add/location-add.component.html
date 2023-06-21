@@ -10,7 +10,7 @@
               {{ data.mode === "add" ? "新增" : "編輯" }}Location維護
             </div>
             <div class="popup-header-unit header-btn">
-              <a href="javascript:void(0)" (click)="close.emit()"
+              <a href="javascript:void(0)" (click)="close.emit(false)"
                 ><span class="material-icons-outlined"> close </span></a
               >
             </div>
@@ -23,12 +23,14 @@
                 <div class="form-item-inner">
                   <div class="form-item-title">Site</div>
                   <div class="form-item-entry">
-                    <input
-                      type="text"
-                      placeholder="請輸入Site"
+                    <select
                       formControlName="cfk_Site"
                       [attr.attr]="data.mode === 'edit' && 'readonly'"
-                    />
+                      (change)="getLocation()"
+                    >
+                      <option value="" selected>請選擇Site</option>
+                      <option [value]="item.key" *ngFor="let item of siteList">{{item.value}}</option>
+                    </select>
                   </div>
                   <div class="form-item-text" *ngIf="f['cfk_Site'].errors && f['cfk_Site'].touched">
                     <p>{{ f["cfk_Site"].errors | errorMessage : 'Site' }}</p>
@@ -39,12 +41,13 @@
                 <div class="form-item-inner">
                   <div class="form-item-title">Location</div>
                   <div class="form-item-entry">
-                    <input
-                      type="text"
-                      placeholder="請輸入Location"
+                    <select
                       formControlName="ck_Location_Code"
                       [attr.attr]="data.mode === 'edit' && 'readonly'"
-                    />
+                    >
+                      <option value="" selected disabled>請選擇Location</option>
+                      <option [value]="item.key" *ngFor="let item of locationList">{{item.value}}</option>
+                    </select>
                   </div>
                   <div class="form-item-text" *ngIf="f['ck_Location_Code'].errors && f['ck_Location_Code'].touched">
                     <p>{{ f["ck_Location_Code"].errors | errorMessage : 'Location' }}</p>
@@ -153,7 +156,7 @@
         <div class="popup-footer">
           <div class="popup-footer-inner">
             <div class="popup-footer-unit footer-button" btn="cancel">
-              <button (click)="close.emit()">取消</button>
+              <button (click)="close.emit(false)">取消</button>
             </div>
             <div class="popup-footer-unit footer-button" btn="confirm">
               <button (click)="submit()">確認</button>

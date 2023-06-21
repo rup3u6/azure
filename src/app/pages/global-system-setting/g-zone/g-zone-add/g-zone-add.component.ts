@@ -11,6 +11,7 @@ import * as language from 'src/app/core/models/baseAPI/language';
 
 // service
 import { ListItemService } from 'src/app/core/services/baseAPI/list-item.service';
+import { ManagerInfoService } from 'src/app/core/services/authAPI/manager-info.service';
 import { GZoneService } from 'src/app/core/services/baseAPI/g-zone.service';
 import { GLanguageService } from 'src/app/core/services/baseAPI/g-language.service';
 import { LoadingService } from 'src/app/core/services/loading.service';
@@ -40,9 +41,10 @@ export class GZoneAddComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    public listItemService: ListItemService,
-    public gZoneService: GZoneService,
-    public gLanguageService: GLanguageService,
+    private listItemService: ListItemService,
+    public managerInfoService: ManagerInfoService,
+    private gZoneService: GZoneService,
+    private gLanguageService: GLanguageService,
     private loadingService: LoadingService
   ) { }
 
@@ -97,27 +99,7 @@ export class GZoneAddComponent implements OnInit {
   }
 
   async getSite() {
-    this.loadingService.startLoading();
-
-    try {
-      const listItemRes = await firstValueFrom(this.listItemService.search([ListItem.顯示Site,]));
-
-      if (listItemRes.status === ResponseStatus.執行成功) {
-        let siteList = [];
-        for (let i in listItemRes.data[0].dListItem) {
-          siteList.push({
-            key: i,
-            value: listItemRes.data[0].dListItem[i],
-          });
-        }
-
-        this.ckSiteOption = siteList;
-      }
-    } catch (error) {
-      console.log(error)
-    } finally {
-      this.loadingService.stopLoading();
-    }
+    this.ckSiteOption = await this.listItemService.getSite();
   }
 
   async getLanguage() {

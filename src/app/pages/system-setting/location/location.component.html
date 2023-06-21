@@ -26,7 +26,7 @@
 <sys-location-add
   *ngIf="popup.component === 'add'"
   [data]="popup.data"
-  (close)="popup.component = null"
+  (close)="addPopupCloseHandler($event)"
 ></sys-location-add>
 
 <app-delete-confirm

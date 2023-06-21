@@ -56,53 +56,11 @@ export class LocationSearchFormComponent implements OnInit {
   }
 
   async getSite() {
-    this.loadingService.startLoading();
-
-    try {
-      const listItemRes = await firstValueFrom(this.listItemService.search([ListItem.顯示Site,]));
-
-      if (listItemRes.status === ResponseStatus.執行成功) {
-        let siteList = [];
-        for (let i in listItemRes.data[0].dListItem) {
-          siteList.push({
-            key: i,
-            value: listItemRes.data[0].dListItem[i],
-          });
-        }
-
-        this.siteList = siteList;
-      }
-    } catch (error) {
-      console.log(error)
-    } finally {
-      this.loadingService.stopLoading();
-    }
+    this.siteList = await this.listItemService.getSite();
   }
 
   async getLocation() {
-    this.loadingService.startLoading();
-
-    try {
-      const listItemRes = await firstValueFrom(this.listItemService.search(
-        [ListItem.與Site關聯_顯示Location名稱], this.searchFormGroup.value.cfk_Site
-      ));
-
-      if (listItemRes.status === ResponseStatus.執行成功) {
-        let locationList = [];
-        for (let i in listItemRes.data[0].dListItem) {
-          locationList.push({
-            key: i,
-            value: listItemRes.data[0].dListItem[i],
-          });
-        }
-
-        this.locationList = locationList;
-      }
-    } catch (error) {
-      console.log(error)
-    } finally {
-      this.loadingService.stopLoading();
-    }
+    this.locationList = await this.listItemService.getLocation(this.searchFormGroup.value.cfk_Site);
   }
 
   async search() {
