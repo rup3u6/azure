@@ -59,13 +59,13 @@ const isIE =
       {
         interactionType: InteractionType.Redirect,
         authRequest: {
-          scopes: ['user.read'],
+          // scopes: ['user.read'],
         },
       },
       {
         interactionType: InteractionType.Redirect, // MSAL Interceptor Configuration
         protectedResourceMap: new Map([
-          ['https://graph.microsoft.com/', ['user.read']],
+          // ['https://graph.microsoft.com/', ['user.read']],
         ]),
       }
     ),
