@@ -69,7 +69,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       .subscribe((result: any) => {
         console.log(result);
         let idToken = result.payload.idToken;
-        sessionStorage.setItem('wis_cms_token', String(idToken));
+        localStorage.setItem('wis_cms_token', String(idToken));
         this.router.navigate(['/home']);
       });
 
@@ -83,7 +83,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       )
       .subscribe(() => {
         let accounts = this.authService.instance.getAllAccounts();
-        if (accounts.length > 0 && sessionStorage.getItem('wis_cms_token')) {
+        if (accounts.length > 0 && localStorage.getItem('wis_cms_token')) {
           this.router.navigate(['/home']);
         }
       });

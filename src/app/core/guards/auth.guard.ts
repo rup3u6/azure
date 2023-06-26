@@ -37,7 +37,7 @@ export class AuthGuard {
     childRoute: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Promise<boolean> {
-    let token = sessionStorage.getItem('wis_cms_token');
+    let token = localStorage.getItem('wis_cms_token');
     if (token) {
       //判斷是否有工號
       if (!this.managerInfoService.managerJobNumber) {
