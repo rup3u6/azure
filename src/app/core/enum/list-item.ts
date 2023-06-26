@@ -8,4 +8,9 @@ export enum ListItem {
   顯示Location名稱 = 'Common,WfLocation,LocationName',
   顯示Location英文名稱 = 'Common,WfLocation,LocationEName',
   與Site關聯_顯示Location名稱 = 'Common,WfLocation,Site_LocationName',
+  當前依使用者Zone_取得Location分區 = 'Common,WfLocation,LocationArea',
+  顯示LocationCode_Location名稱 = 'Common,WfLocation,LocationIdName',
+  依據_使用者_的Zone_顯示Site = 'Common,Wf_Zone_Site,Site',
+  針對還沒使用過的Site_顯示Site = 'Common,Wf_Zone_Site,EnableSite',
+  針對已經使用過的Site_顯示Site = 'Common,Wf_Zone_Site,DisenableSite',
 }

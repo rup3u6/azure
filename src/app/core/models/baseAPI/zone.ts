@@ -164,3 +164,19 @@ export interface ConvertStateLCIn_ConvertState_PageData {
 }
 //#endregion
 
+//#region GetModules
+export interface GetModulesRequest {
+  sFrontBack: string;
+}
+
+export interface GetModulesResponses {
+  module_Pk: string;
+  module_Name: string;
+  module_Parent: string;
+  module_Route: string;
+  module_order: string;
+
+  checked: boolean;
+}
+//#endregion
+

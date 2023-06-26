@@ -113,11 +113,11 @@ export class UseRoleAddPermissionComponent implements OnInit {
 
     this.rootFormGroup.control.setControl(
       this.controlName,
-      this.formBuilder.array(useRoleGetModulesSelect, [Validators.required, Validators.minLength(1)])
+      this.formBuilder.array(useRoleGetModulesSelect, this.f?.validator)
     );
   }
 
   get f() {
-    return this.rootFormGroup.control;
+    return this.rootFormGroup.control.get(this.controlName);
   }
 }

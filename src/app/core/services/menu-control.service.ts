@@ -230,7 +230,7 @@ export class MenuControlService {
   createDataLevelObj(
     id: any,
     arry: any,
-    { _id = 'id', _pid = 'pid', _child = 'child' } = {}
+    { _id = "module_Pk", _pid = "module_Parent", _child = "child" } = {}
   ) {
     let childArry = this.getParentArry(id, arry, { _pid });
 

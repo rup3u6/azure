@@ -53,7 +53,6 @@ export class ManagerInfoService {
           const menuControl = this.menuControlService.createDataLevelObj(
             0,
             this.activeZoneItem.menu ?? [],
-            { _id: 'module_Pk', _pid: 'module_Parent', _child: 'child' }
           );
           this.menuControlService.setNormalSettingMenu(menuControl);
           //  對應語系檔案名稱規則：langCode + '_b'， en -> en_b

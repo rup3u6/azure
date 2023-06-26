@@ -9,6 +9,7 @@ import { GLanguageSearchFormComponent } from './g-language/g-language-search-for
 import { GLanguageTableComponent } from './g-language/g-language-table/g-language-table.component';
 import { GZoneComponent } from './g-zone/g-zone.component';
 import { GZoneAddComponent } from './g-zone/g-zone-add/g-zone-add.component';
+import { GZoneAddPermissionComponent } from './g-zone/g-zone-add-permission/g-zone-add-permission.component';
 import { GZoneSearchFormComponent } from './g-zone/g-zone-search-form/g-zone-search-form.component';
 import { GZoneTableComponent } from './g-zone/g-zone-table/g-zone-table.component';
 import { GModuleClassComponent } from './g-module-class/g-module-class.component';
@@ -28,6 +29,7 @@ import { GModuleTableComponent } from './g-modul/g-module-table/g-module-table.c
     GLanguageTableComponent,
     GZoneComponent,
     GZoneAddComponent,
+    GZoneAddPermissionComponent,
     GZoneSearchFormComponent,
     GZoneTableComponent,
     GModuleClassComponent,

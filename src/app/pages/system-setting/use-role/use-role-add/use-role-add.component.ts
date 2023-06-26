@@ -11,6 +11,7 @@ import { ListItem } from 'src/app/core/enum/list-item';
 // service
 import { ValidatorService } from 'src/app/core/services/validator.service';
 import { MessageService } from 'src/app/core/services/message.service';
+import { ManagerInfoService } from 'src/app/core/services/authAPI/manager-info.service';
 import { UseInfoService } from 'src/app/core/services/authAPI/use-info.service';
 import { UseRoleService } from 'src/app/core/services/authAPI/use-role.service';
 import { LoadingService } from 'src/app/core/services/loading.service';
@@ -46,6 +47,7 @@ export class UseRoleAddComponent implements OnInit {
     private datePipe: DatePipe,
     private validatorService: ValidatorService,
     private messageService: MessageService,
+    public managerInfoService: ManagerInfoService,
     private useInfoService: UseInfoService,
     public useRoleService: UseRoleService,
     private loadingService: LoadingService

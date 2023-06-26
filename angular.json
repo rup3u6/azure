@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/wistronfamily_cms_fe",
+            "outputPath": "dist/wis_cms_fe",
             "index": "src/index.html",
             "main": "src/main.ts",
             "baseHref": "/wis_cms_fe/",

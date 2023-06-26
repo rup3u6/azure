@@ -39,7 +39,7 @@ export class ListItemService {
   }
 
   //#region
-  async search1(body: any): Promise<any[]> {
+  async searchHandle(body: any): Promise<any[]> {
     this.loadingService.startLoading();
 
     try {
@@ -66,19 +66,19 @@ export class ListItemService {
   }
 
   async getSite(): Promise<any[]> {
-    return await this.search1([[ListItem.顯示Site]]);
+    return await this.searchHandle([[ListItem.顯示Site]]);
   }
 
   async getLocation(cfk_Site: string): Promise<any[]> {
-    return await this.search1([[ListItem.與Site關聯_顯示Location名稱, cfk_Site]]);
+    return await this.searchHandle([[ListItem.與Site關聯_顯示Location名稱, cfk_Site]]);
   }
 
   async getSecretaryName(): Promise<any[]> {
-    return await this.search1([[ListItem.顯示工號_中名_英名_Site]]);
+    return await this.searchHandle([[ListItem.顯示工號_中名_英名_Site]]);
   }
 
   async GetRoleName(): Promise<any[]> {
-    return await this.search1([[ListItem.顯示角色名稱]]);
+    return await this.searchHandle([[ListItem.顯示角色名稱]]);
   }
   //#endregion
 }

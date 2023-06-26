@@ -5,6 +5,7 @@ import { finalize, firstValueFrom } from 'rxjs';
 // enum
 import { ResponseStatus } from 'src/app/core/enum/response-status';
 import { ListItem } from 'src/app/core/enum/list-item';
+import { Message } from 'src/app/core/enum/message';
 
 // models
 import * as language from 'src/app/core/models/baseAPI/language';
@@ -15,6 +16,7 @@ import { ManagerInfoService } from 'src/app/core/services/authAPI/manager-info.s
 import { GZoneService } from 'src/app/core/services/baseAPI/g-zone.service';
 import { GLanguageService } from 'src/app/core/services/baseAPI/g-language.service';
 import { LoadingService } from 'src/app/core/services/loading.service';
+import { MessageService } from 'src/app/core/services/message.service';
 
 @Component({
   selector: 'g-zone-add',
@@ -45,7 +47,8 @@ export class GZoneAddComponent implements OnInit {
     public managerInfoService: ManagerInfoService,
     private gZoneService: GZoneService,
     private gLanguageService: GLanguageService,
-    private loadingService: LoadingService
+    private loadingService: LoadingService,
+    private messageService: MessageService,
   ) { }
 
   async ngOnInit(): Promise<void> {
@@ -61,6 +64,8 @@ export class GZoneAddComponent implements OnInit {
       }),
       lCIn_Wf_Zone_Site_Pagedata: [[], [Validators.required]],
       lCIn_Wf_Zone_Langue_Pagedata: [[], [Validators.required]],
+      lCIn_Wf_Zone_Module_Pagedata_f: [[], [Validators.required, Validators.minLength(1)]],
+      lCIn_Wf_Zone_Module_Pagedata_b: [[], [Validators.required, Validators.minLength(1)]],
     });
 
     if (this.data.mode === 'add') {
@@ -95,6 +100,8 @@ export class GZoneAddComponent implements OnInit {
       },
       lCIn_Wf_Zone_Site_Pagedata: [],
       lCIn_Wf_Zone_Langue_Pagedata: ['en'],
+      lCIn_Wf_Zone_Module_Pagedata_f: [],
+      lCIn_Wf_Zone_Module_Pagedata_b: [],
     });
   }
 
@@ -133,29 +140,71 @@ export class GZoneAddComponent implements OnInit {
     this.tab = index;
   }
 
+  async showError() {
+    let msgList!: string[];
+
+    const IsShareError =
+      this.f['oCIn_WfZone_PageData'].errors ||
+      this.f['lCIn_Wf_Zone_Site_Pagedata'].errors ||
+      this.f['lCIn_Wf_Zone_Langue_Pagedata'].errors;
+    const Istab1Error = this.f['lCIn_Wf_Zone_Module_Pagedata_f'].errors;
+    const Istab2Error = this.f['lCIn_Wf_Zone_Module_Pagedata_b'].errors;
+
+    switch (this.tab) {
+      case 1:
+        if (IsShareError || Istab1Error) { return; }
+        if (Istab2Error) { msgList = ['後台選單設定有誤']; }
+        break;
+      case 2:
+        if (IsShareError || Istab2Error) { return; }
+        if (Istab1Error) { msgList = ['前台選單設定有誤']; }
+        break;
+    }
+
+    if (msgList.length) {
+      this.messageService.showModal(Message.error, {
+        title: '執行失敗',
+        msgList: msgList,
+      });
+    }
+  }
+
   async submit() {
     this.zoneFormGroup.markAllAsTouched();
 
-    if (this.zoneFormGroup.invalid) { return }
+    if (this.zoneFormGroup.invalid) {
+      this.showError();
+
+      return
+    }
 
     this.loadingService.startLoading();
 
     try {
+      const lCIn_Wf_Zone_Site_Pagedata = this.zoneFormGroup.value.lCIn_Wf_Zone_Site_Pagedata.map((item: any) => { return { ck_Site: item } });
+      const lCIn_Wf_Zone_Langue_Pagedata = this.zoneFormGroup.value.lCIn_Wf_Zone_Langue_Pagedata.map((item: any) => { return { cfk_Lang_Code: item } });
+      const lCIn_Wf_Zone_Module_Pagedata = this.zoneFormGroup.value.lCIn_Wf_Zone_Module_Pagedata_f
+        .concat(this.zoneFormGroup.value.lCIn_Wf_Zone_Module_Pagedata_b)
+
       let res;
 
       if (this.data.mode === 'add') {
         let body: any = {
-          ...this.zoneFormGroup.value,
-          lCIn_Wf_Zone_Site_Pagedata: this.zoneFormGroup.value.lCIn_Wf_Zone_Site_Pagedata.map((item: any) => { return { ck_Site: item } }),
-          lCIn_Wf_Zone_Langue_Pagedata: this.zoneFormGroup.value.lCIn_Wf_Zone_Langue_Pagedata.map((item: any) => { return { cfk_Lang_Code: item } })
+          oCIn_WfZone_PageData: this.zoneFormGroup.value.oCIn_WfZone_PageData,
+          lCIn_Wf_Zone_Site_Pagedata,
+          lCIn_Wf_Zone_Langue_Pagedata,
+          lCIn_Wf_Zone_Module_Pagedata
         };
         res = await firstValueFrom(this.gZoneService.add(body));
       } else {
         let body: any = {
           oCIn_WfZone_PageData_Update: this.zoneFormGroup.value.oCIn_WfZone_PageData,
-          lCIn_Wf_Zone_Site_Pagedata_Update: this.zoneFormGroup.value.lCIn_Wf_Zone_Site_Pagedata.map((item: any) => { return { ck_Site: item } }),
-          lCIn_Wf_Zone_Langue_Pagedata_Update: this.zoneFormGroup.value.lCIn_Wf_Zone_Langue_Pagedata.map((item: any) => { return { cfk_Lang_Code: item } })
+          lCIn_Wf_Zone_Site_Pagedata_Update: lCIn_Wf_Zone_Site_Pagedata,
+          lCIn_Wf_Zone_Langue_Pagedata_Update: lCIn_Wf_Zone_Langue_Pagedata,
+          lCIn_Wf_Zone_Module_Pagedata_Update: lCIn_Wf_Zone_Module_Pagedata,
         };
+        body.oCIn_WfZone_PageData_Update.zone_Id = this.data.initData.oCOut_WfZone_GetDetailPageData.zone_Id;
+
         res = await firstValueFrom(this.gZoneService.edit(body));
       }
       const { status } = res;

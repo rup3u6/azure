@@ -136,7 +136,7 @@
                       </div>
                     </div>
                   </div>
-                  <!-- <hr class="seperate-line-solid">
+                  <hr class="seperate-line-solid">
                   <div
                     class="popup-content-item popup-content-tab pupop-content-tab-line"
                   >
@@ -146,10 +146,23 @@
                         <li><a [ngClass]="{'active': tab === 2 }" (click)="tabChange(2)">後台選單設定</a></li>
                       </ul>
                     </div>
-                  </div> -->
-                  <!-- TODO 前台選單設定 -->
-                  <!-- TODO 後台選單設定 -->
-                  <!-- <div sys-use-role-add-permission controlName="lCIn_UseRoleAuth_PageData" [data]="data" [hidden]="tab !== 2"></div> -->
+                  </div>
+                  <!-- 前台選單設定 -->
+                  <div
+                    g-zone-add-permission
+                    controlName="lCIn_Wf_Zone_Module_Pagedata_f"
+                    sFrontBack="1"
+                    [data]="data"
+                    [hidden]="tab !== 1"
+                  ></div>
+                  <!-- 後台選單設定 -->
+                  <div
+                    g-zone-add-permission
+                    controlName="lCIn_Wf_Zone_Module_Pagedata_b"
+                    sFrontBack="0"
+                    [data]="data"
+                    [hidden]="tab !== 2"
+                  ></div>
                 </div>
               </div>
             </div>

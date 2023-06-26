@@ -64,4 +64,8 @@ export class GZoneService {
   convertState(body: zone.ConvertStateRequest) {
     return this.httpService.post<base.ResponsesBase<string>>(`${this.apiUrl}/ConvertState`, body);
   }
+
+  GetModules(body: zone.GetModulesRequest) {
+    return this.httpService.post<base.ResponsesBase<zone.GetModulesResponses[]>>(`${this.apiUrl}/GetModules`, body);
+  }
 }
