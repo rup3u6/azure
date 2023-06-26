@@ -2,7 +2,7 @@
 FROM nginx:1.25
 
 # 複製靜態檔案至image
-COPY dist/wistronfamily_cms_fe /usr/share/nginx/html/wis_cms_fe
+COPY dist/wis_cms_fe /usr/share/nginx/html/wis_cms_fe
  
 # Remove the default nginx.conf
 RUN rm /etc/nginx/conf.d/default.conf
