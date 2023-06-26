@@ -674,6 +674,30 @@ hr.seperate-line-solid {
   color: #006c91;
 }
 
+.result-function a[attr="batch-add"]::before {
+  font-family: "Material Icons Outlined", sans-serif;
+  content: "edit_note";
+  font-feature-settings: "liga";
+  margin-right: 4px;
+  font-size: 1.3125rem;
+  line-height: 1;
+  display: inline-block;
+  vertical-align: text-bottom;
+  color: #006c91;
+}
+
+.result-function a[attr="batch-delete"]::before {
+  font-family: "Material Icons Outlined", sans-serif;
+  content: "delete";
+  font-feature-settings: "liga";
+  margin-right: 4px;
+  font-size: 1.3125rem;
+  line-height: 1;
+  display: inline-block;
+  vertical-align: text-bottom;
+  color: #006c91;
+}
+
 /* result-counter */
 .result-counter {
   padding: 10px;
@@ -720,9 +744,10 @@ hr.seperate-line-solid {
 }
 
 .result-table .tabulator-row .tabulator-cell {
-  overflow: hidden;
+  /* overflow: hidden;
   white-space: nowrap;
-  text-overflow: ellipsis;
+  text-overflow: ellipsis; */
+  overflow: inherit;
 }
 
 .result-table .tabulator-row .tabulator-cell a {
@@ -753,6 +778,81 @@ hr.seperate-line-solid {
 
 .result-table .tabulator .tabulator-header {
   background: #006c91;
+}
+
+.result-table .tabulator-row {
+  display: flex;
+  align-items: stretch;
+  border-bottom: #aaa solid 1px;
+}
+
+.result-table .tabulator-row .tabulator-cell {
+  white-space: pre-wrap;
+  height: inherit !important;
+}
+
+.result-table .tabulator-tableholder {
+  height: inherit !important;
+}
+
+.rt-fun-list ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.rt-fun-list > ul li {
+  display: inline-block;
+  width: 35px;
+}
+
+.result-table .tabulator-row .tabulator-cell .rt-fun-list a:hover {
+  text-decoration: none;
+}
+
+.rt-fun-list a span {
+  display: block;
+  padding-top: 6px;
+}
+
+.more-fun-list {
+  width: 100%;
+  padding: 2px;
+  display: block;
+  /* margin-top: 4px; */
+  position: absolute;
+  z-index: 999;
+  top: 50%;
+  right: 40px;
+  transform: translateY(-50%);
+  border: #aaa solid 1px;
+  background: #fff;
+  border-radius: 4px;
+  -webkit-box-shadow: 4px 4px 8px 0px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 4px 4px 8px 0px rgba(0, 0, 0, 0.2);
+  box-shadow: 4px 4px 8px 0px rgba(0, 0, 0, 0.2);
+}
+
+.more-fun-list li {
+  border-right: #eee solid 1px;
+  padding: 3px;
+  display: inline-block;
+}
+
+.more-fun-list li:nth-last-child(1) {
+  border-right: none;
+}
+
+.rt-fun-list .more-fun-list a span {
+  padding: 0;
+}
+
+.result-table .tabulator-row .tabulator-cell a.rt-delete {
+  color: #dd3333;
+}
+
+.disabled-val {
+  color: #dd3333;
 }
 
 /* result-page */
@@ -873,7 +973,8 @@ hr.seperate-line-solid {
   background: #006c91;
 }
 
-.popup-component[type="warning"] .popup-header-inner {
+.popup-component[type="warning"] .popup-header-inner,
+.popup-component[type="warning-editable"] .popup-header-inner {
   background: #db0716;
 }
 
@@ -1075,22 +1176,26 @@ hr.seperate-line-solid {
   background: #074d64;
 }
 
-.popup-component[type="warning"] .footer-button[btn="cancel"] button {
+.popup-component[type="warning"] .footer-button[btn="cancel"] button,
+.popup-component[type="warning-editable"] .footer-button[btn="cancel"] button {
   border: #f04949 solid 1px;
   color: #f04949;
 }
 
-.popup-component[type="warning"] .footer-button[btn="cancel"] button:hover {
+.popup-component[type="warning"] .footer-button[btn="cancel"] button:hover,
+.popup-component[type="warning-editable"] .footer-button[btn="cancel"] button:hover {
   background: #f7f7f7;
 }
 
-.popup-component[type="warning"] .footer-button[btn="confirm"] button {
+.popup-component[type="warning"] .footer-button[btn="confirm"] button,
+.popup-component[type="warning-editable"] .footer-button[btn="confirm"] button {
   border: #db0716 solid 1px;
   color: #fff;
   background: #db0716;
 }
 
-.popup-component[type="warning"] .footer-button[btn="confirm"] button:hover {
+.popup-component[type="warning"] .footer-button[btn="confirm"] button:hover,
+.popup-component[type="warning-editable"] .footer-button[btn="confirm"] button:hover {
   background: #dd3333;
 }
 
@@ -1115,6 +1220,14 @@ hr.seperate-line-solid {
 
 .popup-component[type="warning"] .popup-content li:nth-last-child(1)::after {
   content: "";
+}
+
+.popup-component[type="warning-editable"] .popup-content {
+  text-align: inherit;
+}
+
+.popup-component[type="warning-editable"] .popup-content textarea[type="delete"] {
+  color: #db0716;
 }
 
 .detail-row {
@@ -1222,7 +1335,8 @@ hr.seperate-line-solid {
 }
 
 .extra-size-popup .popup-content-tab {
-  padding: 0 15px;
+  /* padding: 0 15px; */
+  padding: 0;
   background: #eee;
 }
 

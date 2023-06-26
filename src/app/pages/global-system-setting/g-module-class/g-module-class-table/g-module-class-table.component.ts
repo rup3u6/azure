@@ -1,12 +1,16 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, ViewContainerRef } from '@angular/core';
 import { GModuleClassService } from 'src/app/core/services/authAPI/g-module-class.service';
 import { Tabulator } from 'tabulator-tables';
 import { DatePipe } from '@angular/common';
 
+// components
+import { TabulatorCtrlComponent, TabulatorCtrlType } from 'src/app/shared/components/tabulator-ctrl/tabulator-ctrl.component';
+
 @Component({
   selector: 'div[g-module-class-table]',
   templateUrl: './g-module-class-table.component.html',
-  styleUrls: ['./g-module-class-table.component.scss']
+  styleUrls: ['./g-module-class-table.component.scss'],
+  entryComponents: [TabulatorCtrlComponent]
 })
 export class GModuleClassTableComponent {
 
@@ -86,19 +90,24 @@ export class GModuleClassTableComponent {
       headerHozAlign: 'center',
       formatter: (cell: any) => {
         const rowData = cell.getData();
-        let icon = document.createElement('span');
-        icon.classList.add('material-icons');
-        icon.innerText = 'edit';
-        icon.addEventListener('click', (event) => {
+
+        const componentRef = this.viewContainerRef.createComponent(TabulatorCtrlComponent);
+        const component = (componentRef.instance as TabulatorCtrlComponent);
+
+        component.type = TabulatorCtrlType.edit;
+        component.data = rowData;
+        component.edit = (event: any) => {
           event.stopPropagation();
           this.edit.emit(rowData);
-        });
-        return icon;
+        };
+
+        return component.html;
       },
     },
   ];
 
   constructor(
+    private viewContainerRef: ViewContainerRef,
     private datePipe: DatePipe,
     public gModuleClassService: GModuleClassService
   ) { }

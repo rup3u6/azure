@@ -1,0 +1,26 @@
+<div class='rt-fun-list'>
+  <ul>
+    <li *ngIf="type === 'edit' || type === 'editCopyDelete'">
+      <a (click)="edit($event)"><span class='material-icons-outlined'>edit</span></a>
+    </li>
+    <li *ngIf="type === 'delete'">
+      <a (click)="del($event)" class='rt-delete'><span class='material-icons-outlined'>delete</span></a>
+    </li>
+    <li *ngIf="type === 'copy'">
+      <a (click)="copy($event)"><span class='material-icons-outlined'>content_copy</span></a>
+    </li>
+    <li *ngIf="type === 'editCopyDelete'">
+      <a (click)="more($event)"><span class='material-icons-outlined'>more_vert</span></a>
+    </li>
+  </ul>
+  <div class='more-fun-list' *ngIf="type === 'editCopyDelete'">
+    <ul>
+      <li>
+        <a (click)="copy($event)"><span class='material-icons-outlined'>content_copy</span></a>
+      </li>
+      <li>
+        <a (click)="del($event)" class='rt-delete'><span class='material-icons-outlined'>delete</span></a>
+      </li>
+    </ul>
+  </div>
+</div>

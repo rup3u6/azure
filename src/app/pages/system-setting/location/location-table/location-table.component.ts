@@ -1,14 +1,18 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, ViewContainerRef } from '@angular/core';
 import { Tabulator } from 'tabulator-tables';
 import { DatePipe } from '@angular/common';
 
 // service
 import { LocationService } from 'src/app/core/services/baseAPI/location.service';
 
+// components
+import { TabulatorCtrlComponent, TabulatorCtrlType } from 'src/app/shared/components/tabulator-ctrl/tabulator-ctrl.component';
+
 @Component({
   selector: 'div[sys-location-table]',
   templateUrl: './location-table.component.html',
   styleUrls: ['./location-table.component.scss'],
+  entryComponents: [TabulatorCtrlComponent]
 })
 export class LocationTableComponent {
 
@@ -129,19 +133,24 @@ export class LocationTableComponent {
       headerHozAlign: 'center',
       formatter: (cell: any) => {
         const rowData = cell.getData();
-        let icon = document.createElement('span');
-        icon.classList.add('material-icons');
-        icon.innerText = 'edit';
-        icon.addEventListener('click', (event) => {
+
+        const componentRef = this.viewContainerRef.createComponent(TabulatorCtrlComponent);
+        const component = (componentRef.instance as TabulatorCtrlComponent);
+
+        component.type = TabulatorCtrlType.edit;
+        component.data = rowData;
+        component.edit = (event: any) => {
           event.stopPropagation();
           this.edit.emit(rowData);
-        });
-        return icon;
+        };
+
+        return component.html;
       },
     },
   ];
 
   constructor(
+    private viewContainerRef: ViewContainerRef,
     private datePipe: DatePipe,
     public locationService: LocationService
   ) { }

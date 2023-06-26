@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, ViewContainerRef } from '@angular/core';
 import { Tabulator } from 'tabulator-tables';
 import { DatePipe } from '@angular/common';
 
@@ -6,10 +6,14 @@ import { DatePipe } from '@angular/common';
 import { GLanguageService } from 'src/app/core/services/baseAPI/g-language.service';
 import { TranslateService } from '@ngx-translate/core';
 
+// components
+import { TabulatorCtrlComponent, TabulatorCtrlType } from 'src/app/shared/components/tabulator-ctrl/tabulator-ctrl.component';
+
 @Component({
   selector: 'div[g-language-table]',
   templateUrl: './g-language-table.component.html',
   styleUrls: ['./g-language-table.component.scss'],
+  entryComponents: [TabulatorCtrlComponent]
 })
 export class GLanguageTableComponent {
   @Output() add = new EventEmitter<any>();
@@ -106,19 +110,24 @@ export class GLanguageTableComponent {
       headerHozAlign: 'center',
       formatter: (cell: any) => {
         const rowData = cell.getData();
-        let icon = document.createElement('span');
-        icon.classList.add('material-icons');
-        icon.innerText = 'edit';
-        icon.addEventListener('click', (event) => {
+
+        const componentRef = this.viewContainerRef.createComponent(TabulatorCtrlComponent);
+        const component = (componentRef.instance as TabulatorCtrlComponent);
+
+        component.type = TabulatorCtrlType.edit;
+        component.data = rowData;
+        component.edit = (event: any) => {
           event.stopPropagation();
           this.edit.emit(rowData);
-        });
-        return icon;
+        };
+
+        return component.html;
       },
     },
   ];
 
   constructor(
+    private viewContainerRef: ViewContainerRef,
     private datePipe: DatePipe,
     private translateService: TranslateService,
     public gLanguageService: GLanguageService

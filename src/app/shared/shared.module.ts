@@ -20,6 +20,7 @@ import { TabulatorTableComponent } from './components/tabulator-table/tabulator-
 import { DeleteConfirmComponent } from './components/dialog/delete-confirm/delete-confirm.component';
 import { TabulatorTablePaginationComponent } from './components/tabulator-table-pagination/tabulator-table-pagination.component';
 import { UseRoleAddPermissionComponent } from '../pages/system-setting/use-role/use-role-add-permission/use-role-add-permission.component';
+import { TabulatorCtrlComponent } from './components/tabulator-ctrl/tabulator-ctrl.component';
 
 // pipe
 import { ErrorMessagePipe } from './pipes/error-message.pipe';
@@ -36,6 +37,7 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     DeleteConfirmComponent,
     TabulatorTablePaginationComponent,
     UseRoleAddPermissionComponent,
+    TabulatorCtrlComponent,
   ],
   imports: [
     CommonModule,
@@ -58,6 +60,7 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     TabulatorTablePaginationComponent,
     DemoNgZorroAntdModule,
     UseRoleAddPermissionComponent,
+    TabulatorCtrlComponent,
   ],
   providers: [
     DatePipe,

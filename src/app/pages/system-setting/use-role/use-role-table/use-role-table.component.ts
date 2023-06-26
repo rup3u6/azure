@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, ViewContainerRef } from '@angular/core';
 import { Tabulator } from 'tabulator-tables';
 import { DatePipe } from '@angular/common';
 
@@ -6,10 +6,14 @@ import { DatePipe } from '@angular/common';
 import { UseRoleService } from 'src/app/core/services/authAPI/use-role.service';
 import { LoadingService } from 'src/app/core/services/loading.service';
 
+// components
+import { TabulatorCtrlComponent, TabulatorCtrlType } from 'src/app/shared/components/tabulator-ctrl/tabulator-ctrl.component';
+
 @Component({
   selector: 'div[sys-use-role-table]',
   templateUrl: './use-role-table.component.html',
-  styleUrls: ['./use-role-table.component.scss']
+  styleUrls: ['./use-role-table.component.scss'],
+  entryComponents: [TabulatorCtrlComponent]
 })
 export class UseRoleTableComponent {
 
@@ -75,19 +79,24 @@ export class UseRoleTableComponent {
       headerHozAlign: 'center',
       formatter: (cell: any) => {
         const rowData = cell.getData();
-        let icon = document.createElement('span');
-        icon.classList.add('material-icons');
-        icon.innerText = 'edit';
-        icon.addEventListener('click', (event) => {
+
+        const componentRef = this.viewContainerRef.createComponent(TabulatorCtrlComponent);
+        const component = (componentRef.instance as TabulatorCtrlComponent);
+
+        component.type = TabulatorCtrlType.edit;
+        component.data = rowData;
+        component.edit = (event: any) => {
           event.stopPropagation();
           this.edit.emit(rowData);
-        });
-        return icon;
+        };
+
+        return component.html;
       },
     },
   ];
 
   constructor(
+    private viewContainerRef: ViewContainerRef,
     private datePipe: DatePipe,
     public useRoleService: UseRoleService
   ) { }
