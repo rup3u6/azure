@@ -22,12 +22,14 @@ export class LoginService {
   ) {}
 
   private apiUrl = environment.apiUrl;
+  private requestId = ''; //  驗證碼請求id
 
   login(body: CInLoginPageData) {
+    body.requestId = this.requestId;
     return this.http.post<any>(`${this.apiUrl}/Auth/Login`, body).pipe(
       map((res: any) => JSON.parse(res)),
       tap((res) => {
-        sessionStorage.setItem('wis_cms_token', res.data);
+        localStorage.setItem('wis_cms_token', res.data);
         const { status } = res;
         status === ResponseStatus.執行成功 && this.router.navigate(['/home']);
       })
@@ -35,7 +37,7 @@ export class LoginService {
   }
 
   logout() {
-    sessionStorage.removeItem('wis_cms_token');
+    localStorage.removeItem('wis_cms_token');
     this.managerInfoService.clearManagerInfo();
     let accounts = this.authService.instance.getAllAccounts();
     if (accounts.length > 0) {
@@ -48,9 +50,10 @@ export class LoginService {
   }
 
   getValidGrphics() {
+    this.requestId = this.uuidv4();
     return this.http.post<Blob>(
       `${this.apiUrl}/Auth/Login/GetValidGrphics`,
-      null,
+      { sRequestId: this.requestId },
       {
         responseType: 'blob' as 'json',
       }
@@ -58,6 +61,15 @@ export class LoginService {
   }
 
   getToken() {
-    return sessionStorage.getItem('wis_cms_token') ?? '';
+    return localStorage.getItem('wis_cms_token') ?? '';
+  }
+
+  uuidv4() {
+    return ('' + 1e7 + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, (c: any) =>
+      (
+        c ^
+        (crypto.getRandomValues(new Uint8Array(1))[0] & (15 >> (c / 4)))
+      ).toString(16)
+    );
   }
 }
