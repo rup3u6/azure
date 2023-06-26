@@ -89,6 +89,16 @@ export class LoginComponent implements OnInit, OnDestroy {
       });
   }
 
+  inputEnterHandler() {
+    if (
+      this.loginFormGroup.value.userAccount &&
+      this.loginFormGroup.value.userPassword &&
+      this.loginFormGroup.value.verificatCode
+    ) {
+      this.login();
+    }
+  }
+
   login() {
     // 觸發formGroup touch
     this.loginFormGroup.markAllAsTouched();

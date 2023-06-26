@@ -35,6 +35,7 @@
                       type="text"
                       placeholder="請輸入帳號"
                       formControlName="userAccount"
+                      (keyup.enter)="inputEnterHandler()"
                     />
                   </div>
                   <div
@@ -63,6 +64,7 @@
                           [type]="pwdVis ? 'text' : 'password'"
                           placeholder="請輸入密碼"
                           formControlName="userPassword"
+                          (keyup.enter)="inputEnterHandler()"
                         />
                       </div>
                       <div
@@ -109,6 +111,7 @@
                           type="text"
                           placeholder="請輸入驗證碼"
                           formControlName="verificatCode"
+                          (keyup.enter)="inputEnterHandler()"
                         />
                       </div>
                       <div class="form-part form-field-link">
