@@ -72,24 +72,47 @@ nz {
   }
 }
 
-.tabulator .tabulator-footer .tabulator-paginator {
-  display: none;
-}
+.tabulator {
+  .tabulator-header .tabulator-col.tabulator-sortable:hover {
+    background: #006c91;
+  }
 
-.tabulator .tabulator-footer .tabulator-footer-contents {
-  padding: 0;
-}
+  .tabulator-footer {
+    .tabulator-paginator {
+      display: none;
+    }
 
-.tabulator .tabulator-header .tabulator-col.tabulator-sortable:hover {
-  background: #006c91;
-}
-
-.result-table {
-  width: calc(100vw - 280px);
+    .tabulator-footer-contents {
+      padding: 0;
+    }
+  }
 }
 
 .query-field[attr="error"] {
   .form-item-text p {
     color: #f04949;
+  }
+}
+
+.nav-compose {
+  max-width: 215px;
+  transition: .8s;
+  overflow: hidden;
+  opacity: 1;
+  white-space: nowrap;
+
+  &:not(.active) {
+    padding-left: 0;
+    padding-right: 0;
+    max-width: 0;
+    opacity: 0;
+
+    +.frame-compose .result-table {
+      width: calc(100vw - 72px);
+    }
+  }
+
+  +.frame-compose .result-table {
+    transition: .8s;
   }
 }

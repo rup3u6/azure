@@ -13,8 +13,10 @@ import { MenuControlService } from 'src/app/core/services/menu-control.service';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
+
   isUserLinkNav = false;
   currentLang = '';
+
   constructor(
     public router: Router,
     private loginService: LoginService,
@@ -46,5 +48,11 @@ export class HeaderComponent {
 
   changeLang(event: any) {
     this.translateService.use(event.target.value);
+  }
+
+  menuBtnClickHandler(event: any) {
+    event.preventDefault();
+
+    this.menuControlService.isShow = !this.menuControlService.isShow;
   }
 }

@@ -10,7 +10,7 @@
   <div class="frame-block">
     <div class="frame-block-inner">
       <!-- START: nav -->
-      <nav app-nav class="frame-compose nav-compose"></nav>
+      <nav app-nav class="frame-compose nav-compose" [ngClass]="{'active': menuControlService.isShow}"></nav>
       <!-- END: nav -->
       <!-- START: main -->
       <div class="frame-compose main-compose">

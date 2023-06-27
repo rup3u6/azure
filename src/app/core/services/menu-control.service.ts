@@ -6,9 +6,9 @@ import { BehaviorSubject, map } from 'rxjs';
   providedIn: 'root',
 })
 export class MenuControlService {
-  public sideMenu$: BehaviorSubject<Array<any>> = new BehaviorSubject<
-    Array<any>
-  >([]);
+
+  isShow = true;
+  sideMenu$: BehaviorSubject<Array<any>> = new BehaviorSubject<Array<any>>([]);
 
   private globalSysSettingMenu = [
     {

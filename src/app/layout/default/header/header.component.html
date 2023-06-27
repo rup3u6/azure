@@ -8,9 +8,15 @@
   <div class="header-component header-function">
     <div class="header-function-inner">
       <div class="header-function-unit menu-button">
-        <a href="javascript:void(0)"
-          ><span class="material-icons">menu</span></a
-        >
+        <a (click)="menuBtnClickHandler($event)">
+          <ng-container *ngIf="menuControlService.isShow; else menuClose">
+            <span class="material-icons">menu</span>
+          </ng-container>
+
+          <ng-template #menuClose>
+            <span class="material-icons-outlined">segment</span>
+          </ng-template>
+        </a>
       </div>
       <div class="header-function-unit system-link">
         <ul>
