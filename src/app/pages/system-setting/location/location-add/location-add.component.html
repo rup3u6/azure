@@ -26,7 +26,7 @@
                     <select
                       formControlName="cfk_Site"
                       [attr.attr]="data.mode === 'edit' && 'readonly'"
-                      (change)="getLocation()"
+                      (change)="getLocationCodeName()"
                     >
                       <option value="" selected>請選擇Site</option>
                       <option [value]="item.key" *ngFor="let item of siteList">{{item.value}}</option>

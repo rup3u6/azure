@@ -77,8 +77,8 @@ export class LocationAddComponent implements OnInit {
     this.siteList = await this.listItemService.getSite();
   }
 
-  async getLocation() {
-    this.locationList = await this.listItemService.getLocation(this.locationFormGroup.value.cfk_Site);
+  async getLocationCodeName() {
+    this.locationList = await this.listItemService.getLocationCodeName(this.locationFormGroup.value.cfk_Site);
   }
 
   async submit() {
