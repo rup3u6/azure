@@ -57,7 +57,11 @@ export class UseInfoAddComponent implements OnInit {
       this.useInfoFormGroup.controls?.['info_Backend'].disable();
 
       this.data.initData.lCOut_UseRole_PageData.forEach((item: any) => {
-        this.roleList.find((item2: any) => item.role_Id === item2.key).checked = true;
+        const role = this.roleList.find((item2: any) => item.role_Id === item2.key)
+
+        if (role) {
+          role.checked = true;
+        }
       });
 
       this.roleChange();
