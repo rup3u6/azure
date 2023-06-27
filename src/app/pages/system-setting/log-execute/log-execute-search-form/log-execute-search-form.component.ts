@@ -37,6 +37,7 @@ export class LogExecuteSearchFormComponent implements OnInit {
       info_Jobnumber: [''],
       info_Name: [''],
       info_Ename: [''],
+      info_Email: [''],
     });
     this.searchFormGroup.setValidators(this.validatorService.dateRangeValidator('startSearchDate', 'endSearchDate'));
 
@@ -57,6 +58,7 @@ export class LogExecuteSearchFormComponent implements OnInit {
       info_Jobnumber: '',
       info_Name: '',
       info_Ename: '',
+      info_Email: '',
     });
 
     this.startSearchDate = new Date();
