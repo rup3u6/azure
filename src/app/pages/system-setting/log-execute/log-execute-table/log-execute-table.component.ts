@@ -78,6 +78,13 @@ export class LogExecuteTableComponent {
       },
     },
     {
+      title: '操作者IP',
+      field: 'logExec_CreateIp',
+      vertAlign: 'middle',
+      hozAlign: 'center',
+      headerHozAlign: 'center',
+    },
+    {
       title: '操作日期',
       field: 'logExec_CreateDate',
       vertAlign: 'middle',
