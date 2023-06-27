@@ -12,20 +12,20 @@ export class MenuControlService {
 
   private globalSysSettingMenu = [
     {
-      module_Name: '全域管理者維護',
+      module_Name: 'MENUS.GLOBAL_MANAGER',  //  全域管理者設定
       child: [
         {
           module_Name: 'MENUS.GLOBAL_LANGUAGE', //  語系設定
           mod_Route: '/globalsetting/language',
         },
         {
-          module_Name: '區域維護',
+          module_Name: 'MENUS.GLOBAL_ZONE', //  區域維護
           mod_Route: '/globalsetting/zone',
         },
-        {
-          module_Name: '白名單維護',
-          mod_Route: '',
-        },
+        // {
+        //   module_Name: '白名單維護',
+        //   mod_Route: '',
+        // },
         // {
         //   module_Name: '選單分類',
         //   mod_Route: '/globalsetting/module-class',
@@ -39,7 +39,7 @@ export class MenuControlService {
   ];
   private sysSettingMenu = [
     {
-      module_Name: '管理者維護',
+      module_Name: 'MENUS.ZONE_MANAGER',  //  管理者維護
       child: [
         {
           module_Name: '角色維護',

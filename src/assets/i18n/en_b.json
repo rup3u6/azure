@@ -33,7 +33,11 @@
     "DISABLE_ITEMS": "Disable Items"
   },
   "MENUS": {
-    "GLOBAL_LANGUAGE": "Language Setting"
+    "GLOBAL_MANAGER": "Global Setting",
+    "GLOBAL_LANGUAGE": "Work With Language",
+    "GLOBAL_ZONE": "Work With Area",
+    "ZONE_MANAGER": "Zone Setting",
+    "NORMAL_MANAGER": "Setting"
   },
   "BUTTONS": {
     "LOGOUT": "Logout",

@@ -33,7 +33,11 @@
     "DISABLE_ITEMS": "停用項目"
   },
   "MENUS": {
-    "GLOBAL_LANGUAGE": "語系設定"
+    "GLOBAL_MANAGER": "全域管理者設定",
+    "GLOBAL_LANGUAGE": "語系設定",
+    "GLOBAL_ZONE": "區域維護",
+    "ZONE_MANAGER": "管理者設定",
+    "NORMAL_MANAGER": "管理員"
   },
   "BUTTONS": {
     "LOGOUT": "登出",

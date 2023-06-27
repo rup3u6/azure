@@ -22,7 +22,7 @@
         <ul>
           <li>
             <a routerLink="/home" routerLinkActive="active" attr="staff"
-              >管理員</a
+              >{{ "MENUS.NORMAL_MANAGER" | translate }}</a
             >
           </li>
           <li
@@ -36,7 +36,7 @@
               href="javascript:void(0)"
               attr="setting"
               (click)="menuControlService.setSideMenu('systemSetting', true)"
-              >管理者設定</a
+              >{{ "MENUS.ZONE_MANAGER" | translate }}</a
             >
           </li>
           <li *ngIf="managerInfoService.isGlobal === '1'">
@@ -45,7 +45,7 @@
               href="javascript:void(0)"
               attr="global"
               (click)="menuControlService.setSideMenu('globalSetting', true)"
-              >全域管理者設定</a
+              >{{ "MENUS.GLOBAL_MANAGER" | translate }}</a
             >
           </li>
         </ul>
