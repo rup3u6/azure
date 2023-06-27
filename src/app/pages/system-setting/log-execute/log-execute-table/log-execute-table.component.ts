@@ -63,11 +63,12 @@ export class LogExecuteTableComponent {
 
         if (rowData.info_Jobnumber) { text = rowData.info_Jobnumber; }
 
-        if (rowData.logExec_CreateCode) {
+        if (rowData.info_Email) {
           if (text) { text += '/'; }
 
-          text += rowData.logExec_CreateCode;
+          text += rowData.info_Email;
         }
+
         if (rowData.info_Ename) {
           if (text) { text += '/'; }
 
