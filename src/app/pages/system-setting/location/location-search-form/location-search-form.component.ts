@@ -10,6 +10,7 @@ import { ListItem } from 'src/app/core/enum/list-item';
 import { ListItemService } from 'src/app/core/services/baseAPI/list-item.service';
 import { LocationService } from 'src/app/core/services/baseAPI/location.service';
 import { LoadingService } from 'src/app/core/services/loading.service';
+import { ManagerInfoService } from 'src/app/core/services/authAPI/manager-info.service';
 
 @Component({
   selector: 'div[sys-location-search-form]',
@@ -20,6 +21,7 @@ export class LocationSearchFormComponent implements OnInit {
 
   siteList: any = [];
   locationList: any = [];
+  locationAreaList: any = [];
 
   isSearchFormGroup = false;
   searchFormGroup!: FormGroup;
@@ -28,15 +30,18 @@ export class LocationSearchFormComponent implements OnInit {
     private formBuilder: FormBuilder,
     public listItemService: ListItemService,
     public locationService: LocationService,
-    private loadingService: LoadingService
+    private loadingService: LoadingService,
+    private managerInfoService: ManagerInfoService,
   ) { }
 
   async ngOnInit(): Promise<void> {
     await this.getSite();
+    await this.getLocationArea();
 
     this.searchFormGroup = this.formBuilder.group({
       ck_Location_Code: [''],
       cfk_Site: [''],
+      ck_Area_Code: [''],
       location_State: [''],
     });
     this.searchFormGroup.valueChanges.subscribe({
@@ -51,6 +56,7 @@ export class LocationSearchFormComponent implements OnInit {
     this.searchFormGroup.patchValue({
       ck_Location_Code: '',
       cfk_Site: '',
+      ck_Area_Code: '',
       location_State: '1',
     });
   }
@@ -59,8 +65,12 @@ export class LocationSearchFormComponent implements OnInit {
     this.siteList = await this.listItemService.getSite();
   }
 
-  async getLocation() {
-    this.locationList = await this.listItemService.getLocation(this.searchFormGroup.value.cfk_Site);
+  async getLocationCodeName() {
+    this.locationList = await this.listItemService.getLocationCodeName(this.searchFormGroup.value.cfk_Site);
+  }
+
+  async getLocationArea() {
+    this.locationAreaList = await this.listItemService.getLocationArea(this.managerInfoService.activeZoneItem.zoneId);
   }
 
   async search() {

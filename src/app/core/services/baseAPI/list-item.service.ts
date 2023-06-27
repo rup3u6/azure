@@ -73,6 +73,14 @@ export class ListItemService {
     return await this.searchHandle([[ListItem.與Site關聯_顯示Location名稱, cfk_Site]]);
   }
 
+  async getLocationCodeName(cfk_Site: string): Promise<any[]> {
+    return await this.searchHandle([[ListItem.顯示LocationCode_Location名稱, cfk_Site]]);
+  }
+
+  async getLocationArea(cfk_Site: string): Promise<any[]> {
+    return await this.searchHandle([[ListItem.當前依使用者Zone_取得Location分區, cfk_Site]]);
+  }
+
   async getSecretaryName(): Promise<any[]> {
     return await this.searchHandle([[ListItem.顯示工號_中名_英名_Site]]);
   }

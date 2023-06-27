@@ -2,7 +2,7 @@
   <div class="content-query-unit query-field">
     <div class="field-title">Site</div>
     <div class="field-entry">
-      <select formControlName="cfk_Site" (change)="getLocation()">
+      <select formControlName="cfk_Site" (change)="getLocationCodeName()">
         <option value="" selected>全部</option>
         <option [value]="item.key" *ngFor="let item of siteList">{{item.value}}</option>
       </select>
@@ -14,6 +14,15 @@
       <select formControlName="ck_Location_Code">
         <option value="" selected>全部</option>
         <option [value]="item.key" *ngFor="let item of locationList">{{item.value}}</option>
+      </select>
+    </div>
+  </div>
+  <div class="content-query-unit query-field">
+    <div class="field-title">Area</div>
+    <div class="field-entry">
+      <select formControlName="ck_Area_Code">
+        <option value="" selected>全部</option>
+        <option [value]="item.key" *ngFor="let item of locationAreaList">{{item.value}}</option>
       </select>
     </div>
   </div>
