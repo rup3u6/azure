@@ -10,11 +10,11 @@
       <div class="header-function-unit menu-button">
         <a (click)="menuBtnClickHandler($event)">
           <ng-container *ngIf="menuControlService.isShow; else menuClose">
-            <span class="material-icons">menu</span>
+            <span class="material-icons-outlined">segment</span>
           </ng-container>
 
           <ng-template #menuClose>
-            <span class="material-icons-outlined">segment</span>
+            <span class="material-icons">menu</span>
           </ng-template>
         </a>
       </div>
