@@ -74,7 +74,7 @@ export class ListItemService {
   }
 
   async getLocationCodeName(cfk_Site: string): Promise<any[]> {
-    return await this.searchHandle([[ListItem.顯示LocationCode_Location名稱, cfk_Site]]);
+    return await this.searchHandle([[ListItem.與Site關聯_顯示LocationCode_Location名稱, cfk_Site]]);
   }
 
   async getLocationArea(cfk_Site: string): Promise<any[]> {
