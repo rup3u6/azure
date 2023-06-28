@@ -8,7 +8,7 @@ import { HttpService } from '../../services/http.service';
 import * as base from '../../models/base';
 import * as listItem from '../../models/baseAPI/list-item';
 import { ResponseStatus } from '../../enum/response-status';
-import { Common, SysCodeTypeCode, SysCodeStyleCode } from '../../enum/list-item';
+import { Common, SysCode, SysCodeStyleCode } from '../../enum/list-item';
 import { LoadingService } from '../loading.service';
 
 @Injectable({
@@ -94,7 +94,7 @@ export class ListItemService {
 
   //#region sysCode
   async GetFormStateName(): Promise<any[]> {
-    return await this.searchHandle([[SysCodeTypeCode.停用狀態 + SysCodeStyleCode.顯示代碼名稱]]);
+    return await this.searchHandle([[SysCode.停用狀態 + SysCodeStyleCode.顯示代碼名稱]]);
   }
   //#endregion
 }

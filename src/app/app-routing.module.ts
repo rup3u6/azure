@@ -23,6 +23,15 @@ const routes: Routes = [
       import('./pages/home/home.module').then((mod) => mod.HomeModule),
   },
   {
+    path: 'normalsetting',
+    component: DefaultComponent,
+    canActivateChild: [AuthGuard],
+    loadChildren: () =>
+      import('./pages/normal-setting/normal-setting.module').then(
+        (mod) => mod.NormalSettingModule
+      ),
+  },
+  {
     path: 'systemsetting',
     component: DefaultComponent,
     canActivateChild: [AuthGuard],

@@ -5,17 +5,17 @@ import { firstValueFrom } from 'rxjs';
 import { ResponseStatus } from 'src/app/core/enum/response-status';
 import { Message } from 'src/app/core/enum/message';
 
-// services
-import { GZoneService } from 'src/app/core/services/baseAPI/g-zone.service';
+// service
 import { LoadingService } from 'src/app/core/services/loading.service';
 import { MessageService } from 'src/app/core/services/message.service';
+import { NMailService } from 'src/app/core/services/authAPI/n-mail.service';
 
 @Component({
-  selector: 'app-g-zone',
-  templateUrl: './g-zone.component.html',
-  styleUrls: ['./g-zone.component.scss']
+  selector: 'app-n-mail',
+  templateUrl: './n-mail.component.html',
+  styleUrls: ['./n-mail.component.scss']
 })
-export class GZoneComponent {
+export class NMailComponent {
 
   popup: any = {
     component: null,
@@ -23,7 +23,7 @@ export class GZoneComponent {
   };
 
   constructor(
-    public gZoneService: GZoneService,
+    public nMailService: NMailService,
     private loadingService: LoadingService,
     private messageService: MessageService
   ) { }
@@ -37,30 +37,30 @@ export class GZoneComponent {
   }
 
   async editPopupHandler(rowData: any) {
-    let body = {
-      zone_Id: rowData.zone_Id,
-    };
-    this.loadingService.startLoading();
-    try {
-      let res = await firstValueFrom(this.gZoneService.getDetail(body));
-      const { status } = res;
-      if (status !== ResponseStatus.執行成功) {
-        return;
-      }
-      this.popup.data = {
-        mode: 'edit',
-        initData: res.data,
-      };
-      this.popup.component = 'add';
-    } catch (error) {
-      console.log(error);
-    } finally {
-      this.loadingService.stopLoading();
-    }
+    // let body = {
+    //   zone_Id: rowData.zone_Id,
+    // };
+    // this.loadingService.startLoading();
+    // try {
+    //   let res = await firstValueFrom(this.nMailService.getDetail(body));
+    //   const { status } = res;
+    //   if (status !== ResponseStatus.執行成功) {
+    //     return;
+    //   }
+    //   this.popup.data = {
+    //     mode: 'edit',
+    //     initData: res.data,
+    //   };
+    //   this.popup.component = 'add';
+    // } catch (error) {
+    //   console.log(error);
+    // } finally {
+    //   this.loadingService.stopLoading();
+    // }
   }
 
   deactivatePopupHandler() {
-    let selectedData = this.gZoneService
+    let selectedData = this.nMailService
       .getTabulatorTable()
       .getSelectedData();
     if (selectedData.length === 0) {
@@ -72,7 +72,7 @@ export class GZoneComponent {
   }
 
   async deactivateHandler() {
-    let selectedData = this.gZoneService
+    let selectedData = this.nMailService
       .getTabulatorTable()
       .getSelectedData();
 
@@ -86,15 +86,15 @@ export class GZoneComponent {
       sState: "0"
     };
 
-    this.loadingService.startLoading();
+    // this.loadingService.startLoading();
     try {
-      let res = await firstValueFrom(this.gZoneService.convertState(body));
-      const { status } = res;
-      if (status === ResponseStatus.執行成功) {
-        let searchRes = await firstValueFrom(this.gZoneService.search());
-        this.gZoneService.getTabulatorTable().setData(searchRes.data ?? []);
-        this.popup.component = null
-      }
+      // let res = await firstValueFrom(this.nMailService.convertState(body));
+      // const { status } = res;
+      // if (status === ResponseStatus.執行成功) {
+      //   let searchRes = await firstValueFrom(this.nMailService.search());
+      //   this.nMailService.getTabulatorTable().setData(searchRes.data ?? []);
+      //   this.popup.component = null
+      // }
     } catch (error) {
       console.log(error);
     } finally {

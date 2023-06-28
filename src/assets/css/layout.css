@@ -279,7 +279,16 @@ body,
 .nav-compose {
   flex: 0 0 215px;
   padding: 24px 5px 24px 20px;
-  min-height: calc(100vh - 60px);
+  min-height: calc(100vh - 80px);
+  max-height: calc(100vh - 65px);
+  /* border: #f00 solid 1px; */
+  overflow: auto;
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.nav-compose::-webkit-scrollbar {
+  display: none;  /* Safari and Chrome */
 }
 
 .nav-text h4 {
@@ -1705,6 +1714,70 @@ hr.seperate-line-solid {
 
 .input-col li span button span {
   font-size: 1.75rem;
+}
+
+.tag-link a {
+  font-size: 0.875rem;
+}
+
+.tag-link li {
+  margin-right: 5px;
+}
+
+.tag-link button {
+  font-size: 0.875rem;
+  background: none;
+  color: #0080e3;
+}
+
+.tag-entry-input {
+  padding: 4px;
+  border: #aaa solid 1px;
+  border-radius: 4px;
+  line-height: 1.8;
+}
+
+.tag-entry-textarea {
+  min-height: 200px;
+  max-height: 250px;
+  padding: 4px;
+  border: #aaa solid 1px;
+  border-radius: 4px;
+  line-height: 1.8;
+  overflow: auto;
+}
+
+.tag-button {
+  display: inline-block;
+  padding: 2px 4px;
+  margin: 0 2px;
+  background: #ddd;
+  border-radius: 4px;
+  border: #eee solid 1px;
+  cursor: pointer;
+  line-height: 1.4;
+}
+
+.tag-button:hover {
+  background: #ccc;
+}
+
+.tag-button a {
+  color: #555;
+}
+
+.tag-button a span {
+  padding-top: 2px;
+  margin-left: 3px;
+  font-size: 0.875rem;
+}
+
+.tag-link button {
+  cursor: pointer;
+}
+
+.tag-link button:hover {
+  color: #006c91;
 }
 
 /* END: popup */

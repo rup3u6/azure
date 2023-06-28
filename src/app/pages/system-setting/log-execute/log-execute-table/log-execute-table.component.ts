@@ -1,7 +1,9 @@
 import { DatePipe } from '@angular/common';
 import { Component, EventEmitter, Output } from '@angular/core';
-import { LogExecuteService } from 'src/app/core/services/baseAPI/log-execute.service';
 import { Tabulator } from 'tabulator-tables';
+
+// services
+import { LogExecuteService } from 'src/app/core/services/baseAPI/log-execute.service';
 
 @Component({
   selector: 'div[sys-log-execute-table]',

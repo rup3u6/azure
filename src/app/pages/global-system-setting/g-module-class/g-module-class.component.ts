@@ -1,12 +1,14 @@
 import { Component } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
-import { GModuleClassService } from 'src/app/core/services/authAPI/g-module-class.service';
-import { LoadingService } from 'src/app/core/services/loading.service';
-import { MessageService } from 'src/app/core/services/message.service';
 
 // enum
 import { ResponseStatus } from 'src/app/core/enum/response-status';
 import { Message } from 'src/app/core/enum/message';
+
+// services
+import { GModuleClassService } from 'src/app/core/services/authAPI/g-module-class.service';
+import { LoadingService } from 'src/app/core/services/loading.service';
+import { MessageService } from 'src/app/core/services/message.service';
 
 @Component({
   selector: 'app-g-module-class',

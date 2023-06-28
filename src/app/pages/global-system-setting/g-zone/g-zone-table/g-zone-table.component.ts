@@ -1,7 +1,9 @@
 import { Component, EventEmitter, Output, ViewContainerRef } from '@angular/core';
-import { GZoneService } from 'src/app/core/services/baseAPI/g-zone.service';
 import { Tabulator } from 'tabulator-tables';
 import { DatePipe } from '@angular/common';
+
+// service
+import { GZoneService } from 'src/app/core/services/baseAPI/g-zone.service';
 
 // components
 import { TabulatorCtrlComponent, TabulatorCtrlType } from 'src/app/shared/components/tabulator-ctrl/tabulator-ctrl.component';

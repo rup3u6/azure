@@ -1,0 +1,55 @@
+<div class="content-query-field" [formGroup]="searchFormGroup">
+  <div class="content-query-unit query-field">
+    <div class="field-title">規則名稱</div>
+    <div class="field-entry">
+      <input
+        type="text"
+        placeholder="請輸入規則名稱"
+        formControlName=""
+      />
+    </div>
+  </div>
+  <div class="content-query-unit query-field">
+    <div class="field-title">收件人對象</div>
+    <div class="field-entry">
+      <select
+        formControlName="">
+        <option value="">全部</option>
+        <option value="1">活動參與者</option>
+        <option value="2">中籤者</option>
+        <option value="3">未中籤者</option>
+      </select>
+    </div>
+  </div>
+  <div class="content-query-unit query-field">
+    <div class="field-title">事件</div>
+    <div class="field-entry">
+      <select
+        formControlName="">
+        <option value="">全部</option>
+        <option value="1">活動</option>
+        <option value="2">中籤</option>
+        <option value="3">活動取消</option>
+      </select>
+    </div>
+  </div>
+  <div class="content-query-unit query-field">
+    <div class="field-title">狀態</div>
+    <div class="field-entry">
+      <select
+        formControlName="">
+        <option value="2">全部</option>
+        <option value="1">啟用</option>
+        <option value="0">停用</option>
+      </select>
+    </div>
+  </div>
+</div>
+<div class="content-query-button">
+  <div class="content-query-unit query-button">
+    <ul>
+      <li><button class="cancel-btn" (click)="clear()">清除</button></li>
+      <li><button class="query-btn" (click)="search()">查詢</button></li>
+    </ul>
+  </div>
+</div>

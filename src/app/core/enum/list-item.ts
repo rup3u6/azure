@@ -19,9 +19,9 @@ export enum Common {
 //#endregion
 
 //#region sysCode
-export enum SysCodeTypeCode {
-  停用狀態 = 'FormState',
-  是否 = 'YesOrNo',
+export enum SysCode {
+  停用狀態 = 'SysCode,FormState,',
+  是否 = 'SysCode,YesOrNo,',
 }
 
 export enum SysCodeStyleCode {

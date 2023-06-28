@@ -2,19 +2,19 @@ import { Component, EventEmitter, Output, ViewContainerRef } from '@angular/core
 import { Tabulator } from 'tabulator-tables';
 import { DatePipe } from '@angular/common';
 
-// service
-import { GModuleService } from 'src/app/core/services/authAPI/g-module.service';
+// services
+import { NMailService } from 'src/app/core/services/authAPI/n-mail.service';
 
 // components
 import { TabulatorCtrlComponent, TabulatorCtrlType } from 'src/app/shared/components/tabulator-ctrl/tabulator-ctrl.component';
 
 @Component({
-  selector: 'div[g-module-table]',
-  templateUrl: './g-module-table.component.html',
-  styleUrls: ['./g-module-table.component.scss'],
+  selector: 'div[n-mail-table]',
+  templateUrl: './n-mail-table.component.html',
+  styleUrls: ['./n-mail-table.component.scss'],
   entryComponents: [TabulatorCtrlComponent]
 })
-export class GModuleTableComponent {
+export class NMailTableComponent {
 
   @Output() add = new EventEmitter<any>();
   @Output() edit = new EventEmitter<any>();
@@ -31,56 +31,42 @@ export class GModuleTableComponent {
       headerHozAlign: 'center',
     },
     {
-      title: '選單分類名稱',
-      field: 'modClass_Name',
+      title: '規則名稱',
+      field: '',
       vertAlign: 'middle',
       hozAlign: 'center',
       headerHozAlign: 'center',
     },
     {
-      title: '作業名稱',
-      field: 'mod_Name',
+      title: '事件',
+      field: '',
+      vertAlign: 'middle',
+      hozAlign: 'center',
+      headerHozAlign: 'center',
+    },
+    {
+      title: '收件人',
+      field: '',
+      vertAlign: 'middle',
+      hozAlign: 'center',
+      headerHozAlign: 'center',
+    },
+    {
+      title: '主旨',
+      field: '',
       vertAlign: 'middle',
       hozAlign: 'center',
       headerHozAlign: 'center',
     },
     {
       title: '狀態',
-      field: 'mod_State',
+      field: '',
       vertAlign: 'middle',
       hozAlign: 'center',
       headerHozAlign: 'center',
       formatter: (cell: any) => {
         return cell.getValue() === '1' ? '啟用' : '停用';
       },
-    },
-    {
-      title: '異動日期',
-      field: 'mod_EditDate',
-      vertAlign: 'middle',
-      hozAlign: 'center',
-      headerHozAlign: 'center',
-      formatter: (cell: any) => {
-        const timeStamp = cell.getValue();
-
-        const date = new Date(timeStamp * 1000);
-
-        return this.datePipe.transform(date, "yyyy/MM/dd");
-      },
-    },
-    {
-      title: '異動者IP',
-      field: 'mod_EditIp',
-      vertAlign: 'middle',
-      hozAlign: 'center',
-      headerHozAlign: 'center',
-    },
-    {
-      title: '異動者',
-      field: 'mod_EditCode',
-      vertAlign: 'middle',
-      hozAlign: 'center',
-      headerHozAlign: 'center',
     },
     {
       title: '功能',
@@ -111,10 +97,10 @@ export class GModuleTableComponent {
   constructor(
     private viewContainerRef: ViewContainerRef,
     private datePipe: DatePipe,
-    public gModuleService: GModuleService
+    public nMailService: NMailService
   ) { }
 
   tableBuilded(table: Tabulator) {
-    this.gModuleService.tableBuilded(table);
+    this.nMailService.tableBuilded(table);
   }
 }

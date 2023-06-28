@@ -1,0 +1,222 @@
+<!-- START: popup -->
+<div class="frame-block">
+  <div class="frame-compose popup-compose">
+    <div class="extra-size-popup-close">
+      <a (click)="close.emit()"
+        ><span class="material-icons-outlined">highlight_off</span></a
+      >
+    </div>
+    <div class="popup-composer-inner">
+      <!-- START: default-popup -->
+      <div class="popup-component extra-size-popup" type="normal">
+        <div class="popup-header">
+          <div class="popup-header-inner">
+            <div class="popup-header-unit header-text">
+              {{ data.mode === "add" ? "新增" : "編輯" }}新增規則/範本
+            </div>
+          </div>
+        </div>
+        <div class="popup-content">
+          <div class="popup-content-form">
+            <div class="popup-content-item">
+              <div class="popup-content-item-inner">
+                <div class="popup-form">
+                  <div class="form-row row-3">
+                    <div class="form-item" type="required" [attr.attr]="f['lCIn_Mail_RoleData'].errors && f['lCIn_Mail_RoleData'].touched && 'error'">
+                      <div class="form-item-inner">
+                        <div class="form-item-title">規則名稱</div>
+                        <div class="form-item-entry">
+                          <input type="text" placeholder="請輸入規則名稱" />
+                        </div>
+                        <div class="form-item-text" *ngIf="f['lCIn_Mail_RoleData'].errors && f['lCIn_Mail_RoleData'].touched">
+                          <p>{{ f['lCIn_Mail_RoleData'].errors | errorMessage : '角色' }}</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-item" type="required" [attr.attr]="f['lCIn_Mail_RoleData'].errors && f['lCIn_Mail_RoleData'].touched && 'error'">
+                      <div class="form-item-inner">
+                        <div class="form-item-title">觸發事件</div>
+                        <div class="form-item-entry">
+                          <select name="" id="">
+                            <option value="">活動</option>
+                            <option value="">中籤</option>
+                            <option value="">未中籤</option>
+                            <option value="">繳費通知</option>
+                          </select>
+                        </div>
+                        <div class="form-item-text" *ngIf="f['lCIn_Mail_RoleData'].errors && f['lCIn_Mail_RoleData'].touched">
+                          <p>{{ f['lCIn_Mail_RoleData'].errors | errorMessage : '角色' }}</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-item" type="required" [attr.attr]="f['lCIn_Mail_RoleData'].errors && f['lCIn_Mail_RoleData'].touched && 'error'">
+                      <div class="form-item-inner">
+                        <div class="form-item-title">收件人</div>
+                        <div class="form-item-entry">
+                          <select name="" id="">
+                            <option value="">活動參與者</option>
+                            <option value="">中籤者</option>
+                            <option value="">未中籤者</option>
+                          </select>
+                        </div>
+                        <div class="form-item-text" *ngIf="f['lCIn_Mail_RoleData'].errors && f['lCIn_Mail_RoleData'].touched">
+                          <p>{{ f['lCIn_Mail_RoleData'].errors | errorMessage : '角色' }}</p>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- <div class="form-item" type="required" [attr.attr]="f['lCIn_Mail_RoleData'].errors && f['lCIn_Mail_RoleData'].touched && 'error'">
+                        <div class="form-item-inner">
+                          <div class="form-item-title">狀態</div>
+                          <div class="form-item-entry">
+                            <ul>
+                              <li>
+                                <input type="radio" checked />
+                                <label for="">啟用</label>
+                              </li>
+                              <li>
+                                <input type="radio" />
+                                <label for="">停用</label>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div> -->
+                  </div>
+                  <div class="form-row row-3">
+                    <div class="form-item" type="required" [attr.attr]="f['lCIn_Mail_RoleData'].errors && f['lCIn_Mail_RoleData'].touched && 'error'">
+                      <div class="form-item-inner">
+                        <div class="form-item-title">發送時間點</div>
+                        <div class="form-item-entry">
+                          <select name="" id="">
+                            <option value="">立即</option>
+                            <option value="">1天前</option>
+                            <option value="">2天前</option>
+                            <option value="">3天前</option>
+                          </select>
+                        </div>
+                        <div class="form-item-text" *ngIf="f['lCIn_Mail_RoleData'].errors && f['lCIn_Mail_RoleData'].touched">
+                          <p>{{ f['lCIn_Mail_RoleData'].errors | errorMessage : '角色' }}</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-item" type="required" [attr.attr]="f['lCIn_Mail_RoleData'].errors && f['lCIn_Mail_RoleData'].touched && 'error'">
+                      <div class="form-item-inner">
+                        <div class="form-item-title">狀態</div>
+                        <div class="form-item-entry">
+                          <ul>
+                            <li>
+                              <input type="radio" checked />
+                              <label for="">啟用</label>
+                            </li>
+                            <li>
+                              <input type="radio" />
+                              <label for="">停用</label>
+                            </li>
+                          </ul>
+                        </div>
+                        <div class="form-item-text" *ngIf="f['lCIn_Mail_RoleData'].errors && f['lCIn_Mail_RoleData'].touched">
+                          <p>{{ f['lCIn_Mail_RoleData'].errors | errorMessage : '角色' }}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="popup-form">
+                  <div class="form-row row-1">
+                    <div class="form-item" type="required" [attr.attr]="f['lCIn_Mail_RoleData'].errors && f['lCIn_Mail_RoleData'].touched && 'error'">
+                      <div class="form-item-inner">
+                        <div class="form-item-title">主旨</div>
+                        <div class="form-item-entry">
+                          <div class="tag-entry-input" contenteditable="true">
+                            報名成功通知！<span class="tag-button"
+                              >#活動名稱<a href="#"
+                                ><span class="material-icons-outlined">
+                                  close</span
+                                ></a
+                              ></span
+                            >報名成功通知
+                          </div>
+                          <ul class="tag-link">
+                            <li><button class="selected">#活動名稱</button></li>
+                            <li><button>#報名人員</button></li>
+                            <li><button>#活動地點</button></li>
+                            <li><button>#活動時間</button></li>
+                            <li><button>#繳款截止日</button></li>
+                          </ul>
+                        </div>
+                        <div class="form-item-text" *ngIf="f['lCIn_Mail_RoleData'].errors && f['lCIn_Mail_RoleData'].touched">
+                          <p>{{ f['lCIn_Mail_RoleData'].errors | errorMessage : '角色' }}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-row row-1">
+                    <div class="form-item" type="required" [attr.attr]="f['lCIn_Mail_RoleData'].errors && f['lCIn_Mail_RoleData'].touched && 'error'">
+                      <div class="form-item-inner">
+                        <div class="form-item-title">內容</div>
+                        <div class="form-item-entry">
+                          <!-- <textarea
+                            name=""
+                            id=""
+                            cols="30"
+                            rows="6"
+                            placeholder="請輸入內容"
+                          ></textarea> -->
+                          <div class="tag-entry-textarea" contenteditable="true">
+                            報名成功通知！<span class="tag-button"
+                              >#活動名稱<a href="#"
+                                ><span class="material-icons-outlined">
+                                  close</span
+                                ></a
+                              ></span
+                            >報名成功通知<br/>
+                            報名成功通知！<span class="tag-button"
+                              >#活動名稱<a href="#"
+                                ><span class="material-icons-outlined">
+                                  close</span
+                                ></a
+                              ></span
+                            >報名成功通知<br/>
+                            報名成功通知！<span class="tag-button"
+                              >#活動名稱<a href="#"
+                                ><span class="material-icons-outlined">
+                                  close</span
+                                ></a
+                              ></span
+                            >報名成功通知<br/>
+                          </div>
+                          <ul class="tag-link">
+                            <li><button>#活動名稱</button></li>
+                            <li><button>#報名人員</button></li>
+                            <li><button>#活動地點</button></li>
+                            <li><button>#活動時間</button></li>
+                            <li><button>#繳款截止日</button></li>
+                          </ul>
+                        </div>
+                        <div class="form-item-text" *ngIf="f['lCIn_Mail_RoleData'].errors && f['lCIn_Mail_RoleData'].touched">
+                          <p>{{ f['lCIn_Mail_RoleData'].errors | errorMessage : '角色' }}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="popup-footer">
+          <div class="popup-footer-inner">
+            <div class="popup-footer-unit footer-button" btn="cancel">
+              <button (click)="close.emit()">取消</button>
+            </div>
+            <div class="popup-footer-unit footer-button" btn="confirm">
+              <button (click)="submit()">確認</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- END: default-popup -->
+    </div>
+  </div>
+</div>
+<!-- END: popup -->
