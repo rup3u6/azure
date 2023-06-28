@@ -81,9 +81,12 @@ export class GLanguageTableComponent {
       formatter: (cell: any) => {
         const timeStamp = cell.getValue();
 
-        const date = new Date(timeStamp * 1000);
-
-        return this.datePipe.transform(date, 'yyyy/MM/dd');
+        if (timeStamp) {
+          const date = new Date(timeStamp * 1000);
+          return this.datePipe.transform(date, 'yyyy/MM/dd');
+        } else {
+          return '';
+        }
       },
     },
     {
@@ -131,7 +134,7 @@ export class GLanguageTableComponent {
     private datePipe: DatePipe,
     private translateService: TranslateService,
     public gLanguageService: GLanguageService
-  ) {}
+  ) { }
 
   tableBuilded(table: Tabulator) {
     this.gLanguageService.tableBuilded(table);

@@ -75,8 +75,15 @@ export class UseRoleAddComponent implements OnInit {
     if (this.data.mode === 'add') {
       this.setLanguageFormGroupInit();
     } else {
-      this.roleStartDate = new Date(this.datePipe.transform(this.data.initData.oCTab_UseRole.role_StartDate * 1000, 'yyyy/MM/dd 00:00:00') ?? '');
-      this.roleEndDate = new Date(this.datePipe.transform(this.data.initData.oCTab_UseRole.role_EndDate * 1000, 'yyyy/MM/dd 23:59:59') ?? '');
+      const role_StartDate = this.data.initData.oCTab_UseRole.role_StartDate;
+      if (role_StartDate) {
+        this.roleStartDate = new Date(this.datePipe.transform(role_StartDate * 1000, 'yyyy/MM/dd 00:00:00') ?? '');
+      }
+
+      const role_EndDate = this.data.initData.oCTab_UseRole.role_EndDate;
+      if (role_EndDate) {
+        this.roleEndDate = new Date(this.datePipe.transform(role_EndDate * 1000, 'yyyy/MM/dd 23:59:59') ?? '');
+      }
 
       this.useRoleFormGroup.patchValue({
         oCIn_UseRole_PageData: this.data.initData.oCTab_UseRole,

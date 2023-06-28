@@ -96,9 +96,12 @@ export class LogExecuteTableComponent {
       formatter: (cell: any) => {
         const timeStamp = cell.getValue();
 
-        const date = new Date(timeStamp * 1000);
-
-        return this.datePipe.transform(date, "yyyy/MM/dd HH:mm:ss");
+        if (timeStamp) {
+          const date = new Date(timeStamp * 1000);
+          return this.datePipe.transform(date, 'yyyy/MM/dd HH:mm:ss');
+        } else {
+          return '';
+        }
       },
     },
   ];
