@@ -4,7 +4,6 @@ import { finalize, firstValueFrom } from 'rxjs';
 
 // enum
 import { ResponseStatus } from 'src/app/core/enum/response-status';
-import { ListItem } from 'src/app/core/enum/list-item';
 
 // service
 import { ListItemService } from 'src/app/core/services/baseAPI/list-item.service';

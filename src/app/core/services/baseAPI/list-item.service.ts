@@ -8,7 +8,7 @@ import { HttpService } from '../../services/http.service';
 import * as base from '../../models/base';
 import * as listItem from '../../models/baseAPI/list-item';
 import { ResponseStatus } from '../../enum/response-status';
-import { ListItem } from '../../enum/list-item';
+import { Common, SysCodeTypeCode, SysCodeStyleCode } from '../../enum/list-item';
 import { LoadingService } from '../loading.service';
 
 @Injectable({
@@ -64,29 +64,37 @@ export class ListItemService {
 
     return [];
   }
+  //#endregion
 
+  //#region common
   async getSite(): Promise<any[]> {
-    return await this.searchHandle([[ListItem.顯示Site]]);
+    return await this.searchHandle([[Common.顯示Site]]);
   }
 
   async getLocation(cfk_Site: string): Promise<any[]> {
-    return await this.searchHandle([[ListItem.與Site關聯_顯示Location名稱, cfk_Site]]);
+    return await this.searchHandle([[Common.與Site關聯_顯示Location名稱, cfk_Site]]);
   }
 
   async getLocationCodeName(cfk_Site: string): Promise<any[]> {
-    return await this.searchHandle([[ListItem.顯示Location, cfk_Site]]);
+    return await this.searchHandle([[Common.顯示Location, cfk_Site]]);
   }
 
   async getLocationArea(cfk_Site: string): Promise<any[]> {
-    return await this.searchHandle([[ListItem.當前依使用者Zone_取得Location分區, cfk_Site]]);
+    return await this.searchHandle([[Common.當前依使用者Zone_取得Location分區, cfk_Site]]);
   }
 
   async getSecretaryName(): Promise<any[]> {
-    return await this.searchHandle([[ListItem.顯示工號_中名_英名_Site]]);
+    return await this.searchHandle([[Common.顯示工號_中名_英名_Site]]);
   }
 
   async GetRoleName(): Promise<any[]> {
-    return await this.searchHandle([[ListItem.顯示角色名稱]]);
+    return await this.searchHandle([[Common.顯示角色名稱]]);
+  }
+  //#endregion
+
+  //#region sysCode
+  async GetFormStateName(): Promise<any[]> {
+    return await this.searchHandle([[SysCodeTypeCode.停用狀態 + SysCodeStyleCode.顯示代碼名稱]]);
   }
   //#endregion
 }

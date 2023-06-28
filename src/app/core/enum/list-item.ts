@@ -1,4 +1,5 @@
-export enum ListItem {
+//#region Common
+export enum Common {
   顯示使用者姓名 = 'Common,UseInfo,Name',
   顯示使用者ID = 'Common,UseInfo,Account',
   顯示使用者ID_姓名 = 'Common,UseInfo,AccountName',
@@ -15,3 +16,18 @@ export enum ListItem {
   針對還沒使用過的Site_顯示Site = 'Common,Wf_Zone_Site,EnableSite',
   針對已經使用過的Site_顯示Site = 'Common,Wf_Zone_Site,DisenableSite',
 }
+//#endregion
+
+//#region sysCode
+export enum SysCodeTypeCode {
+  停用狀態 = 'FormState',
+  是否 = 'YesOrNo',
+}
+
+export enum SysCodeStyleCode {
+  顯示代碼名稱 = 'Name',
+  顯示代碼代號_代碼名稱 = 'CodeName',
+  顯示代碼名稱_不篩選停用狀態 = 'NameAllState',
+  顯示代碼代號_代碼名稱_不篩選停用狀態 = 'CodeNameAllState',
+}
+//#endregion

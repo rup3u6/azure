@@ -6,7 +6,6 @@ import { DatePipe } from '@angular/common';
 // enum
 import { ResponseStatus } from 'src/app/core/enum/response-status';
 import { Message } from 'src/app/core/enum/message';
-import { ListItem } from 'src/app/core/enum/list-item';
 
 // service
 import { ValidatorService } from 'src/app/core/services/validator.service';
