@@ -4,6 +4,7 @@ export enum ListItem {
   顯示使用者ID_姓名 = 'Common,UseInfo,AccountName',
   顯示Site = 'Common,UseInfo,Site',
   顯示工號_中名_英名_Site = 'Common,UseInfo,SecretaryName',
+  顯示Location = 'Common,UseInfo,Site_LocationId',
   顯示角色名稱 = 'Common,UseRole,RoleName',
   顯示Location名稱 = 'Common,WfLocation,LocationName',
   顯示Location英文名稱 = 'Common,WfLocation,LocationEName',

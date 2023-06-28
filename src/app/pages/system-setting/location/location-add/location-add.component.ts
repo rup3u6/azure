@@ -56,6 +56,7 @@ export class LocationAddComponent implements OnInit {
       this.locationFormGroup.patchValue({
         ...this.data.initData,
       });
+      this.getLocationCodeName();
       this.locationFormGroup.controls?.['cfk_Site'].disable();
       this.locationFormGroup.controls?.['ck_Location_Code'].disable();
     }
