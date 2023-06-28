@@ -44,7 +44,7 @@
                             <td>
                               <span class="tdinner">
                                 <span class="td-title">出生日</span>
-                                <span class="td-content">{{(data.initData.info_Birthday * 1000) | date:'yyyy/MM/dd' }}</span>
+                                <span class="td-content">{{data.initData.info_Birthday ? ((data.initData.info_Birthday * 1000) | date:'yyyy/MM/dd') : '' }}</span>
                               </span>
                             </td>
                             <td>
@@ -70,13 +70,13 @@
                             <td>
                               <span class="tdinner">
                                 <span class="td-title">任職日期</span>
-                                <span class="td-content">{{(data.initData.info_Take_Office * 1000) | date:'yyyy/MM/dd' }}</span>
+                                <span class="td-content">{{data.initData.info_Take_Office ? ((data.initData.info_Take_Office * 1000) | date:'yyyy/MM/dd') : '' }}</span>
                               </span>
                             </td>
                             <td>
                               <span class="tdinner">
                                 <span class="td-title">離職日期</span>
-                                <span class="td-content">{{(data.initData.info_Resign * 1000) | date:'yyyy/MM/dd' }}</span>
+                                <span class="td-content">{{data.initData.info_Resign ? ((data.initData.info_Resign * 1000) | date:'yyyy/MM/dd') : '' }}</span>
                               </span>
                             </td>
                             <td>
@@ -151,7 +151,7 @@
                             <td>
                               <span class="tdinner">
                                 <span class="td-title">派外日期</span>
-                                <span class="td-content">{{(data.initData.info_Expatriate_Date * 1000) | date:'yyyy/MM/dd' }}</span>
+                                <span class="td-content">{{data.initData.info_Expatriate_Date ? ((data.initData.info_Expatriate_Date * 1000) | date:'yyyy/MM/dd') : '' }}</span>
                               </span>
                             </td>
                             <td>
