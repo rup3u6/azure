@@ -16,10 +16,10 @@ import { IconDefinition } from '@ant-design/icons-angular';
 import * as AllIcons from '@ant-design/icons-angular/icons';
 
 // component
-import { TabulatorTableComponent } from './components/tabulator-table/tabulator-table.component';
 import { DeleteConfirmComponent } from './components/dialog/delete-confirm/delete-confirm.component';
+import { RepeatConfirmComponent } from './components/dialog/repeat-confirm/repeat-confirm.component';
 import { TabulatorTablePaginationComponent } from './components/tabulator-table-pagination/tabulator-table-pagination.component';
-import { UseRoleAddPermissionComponent } from '../pages/system-setting/use-role/use-role-add-permission/use-role-add-permission.component';
+import { TabulatorTableComponent } from './components/tabulator-table/tabulator-table.component';
 import { TabulatorCtrlComponent } from './components/tabulator-ctrl/tabulator-ctrl.component';
 
 // pipe
@@ -32,11 +32,11 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
 
 @NgModule({
   declarations: [
-    TabulatorTableComponent,
     ErrorMessagePipe,
     DeleteConfirmComponent,
+    RepeatConfirmComponent,
+    TabulatorTableComponent,
     TabulatorTablePaginationComponent,
-    UseRoleAddPermissionComponent,
     TabulatorCtrlComponent,
   ],
   imports: [
@@ -54,12 +54,12 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    TabulatorTableComponent,
     ErrorMessagePipe,
-    DeleteConfirmComponent,
-    TabulatorTablePaginationComponent,
     DemoNgZorroAntdModule,
-    UseRoleAddPermissionComponent,
+    DeleteConfirmComponent,
+    RepeatConfirmComponent,
+    TabulatorTableComponent,
+    TabulatorTablePaginationComponent,
     TabulatorCtrlComponent,
   ],
   providers: [

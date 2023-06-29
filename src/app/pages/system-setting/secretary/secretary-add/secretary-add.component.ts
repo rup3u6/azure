@@ -5,10 +5,15 @@ import { finalize, firstValueFrom } from 'rxjs';
 // enum
 import { ResponseStatus } from 'src/app/core/enum/response-status';
 
+// models
+import * as base from 'src/app/core/models/base';
+import * as secretary from 'src/app/core/models/secretaryAPI/secretary';
+
 // service
 import { ListItemService } from 'src/app/core/services/baseAPI/list-item.service';
 import { SecretaryService } from 'src/app/core/services/secretaryAPI/secretary.service';
 import { LoadingService } from 'src/app/core/services/loading.service';
+import { MessageService } from 'src/app/core/services/message.service';
 
 @Component({
   selector: 'sys-secretary-add',
@@ -23,6 +28,11 @@ export class SecretaryAddComponent implements OnInit {
     initData: {},
   };
 
+  popup: any = {
+    component: null,
+    data: null,
+  };
+
   useInfolist: any[] = [];
 
   isSecretaryFormGroup = false;
@@ -30,11 +40,14 @@ export class SecretaryAddComponent implements OnInit {
 
   secretaryName = '';
 
+  submitRes!: secretary.CreateResponses | secretary.UpdateResponses;
+
   constructor(
     private formBuilder: FormBuilder,
     public listItemService: ListItemService,
     public secretaryService: SecretaryService,
-    private loadingService: LoadingService
+    private loadingService: LoadingService,
+    private messageService: MessageService,
   ) { }
 
   async ngOnInit(): Promise<void> {
@@ -94,16 +107,23 @@ export class SecretaryAddComponent implements OnInit {
     try {
       let res;
       if (this.data.mode === 'add') {
-        res = await firstValueFrom(this.secretaryService.add(body));
+        res = await firstValueFrom<base.ResponsesBase<secretary.CreateResponses>>(this.secretaryService.add(body));
       } else {
         body.pk_Secretary = this.data.initData.pk_Secretary;
-        res = await firstValueFrom(this.secretaryService.edit(body));
+        res = await firstValueFrom<base.ResponsesBase<secretary.UpdateResponses>>(this.secretaryService.edit(body));
       }
       const { status } = res;
       if (status === ResponseStatus.執行成功) {
         let searchRes = await firstValueFrom(this.secretaryService.search());
         this.secretaryService.getTabulatorTable().setData(searchRes.data ?? []);
         this.close.emit();
+      } else if (status === ResponseStatus.執行失敗) {
+        this.messageService.closeAllModal();
+
+        this.submitRes = res.data;
+        this.popup.component = 'repeat';
+
+        console.log(this.submitRes);
       }
     } catch (error) {
       console.log(error);

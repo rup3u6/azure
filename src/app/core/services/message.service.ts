@@ -74,6 +74,11 @@ export class MessageService {
         break;
     }
   }
+
+  public closeAllModal(){
+    this.modal.closeAll();
+  }
+
   public responseErrorMsgTranslate(status: string, msgOrField: any) {
     if (status === ResponseStatus.資料格式或欄位驗證錯誤) {
       // msgOrField: Array<{field:'', errorMessage:''}>

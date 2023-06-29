@@ -116,3 +116,25 @@ nz {
     transition: .8s;
   }
 }
+
+.popup-component[type="warning"] {
+  .popup-content {
+    ul {
+      margin: 0 0 20px;
+      text-align: left;
+      display: inline-block;
+
+      &:last-child {
+        margin: 0;
+      }
+    }
+
+    li {
+      display: block;
+
+      &:after {
+        display: none;
+      }
+    }
+  }
+}

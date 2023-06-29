@@ -8,6 +8,4 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 export class DeleteConfirmComponent {
   @Output() close = new EventEmitter<any>();
   @Output() submit = new EventEmitter<any>();
-  @Input() data = {
-  };
 }

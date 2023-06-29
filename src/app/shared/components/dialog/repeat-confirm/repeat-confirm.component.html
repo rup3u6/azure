@@ -1,0 +1,39 @@
+<!-- START: popup -->
+<div class="frame-block">
+  <div class="frame-compose popup-compose">
+    <div class="popup-composer-inner">
+      <!-- START: default-popup -->
+      <div class="popup-component default-size-popup" type="warning">
+        <div class="popup-header">
+          <div class="popup-header-inner">
+            <div class="popup-header-unit header-text">重複</div>
+            <div class="popup-header-unit header-btn">
+              <a href="javascript:void(0)" (click)="close.emit()"
+                ><span class="material-icons-outlined"> close </span></a
+              >
+            </div>
+          </div>
+        </div>
+        <ng-content></ng-content>
+        <!-- <div class="popup-content">
+          <p>【重複項目】</p>
+          <ul>
+            <li>130B0 （11235598 - 陳嘉敏 - Ming Chen）</li>
+          </ul>
+        </div> -->
+        <div class="popup-footer">
+          <div class="popup-footer-inner">
+            <!-- <div class="popup-footer-unit footer-button" btn="cancel">
+              <button (click)="close.emit()">{{ "BUTTONS.CANCEL" | translate }}</button>
+            </div> -->
+            <div class="popup-footer-unit footer-button" btn="confirm">
+              <button (click)="close.emit()">{{ "BUTTONS.CONFIRM" | translate }}</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- END: default-popup -->
+    </div>
+  </div>
+</div>
+<!-- END: popup -->
