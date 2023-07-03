@@ -1,0 +1,42 @@
+:host {
+  width: 100%;
+}
+
+.tabulator-cell-inner {
+  display: inline-block;
+
+  &.link {
+    color: #3aa2e6;
+
+    &:hover {
+      text-decoration: underline;
+      cursor: pointer
+    }
+  }
+
+  &.wrap {
+    div {
+      display: block;
+    }
+  }
+
+  &.nowrap {
+    position: absolute;
+    height: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    z-index: -1;
+  }
+
+  div {
+    display: inline-block;
+
+    &:not(:last-of-type):after {
+      content: '/';
+    }
+  }
+
+  .br {
+    display: none;
+  }
+}

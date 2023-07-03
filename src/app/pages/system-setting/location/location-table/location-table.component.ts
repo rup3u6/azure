@@ -1,24 +1,28 @@
 import { Component, EventEmitter, Output, ViewContainerRef } from '@angular/core';
-import { Tabulator } from 'tabulator-tables';
+import { Subject } from 'rxjs';
 import { DatePipe } from '@angular/common';
+import { Tabulator } from 'tabulator-tables';
 
 // service
 import { LocationService } from 'src/app/core/services/baseAPI/location.service';
 
 // components
 import { TabulatorCtrlComponent, TabulatorCtrlType } from 'src/app/shared/components/tabulator-ctrl/tabulator-ctrl.component';
+import { TabulatorCellComponent } from 'src/app/shared/components/tabulator-cell/tabulator-cell.component';
 
 @Component({
   selector: 'div[sys-location-table]',
   templateUrl: './location-table.component.html',
   styleUrls: ['./location-table.component.scss'],
-  entryComponents: [TabulatorCtrlComponent]
+  entryComponents: [TabulatorCtrlComponent, TabulatorCellComponent]
 })
 export class LocationTableComponent {
 
   @Output() add = new EventEmitter<any>();
   @Output() edit = new EventEmitter<any>();
   @Output() deactivate = new EventEmitter<any>();
+
+  _columnResized = new Subject<any>();
 
   columnNames: Array<any> = [
     {
@@ -90,23 +94,20 @@ export class LocationTableComponent {
       headerHozAlign: 'center',
       formatter: (cell: any) => {
         const rowData = cell.getData();
-        let text = '';
 
-        if (rowData.info_Jobnumber) { text = rowData.info_Jobnumber; }
+        let list = [];
 
-        if (rowData.location_EditCode) {
-          if (text) { text += '/'; }
+        if (rowData.info_Jobnumber) { list.push(rowData.info_Jobnumber); }
+        if (rowData.location_EditCode) { list.push(rowData.location_EditCode); }
+        if (rowData.info_Ename) { list.push(rowData.info_Ename); }
 
-          text += rowData.location_EditCode;
-        }
+        const componentRef = this.viewContainerRef.createComponent(TabulatorCellComponent);
+        const component = (componentRef.instance as TabulatorCellComponent);
 
-        if (rowData.info_Ename) {
-          if (text) { text += '/'; }
+        component.data = list;
+        this._columnResized.subscribe(() => { component.onResize() });
 
-          text += rowData.info_Ename;
-        }
-
-        return text;
+        return component.html;
       },
     },
     {
@@ -160,5 +161,9 @@ export class LocationTableComponent {
 
   tableBuilded(table: Tabulator) {
     this.locationService.tableBuilded(table);
+  }
+
+  columnResized() {
+    this._columnResized.next(null);
   }
 }

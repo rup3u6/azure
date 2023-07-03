@@ -1,18 +1,25 @@
+import { Component, EventEmitter, Output, ViewContainerRef } from '@angular/core';
+import { Subject } from 'rxjs';
 import { DatePipe } from '@angular/common';
-import { Component, EventEmitter, Output } from '@angular/core';
 import { Tabulator } from 'tabulator-tables';
 
 // services
 import { LogExecuteService } from 'src/app/core/services/baseAPI/log-execute.service';
 
+// components
+import { TabulatorCellComponent, TabulatorCellType } from 'src/app/shared/components/tabulator-cell/tabulator-cell.component';
+
 @Component({
   selector: 'div[sys-log-execute-table]',
   templateUrl: './log-execute-table.component.html',
-  styleUrls: ['./log-execute-table.component.scss']
+  styleUrls: ['./log-execute-table.component.scss'],
+  entryComponents: [TabulatorCellComponent]
 })
 export class LogExecuteTableComponent {
 
   @Output() detail = new EventEmitter<any>();
+
+  _columnResized = new Subject<any>();
 
   columnNames: Array<any> = [
     {
@@ -23,26 +30,26 @@ export class LogExecuteTableComponent {
       headerHozAlign: 'center',
       formatter: (cell: any) => {
         const rowData = cell.getData();
-        let aTag = document.createElement('a');
 
-        let text = '';
+        let list = [];
 
-        if (rowData.logExec_Module) { text = rowData.logExec_Module; }
-        if (rowData.logExec_ChangeItem) {
-          if (text) { text += '/'; }
+        if (rowData.logExec_Module) { list.push(rowData.logExec_Module); }
+        if (rowData.logExec_ChangeItem) { list.push(rowData.logExec_ChangeItem); }
+        if (rowData.info_Ename) { list.push(rowData.info_Ename); }
 
-          text += rowData.logExec_ChangeItem;
-        }
+        const componentRef = this.viewContainerRef.createComponent(TabulatorCellComponent);
+        const component = (componentRef.instance as TabulatorCellComponent);
 
-        aTag.innerText = text;
-
-        aTag.addEventListener('click', (event) => {
+        component.type = TabulatorCellType.link;
+        component.data = list;
+        component.onClick = (event: any) => {
           event.stopPropagation();
           const rowData = cell.getData();
           this.detail.emit(rowData);
-        });
+        };
+        this._columnResized.subscribe(() => { component.onResize() });
 
-        return aTag;
+        return component.html;
       },
     },
     {
@@ -61,23 +68,19 @@ export class LogExecuteTableComponent {
       formatter: (cell: any) => {
         const rowData = cell.getData();
 
-        let text = '';
+        let list = [];
 
-        if (rowData.info_Jobnumber) { text = rowData.info_Jobnumber; }
+        if (rowData.info_Jobnumber) { list.push(rowData.info_Jobnumber); }
+        if (rowData.info_Email) { list.push(rowData.info_Email); }
+        if (rowData.info_Ename) { list.push(rowData.info_Ename); }
 
-        if (rowData.info_Email) {
-          if (text) { text += '/'; }
+        const componentRef = this.viewContainerRef.createComponent(TabulatorCellComponent);
+        const component = (componentRef.instance as TabulatorCellComponent);
 
-          text += rowData.info_Email;
-        }
+        component.data = list;
+        this._columnResized.subscribe(() => { component.onResize() });
 
-        if (rowData.info_Ename) {
-          if (text) { text += '/'; }
-
-          text += rowData.info_Ename;
-        }
-
-        return text;
+        return component.html;
       },
     },
     {
@@ -108,10 +111,15 @@ export class LogExecuteTableComponent {
 
   constructor(
     private datePipe: DatePipe,
-    public logExecuteService: LogExecuteService
+    public logExecuteService: LogExecuteService,
+    private viewContainerRef: ViewContainerRef,
   ) { }
 
   tableBuilded(table: Tabulator) {
     this.logExecuteService.tableBuilded(table);
+  }
+
+  columnResized() {
+    this._columnResized.next(null);
   }
 }

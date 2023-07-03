@@ -7,10 +7,12 @@ import { Tabulator } from 'tabulator-tables';
   styleUrls: ['./tabulator-table-pagination.component.scss'],
 })
 export class TabulatorTablePaginationComponent implements OnInit {
+
   @Input() initData: Array<any> = [];
   @Input() columnNames: Array<any> = [];
   @Input() tableConfig = {};
   @Output() tableBuilded = new EventEmitter<any>();
+  @Output() columnResized = new EventEmitter<any>();
 
   tableReady = false;
   tabulatorTable!: Tabulator;
@@ -28,18 +30,25 @@ export class TabulatorTablePaginationComponent implements OnInit {
     }, 0);
   }
 
+  _columnResized() {
+    this.columnResized.emit();
+  }
+
   previousPage() {
     const currentPage = this.tabulatorTable.getPage();
     currentPage !== 1 && this.tabulatorTable.previousPage();
   }
+
   nextPage() {
     const currentPage = this.tabulatorTable.getPage();
     const maximumPage = this.tabulatorTable.getPageMax();
     currentPage !== maximumPage && this.tabulatorTable.nextPage();
   }
+
   setCurrentPage(event: any) {
     this.tabulatorTable.setPage(event.target.value);
   }
+
   setPageSize(event: any) {
     this.tabulatorTable.setPageSize(event.target.value);
   }

@@ -21,6 +21,7 @@ import { RepeatConfirmComponent } from './components/dialog/repeat-confirm/repea
 import { TabulatorTablePaginationComponent } from './components/tabulator-table-pagination/tabulator-table-pagination.component';
 import { TabulatorTableComponent } from './components/tabulator-table/tabulator-table.component';
 import { TabulatorCtrlComponent } from './components/tabulator-ctrl/tabulator-ctrl.component';
+import { TabulatorCellComponent } from './components/tabulator-cell/tabulator-cell.component';
 
 // pipe
 import { ErrorMessagePipe } from './pipes/error-message.pipe';
@@ -38,6 +39,7 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     TabulatorTableComponent,
     TabulatorTablePaginationComponent,
     TabulatorCtrlComponent,
+    TabulatorCellComponent,
   ],
   imports: [
     CommonModule,
@@ -61,6 +63,7 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     TabulatorTableComponent,
     TabulatorTablePaginationComponent,
     TabulatorCtrlComponent,
+    TabulatorCellComponent,
   ],
   providers: [
     DatePipe,

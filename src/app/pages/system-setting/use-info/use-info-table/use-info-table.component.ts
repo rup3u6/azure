@@ -1,23 +1,27 @@
 import { Component, EventEmitter, Output, ViewContainerRef } from '@angular/core';
-import { Tabulator } from 'tabulator-tables';
+import { Subject } from 'rxjs';
 import { DatePipe } from '@angular/common';
+import { Tabulator } from 'tabulator-tables';
 
 // services
 import { UseInfoService } from 'src/app/core/services/authAPI/use-info.service';
 
 // components
 import { TabulatorCtrlComponent, TabulatorCtrlType } from 'src/app/shared/components/tabulator-ctrl/tabulator-ctrl.component';
+import { TabulatorCellComponent } from 'src/app/shared/components/tabulator-cell/tabulator-cell.component';
 
 @Component({
   selector: 'div[sys-use-info-table]',
   templateUrl: './use-info-table.component.html',
   styleUrls: ['./use-info-table.component.scss'],
-  entryComponents: [TabulatorCtrlComponent]
+  entryComponents: [TabulatorCtrlComponent, TabulatorCellComponent]
 })
 export class UseInfoTableComponent {
 
   @Output() seach = new EventEmitter<any>();
   @Output() edit = new EventEmitter<any>();
+
+  _columnResized = new Subject<any>();
 
   columnNames: Array<any> = [
     {
@@ -75,23 +79,19 @@ export class UseInfoTableComponent {
       formatter: (cell: any) => {
         const rowData = cell.getData();
 
-        let text = '';
+        let list = [];
 
-        if (rowData.info_Secretary) { text = rowData.info_Secretary; }
+        if (rowData.info_Secretary) { list.push(rowData.info_Secretary); }
+        if (rowData.secretary_Name) { list.push(rowData.secretary_Name); }
+        if (rowData.secretary_EName) { list.push(rowData.secretary_EName); }
 
-        if (rowData.secretary_Name) {
-          if (text) { text += '-'; }
+        const componentRef = this.viewContainerRef.createComponent(TabulatorCellComponent);
+        const component = (componentRef.instance as TabulatorCellComponent);
 
-          text += rowData.secretary_Name;
-        }
+        component.data = list;
+        this._columnResized.subscribe(() => { component.onResize() });
 
-        if (rowData.secretary_EName) {
-          if (text) { text += '/'; }
-
-          text += rowData.secretary_EName;
-        }
-
-        return text;
+        return component.html;
       },
     },
     {
@@ -128,5 +128,9 @@ export class UseInfoTableComponent {
 
   tableBuilded(table: Tabulator) {
     this.useInfoService.tableBuilded(table);
+  }
+
+  columnResized() {
+    this._columnResized.next(null);
   }
 }

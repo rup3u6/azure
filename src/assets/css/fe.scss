@@ -39,6 +39,15 @@ nz {
       display: none;
     }
 
+    .ant-input-affix-wrapper {
+      border-radius: 4px;
+      height: 35px;
+
+      >input.ant-input {
+        height: 100%;
+      }
+    }
+
     .ant-transfer-list {
       min-height: 300px;
       max-height: 400px;
@@ -75,6 +84,10 @@ nz {
 .tabulator {
   .tabulator-header .tabulator-col.tabulator-sortable:hover {
     background: #006c91;
+  }
+
+  .tabulator-table {
+    word-break: break-all;
   }
 
   .tabulator-footer {

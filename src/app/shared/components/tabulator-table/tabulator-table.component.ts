@@ -18,15 +18,15 @@ import { TabulatorFull as Tabulator } from 'tabulator-tables';
   templateUrl: './tabulator-table.component.html',
   styleUrls: ['./tabulator-table.component.scss'],
 })
-export class TabulatorTableComponent
-  implements OnInit, AfterViewInit, OnChanges
-{
+export class TabulatorTableComponent implements OnInit, AfterViewInit, OnChanges {
+
   @ViewChild('tabulatorTable') tableElRef!: ElementRef;
 
   @Input() initData: Array<any> = [];
   @Input() columnNames: Array<any> = [];
   @Input() tableConfig = {};
   @Output() tableBuilded = new EventEmitter<any>();
+  @Output() columnResized = new EventEmitter<any>();
 
   public table!: Tabulator;
   private columns: Array<any> = [];
@@ -38,9 +38,10 @@ export class TabulatorTableComponent
       this.table.setColumns(this.columns);
     });
   }
-  ngOnInit(): void {}
 
-  ngOnChanges(changes: SimpleChanges): void {}
+  ngOnInit(): void { }
+
+  ngOnChanges(changes: SimpleChanges): void { }
 
   ngAfterViewInit() {
     this.seti18nTitle();
@@ -68,6 +69,11 @@ export class TabulatorTableComponent
       selectable: true,
       ...this.tableConfig,
     });
+
+    this.table.on("columnResized", (data) => {
+      this.columnResized.emit();
+    });
+
     this.tableBuilded.emit(this.table);
   }
 }

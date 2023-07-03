@@ -1,0 +1,12 @@
+<div #tabulatorCellInner class="tabulator-cell-inner" [ngClass]="{'link': type === 'link'}" (click)="onClick($event)">
+  <ng-container *ngFor="let item of data">
+    <div>{{ item }}</div>
+  </ng-container>
+</div>
+
+<!-- 取得不換行寬度 -->
+<div #tabulatorCellInnerNowrap class="tabulator-cell-inner nowrap">
+  <ng-container *ngFor="let item of data">
+    <div>{{ item }}</div>
+  </ng-container>
+</div>
