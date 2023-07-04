@@ -1,25 +1,31 @@
 <div class='rt-fun-list'>
   <ul>
-    <li *ngIf="type === 'edit' || type === 'editCopyDelete'">
-      <a (click)="edit($event)"><span class='material-icons-outlined'>edit</span></a>
+    <li *ngIf="type === 'edit' || type === 'editCopyDelete' || type === 'editPreviewCopyOff'">
+      <a (click)="edit($event)">編輯</a>
     </li>
     <li *ngIf="type === 'delete'">
-      <a (click)="del($event)" class='rt-delete'><span class='material-icons-outlined'>delete</span></a>
+      <a (click)="del($event)" class='rt-delete'>刪除</a>
     </li>
     <li *ngIf="type === 'copy'">
-      <a (click)="copy($event)"><span class='material-icons-outlined'>content_copy</span></a>
+      <a (click)="copy($event)">複製</a>
     </li>
-    <li *ngIf="type === 'editCopyDelete'">
-      <a (click)="more($event)"><span class='material-icons-outlined'>more_vert</span></a>
+    <li *ngIf="type === 'editCopyDelete' || type === 'editPreviewCopyOff'">
+      <a (click)="more($event)">more_vert</a>
     </li>
   </ul>
-  <div class='more-fun-list' *ngIf="type === 'editCopyDelete'">
+  <div class='more-fun-list' *ngIf="type === 'editCopyDelete' || type === 'editPreviewCopyOff'">
     <ul>
-      <li>
-        <a (click)="copy($event)"><span class='material-icons-outlined'>content_copy</span></a>
+      <li *ngIf="type === 'editPreviewCopyOff'">
+        <a (click)="preview($event)">預覽</a>
       </li>
-      <li>
-        <a (click)="del($event)" class='rt-delete'><span class='material-icons-outlined'>delete</span></a>
+      <li *ngIf="type === 'editCopyDelete'">
+        <a (click)="copy($event)">複製</a>
+      </li>
+      <li *ngIf="type === 'editCopyDelete'">
+        <a (click)="del($event)" class='rt-delete'>刪除</a>
+      </li>
+      <li *ngIf="type === 'editPreviewCopyOff'">
+        <a (click)="off($event)">下架</a>
       </li>
     </ul>
   </div>

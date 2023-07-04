@@ -5,7 +5,7 @@ import { Component, ElementRef } from '@angular/core';
   templateUrl: './tabulator-ctrl.component.html',
   styleUrls: ['./tabulator-ctrl.component.scss']
 })
-export class TabulatorCtrlComponent  {
+export class TabulatorCtrlComponent {
 
   html: any;
 
@@ -23,6 +23,10 @@ export class TabulatorCtrlComponent  {
   copy(event: any) { }
 
   more(event: any) { }
+
+  preview(event: any) { }
+
+  off(event: any) { }
 }
 
 export enum TabulatorCtrlType {
@@ -30,4 +34,5 @@ export enum TabulatorCtrlType {
   delete = 'delete',
   copy = 'copy',
   editCopyDelete = 'editCopyDelete',
+  editPreviewCopyOff = 'editPreviewCopyOff',
 }

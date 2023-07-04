@@ -581,10 +581,67 @@ hr.seperate-line-solid {
   border-top: 1px solid #ccc;
 }
 
+/* content-status */
+.content-status {
+  margin-bottom: 10px;
+  border-radius: 10px;
+  background: #fff;
+}
+
+.content-status-inner {
+  padding: 6px;
+}
+
+.content-status ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.content-status li {
+  display: inline-block;
+  margin-right: 15px;
+}
+
+.content-status li:nth-last-child(1) {
+  margin: 0;
+}
+
+.status-tag li span:nth-child(1){
+  font-size: 0.875rem;
+  padding: 2px 25px;
+  border-radius: 30px;
+}
+
+.status-tag li span:nth-last-child(1){
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 2px 15px;
+  border-radius: 30px;
+}
+
+.status-tag li[type="good"] span:nth-child(1){
+  background: #0080E3;
+  color: #fff;
+}
+
+.status-tag li[type="normal"] span:nth-child(1){
+  background: #04b35c;
+  color: #fff;
+}
+
+.status-tag li[type="danger"] span:nth-child(1){
+  background: #f31a1a;
+  color: #fff;
+}
+
+.status-tag li[type="warning"] span:nth-child(1){
+  background: #f8710a;
+  color: #fff;
+}
+
 /* content-result */
 .content-result {
-  /* padding: 15px;
-  border: #bbb solid 1px; */
   border-radius: 10px;
   background: #fff;
 }
@@ -760,7 +817,7 @@ hr.seperate-line-solid {
 }
 
 .result-table .tabulator-row .tabulator-cell a {
-  display: block;
+  display: inline-block;
   text-decoration: none;
   color: #3aa2e6;
 }
@@ -804,19 +861,25 @@ hr.seperate-line-solid {
   height: inherit !important;
 }
 
+.rt-fun-list {
+  position: relative;
+}
+
 .rt-fun-list ul {
+  width: 100%;
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-.rt-fun-list > ul li {
+.rt-fun-list>ul li {
   display: inline-block;
-  width: 35px;
+  vertical-align: middle;
+  width: 40px;
 }
 
 .result-table .tabulator-row .tabulator-cell .rt-fun-list a:hover {
-  text-decoration: none;
+  text-decoration: underline;
 }
 
 .rt-fun-list a span {
@@ -825,10 +888,9 @@ hr.seperate-line-solid {
 }
 
 .more-fun-list {
-  width: 100%;
-  padding: 2px;
+  width: max-content;
+  padding: 4px;
   display: block;
-  /* margin-top: 4px; */
   position: absolute;
   z-index: 999;
   top: 50%;
@@ -843,17 +905,18 @@ hr.seperate-line-solid {
 }
 
 .more-fun-list li {
-  border-right: #eee solid 1px;
   padding: 3px;
   display: inline-block;
+  padding: 0 10px;
+  border-right: #ccc solid 1px;
 }
 
 .more-fun-list li:nth-last-child(1) {
   border-right: none;
 }
 
-.rt-fun-list .more-fun-list a span {
-  padding: 0;
+.rt-fun-list .more-fun-list a:hover {
+  color: #0262ab;
 }
 
 .result-table .tabulator-row .tabulator-cell a.rt-delete {
