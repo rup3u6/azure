@@ -55,6 +55,48 @@
                 }
               ]
             },
+            "uat": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "10mb",
+                  "maximumError": "20mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "outputHashing": "all",
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.uat.ts"
+                }
+              ]
+            },
+            "sit": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "10mb",
+                  "maximumError": "20mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "outputHashing": "all",
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.sit.ts"
+                }
+              ]
+            },
             "development": {
               "buildOptimizer": false,
               "optimization": false,
@@ -76,6 +118,12 @@
           "configurations": {
             "production": {
               "browserTarget": "wistronfamily_cms_fe:build:production"
+            },
+            "uat": {
+              "browserTarget": "wistronfamily_cms_fe:build:uat"
+            },
+            "sit": {
+              "browserTarget": "wistronfamily_cms_fe:build:sit"
             },
             "development": {
               "browserTarget": "wistronfamily_cms_fe:build:development"
