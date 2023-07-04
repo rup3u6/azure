@@ -4,7 +4,7 @@ import { finalize, firstValueFrom } from 'rxjs';
 
 // enum
 import { ResponseStatus } from 'src/app/core/enum/response-status';
-import { Common} from 'src/app/core/enum/list-item';
+import { Common } from 'src/app/core/enum/list-item';
 import { Message } from 'src/app/core/enum/message';
 
 // models
@@ -153,11 +153,17 @@ export class GZoneAddComponent implements OnInit {
     switch (this.tab) {
       case 1:
         if (IsShareError || Istab1Error) { return; }
-        if (Istab2Error) { msgList = ['後台選單設定有誤']; }
+        if (Istab2Error) {
+          this.tabChange(2);
+          msgList = ['後台選單設定有誤'];
+        }
         break;
       case 2:
         if (IsShareError || Istab2Error) { return; }
-        if (Istab1Error) { msgList = ['前台選單設定有誤']; }
+        if (Istab1Error) {
+          this.tabChange(1);
+          msgList = ['前台選單設定有誤'];
+        }
         break;
     }
 

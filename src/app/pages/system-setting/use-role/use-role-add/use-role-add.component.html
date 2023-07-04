@@ -26,8 +26,8 @@
             <div class="popup-content-item popup-content-tab">
               <div class="popup-content-item-inner">
                 <ul>
-                  <li><a (click)="tab = 1" [ngClass]="{'active': tab === 1}">資料維護</a></li>
-                  <li><a (click)="tab = 2" [ngClass]="{'active': tab === 2}">權限選單</a></li>
+                  <li><a (click)="tabChange(1)" [ngClass]="{'active': tab === 1}">資料維護</a></li>
+                  <li><a (click)="tabChange(2)" [ngClass]="{'active': tab === 2}">權限選單</a></li>
                 </ul>
               </div>
             </div>

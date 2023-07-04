@@ -220,6 +220,10 @@ export class UseRoleAddComponent implements OnInit {
     );
   }
 
+  tabChange(index: number) {
+    this.tab = index;
+  }
+
   async showError() {
     let msgList!: string[];
 
@@ -235,11 +239,17 @@ export class UseRoleAddComponent implements OnInit {
     switch (this.tab) {
       case 1:
         if (IsShareError || Istab1Error) { return; }
-        if (Istab2Error) { msgList = ['權限選單頁籤有誤']; }
+        if (Istab2Error) {
+          this.tabChange(2);
+          msgList = ['權限選單頁籤有誤'];
+        }
         break;
       case 2:
         if (IsShareError || Istab2Error) { return; }
-        if (Istab1Error) { msgList = ['資料維護頁籤有誤']; }
+        if (Istab1Error) {
+          this.tabChange(1);
+          msgList = ['資料維護頁籤有誤'];
+        }
         break;
     }
 
