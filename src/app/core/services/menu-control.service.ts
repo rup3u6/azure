@@ -22,8 +22,12 @@ export class MenuControlService {
           module_Name: 'MENUS.GLOBAL_ZONE', //  區域維護
           mod_Route: '/globalsetting/zone',
         },
+        {
+          module_Name: '白名單維護',
+          mod_Route: '/globalsetting/allowlist',
+        },
         // {
-        //   module_Name: '白名單維護',
+        //   module_Name: '跨區管理者名單維護',
         //   mod_Route: '',
         // },
         // {
@@ -61,10 +65,14 @@ export class MenuControlService {
           module_Name: '操作歷程檢視',
           mod_Route: '/systemsetting/log-execute',
         },
-        {
-          module_Name: '聯絡我們維護',
-          mod_Route: '',
-        },
+        // {
+        //   module_Name: '聯絡我們維護',
+        //   mod_Route: '',
+        // },
+        // {
+        //   module_Name: '服務活動名單維護',
+        //   mod_Route: '',
+        // },
       ],
     },
   ];

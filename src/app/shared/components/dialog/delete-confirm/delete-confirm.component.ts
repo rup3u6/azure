@@ -6,6 +6,9 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrls: ['./delete-confirm.component.scss'],
 })
 export class DeleteConfirmComponent {
+
+  @Input() mode ='disable';
+
   @Output() close = new EventEmitter<any>();
   @Output() submit = new EventEmitter<any>();
 }

@@ -38,8 +38,8 @@ export class ListItemService {
     return this.httpService.post<base.ResponsesBase<listItem.ListItemResponsesBase<any[]>[]>>(this.apiUrl, body);
   }
 
-  //#region
-  async searchHandle(body: any): Promise<any[]> {
+  //#region private
+  private async _search(body: any): Promise<any[]> {
     this.loadingService.startLoading();
 
     try {
@@ -68,33 +68,37 @@ export class ListItemService {
 
   //#region common
   async getSite(): Promise<any[]> {
-    return await this.searchHandle([[Common.顯示Site]]);
+    return await this._search([[Common.顯示Site]]);
   }
 
   async getLocation(cfk_Site: string): Promise<any[]> {
-    return await this.searchHandle([[Common.與Site關聯_顯示Location名稱, cfk_Site]]);
+    return await this._search([[Common.與Site關聯_顯示Location名稱, cfk_Site]]);
   }
 
   async getLocationCodeName(cfk_Site: string): Promise<any[]> {
-    return await this.searchHandle([[Common.顯示Location, cfk_Site]]);
+    return await this._search([[Common.顯示Location, cfk_Site]]);
   }
 
   async getLocationArea(cfk_Site: string): Promise<any[]> {
-    return await this.searchHandle([[Common.當前依使用者Zone_取得Location分區, cfk_Site]]);
+    return await this._search([[Common.當前依使用者Zone_取得Location分區, cfk_Site]]);
   }
 
   async getSecretaryName(): Promise<any[]> {
-    return await this.searchHandle([[Common.顯示工號_中名_英名_Site]]);
+    return await this._search([[Common.顯示工號_中名_英名_Site]]);
   }
 
   async GetRoleName(): Promise<any[]> {
-    return await this.searchHandle([[Common.顯示角色名稱]]);
+    return await this._search([[Common.顯示角色名稱]]);
+  }
+
+  async GetZoneName(): Promise<any[]> {
+    return await this._search([[Common.顯示區域名稱]]);
   }
   //#endregion
 
   //#region sysCode
   async GetFormStateName(): Promise<any[]> {
-    return await this.searchHandle([[SysCode.停用狀態 + SysCodeStyleCode.顯示代碼名稱]]);
+    return await this._search([[SysCode.停用狀態 + SysCodeStyleCode.顯示代碼名稱]]);
   }
   //#endregion
 }

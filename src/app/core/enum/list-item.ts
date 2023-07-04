@@ -15,6 +15,7 @@ export enum Common {
   依據_使用者_的Zone_顯示Site = 'Common,Wf_Zone_Site,Site',
   針對還沒使用過的Site_顯示Site = 'Common,Wf_Zone_Site,EnableSite',
   針對已經使用過的Site_顯示Site = 'Common,Wf_Zone_Site,DisenableSite',
+  顯示區域名稱 = 'Common,Wf_Zone,Name',
 }
 //#endregion
 

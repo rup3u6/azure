@@ -1,0 +1,69 @@
+<!-- START: popup -->
+<div class="frame-block">
+  <div class="frame-compose popup-compose">
+    <div class="popup-composer-inner">
+      <!-- START: default-popup -->
+      <div class="popup-component large-size-popup" [attr.type]="data.mode === 'add' ? 'normal' : 'warning-editable'">
+        <div class="popup-header">
+          <div class="popup-header-inner">
+            <div class="popup-header-unit header-text">
+              批次{{ data.mode === "add" ? "新增" : "刪除" }}白名單
+            </div>
+            <div class="popup-header-unit header-btn">
+              <a (click)="close.emit()"
+                ><span class="material-icons-outlined"> close </span></a
+              >
+            </div>
+          </div>
+        </div>
+        <div class="popup-content" *ngIf="isAllowlistFormGroup">
+          <div class="popup-content-form" [formGroup]="allowlistFormGroup">
+            <div class="form-row row-2">
+              <div class="form-item" type="required" [attr.attr]="f['fk_Zone_Id'].errors && f['fk_Zone_Id'].touched && 'error'">
+                <div class="form-item-inner">
+                  <div class="form-item-title">區域名稱</div>
+                  <div class="form-item-entry">
+                    <select formControlName="fk_Zone_Id">
+                      <option value="" selected disabled>請選擇區域名稱</option>
+                      <ng-container *ngFor="let item of cfkZoneOption">
+                        <option [value]="item.key">{{item.value}}</option>
+                      </ng-container>
+                    </select>
+                  </div>
+                  <div class="form-item-text" *ngIf="f['fk_Zone_Id'].errors && f['fk_Zone_Id'].touched">
+                    <p>{{ f['fk_Zone_Id'].errors | errorMessage : '區域名稱' }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-row row-1">
+              <div class="form-item" type="required" [attr.attr]="f['fk_Info_Jobnumber'].errors && f['fk_Info_Jobnumber'].touched && 'error'">
+                <div class="form-item-inner">
+                  <div class="form-item-title">批次{{ data.mode === "add" ? "新增" : "刪除" }}</div>
+                  <div class="form-item-entry">
+                    <textarea name="" id="" cols="30" rows="6" placeholder="請輸入工號" formControlName="fk_Info_Jobnumber"></textarea>
+                  </div>
+                  <div class="form-item-text" *ngIf="f['fk_Info_Jobnumber'].errors && f['fk_Info_Jobnumber'].touched">
+                    <p>{{ f['fk_Info_Jobnumber'].errors | errorMessage : '工號' }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="popup-footer">
+          <div class="popup-footer-inner">
+            <div class="popup-footer-unit footer-button" btn="cancel">
+              <button (click)="close.emit()">取消</button>
+            </div>
+            <div class="popup-footer-unit footer-button" btn="confirm">
+              <button (click)="submit()">確認</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- END: default-popup -->
+    </div>
+  </div>
+</div>
+<!-- END: popup -->

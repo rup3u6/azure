@@ -1,0 +1,28 @@
+<div class="content-result-inner">
+  <!-- START: result-function -->
+  <div class="result-function">
+    <ul>
+      <li>
+        <a href="javascript:void(0)" (click)="add.emit()" attr="add">新增</a>
+      </li>
+      <li>
+        <a href="javascript:void(0)" (click)="batchAdd.emit()" attr="batch-add"
+          >批次新增</a
+        >
+      </li>
+      <li>
+        <a href="javascript:void(0)" (click)="batchDelect.emit()" attr="batch-delete"
+          >批次刪除</a
+        >
+      </li>
+    </ul>
+  </div>
+  <!-- END: result-function -->
+
+  <div
+    app-tabulator-table-pagination
+    [columnNames]="columnNames"
+    [tableConfig]="{ selectable: 1 }"
+    (tableBuilded)="tableBuilded($event)"
+  ></div>
+</div>

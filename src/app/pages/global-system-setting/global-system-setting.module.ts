@@ -20,6 +20,11 @@ import { GModuleComponent } from './g-modul/g-module.component';
 import { GModuleAddComponent } from './g-modul/g-modul-add/g-module-add.component';
 import { GModuleSearchFormComponent } from './g-modul/g-module-search-form/g-module-search-form.component';
 import { GModuleTableComponent } from './g-modul/g-module-table/g-module-table.component';
+import { GAllowlistComponent } from './g-allowlist/g-allowlist.component';
+import { GAllowlistAddComponent } from './g-allowlist/g-allowlist-add/g-allowlist-add.component';
+import { GAllowlistBatchAddComponent } from './g-allowlist/g-allowlist-batch-add/g-allowlist-batch-add.component';
+import { GAllowlistSearchFormComponent } from './g-allowlist/g-allowlist-search-form/g-allowlist-search-form.component';
+import { GAllowlistTableComponent } from './g-allowlist/g-allowlist-table/g-allowlist-table.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +45,11 @@ import { GModuleTableComponent } from './g-modul/g-module-table/g-module-table.c
     GModuleAddComponent,
     GModuleSearchFormComponent,
     GModuleTableComponent,
+    GAllowlistComponent,
+    GAllowlistAddComponent,
+    GAllowlistBatchAddComponent,
+    GAllowlistSearchFormComponent,
+    GAllowlistTableComponent,
   ],
   imports: [SharedModule, GlobalSystemSettingRoutingModule],
 })

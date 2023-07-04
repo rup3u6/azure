@@ -7,7 +7,14 @@
         <div class="popup-header">
           <div class="popup-header-inner">
             <div class="popup-header-unit header-text">
-              {{ "BUTTONS.DISABLE" | translate }}
+              <ng-container [ngSwitch]="mode">
+                <ng-container *ngSwitchCase="'disable'">
+                  {{ "BUTTONS.DISABLE" | translate }}
+                </ng-container>
+                <ng-container *ngSwitchCase="'delete'">
+                  刪除
+                </ng-container>
+              </ng-container>
             </div>
             <div class="popup-header-unit header-btn">
               <a href="javascript:void(0)" (click)="close.emit()"

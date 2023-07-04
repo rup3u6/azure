@@ -6,6 +6,7 @@ import { GLanguageComponent } from './g-language/g-language.component';
 import { GZoneComponent } from './g-zone/g-zone.component';
 import { GModuleClassComponent } from './g-module-class/g-module-class.component';
 import { GModuleComponent } from './g-modul/g-module.component';
+import { GAllowlistComponent } from './g-allowlist/g-allowlist.component';
 
 const routes: Routes = [
   {
@@ -28,6 +29,10 @@ const routes: Routes = [
   {
     path: 'module',
     component: GModuleComponent,
+  },
+  {
+    path: 'allowlist',
+    component: GAllowlistComponent,
   },
 ];
 
