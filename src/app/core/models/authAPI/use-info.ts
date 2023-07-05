@@ -12,7 +12,7 @@ export interface UpdateRequest {
   cfk_Info_Id: string;
   info_Global: string;
   info_Backend: string;
-  lCIn_UseInfo_RoleData: UpdatelCIn_UseInfo_RoleData[]
+  lCIn_UseInfo_RoleData: UpdatelCIn_UseInfo_RoleData[];
 }
 
 export interface UpdatelCIn_UseInfo_RoleData {

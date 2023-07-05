@@ -44,7 +44,7 @@ export class UseInfoAddComponent implements OnInit {
       lCIn_UseInfo_RoleData: this.formBuilder.array([], [Validators.required, Validators.minLength(1)]),
     });
     if (this.data.mode === 'add') {
-      this.setLanguageFormGroupInit();
+      this.setUseInfoFormGroupInit();
     } else {
       this.useInfoFormGroup.patchValue({
         ...this.data.initData,
@@ -68,7 +68,7 @@ export class UseInfoAddComponent implements OnInit {
     this.isUseInfoFormGroup = true;
   }
 
-  setLanguageFormGroupInit() {
+  setUseInfoFormGroupInit() {
     this.useInfoFormGroup.patchValue({
       info_Global: '0',
       info_Backend: '0',

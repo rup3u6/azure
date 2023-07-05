@@ -7,7 +7,7 @@
           <div class="popup-header">
             <div class="popup-header-inner">
               <div class="popup-header-unit header-text">
-                {{ data.mode === "add" ? "新增" : "編輯" }}白名單
+                {{ data.mode === "add" ? "新增" : "編輯" }}跨區管理者名單維護
               </div>
               <div class="popup-header-unit header-btn">
                 <a (click)="close.emit()"
@@ -16,8 +16,8 @@
               </div>
             </div>
           </div>
-          <div class="popup-content" *ngIf="isAllowlistFormGroup">
-            <div class="popup-content-form" [formGroup]="allowlistFormGroup">
+          <div class="popup-content" *ngIf="isDistrictManagerFormGroup">
+            <div class="popup-content-form" [formGroup]="districtManagerFormGroup">
               <div class="form-row row-2">
                 <div class="form-item" type="required" [attr.attr]="f['fk_Zone_Id'].errors && f['fk_Zone_Id'].touched && 'error'">
                   <div class="form-item-inner">
@@ -35,14 +35,19 @@
                     </div>
                   </div>
                 </div>
-                <div class="form-item" type="required" [attr.attr]="f['fk_Info_Jobnumber'].errors && f['fk_Info_Jobnumber'].touched && 'error'">
+                <div class="form-item" type="required" [attr.attr]="f['fk_Info_Id'].errors && f['fk_Info_Id'].touched && 'error'">
                   <div class="form-item-inner">
-                    <div class="form-item-title">工號</div>
+                    <div class="form-item-title">工號/姓名</div>
                     <div class="form-item-entry">
-                      <input type="text" placeholder="請輸入工號" formControlName="fk_Info_Jobnumber" />
+                      <select formControlName="fk_Info_Id">
+                        <option value="" selected disabled>請選擇工號/姓名</option>
+                        <ng-container *ngFor="let item of accountNameList">
+                          <option [value]="item.key">{{item.value}}</option>
+                        </ng-container>
+                      </select>
                     </div>
-                    <div class="form-item-text" *ngIf="f['fk_Info_Jobnumber'].errors && f['fk_Info_Jobnumber'].touched">
-                      <p>{{ f['fk_Info_Jobnumber'].errors | errorMessage : '工號' }}</p>
+                    <div class="form-item-text" *ngIf="f['fk_Info_Id'].errors && f['fk_Info_Id'].touched">
+                      <p>{{ f['fk_Info_Id'].errors | errorMessage : '工號/姓名' }}</p>
                     </div>
                   </div>
                 </div>

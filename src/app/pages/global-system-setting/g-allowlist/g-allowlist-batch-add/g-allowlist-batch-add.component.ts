@@ -46,7 +46,7 @@ export class GAllowlistBatchAddComponent implements OnInit {
       fk_Info_Jobnumber: ['', Validators.required],
     });
     if (this.data.mode === 'add') {
-      this.setLanguageFormGroupInit();
+      this.setAllowlistFormGroupInit();
     } else {
       this.allowlistFormGroup.patchValue({
         ...this.data.initData,
@@ -55,7 +55,7 @@ export class GAllowlistBatchAddComponent implements OnInit {
     this.isAllowlistFormGroup = true;
   }
 
-  setLanguageFormGroupInit() {
+  setAllowlistFormGroupInit() {
     this.allowlistFormGroup.patchValue({
       fk_Zone_Id: '',
       zone_Name: '',

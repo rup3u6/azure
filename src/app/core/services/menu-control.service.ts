@@ -26,10 +26,10 @@ export class MenuControlService {
           module_Name: '白名單維護',
           mod_Route: '/globalsetting/allowlist',
         },
-        // {
-        //   module_Name: '跨區管理者名單維護',
-        //   mod_Route: '',
-        // },
+        {
+          module_Name: '跨區管理者名單維護',
+          mod_Route: '/globalsetting/cross-zone',
+        },
         // {
         //   module_Name: '選單分類',
         //   mod_Route: '/globalsetting/module-class',

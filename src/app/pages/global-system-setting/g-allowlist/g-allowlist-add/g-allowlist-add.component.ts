@@ -23,12 +23,10 @@ export class GAllowlistAddComponent implements OnInit {
     initData: {},
   };
 
-  roleList: any = [];
-
   isAllowlistFormGroup = false;
   allowlistFormGroup!: FormGroup;
 
-  cfkZoneOption: any[] = [];
+  zoneList: any[] = [];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -46,7 +44,7 @@ export class GAllowlistAddComponent implements OnInit {
       fk_Info_Jobnumber: ['', Validators.required],
     });
     if (this.data.mode === 'add') {
-      this.setLanguageFormGroupInit();
+      this.setAllowlistFormGroupInit();
     } else {
       this.allowlistFormGroup.patchValue({
         ...this.data.initData,
@@ -55,7 +53,7 @@ export class GAllowlistAddComponent implements OnInit {
     this.isAllowlistFormGroup = true;
   }
 
-  setLanguageFormGroupInit() {
+  setAllowlistFormGroupInit() {
     this.allowlistFormGroup.patchValue({
       fk_Zone_Id: '',
       zone_Name: '',
@@ -64,7 +62,7 @@ export class GAllowlistAddComponent implements OnInit {
   }
 
   async GetZoneName() {
-    this.cfkZoneOption = await this.listItemService.GetZoneName();
+    this.zoneList = await this.listItemService.GetZoneName();
   }
 
   async submit() {
@@ -74,7 +72,7 @@ export class GAllowlistAddComponent implements OnInit {
 
     let body: any = {
       fk_Zone_Id: this.allowlistFormGroup.value.fk_Zone_Id,
-      zone_Name: this.cfkZoneOption.find(item => item.key === this.allowlistFormGroup.value.fk_Zone_Id).value,
+      zone_Name: this.zoneList.find(item => item.key === this.allowlistFormGroup.value.fk_Zone_Id).value,
       fk_Info_Jobnumber: [this.allowlistFormGroup.value.fk_Info_Jobnumber],
     };
 

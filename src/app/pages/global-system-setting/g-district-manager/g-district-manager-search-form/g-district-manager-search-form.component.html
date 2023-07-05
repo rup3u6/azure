@@ -1,0 +1,32 @@
+<div class="content-query-field" [formGroup]="searchFormGroup" *ngIf="isSearchFormGroup">
+  <div class="content-query-unit query-field">
+    <div class="field-title">區域名稱</div>
+    <div class="field-entry">
+      <select formControlName="fk_Zone_Id">
+        <option value="0" selected>全部</option>
+        <ng-container *ngFor="let item of zoneList">
+          <option [value]="item.key">{{item.value}}</option>
+        </ng-container>
+      </select>
+    </div>
+  </div>
+  <div class="content-query-unit query-field">
+    <div class="field-title">工號/姓名</div>
+    <div class="field-entry">
+      <select formControlName="fk_Info_Id">
+        <option value="0" selected>全部</option>
+        <ng-container *ngFor="let item of accountNameList">
+          <option [value]="item.key">{{item.value}}</option>
+        </ng-container>
+      </select>
+    </div>
+  </div>
+</div>
+<div class="content-query-button">
+  <div class="content-query-unit query-button">
+    <ul>
+      <li><button class="cancel-btn" (click)="clear()">清除</button></li>
+      <li><button class="query-btn" (click)="search()">查詢</button></li>
+    </ul>
+  </div>
+</div>

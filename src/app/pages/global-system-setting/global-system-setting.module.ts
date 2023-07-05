@@ -25,6 +25,10 @@ import { GAllowlistAddComponent } from './g-allowlist/g-allowlist-add/g-allowlis
 import { GAllowlistBatchAddComponent } from './g-allowlist/g-allowlist-batch-add/g-allowlist-batch-add.component';
 import { GAllowlistSearchFormComponent } from './g-allowlist/g-allowlist-search-form/g-allowlist-search-form.component';
 import { GAllowlistTableComponent } from './g-allowlist/g-allowlist-table/g-allowlist-table.component';
+import { GDistrictManagerComponent } from './g-district-manager/g-district-manager.component';
+import { GDistrictManagerAddComponent } from './g-district-manager/g-district-manager-add/g-district-manager-add.component';
+import { GDistrictManagerSearchFormComponent } from './g-district-manager/g-district-manager-search-form/g-district-manager-search-form.component';
+import { GDistrictManagerTableComponent } from './g-district-manager/g-district-manager-zone-table/g-district-manager-table.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +54,10 @@ import { GAllowlistTableComponent } from './g-allowlist/g-allowlist-table/g-allo
     GAllowlistBatchAddComponent,
     GAllowlistSearchFormComponent,
     GAllowlistTableComponent,
+    GDistrictManagerComponent,
+    GDistrictManagerAddComponent,
+    GDistrictManagerSearchFormComponent,
+    GDistrictManagerTableComponent,
   ],
   imports: [SharedModule, GlobalSystemSettingRoutingModule],
 })

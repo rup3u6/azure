@@ -73,7 +73,7 @@ export class UseRoleAddComponent implements OnInit {
     );
 
     if (this.data.mode === 'add') {
-      this.setLanguageFormGroupInit();
+      this.setUseRoleFormGroupInit();
     } else {
       const role_StartDate = this.data.initData.oCTab_UseRole.role_StartDate;
       if (role_StartDate) {
@@ -95,7 +95,7 @@ export class UseRoleAddComponent implements OnInit {
     this.isUseRoleFormGroup = true;
   }
 
-  setLanguageFormGroupInit() {
+  setUseRoleFormGroupInit() {
     this.useRoleFormGroup.patchValue({
       oCIn_UseRole_PageData: {
         role_State: '1',
