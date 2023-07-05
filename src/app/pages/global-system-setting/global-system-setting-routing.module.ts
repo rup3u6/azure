@@ -36,7 +36,7 @@ const routes: Routes = [
     component: GAllowlistComponent,
   },
   {
-    path: 'cross-zone',
+    path: 'district-manager',
     component: GDistrictManagerComponent,
   },
 ];

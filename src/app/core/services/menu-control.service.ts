@@ -28,7 +28,7 @@ export class MenuControlService {
         },
         {
           module_Name: '跨區管理者名單維護',
-          mod_Route: '/globalsetting/cross-zone',
+          mod_Route: '/globalsetting/district-manager',
         },
         // {
         //   module_Name: '選單分類',
@@ -190,7 +190,7 @@ export class MenuControlService {
   //   },
   // ];
 
-  constructor(private router: Router) {}
+  constructor(private router: Router) { }
 
   setSideMenu(menuType: string, turnPage: boolean = false) {
     switch (menuType) {
