@@ -17,6 +17,7 @@ import { GZoneService } from 'src/app/core/services/baseAPI/g-zone.service';
 import { GLanguageService } from 'src/app/core/services/baseAPI/g-language.service';
 import { LoadingService } from 'src/app/core/services/loading.service';
 import { MessageService } from 'src/app/core/services/message.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'g-zone-add',
@@ -49,6 +50,7 @@ export class GZoneAddComponent implements OnInit {
     private gLanguageService: GLanguageService,
     private loadingService: LoadingService,
     private messageService: MessageService,
+    private translateService:TranslateService
   ) { }
 
   async ngOnInit(): Promise<void> {
@@ -155,21 +157,21 @@ export class GZoneAddComponent implements OnInit {
         if (IsShareError || Istab1Error) { return; }
         if (Istab2Error) {
           this.tabChange(2);
-          msgList = ['後台選單設定有誤'];
+          msgList = [this.translateService.instant("ERRORS.BACK_SIDE_MENU_SETTING")];
         }
         break;
       case 2:
         if (IsShareError || Istab2Error) { return; }
         if (Istab1Error) {
           this.tabChange(1);
-          msgList = ['前台選單設定有誤'];
+          msgList = [this.translateService.instant("ERRORS.FRONT_SIDE_MENU_SETTING")];
         }
         break;
     }
 
     if (msgList.length) {
       this.messageService.showModal(Message.error, {
-        title: '執行失敗',
+        title: this.translateService.instant("ERRORS.TITLE.900"),
         msgList: msgList,
       });
     }

@@ -18,9 +18,16 @@
     "M0010": "角色不得為空",
     "M0011": "請改用Azure登入",
     "M0012": "無此系統權限",
-    "SELECT_ZERO": "Please select"
+    "SELECT_ZERO": "Please select",
+    "MIN_LENGTH": "At least more than {{length}} characters",
+    "FRONT_SIDE_MENU_SETTING": "Front side menu setting fail",
+    "BACK_SIDE_MENU_SETTING": "Back side menu setting fail",
+    "REQUIRED": "Required",
+    "GREATER_THAN_END_DATE": "Greater than end Date",
+    "UNKNOWN_ERROR": "Unknown error"
   },
   "PAGES": {
+    "DISABLE_ITEMS": "Disable Items",
     "EDIT_DATE": "Edit Date",
     "EDIT_IP": "Edit IP",
     "EDIT_CODE": "Edit Name",
@@ -30,7 +37,14 @@
     "LANG_STATE": "Status",
     "I18N_FRONT": "Front I18n File Name",
     "I18N_BACK": "Back I18n File Name",
-    "DISABLE_ITEMS": "Disable Items"
+    "ZONE_NAME": "Zone Name",
+    "ZONE_SORT": "Sort",
+    "ZONE_STATE": "Status",
+    "LCIN_WF_ZONE_SITE_PAGEDATA": "Sites",
+    "LCIN_WF_ZONE_LANGUE_PAGEDATA": "Zone Languages",
+    "FK_LANG_CODE": "Default Language",
+    "FRONT_SIDE_MENU_SETTING": "Front Side Menu",
+    "BACK_SIDE_MENU_SETTING": "Back Side Menu"
   },
   "MENUS": {
     "GLOBAL_MANAGER": "Global Setting",
@@ -44,7 +58,7 @@
     "SEARCH": "Search",
     "CLEAR": "Clear",
     "CREATE": "Create",
-    "UPDATE": "Update",
+    "EDIT": "Edit",
     "CONFIRM": "Confirm",
     "CANCEL": "Cancel",
     "DISABLE": "Disable"

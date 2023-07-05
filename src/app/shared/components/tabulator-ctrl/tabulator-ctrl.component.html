@@ -1,7 +1,7 @@
 <div class='rt-fun-list'>
   <ul>
     <li *ngIf="type === 'edit' || type === 'editCopyDelete' || type === 'editPreviewCopyOff'">
-      <a (click)="edit($event)">編輯</a>
+      <a (click)="edit($event)">{{ "BUTTONS.EDIT" | translate }}</a>
     </li>
     <li *ngIf="type === 'delete'">
       <a (click)="del($event)" class='rt-delete'>刪除</a>

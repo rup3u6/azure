@@ -13,16 +13,19 @@ export class ErrorMessagePipe implements PipeTransform {
 
   transform(errors: ValidationErrors | null | undefined, name: string, ...args: unknown[]): string {
     let error = '';
-
+    let length = '';
     for (const key in errors) {
       switch (key) {
-        case 'required': error = '此欄位必填'; break;
-        case 'greaterThanEndDate': error = '起日大於迄日'; break;
-        case 'minlength': error = 'VIEW.ERROR'; break;
-        default: error = '未知的錯誤'; break;
+        case 'required': error = 'ERRORS.REQUIRED'; break;
+        case 'greaterThanEndDate': error = 'ERRORS.GREATER_THAN_END_DATE'; break;
+        case 'minlength': 
+          error = 'ERRORS.MIN_LENGTH';
+          length = errors['minlength']['requiredLength'];
+          break;
+        default: error = 'ERRORS.UNKNOWN_ERROR'; break;
       }
     }
 
-    return this.translatePipe.transform(error);
+    return this.translatePipe.transform(error, { length });
   }
 }

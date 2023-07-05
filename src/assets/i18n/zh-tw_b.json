@@ -18,9 +18,16 @@
     "M0010": "角色不得為空",
     "M0011": "請改用Azure登入",
     "M0012": "無此系統權限",
-    "SELECT_ZERO": "請選擇資料"
+    "SELECT_ZERO": "請選擇資料",
+    "MIN_LENGTH": "最少長度須為{{length}}",
+    "FRONT_SIDE_MENU_SETTING": "前台選單設定有誤",
+    "BACK_SIDE_MENU_SETTING": "後台選單設定有誤",
+    "REQUIRED": "此欄位必填",
+    "GREATER_THAN_END_DATE": "起日大於迄日",
+    "UNKNOWN_ERROR": "未定義的錯誤"
   },
   "PAGES": {
+    "DISABLE_ITEMS": "停用項目",
     "EDIT_DATE": "異動日期",
     "EDIT_IP": "異動IP",
     "EDIT_CODE": "異動者",
@@ -30,7 +37,14 @@
     "LANG_STATE": "狀態",
     "I18N_FRONT": "前台I18N檔名",
     "I18N_BACK": "後台I18N檔名",
-    "DISABLE_ITEMS": "停用項目"
+    "ZONE_NAME": "區域名稱",
+    "ZONE_SORT": "排序",
+    "ZONE_STATE": "狀態",
+    "LCIN_WF_ZONE_SITE_PAGEDATA": "Site設定",
+    "LCIN_WF_ZONE_LANGUE_PAGEDATA": "區域語系",
+    "FK_LANG_CODE": "預設語系",
+    "FRONT_SIDE_MENU_SETTING": "前台選單設定",
+    "BACK_SIDE_MENU_SETTING": "後台選單設定"
   },
   "MENUS": {
     "GLOBAL_MANAGER": "全域管理者設定",
@@ -44,7 +58,7 @@
     "SEARCH": "查詢",
     "CLEAR": "清除",
     "CREATE": "新增",
-    "UPDATE": "編輯",
+    "EDIT": "編輯",
     "CONFIRM": "確認",
     "CANCEL": "取消",
     "DISABLE": "停用"

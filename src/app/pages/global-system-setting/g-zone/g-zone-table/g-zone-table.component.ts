@@ -1,21 +1,29 @@
-import { Component, EventEmitter, Output, ViewContainerRef } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Output,
+  ViewContainerRef,
+} from '@angular/core';
 import { Tabulator } from 'tabulator-tables';
 import { DatePipe } from '@angular/common';
 
 // service
 import { GZoneService } from 'src/app/core/services/baseAPI/g-zone.service';
+import { TranslateService } from '@ngx-translate/core';
 
 // components
-import { TabulatorCtrlComponent, TabulatorCtrlType } from 'src/app/shared/components/tabulator-ctrl/tabulator-ctrl.component';
+import {
+  TabulatorCtrlComponent,
+  TabulatorCtrlType,
+} from 'src/app/shared/components/tabulator-ctrl/tabulator-ctrl.component';
 
 @Component({
   selector: 'div[g-zone-table]',
   templateUrl: './g-zone-table.component.html',
   styleUrls: ['./g-zone-table.component.scss'],
-  entryComponents: [TabulatorCtrlComponent]
+  entryComponents: [TabulatorCtrlComponent],
 })
 export class GZoneTableComponent {
-
   @Output() add = new EventEmitter<any>();
   @Output() edit = new EventEmitter<any>();
   @Output() deactivate = new EventEmitter<any>();
@@ -31,31 +39,35 @@ export class GZoneTableComponent {
       headerHozAlign: 'center',
     },
     {
-      title: '區域名稱',
+      title: 'PAGES.ZONE_NAME', //  區域名稱
       field: 'zone_Name',
       vertAlign: 'middle',
       hozAlign: 'center',
       headerHozAlign: 'center',
     },
     {
-      title: '狀態',
+      title: 'PAGES.ZONE_STATE', //  狀態
       field: 'zone_State',
       vertAlign: 'middle',
       hozAlign: 'center',
       headerHozAlign: 'center',
       formatter: (cell: any) => {
-        return cell.getValue() === '1' ? '啟用' : '停用';
+        const lang_State =
+          cell.getValue() === '1'
+            ? 'SELECT_OPTIONS.ENABLE'
+            : 'SELECT_OPTIONS.DISABLE';
+        return this.translateService.instant(lang_State);
       },
     },
     {
-      title: '排序',
+      title: 'PAGES.ZONE_SORT', //  排序
       field: 'zone_Sort',
       vertAlign: 'middle',
       hozAlign: 'center',
       headerHozAlign: 'center',
     },
     {
-      title: '異動日期',
+      title: 'PAGES.EDIT_DATE', //  異動日期
       field: 'zone_EditDate',
       vertAlign: 'middle',
       hozAlign: 'center',
@@ -72,21 +84,21 @@ export class GZoneTableComponent {
       },
     },
     {
-      title: '異動IP',
+      title: 'PAGES.EDIT_IP', //  異動IP
       field: 'zone_EditIp',
       vertAlign: 'middle',
       hozAlign: 'center',
       headerHozAlign: 'center',
     },
     {
-      title: '異動者',
+      title: 'PAGES.EDIT_CODE', //  異動者
       field: 'zone_EditCode',
       vertAlign: 'middle',
       hozAlign: 'center',
       headerHozAlign: 'center',
     },
     {
-      title: '功能',
+      title: 'PAGES.FUNCTION', //  功能
       vertAlign: 'middle',
       maxWidth: 80,
       minWidth: 80,
@@ -96,8 +108,10 @@ export class GZoneTableComponent {
       formatter: (cell: any) => {
         const rowData = cell.getData();
 
-        const componentRef = this.viewContainerRef.createComponent(TabulatorCtrlComponent);
-        const component = (componentRef.instance as TabulatorCtrlComponent);
+        const componentRef = this.viewContainerRef.createComponent(
+          TabulatorCtrlComponent
+        );
+        const component = componentRef.instance as TabulatorCtrlComponent;
 
         component.type = TabulatorCtrlType.edit;
         component.data = rowData;
@@ -114,11 +128,11 @@ export class GZoneTableComponent {
   constructor(
     private viewContainerRef: ViewContainerRef,
     private datePipe: DatePipe,
-    public gZoneService: GZoneService
-  ) { }
+    public gZoneService: GZoneService,
+    private translateService: TranslateService
+  ) {}
 
   tableBuilded(table: Tabulator) {
     this.gZoneService.tableBuilded(table);
   }
 }
-
