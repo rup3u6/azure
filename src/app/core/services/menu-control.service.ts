@@ -46,7 +46,7 @@ export class MenuControlService {
       module_Name: 'MENUS.ZONE_MANAGER',  //  管理者維護
       child: [
         {
-          module_Name: '角色維護',
+          module_Name: 'MENUS.ROLE_MANAGEMENT', //  角色維護
           mod_Route: '/systemsetting/use-role',
         },
         {

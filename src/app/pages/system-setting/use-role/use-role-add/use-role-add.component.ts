@@ -17,6 +17,7 @@ import { LoadingService } from 'src/app/core/services/loading.service';
 
 // ng-zorro-antd
 import { TransferItem } from 'ng-zorro-antd/transfer';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'sys-use-role-add',
@@ -49,7 +50,8 @@ export class UseRoleAddComponent implements OnInit {
     public managerInfoService: ManagerInfoService,
     private useInfoService: UseInfoService,
     public useRoleService: UseRoleService,
-    private loadingService: LoadingService
+    private loadingService: LoadingService,
+    private translateService: TranslateService
   ) { }
 
   async ngOnInit(): Promise<void> {
@@ -241,21 +243,21 @@ export class UseRoleAddComponent implements OnInit {
         if (IsShareError || Istab1Error) { return; }
         if (Istab2Error) {
           this.tabChange(2);
-          msgList = ['權限選單頁籤有誤'];
+          msgList = [this.translateService.instant("ERRORS.PERMISSION_MENU")];
         }
         break;
       case 2:
         if (IsShareError || Istab2Error) { return; }
         if (Istab1Error) {
           this.tabChange(1);
-          msgList = ['資料維護頁籤有誤'];
+          msgList = [this.translateService.instant("ERRORS.DATA_MAINTAIN")];
         }
         break;
     }
 
     if (msgList.length) {
       this.messageService.showModal(Message.error, {
-        title: '執行失敗',
+        title: this.translateService.instant("ERRORS.TITLE.900"),
         msgList: msgList,
       });
     }

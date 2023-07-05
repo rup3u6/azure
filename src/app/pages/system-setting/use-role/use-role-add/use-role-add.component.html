@@ -12,7 +12,10 @@
         <div class="popup-header">
           <div class="popup-header-inner">
             <div class="popup-header-unit header-text">
-              {{ data.mode === "add" ? "新增" : "編輯" }}角色
+              {{
+                (data.mode === "add" ? "BUTTONS.CREATE" : "BUTTONS.EDIT")
+                  | translate
+              }}
             </div>
             <!-- <div class="popup-header-unit header-btn">
                 <a routerLink="/role"
@@ -26,33 +29,88 @@
             <div class="popup-content-item popup-content-tab">
               <div class="popup-content-item-inner">
                 <ul>
-                  <li><a (click)="tabChange(1)" [ngClass]="{'active': tab === 1}">資料維護</a></li>
-                  <li><a (click)="tabChange(2)" [ngClass]="{'active': tab === 2}">權限選單</a></li>
+                  <li>
+                    <!-- 資料維護 -->
+                    <a
+                      (click)="tabChange(1)"
+                      [ngClass]="{ active: tab === 1 }"
+                      >{{ "PAGES.DATA_MAINTAIN" | translate }}</a
+                    >
+                  </li>
+                  <li>
+                    <!-- 權限選單 -->
+                    <a
+                      (click)="tabChange(2)"
+                      [ngClass]="{ active: tab === 2 }"
+                      >{{ "PAGES.PERMISSION_MENU" | translate }}</a
+                    >
+                  </li>
                 </ul>
               </div>
             </div>
             <div class="popup-content-item">
               <div class="popup-content-item-inner">
                 <div class="popup-form">
-                  <div class="form-row row-3" formGroupName="oCIn_UseRole_PageData">
-                    <div class="form-item" type="required" [attr.attr]="f['oCIn_UseRole_PageData'].get('role_Name')?.errors && f['oCIn_UseRole_PageData'].get('role_Name')?.touched && 'error'">
+                  <div
+                    class="form-row row-3"
+                    formGroupName="oCIn_UseRole_PageData"
+                  >
+                    <!-- 角色名稱 -->
+                    <div
+                      class="form-item"
+                      type="required"
+                      [attr.attr]="
+                        f['oCIn_UseRole_PageData'].get('role_Name')?.errors &&
+                        f['oCIn_UseRole_PageData'].get('role_Name')?.touched &&
+                        'error'
+                      "
+                    >
                       <div class="form-item-inner">
-                        <div class="form-item-title">角色名稱</div>
+                        <div class="form-item-title">
+                          {{ "PAGES.ROLE_NAME" | translate }}
+                        </div>
                         <div class="form-item-entry">
                           <input
                             type="text"
-                            placeholder="請輸入角色名稱"
+                            [placeholder]="
+                              'PLACEHOLDER.ENTRY'
+                                | translate
+                                  : { field: 'PAGES.ROLE_NAME' | translate }
+                            "
                             formControlName="role_Name"
                           />
                         </div>
-                        <div class="form-item-text" *ngIf="f['oCIn_UseRole_PageData'].get('role_Name')?.errors && f['oCIn_UseRole_PageData'].get('role_Name')?.touched">
-                          <p>{{ f['oCIn_UseRole_PageData'].get('role_Name')?.errors | errorMessage : '角色名稱' }}</p>
+                        <div
+                          class="form-item-text"
+                          *ngIf="
+                            f['oCIn_UseRole_PageData'].get('role_Name')
+                              ?.errors &&
+                            f['oCIn_UseRole_PageData'].get('role_Name')?.touched
+                          "
+                        >
+                          <p>
+                            {{
+                              f["oCIn_UseRole_PageData"].get("role_Name")
+                                ?.errors | errorMessage : "角色名稱"
+                            }}
+                          </p>
                         </div>
                       </div>
                     </div>
-                    <div class="form-item" type="required" [attr.attr]="f['oCIn_UseRole_PageData'].get('role_State')?.errors && f['oCIn_UseRole_PageData'].get('role_State')?.touched && 'error'">
+                    <!-- 狀態 -->
+                    <div
+                      class="form-item"
+                      type="required"
+                      [attr.attr]="
+                        f['oCIn_UseRole_PageData'].get('role_State')?.errors &&
+                        f['oCIn_UseRole_PageData'].get('role_State')?.touched &&
+                        'error'
+                      "
+                    >
                       <div class="form-item-inner">
-                        <div class="form-item-title">狀態</div>
+                        <div class="form-item-title">
+                          {{ "PAGES.ROLE_STATE" | translate }}
+                        </div>
                         <div class="form-item-entry">
                           <ul>
                             <li>
@@ -62,7 +120,9 @@
                                 value="1"
                                 formControlName="role_State"
                               />
-                              <label for="rd01">啟用</label>
+                              <label for="rd01">{{
+                                "SELECT_OPTIONS.ENABLE" | translate
+                              }}</label>
                             </li>
                             <li>
                               <input
@@ -71,64 +131,161 @@
                                 value="0"
                                 formControlName="role_State"
                               />
-                              <label for="rd02">停用</label>
+                              <label for="rd02">{{
+                                "SELECT_OPTIONS.DISABLE" | translate
+                              }}</label>
                             </li>
                           </ul>
                         </div>
-                        <div class="form-item-text" *ngIf="f['oCIn_UseRole_PageData'].get('role_State')?.errors && f['oCIn_UseRole_PageData'].get('role_State')?.touched">
-                          <p>{{ f['oCIn_UseRole_PageData'].get('role_State')?.errors | errorMessage : '狀態' }}</p>
+                        <div
+                          class="form-item-text"
+                          *ngIf="
+                            f['oCIn_UseRole_PageData'].get('role_State')
+                              ?.errors &&
+                            f['oCIn_UseRole_PageData'].get('role_State')
+                              ?.touched
+                          "
+                        >
+                          <p>
+                            {{
+                              f["oCIn_UseRole_PageData"].get("role_State")
+                                ?.errors | errorMessage : "狀態"
+                            }}
+                          </p>
                         </div>
                       </div>
                     </div>
                   </div>
                   <hr class="seperate-line" />
                   <div class="form-row row-2" [hidden]="tab !== 1">
-                    <div class="form-item" type="required" [attr.attr]="f['lCIn_UseRoleMember_PageData'].errors && f['lCIn_UseRoleMember_PageData'].touched && 'error'">
+                    <!-- 角色使用者 -->
+                    <div
+                      class="form-item"
+                      type="required"
+                      [attr.attr]="
+                        f['lCIn_UseRoleMember_PageData'].errors &&
+                        f['lCIn_UseRoleMember_PageData'].touched &&
+                        'error'
+                      "
+                    >
                       <div class="form-item-inner">
-                        <div class="form-item-title">角色使用者</div>
+                        <div class="form-item-title">
+                          {{ "PAGES.ROLE_USERS" | translate }}
+                        </div>
                         <div class="form-item-entry">
                           <nz-transfer
                             [nzDataSource]="useInfoList"
                             (nzChange)="useRoleMemberChange()"
                           ></nz-transfer>
                         </div>
-                        <div class="form-item-text" *ngIf="f['lCIn_UseRoleMember_PageData'].errors && f['lCIn_UseRoleMember_PageData'].touched">
-                          <p>{{ f['lCIn_UseRoleMember_PageData'].errors | errorMessage : '角色使用者' }}</p>
+                        <div
+                          class="form-item-text"
+                          *ngIf="
+                            f['lCIn_UseRoleMember_PageData'].errors &&
+                            f['lCIn_UseRoleMember_PageData'].touched
+                          "
+                        >
+                          <p>
+                            {{
+                              f["lCIn_UseRoleMember_PageData"].errors
+                                | errorMessage : "角色使用者"
+                            }}
+                          </p>
                         </div>
                       </div>
                     </div>
                   </div>
-                  <hr class="seperate-line" [hidden]="tab !== 1"/>
+                  <hr class="seperate-line" [hidden]="tab !== 1" />
                   <div class="form-row row-3" [hidden]="tab !== 1">
-                    <div class="form-item" type="required" [attr.attr]="f['oCIn_UseRole_PageData'].get('role_StartDate')?.errors && f['oCIn_UseRole_PageData'].get('role_StartDate')?.touched && 'error'">
+                    <div
+                      class="form-item"
+                      type="required"
+                      [attr.attr]="
+                        f['oCIn_UseRole_PageData'].get('role_StartDate')
+                          ?.errors &&
+                        f['oCIn_UseRole_PageData'].get('role_StartDate')
+                          ?.touched &&
+                        'error'
+                      "
+                    >
                       <div class="form-item-inner">
-                        <div class="form-item-title">有效日期(起)</div>
+                        <div class="form-item-title">
+                          {{ "PAGES.ROLE_STARTDATE" | translate }}
+                        </div>
                         <div class="form-item-entry">
                           <nz-date-picker
-                            nzPlaceHolder="請輸入日期區間(起)"
+                            [nzPlaceHolder]="
+                              'PLACEHOLDER.ENTRY'
+                                | translate
+                                  : {
+                                      field: 'PAGES.ROLE_STARTDATE' | translate
+                                    }
+                            "
                             [(ngModel)]="roleStartDate"
                             (ngModelChange)="roleStartDateChange($event)"
-                            [ngModelOptions]="{standalone: true}"
+                            [ngModelOptions]="{ standalone: true }"
                           ></nz-date-picker>
                         </div>
-                        <div class="form-item-text" *ngIf="f['oCIn_UseRole_PageData'].get('role_StartDate')?.errors && f['oCIn_UseRole_PageData'].get('role_StartDate')?.touched">
-                          <p>{{ f['oCIn_UseRole_PageData'].get('role_StartDate')?.errors | errorMessage : '有效日期(起)' }}</p>
+                        <div
+                          class="form-item-text"
+                          *ngIf="
+                            f['oCIn_UseRole_PageData'].get('role_StartDate')
+                              ?.errors &&
+                            f['oCIn_UseRole_PageData'].get('role_StartDate')
+                              ?.touched
+                          "
+                        >
+                          <p>
+                            {{
+                              f["oCIn_UseRole_PageData"].get("role_StartDate")
+                                ?.errors | errorMessage : "有效日期(起)"
+                            }}
+                          </p>
                         </div>
                       </div>
                     </div>
-                    <div class="form-item" type="required" [attr.attr]="f['oCIn_UseRole_PageData'].get('role_EndDate')?.errors && f['oCIn_UseRole_PageData'].get('role_EndDate')?.touched && 'error'">
+                    <div
+                      class="form-item"
+                      type="required"
+                      [attr.attr]="
+                        f['oCIn_UseRole_PageData'].get('role_EndDate')
+                          ?.errors &&
+                        f['oCIn_UseRole_PageData'].get('role_EndDate')
+                          ?.touched &&
+                        'error'
+                      "
+                    >
                       <div class="form-item-inner">
-                        <div class="form-item-title">有效日期(迄)</div>
+                        <div class="form-item-title">
+                          {{ "PAGES.ROLE_ENDDATE" | translate }}
+                        </div>
                         <div class="form-item-entry">
                           <nz-date-picker
-                            nzPlaceHolder="請輸入日期區間(迄)"
+                            [nzPlaceHolder]="
+                              'PLACEHOLDER.ENTRY'
+                                | translate
+                                  : { field: 'PAGES.ROLE_ENDDATE' | translate }
+                            "
                             [(ngModel)]="roleEndDate"
                             (ngModelChange)="roleEndDateChange($event)"
-                            [ngModelOptions]="{standalone: true}"
+                            [ngModelOptions]="{ standalone: true }"
                           ></nz-date-picker>
                         </div>
-                        <div class="form-item-text" *ngIf="f['oCIn_UseRole_PageData'].get('role_EndDate')?.errors && f['oCIn_UseRole_PageData'].get('role_EndDate')?.touched">
-                          <p>{{ f['oCIn_UseRole_PageData'].get('role_EndDate')?.errors | errorMessage : '有效日期(迄)' }}</p>
+                        <div
+                          class="form-item-text"
+                          *ngIf="
+                            f['oCIn_UseRole_PageData'].get('role_EndDate')
+                              ?.errors &&
+                            f['oCIn_UseRole_PageData'].get('role_EndDate')
+                              ?.touched
+                          "
+                        >
+                          <p>
+                            {{
+                              f["oCIn_UseRole_PageData"].get("role_EndDate")
+                                ?.errors | errorMessage : "有效日期(迄)"
+                            }}
+                          </p>
                         </div>
                       </div>
                     </div>
@@ -147,10 +304,14 @@
         <div class="popup-footer">
           <div class="popup-footer-inner">
             <div class="popup-footer-unit footer-button" btn="cancel">
-              <button (click)="close.emit()">取消</button>
+              <button (click)="close.emit()">
+                {{ "BUTTONS.CANCEL" | translate }}
+              </button>
             </div>
             <div class="popup-footer-unit footer-button" btn="confirm">
-              <button (click)="submit()">確認</button>
+              <button (click)="submit()">
+                {{ "BUTTONS.CONFIRM" | translate }}
+              </button>
             </div>
           </div>
         </div>

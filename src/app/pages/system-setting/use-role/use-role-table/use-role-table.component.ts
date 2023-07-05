@@ -8,6 +8,7 @@ import { LoadingService } from 'src/app/core/services/loading.service';
 
 // components
 import { TabulatorCtrlComponent, TabulatorCtrlType } from 'src/app/shared/components/tabulator-ctrl/tabulator-ctrl.component';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'div[sys-use-role-table]',
@@ -32,31 +33,35 @@ export class UseRoleTableComponent {
       headerHozAlign: 'center',
     },
     {
-      title: '角色名稱',
+      title: 'PAGES.ROLE_NAME',  //  角色名稱
       field: 'role_Name',
       vertAlign: 'middle',
       hozAlign: 'center',
       headerHozAlign: 'center',
     },
     {
-      title: '狀態',
+      title: 'PAGES.ROLE_STATE',  //  狀態
       field: 'role_State',
       vertAlign: 'middle',
       hozAlign: 'center',
       headerHozAlign: 'center',
       formatter: (cell: any) => {
-        return cell.getValue() === '1' ? '啟用' : '停用';
+        const lang_State =
+          cell.getValue() === '1'
+            ? 'SELECT_OPTIONS.ENABLE'
+            : 'SELECT_OPTIONS.DISABLE';
+        return this.translateService.instant(lang_State);
       },
     },
     {
-      title: '異動者',
+      title: 'PAGES.EDIT_CODE',  //  異動者
       field: 'role_EditCode',
       vertAlign: 'middle',
       hozAlign: 'center',
       headerHozAlign: 'center',
     },
     {
-      title: '異動日期',
+      title: 'PAGES.EDIT_DATE',  //  異動日期
       field: 'role_EditDate',
       vertAlign: 'middle',
       hozAlign: 'center',
@@ -73,7 +78,7 @@ export class UseRoleTableComponent {
       },
     },
     {
-      title: '功能',
+      title: 'PAGES.FUNCTION',  //  功能
       vertAlign: 'middle',
       maxWidth: 80,
       minWidth: 80,
@@ -101,7 +106,8 @@ export class UseRoleTableComponent {
   constructor(
     private viewContainerRef: ViewContainerRef,
     private datePipe: DatePipe,
-    public useRoleService: UseRoleService
+    public useRoleService: UseRoleService,
+    private translateService: TranslateService
   ) { }
 
   tableBuilded(table: Tabulator) {

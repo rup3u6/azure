@@ -6,13 +6,13 @@
           <div class="tree-field-unit" *ngFor="let item of useRoleGetModuleslist$ | async">
             <div class="tree-field-checkbox">
               <input type="checkbox" id="module-{{item.module_Pk}}" name="cb11" [(ngModel)]="item.checked" (ngModelChange)="useRoleGetModulesChange(item)">
-              <label for="module-{{item.module_Pk}}">{{item.module_Name}}</label>
+              <label for="module-{{item.module_Pk}}">{{item.module_Name | translate}}</label>
             </div>
             <div class="sub-tree-field-unit">
               <ng-container *ngFor="let item2 of item.child">
                 <div class="tree-field-checkbox">
                   <input type="checkbox" id="module-{{item2.module_Pk}}" [(ngModel)]="item2.checked" (ngModelChange)="useRoleGetModulesChange(item2)">
-                  <label for="module-{{item2.module_Pk}}">{{item2.module_Name}}</label>
+                  <label for="module-{{item2.module_Pk}}">{{item2.module_Name | translate}}</label>
                 </div>
               </ng-container>
             </div>

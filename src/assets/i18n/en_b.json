@@ -24,13 +24,15 @@
     "BACK_SIDE_MENU_SETTING": "Back side menu setting fail",
     "REQUIRED": "Required",
     "GREATER_THAN_END_DATE": "Greater than end Date",
-    "UNKNOWN_ERROR": "Unknown error"
+    "UNKNOWN_ERROR": "Unknown error",
+    "DATA_MAINTAIN": "Data maintain fail",
+    "PERMISSION_MENU": "Permission menu fail"
   },
   "PAGES": {
     "DISABLE_ITEMS": "Disable Items",
-    "EDIT_DATE": "Edit Date",
-    "EDIT_IP": "Edit IP",
-    "EDIT_CODE": "Edit Name",
+    "EDIT_DATE": "Edited Date",
+    "EDIT_IP": "Edited IP",
+    "EDIT_CODE": "Edited Name",
     "FUNCTION": "Function",
     "LANG_NAME": "Language Name",
     "LANG_CODE": "Language Code",
@@ -38,20 +40,28 @@
     "I18N_FRONT": "Front I18n File Name",
     "I18N_BACK": "Back I18n File Name",
     "ZONE_NAME": "Zone Name",
-    "ZONE_SORT": "Sort",
+    "ZONE_SORT": "Sorting",
     "ZONE_STATE": "Status",
     "LCIN_WF_ZONE_SITE_PAGEDATA": "Sites",
     "LCIN_WF_ZONE_LANGUE_PAGEDATA": "Zone Languages",
     "FK_LANG_CODE": "Default Language",
     "FRONT_SIDE_MENU_SETTING": "Front Side Menu",
-    "BACK_SIDE_MENU_SETTING": "Back Side Menu"
+    "BACK_SIDE_MENU_SETTING": "Back Side Menu",
+    "ROLE_NAME": "Role Name",
+    "ROLE_STATE": "Status",
+    "DATA_MAINTAIN": "Data Maintain",
+    "PERMISSION_MENU": "Permission Menu",
+    "ROLE_USERS": "Role Users",
+    "ROLE_STARTDATE": "Actived Date(Start)",
+    "ROLE_ENDDATE": "Actived Date(End)"
   },
   "MENUS": {
     "GLOBAL_MANAGER": "Global Setting",
     "GLOBAL_LANGUAGE": "Work With Language",
     "GLOBAL_ZONE": "Work With Area",
     "ZONE_MANAGER": "Zone Setting",
-    "NORMAL_MANAGER": "Setting"
+    "NORMAL_MANAGER": "Setting",
+    "ROLE_MANAGEMENT": "Role Management"
   },
   "BUTTONS": {
     "LOGOUT": "Logout",

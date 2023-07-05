@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { TranslateService } from '@ngx-translate/core';
 import { firstValueFrom } from 'rxjs';
+import { Message } from 'src/app/core/enum/message';
 
 // enum
 import { ResponseStatus } from 'src/app/core/enum/response-status';
@@ -8,14 +10,14 @@ import { ResponseStatus } from 'src/app/core/enum/response-status';
 // service
 import { UseRoleService } from 'src/app/core/services/authAPI/use-role.service';
 import { LoadingService } from 'src/app/core/services/loading.service';
+import { MessageService } from 'src/app/core/services/message.service';
 
 @Component({
   selector: 'app-use-role',
   templateUrl: './use-role.component.html',
-  styleUrls: ['./use-role.component.scss']
+  styleUrls: ['./use-role.component.scss'],
 })
 export class UseRoleComponent {
-
   popup: any = {
     component: null,
     data: null,
@@ -24,8 +26,10 @@ export class UseRoleComponent {
   constructor(
     private formBuilder: FormBuilder,
     public useRoleService: UseRoleService,
-    private loadingService: LoadingService
-  ) { }
+    private loadingService: LoadingService,
+    private messageService: MessageService,
+    private translateService: TranslateService
+  ) {}
 
   addPopupHandler() {
     this.popup.data = {
@@ -68,7 +72,10 @@ export class UseRoleComponent {
       .getTabulatorTable()
       .getSelectedData();
     if (selectedData.length === 0) {
-      alert('請選擇資料');
+      this.messageService.showNotification(
+        Message.warning,
+        this.translateService.instant('ERRORS.SELECT_ZERO')
+      );
       return;
     }
     this.popup.data = {};
@@ -81,11 +88,11 @@ export class UseRoleComponent {
       .getSelectedData();
 
     let body: any = {
-      lCIn_ConvertState_PageData: selectedData.map(item => {
+      lCIn_ConvertState_PageData: selectedData.map((item) => {
         return {
           lPk: item.role_Id,
-          sName: item.role_Name
-        }
+          sName: item.role_Name,
+        };
       }),
       sState: '0',
     };

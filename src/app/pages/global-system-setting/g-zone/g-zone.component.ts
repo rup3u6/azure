@@ -9,6 +9,7 @@ import { Message } from 'src/app/core/enum/message';
 import { GZoneService } from 'src/app/core/services/baseAPI/g-zone.service';
 import { LoadingService } from 'src/app/core/services/loading.service';
 import { MessageService } from 'src/app/core/services/message.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-g-zone',
@@ -25,7 +26,8 @@ export class GZoneComponent {
   constructor(
     public gZoneService: GZoneService,
     private loadingService: LoadingService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private translateService: TranslateService
   ) { }
 
   addPopupHandler() {
@@ -64,7 +66,7 @@ export class GZoneComponent {
       .getTabulatorTable()
       .getSelectedData();
     if (selectedData.length === 0) {
-      this.messageService.showNotification(Message.warning, '請選擇資料');
+      this.messageService.showNotification(Message.warning, this.translateService.instant('ERRORS.SELECT_ZERO'));
       return;
     }
     this.popup.data = {};

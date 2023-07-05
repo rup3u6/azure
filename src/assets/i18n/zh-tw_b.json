@@ -24,7 +24,9 @@
     "BACK_SIDE_MENU_SETTING": "後台選單設定有誤",
     "REQUIRED": "此欄位必填",
     "GREATER_THAN_END_DATE": "起日大於迄日",
-    "UNKNOWN_ERROR": "未定義的錯誤"
+    "UNKNOWN_ERROR": "未定義的錯誤",
+    "DATA_MAINTAIN": "資料維護頁籤有誤",
+    "PERMISSION_MENU": "權限選單頁籤有誤"
   },
   "PAGES": {
     "DISABLE_ITEMS": "停用項目",
@@ -44,14 +46,22 @@
     "LCIN_WF_ZONE_LANGUE_PAGEDATA": "區域語系",
     "FK_LANG_CODE": "預設語系",
     "FRONT_SIDE_MENU_SETTING": "前台選單設定",
-    "BACK_SIDE_MENU_SETTING": "後台選單設定"
+    "BACK_SIDE_MENU_SETTING": "後台選單設定",
+    "ROLE_NAME": "角色名稱",
+    "ROLE_STATE": "狀態",
+    "DATA_MAINTAIN": "資料維護",
+    "PERMISSION_MENU": "權限選單",
+    "ROLE_USERS": "角色使用者",
+    "ROLE_STARTDATE": "有效日期(起)",
+    "ROLE_ENDDATE": "有效日期(迄)"
   },
   "MENUS": {
     "GLOBAL_MANAGER": "全域管理者設定",
     "GLOBAL_LANGUAGE": "語系設定",
     "GLOBAL_ZONE": "區域維護",
     "ZONE_MANAGER": "管理者設定",
-    "NORMAL_MANAGER": "管理員"
+    "NORMAL_MANAGER": "管理員",
+    "ROLE_MANAGEMENT": "角色維護"
   },
   "BUTTONS": {
     "LOGOUT": "登出",
