@@ -114,6 +114,7 @@ nz {
   overflow: hidden;
   opacity: 1;
   white-space: nowrap;
+  overflow: auto;
 
   &:not(.active) {
     padding-left: 0;
