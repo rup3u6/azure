@@ -97,7 +97,10 @@
     "CFK_SITE": "Site",
     "CK_LOCATION_CODE": "Location",
     "CK_AREA_CODE": "Area",
-    "LOCATION_STATE": "Status"
+    "LOCATION_STATE": "Status",
+    "ZONE_ID": "Zone Name",
+    "INFO_STATE": "Status",
+    "FK_INFO_JOBNUMBER": "Employee ID"
   },
   "MENUS": {
     "GLOBAL_MANAGER": "Global Setting",
@@ -108,7 +111,8 @@
     "ROLE_MANAGEMENT": "Role Management",
     "USER_MANAGEMENT": "User Management",
     "OPERATION_HISTORY": "Operation History",
-    "Location_MANAGEMENT": "Location Management"
+    "LOCATION_MANAGEMENT": "Location Management",
+    "ALLOW_LIST": "Allow List Management"
   },
   "BUTTONS": {
     "LOGOUT": "Logout",
@@ -120,17 +124,26 @@
     "CANCEL": "Cancel",
     "DISABLE": "Disable",
     "MANUAL_UPDATE_SECRETARY": "Manual Update Secretary",
-    "CLOSE": "CLOSE"
+    "CLOSE": "Close",
+    "DELETE": "Delete",
+    "COPY": "Copy",
+    "PREVIEW": "Preview",
+    "PULL_FROM_SHELVES": "Pull From Shelves",
+    "BATCH_CREATE": "Batch Create",
+    "BATCH_DELETE": "Batch Delete"
   },
   "SELECT_OPTIONS": {
     "ALL": "All",
     "ENABLE": "Enable",
     "DISABLE": "Disable",
     "MALE": "Male",
-    "FEMALE": "Female"
+    "FEMALE": "Female",
+    "VALID": "Valid",
+    "INVALID": "Invalid"
   },
   "PLACEHOLDER": {
-    "ENTRY": "Please entry {{field}}"
+    "ENTRY": "Please entry {{field}}",
+    "SELECT": "Please select {{field}}"
   },
   "TABLE_INFO": {
     "TOTAL_COUNT": "Total {{count}} data",

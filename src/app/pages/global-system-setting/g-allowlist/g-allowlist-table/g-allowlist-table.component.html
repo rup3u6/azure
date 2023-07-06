@@ -3,16 +3,16 @@
   <div class="result-function">
     <ul>
       <li>
-        <a href="javascript:void(0)" (click)="add.emit()" attr="add">新增</a>
+        <a href="javascript:void(0)" (click)="add.emit()" attr="add">{{ "BUTTONS.CREATE" | translate }}</a>
       </li>
       <li>
         <a href="javascript:void(0)" (click)="batchAdd.emit()" attr="batch-add"
-          >批次新增</a
+          >{{ "BUTTONS.BATCH_CREATE" | translate }}</a
         >
       </li>
       <li>
         <a href="javascript:void(0)" (click)="batchDelect.emit()" attr="batch-delete"
-          >批次刪除</a
+          >{{ "BUTTONS.BATCH_DELETE" | translate }}</a
         >
       </li>
     </ul>

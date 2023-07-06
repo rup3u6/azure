@@ -23,7 +23,7 @@ export class MenuControlService {
           mod_Route: '/globalsetting/zone',
         },
         {
-          module_Name: '白名單維護',
+          module_Name: 'MENUS.ALLOW_LIST',  //  白名單維護
           mod_Route: '/globalsetting/allowlist',
         },
         {
@@ -58,7 +58,7 @@ export class MenuControlService {
           mod_Route: '/systemsetting/secretary',
         },
         // {
-        //   module_Name: 'MENUS.Location_MANAGEMENT',  //  Location維護
+        //   module_Name: 'MENUS.LOCATION_MANAGEMENT',  //  Location維護
         //   mod_Route: '/systemsetting/location',
         // },
         {
