@@ -18,7 +18,7 @@ export class GDistrictManagerSearchFormComponent implements OnInit {
   searchFormGroup!: FormGroup;
 
   zoneList: any[] = [];
-  accountNameList: any[] = [];
+  useInfoJnNameList: any[] = [];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -28,7 +28,7 @@ export class GDistrictManagerSearchFormComponent implements OnInit {
   ) { }
 
   async ngOnInit(): Promise<void> {
-    await this.getAccountName();
+    await this.getUseInfoJnName();
 
     this.searchFormGroup = this.formBuilder.group({
       fk_Zone_Id: [''],
@@ -53,8 +53,8 @@ export class GDistrictManagerSearchFormComponent implements OnInit {
     this.zoneList = await this.listItemService.GetZoneName();
   }
 
-  async getAccountName() {
-    this.accountNameList = await this.listItemService.getAccountName();
+  async getUseInfoJnName() {
+    this.useInfoJnNameList = await this.listItemService.getUseInfoJnName();
   }
 
   async search() {

@@ -27,7 +27,7 @@ export class GDistrictManagerAddComponent implements OnInit {
   districtManagerFormGroup!: FormGroup;
 
   zoneList: any[] = [];
-  accountNameList: any[] = [];
+  useInfoJnNameList: any[] = [];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -38,7 +38,7 @@ export class GDistrictManagerAddComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     await this.GetZoneName();
-    await this.getAccountName();
+    await this.getUseInfoJnName();
 
     this.districtManagerFormGroup = this.formBuilder.group({
       fk_Zone_Id: ['', Validators.required],
@@ -69,8 +69,8 @@ export class GDistrictManagerAddComponent implements OnInit {
     this.zoneList = await this.listItemService.GetZoneName();
   }
 
-  async getAccountName() {
-    this.accountNameList = await this.listItemService.getAccountName();
+  async getUseInfoJnName() {
+    this.useInfoJnNameList = await this.listItemService.getUseInfoJnName();
   }
 
   async submit() {
@@ -78,12 +78,12 @@ export class GDistrictManagerAddComponent implements OnInit {
 
     if (this.districtManagerFormGroup.invalid) { return }
 
-    const accountName = this.accountNameList.find(item => item.key === this.districtManagerFormGroup.value.fk_Info_Id);
+    const useInfoJnName = this.useInfoJnNameList.find(item => item.key === this.districtManagerFormGroup.value.fk_Info_Id);
 
     let body: any = {
       ... this.districtManagerFormGroup.value,
-      info_Jobnumber: accountName.value.split('(')[0],
-      info_Name: accountName.value.split('(')[1].slice(0, -1),
+      info_Jobnumber: useInfoJnName.value.split('(')[0],
+      info_Name: useInfoJnName.value.split('(')[1].slice(0, -1),
     };
 
     this.loadingService.startLoading();

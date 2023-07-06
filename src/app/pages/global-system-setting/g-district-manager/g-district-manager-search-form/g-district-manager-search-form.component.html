@@ -15,7 +15,7 @@
     <div class="field-entry">
       <select formControlName="fk_Info_Id">
         <option value="0" selected>全部</option>
-        <ng-container *ngFor="let item of accountNameList">
+        <ng-container *ngFor="let item of useInfoJnNameList">
           <option [value]="item.key">{{item.value}}</option>
         </ng-container>
       </select>

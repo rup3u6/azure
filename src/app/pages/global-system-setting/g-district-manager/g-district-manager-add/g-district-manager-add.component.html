@@ -41,7 +41,7 @@
                     <div class="form-item-entry">
                       <select formControlName="fk_Info_Id">
                         <option value="" selected disabled>請選擇工號/姓名</option>
-                        <ng-container *ngFor="let item of accountNameList">
+                        <ng-container *ngFor="let item of useInfoJnNameList">
                           <option [value]="item.key">{{item.value}}</option>
                         </ng-container>
                       </select>

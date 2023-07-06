@@ -71,8 +71,8 @@ export class ListItemService {
     return await this._search([[Common.顯示Site]]);
   }
 
-  async getAccountName(): Promise<any[]> {
-    return await this._search([[Common.顯示使用者ID_姓名]]);
+  async getUseInfoJnName(): Promise<any[]> {
+    return await this._search([[Common.顯示工號_中名]]);
   }
 
   async getLocation(cfk_Site: string): Promise<any[]> {
