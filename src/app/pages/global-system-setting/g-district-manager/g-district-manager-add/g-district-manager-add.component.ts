@@ -82,8 +82,8 @@ export class GDistrictManagerAddComponent implements OnInit {
 
     let body: any = {
       ... this.districtManagerFormGroup.value,
-      info_Jobnumber: useInfoJnName.value.split('(')[0],
-      info_Name: useInfoJnName.value.split('(')[1].slice(0, -1),
+      info_Jobnumber: useInfoJnName.value.split('/')[0],
+      info_Name: useInfoJnName.value.split('/')[1],
     };
 
     this.loadingService.startLoading();
