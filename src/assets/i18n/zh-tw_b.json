@@ -18,6 +18,7 @@
     "M0010": "角色不得為空",
     "M0011": "請改用Azure登入",
     "M0012": "無此系統權限",
+    "BACKEND_MESSAGE": "{{field}} {{errorMessage}}",
     "SELECT_ZERO": "請選擇資料",
     "MIN_LENGTH": "最少長度須為{{length}}",
     "FRONT_SIDE_MENU_SETTING": "前台選單設定有誤",
