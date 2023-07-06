@@ -4,10 +4,13 @@ import { firstValueFrom } from 'rxjs';
 
 // enum
 import { ResponseStatus } from 'src/app/core/enum/response-status';
+import { Message } from 'src/app/core/enum/message';
 
 // service
 import { LocationService } from 'src/app/core/services/baseAPI/location.service';
 import { LoadingService } from 'src/app/core/services/loading.service';
+import { TranslateService } from '@ngx-translate/core';
+import { MessageService } from 'src/app/core/services/message.service';
 
 // component
 import { LocationSearchFormComponent } from './location-search-form/location-search-form.component';
@@ -29,7 +32,9 @@ export class LocationComponent {
   constructor(
     private formBuilder: FormBuilder,
     public locationService: LocationService,
-    private loadingService: LoadingService
+    private loadingService: LoadingService,
+    private messageService: MessageService,
+    private translateService: TranslateService
   ) { }
 
   addPopupHandler() {
@@ -83,7 +88,7 @@ export class LocationComponent {
       .getTabulatorTable()
       .getSelectedData();
     if (selectedData.length === 0) {
-      alert('請選擇資料');
+      this.messageService.showNotification(Message.warning, this.translateService.instant('ERRORS.SELECT_ZERO'));
       return;
     }
     this.popup.data = {};

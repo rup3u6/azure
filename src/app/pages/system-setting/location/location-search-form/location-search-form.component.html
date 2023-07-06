@@ -1,39 +1,43 @@
 <div class="content-query-field" [formGroup]="searchFormGroup" *ngIf="isSearchFormGroup">
+  <!-- Site -->
   <div class="content-query-unit query-field">
-    <div class="field-title">Site</div>
+    <div class="field-title">{{ "PAGES.CFK_SITE" | translate }}</div>
     <div class="field-entry">
       <select formControlName="cfk_Site" (change)="getLocationCodeName()">
-        <option value="" selected>全部</option>
+        <option value="" selected>{{ "SELECT_OPTIONS.ALL" | translate }}</option>
         <option [value]="item.key" *ngFor="let item of siteList">{{item.value}}</option>
       </select>
     </div>
   </div>
+  <!-- Location -->
   <div class="content-query-unit query-field">
-    <div class="field-title">Location</div>
+    <div class="field-title">{{ "PAGES.CK_LOCATION_CODE" | translate }}</div>
     <div class="field-entry">
       <select formControlName="ck_Location_Code">
-        <option value="" selected>全部</option>
+        <option value="" selected>{{ "SELECT_OPTIONS.ALL" | translate }}</option>
         <option [value]="item.key" *ngFor="let item of locationList">{{item.value}}</option>
       </select>
     </div>
   </div>
+  <!-- Area -->
   <div class="content-query-unit query-field">
-    <div class="field-title">Area</div>
+    <div class="field-title">{{ "PAGES.CK_AREA_CODE" | translate }}</div>
     <div class="field-entry">
       <select formControlName="ck_Area_Code">
-        <option value="" selected>全部</option>
+        <option value="" selected>{{ "SELECT_OPTIONS.ALL" | translate }}</option>
         <option [value]="item.key" *ngFor="let item of locationAreaList">{{item.value}}</option>
       </select>
     </div>
   </div>
+  <!-- 狀態 -->
   <div class="content-query-unit query-field">
-    <div class="field-title">狀態</div>
+    <div class="field-title">{{ "PAGES.LOCATION_STATE" | translate }}</div>
     <div class="field-entry">
       <select
         formControlName="location_State">
-        <option value="2">全部</option>
-        <option value="1">啟用</option>
-        <option value="0">停用</option>
+        <option value="2">{{ "SELECT_OPTIONS.ALL" | translate }}</option>
+        <option value="1">{{ "SELECT_OPTIONS.ENABLE" | translate }}</option>
+        <option value="0">{{ "SELECT_OPTIONS.DISABLE" | translate }}</option>
       </select>
     </div>
   </div>
@@ -41,8 +45,8 @@
 <div class="content-query-button">
   <div class="content-query-unit query-button">
     <ul>
-      <li><button class="cancel-btn" (click)="clear()">清除</button></li>
-      <li><button class="query-btn" (click)="search()">查詢</button></li>
+      <li><button class="cancel-btn" (click)="clear()">{{ "BUTTONS.CLEAR" | translate }}</button></li>
+      <li><button class="query-btn" (click)="search()">{{ "BUTTONS.SEARCH" | translate }}</button></li>
     </ul>
   </div>
 </div>

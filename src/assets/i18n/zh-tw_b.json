@@ -93,7 +93,11 @@
     "INFO_JOBNUMBER_AND_NAME": "操作者",
     "LOGEXEC_CREATEIP": "操作者IP",
     "LOGEXEC_CREATEDATE": "操作日期",
-    "OPERATION_HISTORY_DETAIL": "操作歷程細項"
+    "OPERATION_HISTORY_DETAIL": "操作歷程細項",
+    "CFK_SITE": "Site",
+    "CK_LOCATION_CODE": "Location",
+    "CK_AREA_CODE": "Area",
+    "LOCATION_STATE": "狀態"
   },
   "MENUS": {
     "GLOBAL_MANAGER": "全域管理者設定",
@@ -103,7 +107,8 @@
     "NORMAL_MANAGER": "管理員",
     "ROLE_MANAGEMENT": "角色維護",
     "USER_MANAGEMENT": "使用者資料查詢",
-    "OPERATION_HISTORY": "操作歷程檢視"
+    "OPERATION_HISTORY": "操作歷程檢視",
+    "Location_MANAGEMENT": "Location維護"
   },
   "BUTTONS": {
     "LOGOUT": "登出",

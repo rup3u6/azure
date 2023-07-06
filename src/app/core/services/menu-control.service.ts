@@ -57,10 +57,10 @@ export class MenuControlService {
           module_Name: '秘書管理',
           mod_Route: '/systemsetting/secretary',
         },
-        {
-          module_Name: 'Location維護',
-          mod_Route: '/systemsetting/location',
-        },
+        // {
+        //   module_Name: 'MENUS.Location_MANAGEMENT',  //  Location維護
+        //   mod_Route: '/systemsetting/location',
+        // },
         {
           module_Name: 'MENUS.OPERATION_HISTORY',  //  操作歷程檢視
           mod_Route: '/systemsetting/log-execute',
