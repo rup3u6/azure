@@ -1,21 +1,26 @@
 <div class="content-query-field" [formGroup]="searchFormGroup" *ngIf="isSearchFormGroup">
+  <!-- 區域名稱 -->
   <div class="content-query-unit query-field">
-    <div class="field-title">區域名稱</div>
+    <div class="field-title">{{ "PAGES.ZONE_ID" | translate }}</div>
     <div class="field-entry">
       <select formControlName="zone_Id">
-        <option value="0" selected>全部</option>
+        <option value="0" selected>{{ "SELECT_OPTIONS.ALL" | translate }}</option>
         <ng-container *ngFor="let item of cfkZoneOption">
           <option [value]="item.key">{{item.value}}</option>
         </ng-container>
       </select>
     </div>
   </div>
+  <!-- 工號 -->
   <div class="content-query-unit query-field">
-    <div class="field-title">工號</div>
+    <div class="field-title">{{ "PAGES.INFO_JOBNUMBER" | translate }}</div>
     <div class="field-entry">
       <input
         type="text"
-        placeholder="請輸入工號"
+        [placeholder]="
+          'PLACEHOLDER.ENTRY'
+            | translate : { field: 'PAGES.INFO_JOBNUMBER' | translate }
+        "
         formControlName="info_Jobnumber"
       />
     </div>
@@ -24,8 +29,8 @@
 <div class="content-query-button">
   <div class="content-query-unit query-button">
     <ul>
-      <li><button class="cancel-btn" (click)="clear()">清除</button></li>
-      <li><button class="query-btn" (click)="search()">查詢</button></li>
+      <li><button class="cancel-btn" (click)="clear()">{{ "BUTTONS.CLEAR" | translate }}</button></li>
+      <li><button class="query-btn" (click)="search()">{{ "BUTTONS.SEARCH" | translate }}</button></li>
     </ul>
   </div>
 </div>

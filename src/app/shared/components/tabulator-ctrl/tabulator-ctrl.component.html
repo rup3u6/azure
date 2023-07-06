@@ -4,10 +4,10 @@
       <a (click)="edit($event)">{{ "BUTTONS.EDIT" | translate }}</a>
     </li>
     <li *ngIf="type === 'delete'">
-      <a (click)="del($event)" class='rt-delete'>刪除</a>
+      <a (click)="del($event)" class='rt-delete'>{{ "BUTTONS.DELETE" | translate }}</a>
     </li>
     <li *ngIf="type === 'copy'">
-      <a (click)="copy($event)">複製</a>
+      <a (click)="copy($event)">{{ "BUTTONS.COPY" | translate }}</a>
     </li>
     <li *ngIf="type === 'editCopyDelete' || type === 'editPreviewCopyOff'">
       <a (click)="more($event)">more_vert</a>
@@ -16,16 +16,18 @@
   <div class='more-fun-list' *ngIf="type === 'editCopyDelete' || type === 'editPreviewCopyOff'">
     <ul>
       <li *ngIf="type === 'editPreviewCopyOff'">
-        <a (click)="preview($event)">預覽</a>
+        <!-- 預覽 -->
+        <a (click)="preview($event)">{{ "BUTTONS.PREVIEW" | translate }}</a>
       </li>
       <li *ngIf="type === 'editCopyDelete'">
-        <a (click)="copy($event)">複製</a>
+        <a (click)="copy($event)">{{ "BUTTONS.COPY" | translate }}</a>
       </li>
       <li *ngIf="type === 'editCopyDelete'">
-        <a (click)="del($event)" class='rt-delete'>刪除</a>
+        <a (click)="del($event)" class='rt-delete'>{{ "BUTTONS.DELETE" | translate }}</a>
       </li>
       <li *ngIf="type === 'editPreviewCopyOff'">
-        <a (click)="off($event)">下架</a>
+        <!-- 下架 -->
+        <a (click)="off($event)">{{ "BUTTONS.PULL_FROM_SHELVES" | translate }}</a>
       </li>
     </ul>
   </div>

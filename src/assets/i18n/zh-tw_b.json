@@ -97,7 +97,10 @@
     "CFK_SITE": "Site",
     "CK_LOCATION_CODE": "Location",
     "CK_AREA_CODE": "Area",
-    "LOCATION_STATE": "狀態"
+    "LOCATION_STATE": "狀態",
+    "ZONE_ID": "區域名稱",
+    "INFO_STATE": "帳號狀態",
+    "FK_INFO_JOBNUMBER": "工號"
   },
   "MENUS": {
     "GLOBAL_MANAGER": "全域管理者設定",
@@ -108,7 +111,8 @@
     "ROLE_MANAGEMENT": "角色維護",
     "USER_MANAGEMENT": "使用者資料查詢",
     "OPERATION_HISTORY": "操作歷程檢視",
-    "Location_MANAGEMENT": "Location維護"
+    "LOCATION_MANAGEMENT": "Location維護",
+    "ALLOW_LIST": "白名單維護"
   },
   "BUTTONS": {
     "LOGOUT": "登出",
@@ -120,17 +124,26 @@
     "CANCEL": "取消",
     "DISABLE": "停用",
     "MANUAL_UPDATE_SECRETARY": "手動更新秘書",
-    "CLOSE": "關閉"
+    "CLOSE": "關閉",
+    "DELETE": "刪除",
+    "COPY": "複製",
+    "PREVIEW": "預覽",
+    "PULL_FROM_SHELVES": "下架",
+    "BATCH_CREATE": "批次新增",
+    "BATCH_DELETE": "批次刪除"
   },
   "SELECT_OPTIONS": {
     "ALL": "全部",
     "ENABLE": "啟用",
     "DISABLE": "停用",
     "MALE": "男",
-    "FEMALE": "女"
+    "FEMALE": "女",
+    "VALID": "有效",
+    "INVALID": "無效"
   },
   "PLACEHOLDER": {
-    "ENTRY": "請輸入{{field}}"
+    "ENTRY": "請輸入{{field}}",
+    "SELECT": "請選擇{{field}}"
   },
   "TABLE_INFO": {
     "TOTAL_COUNT": "共 {{count}} 筆",
