@@ -1,57 +1,82 @@
 <div class="content-query-field" [formGroup]="searchFormGroup">
   <div class="content-query-unit query-field">
-    <div class="field-title">修改項目</div>
+    <div class="field-title">
+      {{ "PAGES.LOGEXEC_CHANGEITEM" | translate }}
+    </div>
     <div class="field-entry">
       <input
         type="text"
-        placeholder="請輸入修改項目"
+        [placeholder]="
+          'PLACEHOLDER.ENTRY'
+            | translate : { field: 'PAGES.LOGEXEC_CHANGEITEM' | translate }
+        "
         formControlName="logExec_ChangeItem"
       />
     </div>
   </div>
   <div class="content-query-unit query-field">
-    <div class="field-title">操作類型</div>
+    <div class="field-title">{{ "PAGES.LOGEXEC_ACTION" | translate }}</div>
     <div class="field-entry">
       <input
         type="text"
-        placeholder="請輸入操作類型"
+        [placeholder]="
+          'PLACEHOLDER.ENTRY'
+            | translate : { field: 'PAGES.LOGEXEC_ACTION' | translate }
+        "
         formControlName="logExec_Action"
       />
     </div>
   </div>
-  <div class="content-query-unit query-field" [attr.attr]="f['startSearchDate'].errors && f['startSearchDate'].touched && 'error'">
-    <div class="field-title">日期區間(起)</div>
+  <div
+    class="content-query-unit query-field"
+    [attr.attr]="
+      f['startSearchDate'].errors && f['startSearchDate'].touched && 'error'
+    "
+  >
+    <div class="field-title">{{ "PAGES.STARTSEARCHDATE" | translate }}</div>
     <div class="field-entry">
       <nz-date-picker
-        nzPlaceHolder="請輸入日期區間(起)"
+        [nzPlaceHolder]="
+          'PLACEHOLDER.ENTRY'
+            | translate : { field: 'PAGES.STARTSEARCHDATE' | translate }
+        "
         [nzDisabledDate]="disabledDate"
         [(ngModel)]="startSearchDate"
         (ngModelChange)="startSearchDateChange($event)"
-        [ngModelOptions]="{standalone: true}"
+        [ngModelOptions]="{ standalone: true }"
       ></nz-date-picker>
     </div>
-    <div class="form-item-text" *ngIf="f['startSearchDate'].errors && f['startSearchDate'].touched">
-      <p>{{ f["startSearchDate"].errors | errorMessage : '日期區間(起)' }}</p>
+    <div
+      class="form-item-text"
+      *ngIf="f['startSearchDate'].errors && f['startSearchDate'].touched"
+    >
+      <p>{{ f["startSearchDate"].errors | errorMessage : "日期區間(起)" }}</p>
     </div>
   </div>
   <div class="content-query-unit query-field">
-    <div class="field-title">日期區間(迄)</div>
+    <div class="field-title">{{ "PAGES.ENDSEARCHDATE" | translate }}</div>
     <div class="field-entry">
       <nz-date-picker
-        nzPlaceHolder="請輸入日期區間(迄)"
+        [nzPlaceHolder]="
+          'PLACEHOLDER.ENTRY'
+            | translate : { field: 'PAGES.ENDSEARCHDATE' | translate }
+        "
         [nzDisabledDate]="disabledDate"
         [(ngModel)]="endSearchDate"
         (ngModelChange)="endSearchDateChange($event)"
-        [ngModelOptions]="{standalone: true}"
+        [ngModelOptions]="{ standalone: true }"
       ></nz-date-picker>
     </div>
   </div>
   <div class="content-query-unit query-field">
-    <div class="field-title">工號</div>
+    <div class="field-title">{{ "PAGES.INFO_JOBNUMBER" | translate }}</div>
     <div class="field-entry">
       <input
         type="text"
-        placeholder="請輸入工號"
+        [placeholder]="
+          'PLACEHOLDER.ENTRY'
+            | translate : { field: 'PAGES.INFO_JOBNUMBER' | translate }
+        "
         formControlName="info_Jobnumber"
       />
     </div>
@@ -77,11 +102,14 @@
     </div>
   </div> -->
   <div class="content-query-unit query-field">
-    <div class="field-title">電子信箱</div>
+    <div class="field-title">{{ "PAGES.INFO_EMAIL" | translate }}</div>
     <div class="field-entry">
       <input
         type="text"
-        placeholder="請輸入電子信箱"
+        [placeholder]="
+          'PLACEHOLDER.ENTRY'
+            | translate : { field: 'PAGES.INFO_EMAIL' | translate }
+        "
         formControlName="info_Email"
       />
     </div>
@@ -90,8 +118,16 @@
 <div class="content-query-button">
   <div class="content-query-unit query-button">
     <ul>
-      <li><button class="cancel-btn" (click)="clear()">清除</button></li>
-      <li><button class="query-btn" (click)="search()">查詢</button></li>
+      <li>
+        <button class="cancel-btn" (click)="clear()">
+          {{ "BUTTONS.CLEAR" | translate }}
+        </button>
+      </li>
+      <li>
+        <button class="query-btn" (click)="search()">
+          {{ "BUTTONS.SEARCH" | translate }}
+        </button>
+      </li>
     </ul>
   </div>
 </div>

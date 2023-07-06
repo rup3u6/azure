@@ -70,7 +70,7 @@
     "INFO_CELLPHONE": "手機",
     "INFO_TAKE_OFFICE": "任職日期",
     "INFO_RESIGN": "離職日期",
-    "INFO_EMAIL": "信箱",
+    "INFO_EMAIL": "電子信箱",
     "INFO_EXT": "分機",
     "INFO_COMPANY": "公司別",
     "INFO_DEPT_CODE": "部門代號",
@@ -84,7 +84,16 @@
     "USER_MANAGER_IDENTIFY": "使用者身份",
     "INFO_GLOBAL": "全域管理者",
     "INFO_BACKEND": "區域管理者",
-    "ROLES": "角色"
+    "ROLES": "角色",
+    "LOGEXEC_CHANGEITEM": "修改項目",
+    "LOGEXEC_ACTION": "操作類型",
+    "STARTSEARCHDATE": "日期區間(起)",
+    "ENDSEARCHDATE": "日期區間(迄)",
+    "LOGEXEC_MODULE": "修改項目",
+    "INFO_JOBNUMBER_AND_NAME": "操作者",
+    "LOGEXEC_CREATEIP": "操作者IP",
+    "LOGEXEC_CREATEDATE": "操作日期",
+    "OPERATION_HISTORY_DETAIL": "操作歷程細項"
   },
   "MENUS": {
     "GLOBAL_MANAGER": "全域管理者設定",
@@ -93,7 +102,8 @@
     "ZONE_MANAGER": "管理者設定",
     "NORMAL_MANAGER": "管理員",
     "ROLE_MANAGEMENT": "角色維護",
-    "USER_MANAGEMENT": "使用者資料查詢"
+    "USER_MANAGEMENT": "使用者資料查詢",
+    "OPERATION_HISTORY": "操作歷程檢視"
   },
   "BUTTONS": {
     "LOGOUT": "登出",
@@ -104,7 +114,8 @@
     "CONFIRM": "確認",
     "CANCEL": "取消",
     "DISABLE": "停用",
-    "MANUAL_UPDATE_SECRETARY": "手動更新秘書"
+    "MANUAL_UPDATE_SECRETARY": "手動更新秘書",
+    "CLOSE": "關閉"
   },
   "SELECT_OPTIONS": {
     "ALL": "全部",
