@@ -84,7 +84,16 @@
     "USER_MANAGER_IDENTIFY": "Manager Identify",
     "INFO_GLOBAL": "Global Manager",
     "INFO_BACKEND": "Zone Manager",
-    "ROLES": "Roles"
+    "ROLES": "Roles",
+    "LOGEXEC_CHANGEITEM": "Changed Item",
+    "LOGEXEC_ACTION": "Action Type",
+    "STARTSEARCHDATE": "Start Date",
+    "ENDSEARCHDATE": "End Date",
+    "LOGEXEC_MODULE": "Changed Item",
+    "INFO_JOBNUMBER_AND_NAME": "Operator",
+    "LOGEXEC_CREATEIP": "Operator IP",
+    "LOGEXEC_CREATEDATE": "Date",
+    "OPERATION_HISTORY_DETAIL": "Operation History Detail"
   },
   "MENUS": {
     "GLOBAL_MANAGER": "Global Setting",
@@ -93,7 +102,8 @@
     "ZONE_MANAGER": "Zone Setting",
     "NORMAL_MANAGER": "Setting",
     "ROLE_MANAGEMENT": "Role Management",
-    "USER_MANAGEMENT": "User Management"
+    "USER_MANAGEMENT": "User Management",
+    "OPERATION_HISTORY": "Operation History"
   },
   "BUTTONS": {
     "LOGOUT": "Logout",
@@ -104,7 +114,8 @@
     "CONFIRM": "Confirm",
     "CANCEL": "Cancel",
     "DISABLE": "Disable",
-    "MANUAL_UPDATE_SECRETARY": "Manual Update Secretary"
+    "MANUAL_UPDATE_SECRETARY": "Manual Update Secretary",
+    "CLOSE": "CLOSE"
   },
   "SELECT_OPTIONS": {
     "ALL": "All",

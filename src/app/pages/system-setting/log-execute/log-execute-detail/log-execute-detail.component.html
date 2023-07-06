@@ -6,7 +6,7 @@
       <div class="popup-component large-size-popup" type="normal">
         <div class="popup-header">
           <div class="popup-header-inner">
-            <div class="popup-header-unit header-text">操作歷程細項</div>
+            <div class="popup-header-unit header-text">{{"PAGES.OPERATION_HISTORY_DETAIL" | translate}}</div>
             <div class="popup-header-unit header-btn">
               <a href="javascript:void(0)" (click)="close.emit()"
                 ><span class="material-icons-outlined"> close </span></a
@@ -37,7 +37,7 @@
         <div class="popup-footer">
           <div class="popup-footer-inner">
             <div class="popup-footer-unit footer-button" btn="confirm">
-              <button (click)="close.emit()">關閉</button>
+              <button (click)="close.emit()">{{"BUTTONS.CLOSE"| translate}}</button>
             </div>
           </div>
         </div>

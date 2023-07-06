@@ -62,7 +62,7 @@ export class MenuControlService {
           mod_Route: '/systemsetting/location',
         },
         {
-          module_Name: '操作歷程檢視',
+          module_Name: 'MENUS.OPERATION_HISTORY',  //  操作歷程檢視
           mod_Route: '/systemsetting/log-execute',
         },
         // {

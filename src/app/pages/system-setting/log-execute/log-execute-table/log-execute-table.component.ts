@@ -23,7 +23,7 @@ export class LogExecuteTableComponent {
 
   columnNames: Array<any> = [
     {
-      title: '修改項目',
+      title: 'PAGES.LOGEXEC_MODULE',  //  修改項目
       field: 'logExec_Module',
       vertAlign: 'middle',
       hozAlign: 'center',
@@ -53,14 +53,14 @@ export class LogExecuteTableComponent {
       },
     },
     {
-      title: '操作類型',
+      title: 'PAGES.LOGEXEC_ACTION',  //  操作類型
       field: 'logExec_Action',
       vertAlign: 'middle',
       hozAlign: 'center',
       headerHozAlign: 'center',
     },
     {
-      title: '操作者',
+      title: 'PAGES.INFO_JOBNUMBER_AND_NAME',  //  操作者
       field: 'info_Jobnumber',
       vertAlign: 'middle',
       hozAlign: 'center',
@@ -84,14 +84,14 @@ export class LogExecuteTableComponent {
       },
     },
     {
-      title: '操作者IP',
+      title: 'PAGES.LOGEXEC_CREATEIP',  //  操作者IP
       field: 'logExec_CreateIp',
       vertAlign: 'middle',
       hozAlign: 'center',
       headerHozAlign: 'center',
     },
     {
-      title: '操作日期',
+      title: 'PAGES.LOGEXEC_CREATEDATE',  //  操作日期
       field: 'logExec_CreateDate',
       vertAlign: 'middle',
       hozAlign: 'center',
