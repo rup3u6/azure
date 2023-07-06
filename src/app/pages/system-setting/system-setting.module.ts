@@ -24,6 +24,9 @@ import { SecretaryComponent } from './secretary/secretary.component';
 import { SecretaryAddComponent } from './secretary/secretary-add/secretary-add.component';
 import { SecretarySearchFormComponent } from './secretary/secretary-search-form/secretary-search-form.component';
 import { SecretaryTableComponent } from './secretary/secretary-table/secretary-table.component';
+import { ServiceActivityComponent } from './service-activity/service-activity.component';
+import { ServiceActivityAddComponent } from './service-activity/service-activity-add/service-activity-add.component';
+import { ServiceActivityTableComponent } from './service-activity/service-activity-table/service-activity-table.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +51,9 @@ import { SecretaryTableComponent } from './secretary/secretary-table/secretary-t
     SecretaryAddComponent,
     SecretarySearchFormComponent,
     SecretaryTableComponent,
+    ServiceActivityComponent,
+    ServiceActivityAddComponent,
+    ServiceActivityTableComponent,
   ],
   imports: [
     SharedModule,

@@ -13,5 +13,10 @@
     "target": "http://192.168.51.223:5052",
     "secure": false,
     "pathRewrite": { "^/wis_cms_api": "" }
+  },
+  "/wis_cms_api/Activity": {
+    "target": "http://192.168.51.223:5054",
+    "secure": false,
+    "pathRewrite": { "^/wis_cms_api": "" }
   }
 }

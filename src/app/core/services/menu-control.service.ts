@@ -69,10 +69,10 @@ export class MenuControlService {
         //   module_Name: '聯絡我們維護',
         //   mod_Route: '',
         // },
-        // {
-        //   module_Name: '服務活動名單維護',
-        //   mod_Route: '',
-        // },
+        {
+          module_Name: '服務活動名單維護',
+          mod_Route: '/systemsetting/service-activity',
+        },
       ],
     },
   ];

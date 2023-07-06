@@ -7,6 +7,7 @@ import { LogExecuteComponent } from './log-execute/log-execute.component';
 import { UseInfoComponent } from './use-info/use-info.component';
 import { UseRoleComponent } from './use-role/use-role.component';
 import { SecretaryComponent } from './secretary/secretary.component';
+import { ServiceActivityComponent } from './service-activity/service-activity.component';
 
 const routes: Routes = [
   {
@@ -33,6 +34,10 @@ const routes: Routes = [
   {
     path: 'secretary',
     component: SecretaryComponent,
+  },
+  {
+    path: 'service-activity',
+    component: ServiceActivityComponent,
   },
 ];
 

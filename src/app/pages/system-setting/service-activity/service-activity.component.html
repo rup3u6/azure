@@ -1,0 +1,26 @@
+<main class="main-component main-content">
+  <div class="main-content-inner">
+    <!-- START: content-title -->
+    <div class="main-content-unit content-title">
+      <div class="content-title-inner">
+        <h1>服務活動名單維護</h1>
+      </div>
+    </div>
+    <!-- END: content-title -->
+    <hr class="seperate-line" />
+    <!-- START: content-result -->
+    <div
+      sys-service-activity-table
+      class="main-content-unit content-result"
+      (add)="addPopupHandler()"
+      (edit)="editPopupHandler($event)"
+    ></div>
+    <!-- END: content-result -->
+  </div>
+</main>
+
+<sys-service-activity-add
+  *ngIf="popup.component === 'add'"
+  [data]="popup.data"
+  (close)="popup.component = null"
+></sys-service-activity-add>

@@ -1,0 +1,90 @@
+  <!-- START: popup -->
+  <div class="frame-block">
+    <div class="frame-compose popup-compose">
+      <div class="popup-composer-inner">
+        <!-- START: default-popup -->
+        <div class="popup-component large-size-popup" type="normal">
+          <div class="popup-header">
+            <div class="popup-header-inner">
+              <div class="popup-header-unit header-text">
+                {{ data.mode === "add" ? "新增" : "編輯" }}服務活動名單
+              </div>
+              <div class="popup-header-unit header-btn">
+                <a (click)="close.emit()"
+                  ><span class="material-icons-outlined"> close </span></a
+                >
+              </div>
+            </div>
+          </div>
+          <div class="popup-content" *ngIf="isDistrictManagerFormGroup">
+            <div class="popup-content-form" [formGroup]="districtManagerFormGroup">
+              <div class="form-row row-2">
+                <div class="form-item" type="required" [attr.attr]="f['srvAct_Type'].errors && f['srvAct_Type'].touched && 'error'">
+                  <div class="form-item-inner">
+                    <div class="form-item-title">類別</div>
+                    <div class="form-item-entry">
+                      <select formControlName="srvAct_Type">
+                        <option value="" selected disabled>請選擇類別</option>
+                        <option value="1">醫師</option>
+                        <option value="2">按摩師</option>
+                      </select>
+                    </div>
+                    <div class="form-item-text" *ngIf="f['srvAct_Type'].errors && f['srvAct_Type'].touched">
+                      <p>{{ f['srvAct_Type'].errors | errorMessage : '類別' }}</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-item" type="required" [attr.attr]="f['srvAct_Name'].errors && f['srvAct_Name'].touched && 'error'">
+                  <div class="form-item-inner">
+                    <div class="form-item-title">名稱</div>
+                    <div class="form-item-entry">
+                      <input type="text" placeholder="請輸入名稱" formControlName="srvAct_Name" />
+                    </div>
+                    <div class="form-item-text" *ngIf="f['srvAct_Name'].errors && f['srvAct_Name'].touched">
+                      <p>{{ f['srvAct_Name'].errors | errorMessage : '名稱' }}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-row row-2">
+                <div class="form-item" type="required" [attr.attr]="f['srvAct_State'].errors && f['srvAct_State'].touched && 'error'">
+                  <div class="form-item-inner">
+                    <div class="form-item-title">
+                      狀態
+                    </div>
+                    <div class="form-item-entry">
+                      <ul>
+                        <li>
+                          <input type="radio" id="rd01" value="1" formControlName="srvAct_State" />
+                          <label for="rd01">啟用</label>
+                        </li>
+                        <li>
+                          <input type="radio" id="rd02" value="0" formControlName="srvAct_State" />
+                          <label for="rd02">停用</label>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="form-item-text" *ngIf="f['srvAct_State'].errors && f['srvAct_State'].touched">
+                      <p>{{ f["srvAct_State"] | errorMessage : "狀態" }}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="popup-footer">
+            <div class="popup-footer-inner">
+              <div class="popup-footer-unit footer-button" btn="cancel">
+                <button (click)="close.emit()">取消</button>
+              </div>
+              <div class="popup-footer-unit footer-button" btn="confirm">
+                <button (click)="submit()">確認</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- END: default-popup -->
+      </div>
+    </div>
+  </div>
+  <!-- END: popup -->
