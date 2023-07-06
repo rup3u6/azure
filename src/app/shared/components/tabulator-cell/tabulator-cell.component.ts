@@ -28,9 +28,9 @@ export class TabulatorCellComponent {
       const elemRefW = this._elemRef.nativeElement.clientWidth;
       const cellInnerNowrapElRef = this.cellInnerNowrapElRef.nativeElement.clientWidth;
 
-      console.log('-----');
-      console.log(elemRefW);
-      console.log(cellInnerNowrapElRef);
+      // console.log('-----');
+      // console.log(elemRefW);
+      // console.log(cellInnerNowrapElRef);
 
       // 欄位內容不換行 + 20 < 欄位大小
       if (cellInnerNowrapElRef + 20 < elemRefW) {

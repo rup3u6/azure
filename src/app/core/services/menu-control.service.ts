@@ -50,7 +50,7 @@ export class MenuControlService {
           mod_Route: '/systemsetting/use-role',
         },
         {
-          module_Name: '使用者資料查詢',
+          module_Name: 'MENUS.USER_MANAGEMENT',  //  使用者資料查詢
           mod_Route: '/systemsetting/use-info',
         },
         {

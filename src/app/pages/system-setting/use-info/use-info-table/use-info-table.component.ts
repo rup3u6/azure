@@ -34,14 +34,14 @@ export class UseInfoTableComponent {
       headerHozAlign: 'center',
     },
     {
-      title: '工號',
+      title: 'PAGES.INFO_JOBNUMBER',  //  工號
       field: 'info_Jobnumber',
       vertAlign: 'middle',
       hozAlign: 'center',
       headerHozAlign: 'center',
     },
     {
-      title: '姓名',
+      title: 'PAGES.INFO_NAME_AND_ENAME',  //  姓名
       field: 'info_Name',
       vertAlign: 'middle',
       hozAlign: 'center',
@@ -57,21 +57,21 @@ export class UseInfoTableComponent {
       },
     },
     {
-      title: 'Site',
+      title: 'PAGES.INFO_SITE',  //  Site
       field: 'info_Site',
       vertAlign: 'middle',
       hozAlign: 'center',
       headerHozAlign: 'center',
     },
     {
-      title: '部門',
+      title: 'PAGES.INFO_DEPT',  //  部門
       field: 'info_Dept',
       vertAlign: 'middle',
       hozAlign: 'center',
       headerHozAlign: 'center',
     },
     {
-      title: '秘書',
+      title: 'PAGES.INFO_SECRETARY_AND_NAME',  //  秘書
       field: 'info_Secretary',
       vertAlign: 'middle',
       hozAlign: 'center',
@@ -95,7 +95,7 @@ export class UseInfoTableComponent {
       },
     },
     {
-      title: '功能',
+      title: 'PAGES.FUNCTION',  //  功能
       vertAlign: 'middle',
       maxWidth: 80,
       minWidth: 80,

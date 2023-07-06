@@ -23,7 +23,7 @@
     "FRONT_SIDE_MENU_SETTING": "Front side menu setting fail",
     "BACK_SIDE_MENU_SETTING": "Back side menu setting fail",
     "REQUIRED": "Required",
-    "GREATER_THAN_END_DATE": "Greater than end Date",
+    "GREATER_THAN_END_DATE": "Greater than end date",
     "UNKNOWN_ERROR": "Unknown error",
     "DATA_MAINTAIN": "Data maintain fail",
     "PERMISSION_MENU": "Permission menu fail"
@@ -31,8 +31,8 @@
   "PAGES": {
     "DISABLE_ITEMS": "Disable Items",
     "EDIT_DATE": "Edited Date",
-    "EDIT_IP": "Edited IP",
-    "EDIT_CODE": "Edited Name",
+    "EDIT_IP": "Editor IP",
+    "EDIT_CODE": "Editor Name",
     "FUNCTION": "Function",
     "LANG_NAME": "Language Name",
     "LANG_CODE": "Language Code",
@@ -53,7 +53,37 @@
     "PERMISSION_MENU": "Permission Menu",
     "ROLE_USERS": "Role Users",
     "ROLE_STARTDATE": "Actived Date(Start)",
-    "ROLE_ENDDATE": "Actived Date(End)"
+    "ROLE_ENDDATE": "Actived Date(End)",
+    "INFO_JOBNUMBER": "Employee ID",
+    "INFO_NAME": "Chinese Name",
+    "INFO_ENAME": "English Name",
+    "INFO_NAME_AND_ENAME": "Name",
+    "INFO_SECRETARY": "Secretary Employee ID",
+    "SECRETARY_NAME": "Secretary Name",
+    "INFO_SITE": "Site",
+    "INFO_DEPT": "Department",
+    "INFO_SECRETARY_AND_NAME": "Secretary",
+    "INFO_BIRTHDAY": "Birthday",
+    "INFO_IDENTIFICATION": "ID Number",
+    "INFO_SEX": "Gender",
+    "INFO_CELLPHONE": "Phone Number",
+    "INFO_TAKE_OFFICE": "On Board",
+    "INFO_RESIGN": "Leave",
+    "INFO_EMAIL": "E-mail",
+    "INFO_EXT": "ext.",
+    "INFO_COMPANY": "Company",
+    "INFO_DEPT_CODE": "Department Code",
+    "INFO_DEPT_NAME": "Department Name",
+    "INFO_SUPERVISOR_ID": "Supervisor ID",
+    "INFO_EMPLOYEE_TYPE": "Employee Type",
+    "INFO_SALARY_AREA": "Salary Area",
+    "INFO_SEAT": "Seat Area",
+    "INFO_EXPATRIATE_DATE": "Expatriate Date",
+    "INFO_IDENTIFY": "Identify Item",
+    "USER_MANAGER_IDENTIFY": "Manager Identify",
+    "INFO_GLOBAL": "Global Manager",
+    "INFO_BACKEND": "Zone Manager",
+    "ROLES": "Roles"
   },
   "MENUS": {
     "GLOBAL_MANAGER": "Global Setting",
@@ -61,7 +91,8 @@
     "GLOBAL_ZONE": "Work With Area",
     "ZONE_MANAGER": "Zone Setting",
     "NORMAL_MANAGER": "Setting",
-    "ROLE_MANAGEMENT": "Role Management"
+    "ROLE_MANAGEMENT": "Role Management",
+    "USER_MANAGEMENT": "User Management"
   },
   "BUTTONS": {
     "LOGOUT": "Logout",
@@ -71,12 +102,15 @@
     "EDIT": "Edit",
     "CONFIRM": "Confirm",
     "CANCEL": "Cancel",
-    "DISABLE": "Disable"
+    "DISABLE": "Disable",
+    "MANUAL_UPDATE_SECRETARY": "Manual Update Secretary"
   },
   "SELECT_OPTIONS": {
     "ALL": "All",
     "ENABLE": "Enable",
-    "DISABLE": "Disable"
+    "DISABLE": "Disable",
+    "MALE": "Male",
+    "FEMALE": "Female"
   },
   "PLACEHOLDER": {
     "ENTRY": "Please entry {{field}}"

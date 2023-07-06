@@ -53,7 +53,37 @@
     "PERMISSION_MENU": "權限選單",
     "ROLE_USERS": "角色使用者",
     "ROLE_STARTDATE": "有效日期(起)",
-    "ROLE_ENDDATE": "有效日期(迄)"
+    "ROLE_ENDDATE": "有效日期(迄)",
+    "INFO_JOBNUMBER": "工號",
+    "INFO_NAME": "中文姓名",
+    "INFO_ENAME": "英文姓名",
+    "INFO_NAME_AND_ENAME": "姓名",
+    "INFO_SECRETARY": "秘書工號",
+    "SECRETARY_NAME": "秘書姓名",
+    "INFO_SITE": "Site",
+    "INFO_DEPT": "部門",
+    "INFO_SECRETARY_AND_NAME": "秘書",
+    "INFO_BIRTHDAY": "出生日",
+    "INFO_IDENTIFICATION": "身分證",
+    "INFO_SEX": "性別",
+    "INFO_CELLPHONE": "手機",
+    "INFO_TAKE_OFFICE": "任職日期",
+    "INFO_RESIGN": "離職日期",
+    "INFO_EMAIL": "信箱",
+    "INFO_EXT": "分機",
+    "INFO_COMPANY": "公司別",
+    "INFO_DEPT_CODE": "部門代號",
+    "INFO_DEPT_NAME": "部門名稱",
+    "INFO_SUPERVISOR_ID": "主管工號",
+    "INFO_EMPLOYEE_TYPE": "員工類別",
+    "INFO_SALARY_AREA": "付薪地",
+    "INFO_SEAT": "座位區域",
+    "INFO_EXPATRIATE_DATE": "派外日期",
+    "INFO_IDENTIFY": "識別項目",
+    "USER_MANAGER_IDENTIFY": "使用者身份",
+    "INFO_GLOBAL": "全域管理者",
+    "INFO_BACKEND": "區域管理者",
+    "ROLES": "角色"
   },
   "MENUS": {
     "GLOBAL_MANAGER": "全域管理者設定",
@@ -61,7 +91,8 @@
     "GLOBAL_ZONE": "區域維護",
     "ZONE_MANAGER": "管理者設定",
     "NORMAL_MANAGER": "管理員",
-    "ROLE_MANAGEMENT": "角色維護"
+    "ROLE_MANAGEMENT": "角色維護",
+    "USER_MANAGEMENT": "使用者資料查詢"
   },
   "BUTTONS": {
     "LOGOUT": "登出",
@@ -71,12 +102,15 @@
     "EDIT": "編輯",
     "CONFIRM": "確認",
     "CANCEL": "取消",
-    "DISABLE": "停用"
+    "DISABLE": "停用",
+    "MANUAL_UPDATE_SECRETARY": "手動更新秘書"
   },
   "SELECT_OPTIONS": {
     "ALL": "全部",
     "ENABLE": "啟用",
-    "DISABLE": "停用"
+    "DISABLE": "停用",
+    "MALE": "男",
+    "FEMALE": "女"
   },
   "PLACEHOLDER": {
     "ENTRY": "請輸入{{field}}"

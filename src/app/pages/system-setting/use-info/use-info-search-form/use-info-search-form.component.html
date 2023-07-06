@@ -1,50 +1,74 @@
 <div class="content-query-field" [formGroup]="searchFormGroup">
+  <!-- 工號 -->
   <div class="content-query-unit query-field">
-    <div class="field-title">工號</div>
+    <div class="field-title">{{ "PAGES.INFO_JOBNUMBER" | translate }}</div>
     <div class="field-entry">
       <input
         type="text"
-        placeholder="請輸入工號"
+        [placeholder]="
+          'PLACEHOLDER.ENTRY'
+            | translate : { field: 'PAGES.INFO_JOBNUMBER' | translate }
+        "
         formControlName="info_Jobnumber"
       />
     </div>
   </div>
+  <!-- 中文姓名 -->
   <div class="content-query-unit query-field">
-    <div class="field-title">中文姓名</div>
+    <div class="field-title">{{ "PAGES.INFO_NAME" | translate }}</div>
     <div class="field-entry">
       <input
         type="text"
-        placeholder="請輸入中文姓名"
+        [placeholder]="
+          'PLACEHOLDER.ENTRY'
+            | translate : { field: 'PAGES.INFO_NAME' | translate }
+        "
         formControlName="info_Name"
       />
     </div>
   </div>
+  <!-- 英文姓名 -->
   <div class="content-query-unit query-field">
-    <div class="field-title">英文姓名</div>
+    <div class="field-title">{{ "PAGES.INFO_ENAME" | translate }}</div>
     <div class="field-entry">
       <input
         type="text"
-        placeholder="請輸入英文姓名"
+        [placeholder]="
+          'PLACEHOLDER.ENTRY'
+            | translate : { field: 'PAGES.INFO_ENAME' | translate }
+        "
         formControlName="info_Ename"
       />
     </div>
   </div>
+  <!-- 秘書工號 -->
   <div class="content-query-unit query-field">
-    <div class="field-title">秘書工號</div>
+    <div class="field-title">
+      {{ "PAGES.INFO_SECRETARY" | translate }}
+    </div>
     <div class="field-entry">
       <input
         type="text"
-        placeholder="請輸入秘書工號"
+        [placeholder]="
+          'PLACEHOLDER.ENTRY'
+            | translate : { field: 'PAGES.INFO_SECRETARY' | translate }
+        "
         formControlName="info_Secretary"
       />
     </div>
   </div>
+  <!-- 秘書姓名 -->
   <div class="content-query-unit query-field">
-    <div class="field-title">秘書姓名</div>
+    <div class="field-title">
+      {{ "PAGES.SECRETARY_NAME" | translate }}
+    </div>
     <div class="field-entry">
       <input
         type="text"
-        placeholder="請輸入秘書姓名"
+        [placeholder]="
+          'PLACEHOLDER.ENTRY'
+            | translate : { field: 'PAGES.SECRETARY_NAME' | translate }
+        "
         formControlName="secretary_Name"
       />
     </div>
@@ -53,8 +77,16 @@
 <div class="content-query-button">
   <div class="content-query-unit query-button">
     <ul>
-      <li><button class="cancel-btn" (click)="clear()">清除</button></li>
-      <li><button class="query-btn" (click)="search()">查詢</button></li>
+      <li>
+        <button class="cancel-btn" (click)="clear()">
+          {{ "BUTTONS.CLEAR" | translate }}
+        </button>
+      </li>
+      <li>
+        <button class="query-btn" (click)="search()">
+          {{ "BUTTONS.SEARCH" | translate }}
+        </button>
+      </li>
     </ul>
   </div>
 </div>

@@ -11,7 +11,7 @@
       <div class="popup-component extra-size-popup" type="normal">
         <div class="popup-header">
           <div class="popup-header-inner">
-            <div class="popup-header-unit header-text">編輯員工權限及角色</div>
+            <div class="popup-header-unit header-text">{{ "BUTTONS.EDIT" | translate }}</div>
             <!-- <div class="popup-header-unit header-btn">
                   <a routerLink="/role"
                     ><span class="material-icons-outlined"> close </span></a
@@ -42,25 +42,25 @@
                           <tr>
                             <td>
                               <span class="tdinner">
-                                <span class="td-title">出生日</span>
+                                <span class="td-title">{{ "PAGES.INFO_BIRTHDAY" | translate }}</span>
                                 <span class="td-content">{{data.initData.info_Birthday ? ((data.initData.info_Birthday * 1000) | date:'yyyy/MM/dd') : '' }}</span>
                               </span>
                             </td>
                             <td>
                               <span class="tdinner">
-                                <span class="td-title">身分證</span>
+                                <span class="td-title">{{ "PAGES.INFO_IDENTIFICATION" | translate }}</span>
                                 <span class="td-content">{{ data.initData.info_Identification }}</span>
                               </span>
                             </td>
                             <td>
                               <span class="tdinner">
-                                <span class="td-title">性別</span>
-                                <span class="td-content">{{ data.initData.info_Sex === 'M' ? '男' : '女'}}</span>
+                                <span class="td-title">{{ "PAGES.INFO_SEX" | translate }}</span>
+                                <span class="td-content">{{ (data.initData.info_Sex === 'M' ? 'SELECT_OPTIONS.MALE' : 'SELECT_OPTIONS.FEMALE')|translate}}</span>
                               </span>
                             </td>
                             <td>
                               <span class="tdinner">
-                                <span class="td-title">手機</span>
+                                <span class="td-title">{{ "PAGES.INFO_CELLPHONE" | translate }}</span>
                                 <span class="td-content">{{ data.initData.info_Cellphone }}</span>
                               </span>
                             </td>
@@ -68,25 +68,25 @@
                           <tr>
                             <td>
                               <span class="tdinner">
-                                <span class="td-title">任職日期</span>
+                                <span class="td-title">{{ "PAGES.INFO_TAKE_OFFICE" | translate }}</span>
                                 <span class="td-content">{{data.initData.info_Take_Office ? ((data.initData.info_Take_Office * 1000) | date:'yyyy/MM/dd') : '' }}</span>
                               </span>
                             </td>
                             <td>
                               <span class="tdinner">
-                                <span class="td-title">離職日期</span>
+                                <span class="td-title">{{ "PAGES.INFO_RESIGN" | translate }}</span>
                                 <span class="td-content">{{data.initData.info_Resign ? ((data.initData.info_Resign * 1000) | date:'yyyy/MM/dd') : '' }}</span>
                               </span>
                             </td>
                             <td>
                               <span class="tdinner">
-                                <span class="td-title">信箱</span>
+                                <span class="td-title">{{ "PAGES.INFO_EMAIL" | translate }}</span>
                                 <span class="td-content">{{ data.initData.info_Email }}</span>
                               </span>
                             </td>
                             <td>
                               <span class="tdinner">
-                                <span class="td-title">分機</span>
+                                <span class="td-title">{{ "PAGES.INFO_EXT" | translate }}</span>
                                 <span class="td-content">{{ data.initData.info_Ext }}</span>
                               </span>
                             </td>
@@ -97,25 +97,25 @@
                           <tr>
                             <td>
                               <span class="tdinner">
-                                <span class="td-title">公司別</span>
+                                <span class="td-title">{{ "PAGES.INFO_COMPANY" | translate }}</span>
                                 <span class="td-content">{{ data.initData.info_Company }}</span>
                               </span>
                             </td>
                             <td>
                               <span class="tdinner">
-                                <span class="td-title">部門代號</span>
+                                <span class="td-title">{{ "PAGES.INFO_DEPT_CODE" | translate }}</span>
                                 <span class="td-content">{{ data.initData.info_Dept }}</span>
                               </span>
                             </td>
                             <td>
                               <span class="tdinner">
-                                <span class="td-title">部門名稱</span>
+                                <span class="td-title">{{ "PAGES.INFO_DEPT_NAME" | translate }}</span>
                                 <span class="td-content">{{ data.initData.info_Dept_Name }}</span>
                               </span>
                             </td>
                             <td>
                               <span class="tdinner">
-                                <span class="td-title">主管工號</span>
+                                <span class="td-title">{{ "PAGES.INFO_SUPERVISOR_ID" | translate }}</span>
                                 <span class="td-content">{{ data.initData.info_Supervisor_Id }}</span>
                               </span>
                             </td>
@@ -123,25 +123,25 @@
                           <tr>
                             <td>
                               <span class="tdinner">
-                                <span class="td-title">員工類別</span>
+                                <span class="td-title">{{ "PAGES.INFO_EMPLOYEE_TYPE" | translate }}</span>
                                 <span class="td-content">{{ data.initData.info_Employee_Type }}</span>
                               </span>
                             </td>
                             <td>
                               <span class="tdinner">
-                                <span class="td-title">付薪地</span>
+                                <span class="td-title">{{ "PAGES.INFO_SALARY_AREA" | translate }}</span>
                                 <span class="td-content">{{ data.initData.info_Salary_Area }}</span>
                               </span>
                             </td>
                             <td>
                               <span class="tdinner">
-                                <span class="td-title">座位區域</span>
+                                <span class="td-title">{{ "PAGES.INFO_SEAT" | translate }}</span>
                                 <span class="td-content">{{ data.initData.info_Seat }}</span>
                               </span>
                             </td>
                             <td>
                               <span class="tdinner">
-                                <span class="td-title">端點</span>
+                                <span class="td-title">{{ "PAGES.INFO_SITE" | translate }}</span>
                                 <span class="td-content">{{ data.initData.info_Site }}</span>
                               </span>
                             </td>
@@ -149,19 +149,19 @@
                           <tr>
                             <td>
                               <span class="tdinner">
-                                <span class="td-title">派外日期</span>
+                                <span class="td-title">{{ "PAGES.INFO_EXPATRIATE_DATE" | translate }}</span>
                                 <span class="td-content">{{data.initData.info_Expatriate_Date ? ((data.initData.info_Expatriate_Date * 1000) | date:'yyyy/MM/dd') : '' }}</span>
                               </span>
                             </td>
                             <td>
                               <span class="tdinner">
-                                <span class="td-title">識別項目</span>
+                                <span class="td-title">{{ "PAGES.INFO_IDENTIFY" | translate }}</span>
                                 <span class="td-content"></span>
                               </span>
                             </td>
                             <td>
                               <span class="tdinner">
-                                <span class="td-title">秘書</span>
+                                <span class="td-title">{{ "PAGES.INFO_SECRETARY_AND_NAME" | translate }}</span>
                                 <span class="td-content">{{ data.initData.info_Secretary }}</span>
                               </span>
                             </td>
@@ -181,7 +181,7 @@
                   <div class="form-row row-3">
                     <div class="form-item">
                         <div class="form-item-inner">
-                          <div class="form-item-title">使用者身份</div>
+                          <div class="form-item-title">{{ "PAGES.USER_MANAGER_IDENTIFY" | translate }}</div>
                           <div class="form-item-entry">
                             <ul>
                               <li>
@@ -190,7 +190,7 @@
                                   formControlName="info_Global"
                                   id="info_Global"
                                   />
-                                  <label for="info_Global">全域管理者</label>
+                                  <label for="info_Global">{{ "PAGES.INFO_GLOBAL" | translate }}</label>
                                 </li>
                                 <li>
                                   <input
@@ -198,7 +198,7 @@
                                     formControlName="info_Backend"
                                     id="info_Backend"
                                   />
-                                  <label for="info_Backend">區域管理者</label>
+                                  <label for="info_Backend">{{ "PAGES.INFO_BACKEND" | translate }}</label>
                               </li>
                             </ul>
                           </div>
@@ -208,7 +208,7 @@
                   <div class="form-row row-1">
                     <div class="form-item" type="required" [attr.attr]="f['lCIn_UseInfo_RoleData'].errors && f['lCIn_UseInfo_RoleData'].touched && 'error'">
                         <div class="form-item-inner">
-                          <div class="form-item-title">角色</div>
+                          <div class="form-item-title">{{ "PAGES.ROLES" | translate }}</div>
                           <div class="form-item-entry">
                             <ul>
                               <ng-container *ngFor="let item of roleList">
@@ -290,10 +290,10 @@
         <div class="popup-footer">
           <div class="popup-footer-inner">
             <div class="popup-footer-unit footer-button" btn="cancel">
-              <button (click)="close.emit()">取消</button>
+              <button (click)="close.emit()">{{ "BUTTONS.CANCEL" | translate }}</button>
             </div>
             <div class="popup-footer-unit footer-button" btn="confirm">
-              <button (click)="submit()">確認</button>
+              <button (click)="submit()">{{ "BUTTONS.CONFIRM" | translate }}</button>
             </div>
           </div>
         </div>
