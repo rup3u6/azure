@@ -12,9 +12,15 @@ export class HttpService {
 
   constructor(private http: HttpClient) { }
 
-  post<T>(path: string, body: object): Observable<T> {
+  post<T>(path: string, body: any = null): Observable<T> {
     const fullPath = `${this.apiUrl}/${path}`;
 
     return this.http.post<T>(fullPath, body).pipe(map((res: any) => JSON.parse(res)));
+  }
+
+  post_blob(path: string, body: any = null): Observable<Blob> {
+    const fullPath = `${this.apiUrl}/${path}`;
+
+    return this.http.post<Blob>(fullPath, body, { responseType: 'blob' as 'json', });
   }
 }

@@ -10,30 +10,33 @@ import { MsalService } from '@azure/msal-angular';
 import { ResponseStatus } from 'src/app/core/enum/response-status';
 import { ManagerInfoService } from './manager-info.service';
 
+// service
+import { HttpService } from '../../services/http.service';
+
 @Injectable({
   providedIn: 'root',
 })
 export class LoginService {
   constructor(
-    private http: HttpClient,
+    private httpService: HttpService,
     private router: Router,
     private authService: MsalService,
-    private managerInfoService: ManagerInfoService
-  ) {}
+    private managerInfoService: ManagerInfoService,
+  ) { }
 
-  private apiUrl = environment.apiUrl;
+  private apiUrl = 'Auth/Login';
   private requestId = ''; //  驗證碼請求id
 
   login(body: CInLoginPageData) {
     body.requestId = this.requestId;
-    return this.http.post<any>(`${this.apiUrl}/Auth/Login`, body).pipe(
-      map((res: any) => JSON.parse(res)),
-      tap((res) => {
-        localStorage.setItem('wis_cms_token', res.data);
-        const { status } = res;
-        status === ResponseStatus.執行成功 && this.router.navigate(['/home']);
-      })
-    );
+    return this.httpService.post<any>(`${this.apiUrl}`, body)
+      .pipe(
+        tap((res) => {
+          localStorage.setItem('wis_cms_token', res.data);
+          const { status } = res;
+          status === ResponseStatus.執行成功 && this.router.navigate(['/home']);
+        })
+      );
   }
 
   logout() {
@@ -51,13 +54,7 @@ export class LoginService {
 
   getValidGrphics() {
     this.requestId = this.uuidv4();
-    return this.http.post<Blob>(
-      `${this.apiUrl}/Auth/Login/GetValidGrphics`,
-      { sRequestId: this.requestId },
-      {
-        responseType: 'blob' as 'json',
-      }
-    );
+    return this.httpService.post_blob(`${this.apiUrl}/GetValidGrphics`, { sRequestId: this.requestId })
   }
 
   getToken() {

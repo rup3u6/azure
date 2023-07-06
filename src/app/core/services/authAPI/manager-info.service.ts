@@ -5,11 +5,15 @@ import { map, tap } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 import { MenuControlService } from '../menu-control.service';
 
+// service
+import { HttpService } from '../../services/http.service';
+
 @Injectable({
   providedIn: 'root',
 })
 export class ManagerInfoService {
-  private apiUrl = environment.apiUrl;
+
+  private apiUrl = 'Auth/Login';
   public managerName = '';
   public managerJobNumber = '';
 
@@ -25,16 +29,14 @@ export class ManagerInfoService {
   public zoneList = [];
 
   constructor(
-    private http: HttpClient,
     private translateService: TranslateService,
-    private menuControlService: MenuControlService
-  ) {}
+    private menuControlService: MenuControlService,
+    private httpService: HttpService,
+  ) { }
 
   getManagerInfo() {
-    return this.http
-      .post<any>(`${this.apiUrl}/Auth/Login/GetLoginInfo`, null)
+    return this.httpService.post<any>(`${this.apiUrl}/GetLoginInfo`)
       .pipe(
-        map((res: any) => JSON.parse(res)),
         tap((res) => {
           const { name, jobNumber, isGlobal, isBackend, zones } = res.data;
           this.managerName = name;
