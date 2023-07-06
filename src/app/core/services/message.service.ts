@@ -75,7 +75,7 @@ export class MessageService {
     }
   }
 
-  public closeAllModal(){
+  public closeAllModal() {
     this.modal.closeAll();
   }
 
@@ -84,12 +84,16 @@ export class MessageService {
       // msgOrField: Array<{field:'', errorMessage:''}>
       let transMsgArray = msgOrField.map((item: any) => {
         let i18nField = item.field;
-        let errorMessage = item.errorMessage;
+        //  若不為MXXXX格式，則取用後端給的Message
+        let errorMessage = /^M[\d]{4}$/.test(item.errorMessage)
+          ? item.errorMessage
+          : '';
         let transField = this.translateService.instant(
           'PAGES.' + i18nField.toUpperCase()
         );
         return this.translateService.instant('ERRORS.' + errorMessage, {
           field: transField,
+          errorMessage,
         });
       });
       return transMsgArray;
